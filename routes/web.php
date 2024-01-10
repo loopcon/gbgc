@@ -31,6 +31,12 @@ Route::post('admin/websitelogoupdate',[App\Http\Controllers\Admin\SettingControl
 Route::get('/adminprofile', [App\Http\Controllers\Admin\AdminprofileController::class, 'profile'])->name('adminprofile');
 Route::post('/updateprofile', [App\Http\Controllers\Admin\AdminprofileController::class, 'updateprofile'])->name('updateprofile');
 //endadminprofile
+
+//aboutus
+Route::get('/aboutus', [App\Http\Controllers\Admin\AboutUsController::class,'index'])->name('aboutus');
+Route::post('aboutus-update',[App\Http\Controllers\Admin\AboutUsController::class, 'update'])->name('aboutus-update');
+//endaboutus
+
 });
 
 Auth::routes();

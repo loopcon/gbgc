@@ -94,31 +94,88 @@
 
 <ul class="pcoded-item pcoded-left-item">
 
-<li class>
-<a href="#" class="waves-effect waves-dark">
-<span class="pcoded-micon">
-<i class="feather icon-home"></i>
-</span>
-<span class="pcoded-mtext">Dashboard</span>
-</a>
-</li>
+    <li class>
+        <a href="{{route('adminindex')}}" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-home"></i>
+            </span>
+            <span class="pcoded-mtext">Dashboard</span>
+        </a>
+    </li>
 
-<li class="pcoded-hasmenu  pcoded-trigger">
-<a href="javascript:void(0)" class="waves-effect waves-dark">
-<span class="pcoded-micon"><i class="feather icon-settings"></i></span>
-<span class="pcoded-mtext">Settings</span>
-</a>
-<ul class="pcoded-submenu">
+    <li class>
+        <a href="#" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-upload"></i>
+            </span>
+            <span class="pcoded-mtext">GBGC Data Upload</span>
+        </a>
+    </li>
+    <li class>
+        <a href="#" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-user"></i>
+            </span>
+            <span class="pcoded-mtext">Users</span>
+        </a>
+    </li>
+    <li class>
+        <a href="#" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-info"></i>
+            </span>
+            <span class="pcoded-mtext">Membership Plan</span>
+        </a>
+    </li>
+    <li class>
+        <a href="#" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-info"></i>
+            </span>
+            <span class="pcoded-mtext">Orders</span>
+        </a>
+    </li>
+    <li class>
+        <a href="#" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-info"></i>
+            </span>
+            <span class="pcoded-mtext">CMS</span>
+        </a>
+    </li>
 
-<li class>
-<a href="{{route('websitelogo')}}" class="waves-effect waves-dark">
-<span class="pcoded-mtext">Website Logo</span>
-</a>
-</li>
+    <li class>
+        <a href="{{route('aboutus')}}" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-info"></i>
+            </span>
+            <span class="pcoded-mtext">About Us</span>
+        </a>
+    </li>
 
+    <li class="pcoded-hasmenu  pcoded-trigger">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
+            <span class="pcoded-mtext">Settings</span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class>
+                <a href="{{route('websitelogo')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">Website Logo</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 
-</ul>
-</li>
+    <li class>
+        <a href="#" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-log-out"></i>
+            </span>
+            <span class="pcoded-mtext">Log Out</span>
+        </a>
+    </li>
+
 </ul>
 
 </div>
