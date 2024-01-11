@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AboutUs;
 use DataTables;
+use File;
 
 class AboutUsController extends Controller
 {
@@ -19,7 +20,6 @@ class AboutUsController extends Controller
         return view('admin.aboutus.form', array_merge($return_data));
     }
 
-    
     public function update(Request $request)
     {
         $this->validate($request, [
@@ -32,14 +32,27 @@ class AboutUsController extends Controller
             ]
         );
         $aboutus = AboutUs::find($request->id);
+        
+        $old_image = isset($aboutus->image) ? $aboutus->image : NULL;
+        if($old_image){
+            $old_image = File::delete('/uploads/aboutus/'.$old_image);
+            // print_r($old_image);exit;
+        }
+
+        $imageFiles = $request->file('image');
 
         $aboutus->name = $request->input('name');
         $aboutus->title = $request->input('title');
         $aboutus->description = $request->input('description');
-        // if($request->hasFile('image')) {
-        //     $newName = fileUpload($request, 'image', 'uploads/artical');
-        //     $artical->image = $newName;
-        // }
+
+        if ($imageFiles) {
+            
+            $extension = $imageFiles->getClientOriginalExtension();
+            $dir = public_path() . '/uploads/aboutus/';
+            $filename = uniqid() . '_' . time() . '.' . $extension;
+            $imageFiles->move($dir, $filename);
+            $aboutus->image = $filename;
+        }
 
         $aboutus->save();
 
@@ -49,4 +62,5 @@ class AboutUsController extends Controller
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
+
 }

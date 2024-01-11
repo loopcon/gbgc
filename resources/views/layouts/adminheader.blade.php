@@ -8,6 +8,9 @@
 <meta name="description" content="Admindek Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
 <meta name="keywords" content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
 <meta name="author" content="colorlib" />
+<link rel="stylesheet" type="text/css" href="../files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="../files/assets/pages/data-table/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="../files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
 
 <link rel="icon" href="{{asset('gbgc-logo.png')}}" type="image/x-icon">
 
@@ -41,7 +44,7 @@
 <div class="navbar-wrapper">
 <div class="navbar-logo">
 <a href="index.html">
-<img class="img-fluid" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo" / style="height: 50px;">
+<img class="img-fluid" src="{{asset('uploads/settings/'.$data->logo)}}" alt="Theme-Logo" / style="height: 50px;">
 </a>
 
 <a class="mobile-options waves-effect waves-light">
@@ -153,6 +156,15 @@
         </a>
     </li>
 
+    <li class>
+        <a href="{{route('faq')}}" class="waves-effect waves-dark">
+            <span class="pcoded-micon">
+                <i class="feather icon-info"></i>
+            </span>
+            <span class="pcoded-mtext">FAQ</span>
+        </a>
+    </li>
+
     <li class="pcoded-hasmenu  pcoded-trigger">
         <a href="javascript:void(0)" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
@@ -222,5 +234,18 @@
 <script src="{{asset('admin/assets/js/vertical/vertical-layout.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/assets/pages/dashboard/custom-dashboard.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/assets/js/script.min.js')}}"></script>
+
+<script src="../files/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../files/assets/pages/data-table/js/jszip.min.js"></script>
+<script src="../files/assets/pages/data-table/js/pdfmake.min.js"></script>
+<script src="../files/assets/pages/data-table/js/vfs_fonts.js"></script>
+<script src="../files/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../files/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<script src="../files/assets/pages/data-table/js/data-table-custom.js"></script>
 </body>
 </html>

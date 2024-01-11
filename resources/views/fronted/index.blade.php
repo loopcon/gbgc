@@ -144,16 +144,14 @@
                 <div class="col-12 col-sm-11 col-md-12 col-lg-11">
                     <div class="row m-0 about-box ">
                         <div class="col-12 col-sm-6">
-                            <img src="{{asset('img/abouts-img.png')}}" class="img-fluid about-imgmain" alt="">
+                            <img src="{{asset('uploads/aboutus/'.$aboutus->image)}}" class="img-fluid about-imgmain" alt="">
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="aboutus-text-box">
-                                <p class="about-usheading">About Us</p>
-                                <h4>About GBGC</h4>
+                                <p class="about-usheading">{{$aboutus->name}}</p>
+                                <h4>{{$aboutus->title}}</h4>
                                 <p>A specialist gaming market research and consultancy firm.</p>
-                                <p>Our consultancy and advice are based on more than 50 years of experience in different areas of the gambling sector.</p>
-                                <p>Since 1999, GBGC has helped clients in all parts of the gambling value chain to explore opportunities, develop strategies, and improve gambling businesses around the world.</p>
-                                <p>Our clients include governments, regulators, investors, suppliers, and operators involved in the global gambling industry.</p>
+                                <p>{{$aboutus->description}}</p>
                             </div>
                         </div>
                     </div> 
