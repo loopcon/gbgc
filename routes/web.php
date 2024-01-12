@@ -16,6 +16,7 @@ use App\Http\Controllers\Fornted\FrontedController;
 
 Route::get('/',[FrontedController::class,'index'])->name('index');
 Route::get('Faq',[FrontedController::class,'faq'])->name('faq');
+Route::post('customer-checklogin',[FrontedController::class,'checklogin'])->name('customer-checklogin');
 Route::get('How_its_Work',[FrontedController::class,'howitswork'])->name('howitswork');
 
 Route::group(['middleware' => ['auth']], function () { 
@@ -46,6 +47,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('faq-delete/{id}', [App\Http\Controllers\Admin\FaqController::class, 'destroy'])->name('faq-delete');
     Route::post('faq-datatable', [App\Http\Controllers\Admin\FaqController::class, 'listDatatable'])->name('faq-datatable');
     //endfaq
+
+    //aboutus
+    Route::get('/customer', [App\Http\Controllers\Admin\CustomerController::class,'index'])->name('customer');
+     Route::get('customer-create',[App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer-create');
+    Route::post('customer-store',[App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('customer-store');
+    Route::get('customer-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('customer-delete');
 
 });
 

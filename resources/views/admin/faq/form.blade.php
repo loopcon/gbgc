@@ -47,7 +47,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Answer</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" id="answer" name="answer" placeholder="Answer"  data-parsley-required-message="{{ __("This value is required.")}}">{{ isset($record->answer) ? $record->answer : old('answer') }}</textarea>
+                                            <textarea class="form-control ckeditor" id="answer" name="answer" placeholder="Answer"  data-parsley-required-message="{{ __("This value is required.")}}">{{ isset($record->answer) ? $record->answer : old('answer') }}</textarea>
                                             @if ($errors->has('answer')) <div class="text-danger">{{ $errors->first('answer') }}</div>@endif
                                         </div>
                                     </div>
@@ -65,4 +65,11 @@
         </div>
     </div>
 </div>
+@endsection
+@section('javascript')
+<script>
+    $(document).ready(function(){
+        CKEDITOR.replace('answer');       
+    });
+</script>
 @endsection

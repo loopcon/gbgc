@@ -52,7 +52,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Description</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" id="description" name="description" placeholder="Description"  data-parsley-required-message="{{ __("This value is required.")}}">{{$aboutus->description}}</textarea>
+                                            <textarea class="form-control ckeditor" id="description" name="description" placeholder="Description"  data-parsley-required-message="{{ __("This value is required.")}}">{{$aboutus->description}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -82,4 +82,11 @@
         </div>
     </div>
 </div>
+@endsection
+@section('javascript')
+<script>
+    $(document).ready(function(){
+        CKEDITOR.replace('description');       
+    });
+</script>
 @endsection

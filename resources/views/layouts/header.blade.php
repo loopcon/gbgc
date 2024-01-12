@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,14 +27,82 @@
                                 <li><a href="#">News</a></li>
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="#">Account</a></li>
+                                <li><a class="navbar-sign-upbtn" href="" data-bs-toggle="modal" data-bs-target="#siguploginModal">SIGN UP / LOGIN</a></li>
                             </ul>
                         </div>
                     </div>   
+                    @if ($alert = Session::get('alert-success'))
+                        <div class="alert alert-success alert-dismissible fade show"  id="success-alert">
+                            {{ $alert }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @elseif($alert = Session::get('alert-danger'))
+                        <div class="alert alert-danger alert-dismissible fade show" id="danger-alert">
+                            {{ $alert }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>    
         </div>    
     </nav>
-   
+    <!-- login popup-->
+   <div class="modal fade" id="siguploginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog siguplogin-dailog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+              <div class="row m-0">
+                    <div class="col-5 p-0">
+                        <img src="img/our-clients-img.png" class="img-fluid login-img-popup" alt="">
+                    </div>
+                    <div class="col-7 p-0">
+                        <div class="login-register-form-box">
+                            <div class="login-register-box">
+                                <a href="#" class="login-text login-active">Login</a>
+                            </div>
+                            <div>
+                                <form action="/customer-checklogin" method="POST" class="login-form">
+                                    @csrf
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-plus"></i></span>
+                                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="USERNAME" aria-label="Username" aria-describedby="basic-addon1">
+                                        @if ($errors->has('username'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('username') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                                        <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="PASSWORD" aria-label="Username" aria-describedby="basic-addon1">
+                                        @if ($errors->has('password'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1"> Remember me</label>
+                                    </div>
+                                    <a href="{{route('customer-checklogin')}}"><button class="login-form-signin">SIGN IN</button></a>
+                                </form>
+                            
+                            </div>
+                        </div>
+                    </div>
+              </div>
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+          </div>
+        </div>
+    </div>
  @yield('content')
     <!-- footer  start  -->
     <footer class="footer-bg">
@@ -91,6 +160,13 @@
     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script>
         $(document).ready(function(){
+            $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                $("#success-alert").slideUp(500);
+            });
+            $("#danger-alert").fadeTo(2000, 500).slideUp(500, function(){
+                $("#danger-alert").slideUp(500);
+            });
+
             $(window).scroll(function () { 
                 if ($(window).scrollTop() > 50) {
                     $('#header-sticky').addClass('sticky');
@@ -159,3 +235,6 @@
 
         });
     </script>
+apps-fileview.texmex_20240104.01_p1
+header.blade.php
+Displaying header.blade.php.
