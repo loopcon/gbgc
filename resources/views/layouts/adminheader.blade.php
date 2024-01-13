@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Admindek | Admin Template</title>
+<title>GBGC | Admin</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -46,7 +46,7 @@
 <nav class="navbar header-navbar pcoded-header">
 <div class="navbar-wrapper">
 <div class="navbar-logo">
-<a href="index.html">
+<a href="{{route('adminindex')}}">
 <img class="img-fluid" src="{{asset('uploads/settings/'.$data->logo)}}" alt="Theme-Logo" / style="height: 50px;">
 </a>
 
@@ -64,7 +64,7 @@
 <div class="dropdown-primary dropdown">
 <div class="dropdown-toggle" data-toggle="dropdown">
 <img src="{{asset('admin/assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
-<span>{{ Auth::user()->name }}</span>
+<span>@if(auth()->user()){{ Auth::user()->name }}@endif</span>
 <i class="feather icon-chevron-down"></i>
 </div>
 <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -126,9 +126,9 @@
         </a>
     </li>
     <li class>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="{{route('adminmembership')}}" class="waves-effect waves-dark">
             <span class="pcoded-micon">
-                <i class="feather icon-info"></i>
+                <i class="feather icon-list"></i>
             </span>
             <span class="pcoded-mtext">Membership Plan</span>
         </a>
@@ -141,42 +141,42 @@
             <span class="pcoded-mtext">Orders</span>
         </a>
     </li>
-    <li class>
-        <a href="#" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-info"></i>
-            </span>
-            <span class="pcoded-mtext">CMS</span>
-        </a>
-    </li>
-
-    <li class>
-        <a href="{{route('aboutus')}}" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-info"></i>
-            </span>
-            <span class="pcoded-mtext">About Us</span>
-        </a>
-    </li>
 
     <li class>
         <a href="{{route('customer')}}" class="waves-effect waves-dark">
             <span class="pcoded-micon">
-                <i class="feather icon-info"></i>
+                <i class="feather icon-users"></i>
             </span>
             <span class="pcoded-mtext">Customer</span>
         </a>
     </li>
 
-    <li class>
-        <a href="{{route('faq')}}" class="waves-effect waves-dark">
+    <li class="pcoded-hasmenu  pcoded-trigger">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
+            <span class="pcoded-mtext">CMS</span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class>
+                <a href="{{route('aboutus')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">About Us</span>
+                </a>
+            </li>
+             <li class>
+                <a href="{{route('faq')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">FAQ</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+     <li class>
+        <a href="#" class="waves-effect waves-dark">
             <span class="pcoded-micon">
                 <i class="feather icon-info"></i>
             </span>
-            <span class="pcoded-mtext">FAQ</span>
+            <span class="pcoded-mtext">Reports</span>
         </a>
     </li>
-
     <li class="pcoded-hasmenu  pcoded-trigger">
         <a href="javascript:void(0)" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
@@ -191,14 +191,19 @@
         </ul>
     </li>
 
+    @if(auth()->user())
     <li class>
-        <a href="#" class="waves-effect waves-dark">
+        <a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="waves-effect waves-dark">
             <span class="pcoded-micon">
                 <i class="feather icon-log-out"></i>
             </span>
             <span class="pcoded-mtext">Log Out</span>
         </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+           @csrf
+        </form>
     </li>
+    @endif
 
 </ul>
 

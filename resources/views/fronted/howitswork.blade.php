@@ -333,7 +333,7 @@
 @section('script')
     <script>
         $(document).ready(function(){
-          
+
             $(window).scroll(reOrder)
             $(window).resize(reOrder)
 
@@ -360,7 +360,6 @@
                 $('.left-child h2').text("fixed");
             }
             }
-
 
                 var sections = $('.right div[id]')
                 , nav = $('#menu-section-scroll')
