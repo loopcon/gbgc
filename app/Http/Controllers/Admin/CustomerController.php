@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -46,6 +47,24 @@ class CustomerController extends Controller
         foreach($fields as $key => $value){
             $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
+
+        /* Email sending */
+
+        // $data = [
+        //     'name'   => $request->input('name'), 
+        //     'email'   => $request->input('email'), 
+        //     'username' => $request->input('username'),
+        //     'password'    => $request->input('password')
+        // ];
+   
+        // Mail::send(['text'=>'mail'], $data, function($message)  use ($data) {
+        //     $message->to($data['email'], 'Customer of GBGC')->subject
+        //         ('Hello Dear Customer, your Username is'. $data['username'] .'and Password is '.$data['password']);
+        //     $message->from('loopcon16@gmail.com','Loopcon Technology');
+        // });
+
+        /* End Email sending */
+
         $customer->save();
 
         if($customer){

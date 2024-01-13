@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Fornted;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AboutUs;
+use App\Models\FAQ;
 use App\Models\websitelogo;
 use App\Models\Customer;
 
@@ -19,7 +20,9 @@ class FrontedController extends Controller
 
     public function faq()
     {
-        return view('fronted.faq');
+        $return_data = array();       
+        $return_data['faq'] = FAQ::get();
+        return view('fronted.faq', array_merge($return_data));
     }
 
     public function howitswork()

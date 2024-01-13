@@ -14,6 +14,8 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
 
+<link rel="stylesheet" type="text/css" href="{{ asset('plugins/sweetalert/sweetalert.css') }}">
+
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/bootstrap/css/bootstrap.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('admin/files/assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
@@ -47,7 +49,7 @@
 <div class="navbar-wrapper">
 <div class="navbar-logo">
 <a href="index.html">
-<img class="img-fluid" src="{{asset('uploads/settings/'.$data->logo)}}" alt="Theme-Logo" / style="height: 50px;">
+<img class="img-fluid" src="{{asset('uploads/settings/'.$data->logo)}}" alt="Theme-Logo"  style="height: 50px;">
 </a>
 
 <a class="mobile-options waves-effect waves-light">
@@ -221,7 +223,10 @@
 </div>
 </div>
 
+<script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
+
 <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
+
 <script type="text/javascript" src="{{asset('admin/files/bower_components/jquery/js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/files/bower_components/jquery-ui/js/jquery-ui.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/files/bower_components/popper.js/js/popper.min.js')}}"></script>

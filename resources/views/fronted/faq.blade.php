@@ -22,13 +22,17 @@
             <div class="row justify-content-center">
                 <div class="col-8">
                     <div id="accordion" class="faq-accordion">
-                        <div class="faq-accordion-box">
-                            <a href="#" class="faq-accordion-header faq-active-accordion" data-target="acrd_1">Menu 1</a>
-                            <div class="faq-accordion-content" id="acrd_1" style="display:block">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus....</p>
-                            </div>
-                        </div>
-                        <div class="faq-accordion-box">
+                        @if(count($faq)>0)
+                            @foreach($faq as $data) 
+                                <div class="faq-accordion-box">
+                                    <a href="#" class="faq-accordion-header faq-active-accordion" data-target="acrd_1">{{$data->question}}</a>
+                                    <div class="faq-accordion-content" id="acrd_1" style="display:block">
+                                        <p>{{$data->answer}}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                       <?php /* <div class="faq-accordion-box">
                             <a href="#" class="faq-accordion-header" data-target="acrd_2">Menu 2</a>
                             <div class="faq-accordion-content" id="acrd_2">
                                 <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart....</p>
@@ -39,7 +43,7 @@
                             <div class="faq-accordion-content" id="acrd_3">
                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,...</p>
                             </div>
-                        </div>
+                        </div> */ ?>
                     </div>
                 </div>
             </div>

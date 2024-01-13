@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FAQ;
 use DataTables;
+use Illuminate\Support\Str;
 
 class FaqController extends Controller
 {
@@ -46,6 +47,7 @@ class FaqController extends Controller
         foreach($fields as $key => $value){
             $faq->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
+        $faq->answer = strip_tags($request->answer);
         $faq->save();
 
         if($faq){
@@ -63,6 +65,9 @@ class FaqController extends Controller
             $list = $query->get();
 
             return DataTables::of($list)
+                ->addColumn('answer', function ($row) {
+                    return Str::limit($row->answer, 10);
+                })
                 ->addColumn('action', function ($row) {
                     $html = "";
                     $id = $row->id;
@@ -115,6 +120,8 @@ class FaqController extends Controller
         foreach($fields as $key => $value){
             $faq->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
+
+        $faq->answer = strip_tags($request->answer);
         $faq->save();
         if($faq) {
             return redirect('faq')->with('success', trans('FAQ Updated Successfully!'));
