@@ -235,6 +235,4 @@
 
         });
     </script>
-apps-fileview.texmex_20240104.01_p1
-header.blade.php
-Displaying header.blade.php.
+@yield('script')
