@@ -254,5 +254,7 @@
 <script src="{{asset('admin/files/assets/js/vertical/vertical-layout.min.js')}}"></script>
 <script src="{{asset('admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/files/assets/js/script.js')}}"></script>
+
+@yield('javascript')
 </body>
 </html>

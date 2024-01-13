@@ -68,7 +68,7 @@
                                                             <td >  {{$data->email}} </td>
                                                             <td >  {{$data->username}} </td>
                                                             <td>
-                                                            <a href="{{ route('customer-delete',$data->id) }}" rel='tooltip' class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <a href='javascript:void(0);' data-href="{{ route('customer-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -86,4 +86,26 @@
         <div id="styleSelector">
         </div>
     </div>
+@endsection
+@section('javascript')
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete', function() {
+            var href = $(this).data('href');
+            swal({
+                title: "",
+                text: "{{__('Are you sure? Delete this Customer!')}}",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "{{__('Yes, delete it!')}}",
+                cancelButtonText: "{{__('Cancel')}}",
+                closeOnConfirm: true
+            },
+            function(){
+                location.href = href;
+            });
+        });
+    });
+</script>
 @endsection

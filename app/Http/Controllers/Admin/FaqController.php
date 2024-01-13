@@ -68,15 +68,6 @@ class FaqController extends Controller
                 ->addColumn('answer', function ($row) {
                     return Str::limit($row->answer, 10);
                 })
-                ->addColumn('action', function ($row) {
-                    $html = "";
-                    $id = $row->id;
-                    $html .= "<span class='text-nowrap'>";
-                    $html .= "<a href='".route('faq-edit', array($id))."' rel='tooltip' title='".trans('Edit')."' class='btn btn-info btn-sm'><i class='fas fa-pencil-alt'></i></a>&nbsp";
-                    $html .= "<a href='javascript:void(0);' data-href='".route('faq-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fas fa-trash-alt'></i></a>";
-                    $html .= "</span>";
-                    return $html;
-                })
                 ->rawColumns(['id','question','answer','action'])
                 ->make(true);
         } else {

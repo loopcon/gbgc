@@ -66,7 +66,7 @@
                                                             <td >  {{$data->question}} </td>
                                                             <td >  {{$data->answer}} </td>
                                                             <td><a href="{{ route('faq-edit',$data->id) }}" rel='tooltip' class="btn btn-info" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('faq-edit',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <a href='javascript:void(0);' data-href="{{ route('faq-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
