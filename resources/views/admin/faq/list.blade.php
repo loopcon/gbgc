@@ -66,7 +66,7 @@
                                                             <td >  {{$data->question}} </td>
                                                             <td >  {{$data->answer}} </td>
                                                             <td><a href="{{ route('faq-edit',$data->id) }}" rel='tooltip' class="btn btn-info" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href="{{ route('faq-delete',$data->id) }}" rel='tooltip' class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <a href='javascript:void(0);' data-href="{{ route('faq-edit',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -84,4 +84,26 @@
         <div id="styleSelector">
         </div>
     </div>
+@endsection
+@section('javascript')
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete', function() {
+            var href = $(this).data('href');
+            swal({
+                title: "",
+                text: "{{__('Are you sure? Delete this FAQ!')}}",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "{{__('Yes, delete it!')}}",
+                cancelButtonText: "{{__('Cancel')}}",
+                closeOnConfirm: true
+            },
+            function(){
+                location.href = href;
+            });
+        });
+    });
+</script>
 @endsection
