@@ -68,7 +68,7 @@ class CustomerController extends Controller
         $customer->save();
 
         if($customer){
-            return redirect('customer')->with('success', trans('Customer Added Successfully!'));
+            return redirect('admin/customer')->with('success', trans('Customer Added Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -81,7 +81,7 @@ class CustomerController extends Controller
     {
          $customer = Customer::where('id', $id)->delete();
         if($customer) {
-            return redirect('customer')->with('success', trans('Customer Deleted Successfully!'));
+            return redirect('admin/customer')->with('success', trans('Customer Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

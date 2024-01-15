@@ -27,7 +27,11 @@
                                 <li><a href="#">News</a></li>
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="#">Account</a></li>
+                                @if(Auth::user() == NULL)
                                 <li><a class="navbar-sign-upbtn" href="" data-bs-toggle="modal" data-bs-target="#siguploginModal">SIGN UP / LOGIN</a></li>
+                                @elseif(Auth::user() != NULL)
+                                <li><a class="navbar-sign-upbtn" href="{{route('customer-logout')}}">Log Out</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>   

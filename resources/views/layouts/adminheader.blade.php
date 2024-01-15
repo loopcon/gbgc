@@ -161,6 +161,11 @@
         </a>
         <ul class="pcoded-submenu">
             <li class>
+                <a href="{{route('staticpage')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">Static Page</span>
+                </a>
+            </li>
+            <li class>
                 <a href="{{route('aboutus')}}" class="waves-effect waves-dark">
                     <span class="pcoded-mtext">About Us</span>
                 </a>
@@ -189,6 +194,11 @@
             <li class>
                 <a href="{{route('websitelogo')}}" class="waves-effect waves-dark">
                     <span class="pcoded-mtext">Website Logo</span>
+                </a>
+            </li>
+            <li class>
+                <a href="{{route('generalsetting')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">General Setting</span>
                 </a>
             </li>
         </ul>

@@ -51,27 +51,9 @@ class FaqController extends Controller
         $faq->save();
 
         if($faq){
-            return redirect('faq')->with('success', trans('FAQ Added Successfully!'));
+            return redirect('admin/faq')->with('success', trans('FAQ Added Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
-        }
-    }
-
-    public function listDatatable(request $request)
-    {
-        if($request->ajax()){
-
-            $query = FAQ::select('id', 'question', 'answer')->orderBy('id', 'DESC');
-            $list = $query->get();
-
-            return DataTables::of($list)
-                ->addColumn('answer', function ($row) {
-                    return Str::limit($row->answer, 10);
-                })
-                ->rawColumns(['id','question','answer','action'])
-                ->make(true);
-        } else {
-            return redirect('backend/dashboard');
         }
     }
 
@@ -115,7 +97,7 @@ class FaqController extends Controller
         $faq->answer = strip_tags($request->answer);
         $faq->save();
         if($faq) {
-            return redirect('faq')->with('success', trans('FAQ Updated Successfully!'));
+            return redirect('admin/faq')->with('success', trans('FAQ Updated Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -128,7 +110,7 @@ class FaqController extends Controller
     {
         $faq = FAQ::where('id', $id)->delete();
         if($faq) {
-            return redirect('faq')->with('success', trans('Faq Deleted Successfully!'));
+            return redirect('admin/faq')->with('success', trans('Faq Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

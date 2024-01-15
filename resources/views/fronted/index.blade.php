@@ -137,21 +137,21 @@
             </div>
           </div>                          
     <!-- member  benifits  end  -->
-
+@foreach($staticpage as $page)
+@if($page->slug == 'about_us')
     <!-- about css start  -->
         <div class="container">
             <div class="row about-box m-0">
                 <div class="col-12 col-sm-11 col-md-12 col-lg-11">
                     <div class="row m-0 about-box ">
                         <div class="col-12 col-sm-6">
-                            <img src="{{asset('uploads/aboutus/'.$aboutus->image)}}" class="img-fluid about-imgmain" alt="">
+                            <img src="{{asset('uploads/staticpage/'.$page->image)}}" class="img-fluid about-imgmain" alt="">
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="aboutus-text-box">
-                                <p class="about-usheading">{{$aboutus->name}}</p>
-                                <h4>{{$aboutus->title}}</h4>
-                                <p>A specialist gaming market research and consultancy firm.</p>
-                                <p>{!!$aboutus->description!!}</p>
+                                <p class="about-usheading">{{$page->title}}</p>
+                                <h4>ABOUT GBGC</h4>
+                                <p>{!!$page->description!!}</p>
                             </div>
                         </div>
                     </div> 
@@ -159,5 +159,7 @@
             </div>
         </div>
     <!-- about css end  -->
+@endif
+@endforeach
 
 @endsection

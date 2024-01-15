@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Fornted;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\AboutUs;
+use App\Models\StaticPage;
 use App\Models\FAQ;
 use App\Models\websitelogo;
 use App\Models\Customer;
+use Auth;
 
 class FrontedController extends Controller
 {
     public function index()
     {
         $return_data = array();       
-        $return_data['aboutus'] = AboutUs::first();
+        $return_data['staticpage'] = StaticPage::get();
         return view('fronted.index', array_merge($return_data));
     }
 
@@ -33,7 +34,7 @@ class FrontedController extends Controller
     {
         return view('fronted.customer_login');
     }
-    function checklogin(Request $request)
+    public function checklogin(Request $request)
     {
         
      $this->validate($request,[
@@ -48,7 +49,6 @@ class FrontedController extends Controller
       $user  = $request->get('username');
       $pass = $request->get('password');
      
-
      $customers = Customer::get();
     
      foreach ($customers as $customer) {
@@ -66,5 +66,12 @@ class FrontedController extends Controller
         return redirect('/')->with('alert-danger', 'Login Failed');
      }
 
+    }
+
+    public function logout()
+    {
+     $customers = Customer::get();
+     $customers::logout();
+     return redirect('/')->with('alert-success', 'You are now logged out.');
     }
 }
