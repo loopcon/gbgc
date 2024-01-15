@@ -27,7 +27,7 @@
                                 <div class="faq-accordion-box">
                                     <a href="#" class="faq-accordion-header faq-active-accordion" data-target="acrd_1">{{$data->question}}</a>
                                     <div class="faq-accordion-content" id="acrd_1" style="display:block">
-                                        <p>{{$data->answer}}</p>
+                                        <p>{!!$data->answer!!}</p>
                                     </div>
                                 </div>
                             @endforeach

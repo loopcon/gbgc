@@ -96,7 +96,7 @@
                         <p class="well-send-textdetail">Once your invoice is paid, you’ll receive your access code within one business day.</p>
                     </div>
                     <div class="col-12 col-sm-6">
-                        <img src="img/how-it-works-img1.png" class="img-fluid" alt="">
+                        <img src="{{asset('img/how-it-works-img1.png')}}" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>    
@@ -151,7 +151,7 @@
                                 <p class="about-usheading">{{$aboutus->name}}</p>
                                 <h4>{{$aboutus->title}}</h4>
                                 <p>A specialist gaming market research and consultancy firm.</p>
-                                <p>{{$aboutus->description}}</p>
+                                <p>{!!$aboutus->description!!}</p>
                             </div>
                         </div>
                     </div> 
