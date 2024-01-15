@@ -95,7 +95,7 @@
                 text: "{{__('Are you sure? Delete this FAQ!')}}",
                 type: "warning",
                 showCancelButton: true,
-                confirmButtonClass: "btn-danger",
+                confirmButtonClass: "btn-info",
                 confirmButtonText: "{{__('Yes, delete it!')}}",
                 cancelButtonText: "{{__('Cancel')}}",
                 closeOnConfirm: true
