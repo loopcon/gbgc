@@ -8,6 +8,7 @@ use App\Models\StaticPage;
 use App\Models\FAQ;
 use App\Models\websitelogo;
 use App\Models\Customer;
+use App\Models\NewsLetter;
 use Auth;
 
 class FrontedController extends Controller
@@ -73,5 +74,29 @@ class FrontedController extends Controller
      $customers = Customer::get();
      $customers::logout();
      return redirect('/')->with('alert-success', 'You are now logged out.');
+    }
+
+    public function storeNewsletter(Request $request)
+    {
+        $this->validate($request, [
+                'newsletter_email' => ['required'],
+            ],[
+                'required'  => trans('The :attribute field is required.')
+            ]
+        );
+        $newsletter = new NewsLetter();
+
+        $fields = array('newsletter_email');
+        foreach($fields as $key => $value){
+            $newsletter->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
+        }
+
+        $newsletter->save();
+
+        if($newsletter){
+            return redirect('/')->with('success', trans('Your Mail Sent Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }  
     }
 }

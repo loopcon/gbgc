@@ -112,14 +112,22 @@
         </a>
     </li>
 
-    <li class>
-        <a href="#" class="waves-effect waves-dark">
+    <li class="pcoded-hasmenu  pcoded-trigger">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
             <span class="pcoded-micon">
                 <i class="feather icon-upload"></i>
             </span>
             <span class="pcoded-mtext">GBGC Data Upload</span>
         </a>
+        <ul class="pcoded-submenu">
+            <li class>
+                <a href="{{route('region')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">Region</span>
+                </a>
+            </li>
+        </ul>
     </li>
+
     <li class>
         <a href="#" class="waves-effect waves-dark">
             <span class="pcoded-micon">
@@ -128,6 +136,7 @@
             <span class="pcoded-mtext">Users</span>
         </a>
     </li>
+    
     <li class>
         <a href="{{route('adminmembership')}}" class="waves-effect waves-dark">
             <span class="pcoded-micon">
@@ -136,6 +145,7 @@
             <span class="pcoded-mtext">Membership Plan</span>
         </a>
     </li>
+
     <li class>
         <a href="#" class="waves-effect waves-dark">
             <span class="pcoded-micon">
@@ -175,8 +185,14 @@
                     <span class="pcoded-mtext">FAQ</span>
                 </a>
             </li>
+             <li class>
+                <a href="{{route('newsletter')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">Customer NewsLetter</span>
+                </a>
+            </li>
         </ul>
     </li>
+
      <li class>
         <a href="#" class="waves-effect waves-dark">
             <span class="pcoded-micon">
@@ -185,6 +201,7 @@
             <span class="pcoded-mtext">Reports</span>
         </a>
     </li>
+
     <li class="pcoded-hasmenu  pcoded-trigger">
         <a href="javascript:void(0)" class="waves-effect waves-dark">
             <span class="pcoded-micon"><i class="feather icon-settings"></i></span>

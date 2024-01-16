@@ -6,7 +6,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>FAQ</h5>
+                        <h5>Regions</h5>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                             <a href="{{route('adminindex')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('faq')}}">FAQ</a>
+                            <a href="{{route('region')}}">Regions</a>
                         </li>
                     </ul>
                 </div>
@@ -60,10 +60,10 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <h5>FAQ</h5>
+                                    <h5>Regions List</h5>
                                     <div class="form-row">
                                         <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('faq-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                            <div class="col-md-12 text-right"><a href="{{route('region-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -73,8 +73,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                        <th>{{__('Questions')}}</th>
-                                                        <th>{{__('Answers')}}</th>
+                                                        <th>{{__('Country Code')}}</th>
+                                                        <th>{{__('Name')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
@@ -82,15 +82,15 @@
                                                 <?php
                                                     $i=1;
                                                 ?>
-                                                @if(count($faq)>0)
-                                                    @foreach($faq as $data) 
+                                                @if(count($region)>0)
+                                                    @foreach($region as $data) 
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->question}} </td>
-                                                            <td >  {{$data->answer}} </td>
-                                                            <td><a href="{{ route('faq-edit',$data->id) }}" rel='tooltip' class="btn btn-info" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('faq-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <td >  {{$data->countryCode}} </td>
+                                                            <td >  {{$data->name}} </td>
+                                                            <td><a href="{{ route('region-edit',$data->id) }}" rel='tooltip' class="btn btn-info" title="Edit"><i class="fa fa-edit"></i></a>
+                                                            <a href='javascript:void(0);' data-href="{{ route('region-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -116,7 +116,7 @@
             var href = $(this).data('href');
             swal({
                 title: "",
-                text: "{{__('Are you sure? Delete this FAQ!')}}",
+                text: "{{__('Are you sure? Delete this Region!')}}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-info",

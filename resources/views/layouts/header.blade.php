@@ -112,18 +112,22 @@
     <footer class="footer-bg">
         <div class="footer-first-section">
             <div class="container">
-                <div class="row m-0 footer-first-box">
-                    <div class="col-12 col-sm-6">
-                        <p class="newslatter-text">Newsletter</p>
-                        <h5 class="join-our-mailing-heading">Join our Mailing list</h5>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="footer-email-input">
-                            <input  class="form-control"  type="email" placeholder="Email">
-                            <button class="subscrib-footer"> SUBSCRIBE </button>
+                <form method="post" action="{{route('store-newsletter')}}" enctype="multipart/form-data">
+                @csrf
+                    <div class="row m-0 footer-first-box">
+                        <div class="col-12 col-sm-6">
+                            <p class="newslatter-text">Newsletter</p>
+                            <h5 class="join-our-mailing-heading">Join our Mailing list</h5>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="footer-email-input">
+                                <input  class="form-control" name="newsletter_email"  type="email" data-parsley-required-message="{{ __("This value is required.")}}">
+                                @if ($errors->has('newsletter_email')) <div class="text-danger">{{ $errors->first('newsletter_email') }}</div>@endif
+                                <button class="subscrib-footer"> SUBSCRIBE </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
