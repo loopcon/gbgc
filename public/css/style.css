@@ -76,10 +76,10 @@
 .dropdown-show {
     display: none;
     position: absolute;
-    top: 0;
-    right: 8%;
-    background-color: rgba(255, 255, 255, 0.2);
-    width: 150px;
+    top: 100%;
+    right: 0%;
+    background-color: rgba(46, 156, 197, 0.5);
+    width: 180px;
     z-index: 1;
 }
 
@@ -751,11 +751,7 @@ section.one:after {
 }
 
 
-/* .right div {
-  background: #ccd9f1;
-  margin-bottom: 20px;
-  border-radius: 4px;
-} */
+/* .right div {background: #ccd9f1;margin-bottom: 20px;border-radius: 4px;} */
 
 .left {
     width: calc(30% - 13px);
@@ -869,7 +865,7 @@ section.one:after {
     border: 1px solid #00ACE0;
 }
 
-.one .right .active {
+.right .active {
     /* margin-top: 100px; */
     position: relative;
     top: 100px;
@@ -881,11 +877,6 @@ section.one:after {
 
 .gear-img-scroll {
     position: absolute;
-}
-
-.in-sticky {
-    position: fixed;
-    top: 100px;
 }
 
 
@@ -938,12 +929,6 @@ section.one:after {
 
 .faq-section-main {
     padding: 60px 0px;
-}
-
-.faq-accordion {
-    display: inline-block;
-    position: relative;
-    max-width: 100%;
 }
 
 .faq-accordion-box {
@@ -1003,7 +988,7 @@ section.one:after {
 /* faq css end  */
 
 
-/* login */
+/* login  popup  css start  */
 
 .siguplogin-dailog {
     max-width: 800px;
@@ -1117,3 +1102,620 @@ a.login-active {
 #siguploginModal.modal.fade.show .modal-dialog {
     transform: scale(1)
 }
+
+
+/* login  popup  css start  */
+
+
+/* membership css start  */
+
+.purchase-now-boxbtn {
+    background: #00ACE0;
+    color: #fff;
+    width: 180px;
+    height: 45px;
+    display: block;
+    text-align: center;
+    line-height: 45px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    position: relative;
+    z-index: 2;
+}
+
+.purchase-now-boxbtn:hover {
+    color: #fff;
+}
+
+.purchase-prise-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.purchase-prise-item {
+    width: 50%;
+}
+
+.purchase-add-button {
+    display: flex;
+    justify-content: end;
+}
+
+.purchase-add-button::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: 0;
+    height: 1px;
+    width: 65%;
+    background: #eee;
+}
+
+.membership-detailtext ul {
+    margin-bottom: 0px;
+}
+
+.membership-detailtext ul li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.membership-detailtext ul li span {
+    margin-right: 14px;
+    color: #00ACE0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.membership-detailtext ul li span svg {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.membership-detailtext ul li p {
+    margin-bottom: 0px;
+}
+
+.purchase-now-btn {
+    background-color: #00ACE0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    border: 0;
+    max-width: 300px;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.purchase-prise-text h4 {
+    font-size: 38px;
+    color: #2b9145;
+    font-weight: bold;
+}
+
+.purchase-prise-text p {
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.membership-imganddetailtext {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 30px;
+}
+
+.purchase-box {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.purchase-box::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: 0;
+    height: 1px;
+    width: 100%;
+    background: #eee;
+}
+
+
+/* membership css end  */
+
+
+/* check out  css star  */
+
+.global-gaming-addtoreport {
+    background-color: #f6f5f8;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border: 3px solid #8fae1b;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+
+.global-gaming-addtoreport span {
+    margin-right: 15px;
+    color: #8fae1b;
+}
+
+.global-gaming-addtoreport p {
+    margin-bottom: 0px;
+}
+
+.rerurn-customerbox {
+    background-color: #f6f5f8;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border: 3px solid #1e85be;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+
+.rerurn-customerbox span {
+    color: #1e85be;
+}
+
+.rerurn-customerbox p {
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+.rerurn-customerbox a {
+    text-decoration: none;
+    margin-left: 5px;
+    color: #00ACE0;
+}
+
+.billing-form-detail label {
+    font-weight: bold;
+}
+
+.billing-form-detail label span {
+    color: red;
+}
+
+.order-tablecheck-subtotal {
+    font-weight: bold;
+}
+
+.check-tableorder {
+    border: 1px solid #ddd !important;
+}
+
+.check-tableorder> :not(caption)>*>* {
+    border-width: 0 0px !important;
+}
+
+.check-order-headtext {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.order-check-firstname {
+    padding-left: 0px;
+}
+
+.billing-form-detail .form-control {
+    height: 45px;
+}
+
+.billing-form-detail .form-control:focus {
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.billing-form-detail .form-select {
+    height: 45px;
+}
+
+.billing-form-detail .form-select:focus {
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.additional-form-detail label {
+    font-weight: bold;
+}
+
+.additional-form-detail .form-control:focus {
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.marketing-form-detail .form-check-input:focus {
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.billing-form-detail {
+    margin-bottom: 30px;
+}
+
+.credit-card-box {
+    background-color: #e9e6ed;
+    padding: 16px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.credit-card-headtext {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.payment-method-checkout {
+    background: #dcd7e3;
+    padding: 16px;
+    position: relative;
+}
+
+.payment-method-checkout::before {
+    content: "";
+    display: block;
+    border: 1em solid #dcd7e3;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    position: absolute;
+    top: -0.75em;
+    left: 0;
+    margin: -1em 0 0 2em;
+}
+
+.use-payment {
+    margin-left: 30px;
+}
+
+.use-payment input {
+    margin-right: 20px;
+}
+
+.use-payment .form-check-input:focus {
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.creadit-card-form label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.creadit-card-form {
+    margin-top: 30px;
+}
+
+.creadit-card-form label span {
+    color: red;
+}
+
+.creadit-card-form .form-control {
+    box-shadow: none;
+    border: none;
+}
+
+.creadit-card-form .form-control::placeholder {
+    color: #aaa;
+}
+
+.creadit-card-form .savepayment-text {
+    font-weight: bold;
+}
+
+.creadit-card-form .savepayment-text input {
+    margin-right: 18px;
+}
+
+.your-personal-databox {
+    margin-top: 25px;
+    border-top: 1px solid #aaa;
+    padding-top: 10px;
+}
+
+.your-personal-databox a {
+    text-decoration: none;
+    color: #00ACE0;
+}
+
+.your-personal-databox a:hover {
+    text-decoration: underline;
+}
+
+.your-personal-databox .place-order-btn {
+    background-color: #00abf4;
+    max-width: 180px;
+    padding: 0 25px;
+    line-height: 45px;
+    color: #fff;
+    border: 0px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: block;
+    text-decoration: none;
+    margin-left: auto;
+    text-align: center;
+}
+
+.your-personal-databox .place-order-btn:hover {
+    text-decoration: none;
+}
+
+.login-click-show {
+    border: 1px solid #cfc8d8;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.login-form-detailcheck label {
+    font-weight: bold;
+}
+
+.login-form-detailcheck label span {
+    color: red;
+}
+
+.login-form-detailcheck .loginbtn-group {
+    display: flex;
+    align-items: center;
+}
+
+.loginbtn-check {
+    background: #00abf4;
+    color: #fff;
+    border: 0px;
+    max-width: 150px;
+    height: 40px;
+    padding: 0px 25px;
+    font-weight: bold;
+    margin-right: 25px;
+    border-radius: 8px;
+}
+
+.login-click-show {
+    display: none;
+}
+
+.lost-your-password-text {
+    margin-top: 15px;
+    display: block;
+    text-decoration: none;
+    color: #00abf4;
+}
+
+.lost-your-password-text:hover {
+    color: #00abf4;
+    text-decoration: underline;
+}
+
+
+/* check out  css end */
+
+
+/* lost password css start  */
+
+.lost-password-detail label {
+    font-weight: bold;
+}
+
+.lost-password-detail .form-control {
+    width: 50%;
+}
+
+.lost-password-detail .form-control:focus {
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.lost-password-detail .reset-password {
+    background-color: #00abf4;
+    border: 0px;
+    color: #fff;
+    padding: 0px 35px;
+    line-height: 45px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.lost-password-text {
+    text-align: center;
+    font-weight: bold;
+}
+
+.thank-youpage-img {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.thank-youbox {
+    position: relative;
+}
+
+.thank-youtext {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.thank-youbox {
+    background: linear-gradient(20deg, rgba(0, 172, 224, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%);
+    height: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.thank-youtext {
+    background-color: #fff;
+    color: #000;
+    width: 40%;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.thank-youtext h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.thank-youtext .thank-go-backbtn {
+    background-color: #00abf4;
+    border: 0px;
+    max-width: 180px;
+    height: 45px;
+    color: #fff;
+    font-weight: bold;
+    padding: 0px 25px;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    line-height: 45px;
+    text-decoration: none;
+}
+
+
+/* lost password css end */
+
+
+/* signup*/
+
+#siguploginModal .modal-body {
+    height: 550px;
+    overflow-y: auto;
+    padding: 0px;
+}
+
+.login-img-popup {
+    height: 550px;
+    object-fit: cover;
+}
+
+.login-register-box {
+    display: flex;
+}
+
+.register-text {
+    background-color: #198FD9;
+    border: 0px;
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.register-form {
+    margin-top: 35px;
+    display: none;
+}
+
+.register-form .form-control {
+    height: 45px;
+}
+
+.register-form .form-control:focus {
+    border: 1px solid #ddd;
+    box-shadow: none;
+}
+
+.register-form .input-group span {
+    width: 50px;
+    display: block;
+}
+
+.register-form .login-form-signin {
+    margin-top: 20px;
+}
+
+
+/* end signup*/
+
+
+/* get in  touch  css start  */
+
+.get-in-touchsection {
+    box-shadow: 0px 0px 14px 0px #0000001A;
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.get-in-touchtext {
+    border-left: 4px solid #198FD9;
+    font-size: 45px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 12px;
+    line-height: 42px;
+    margin-bottom: 45px;
+}
+
+.name-input {
+    border: 1px solid rgba(120, 120, 120, 0.5);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.name-input .form-control {
+    padding: 0px;
+}
+
+.name-input label {
+    display: block;
+    color: #A4A4A4;
+    font-size: 16px;
+}
+
+.name-input input {
+    border: 0px;
+}
+
+.name-input input:focus {
+    box-shadow: unset;
+    outline: 0px;
+}
+
+.name-input .form-control {
+    border: none;
+}
+
+.name-input .form-control:focus {
+    box-shadow: unset;
+}
+
+.get-request-btn {
+    border: 0px;
+    background-color: #198FD9;
+    width: 280px;
+    height: 55px;
+    font-size: 22px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+
+/* get in  touch  css end  */

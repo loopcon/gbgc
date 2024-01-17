@@ -23,10 +23,15 @@ class MembersipplanController extends Controller
     {
         $membershipplan= new Membershipplan();
         $membershipplan->name=$request->input('name');
-        $membershipplan->details=$request->input('details');
+        $membershipplan->short_description=$request->input('short_description');
+        $membershipplan->long_description=$request->input('long_description');
         $membershipplan->price=$request->input('price');
         $membershipplan->save();
-        return redirect()->route('adminmembership');
+        if($membershipplan) {
+            return redirect('admin/membership')->with('success', trans('Membership Added Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
     }
 
     public function edit($id)
@@ -39,14 +44,23 @@ class MembersipplanController extends Controller
     {
         $membershipplan= Membershipplan::find($request->id);
         $membershipplan->name=$request->input('name');
-        $membershipplan->details=$request->input('details');
+        $membershipplan->short_description=$request->input('short_description');
+        $membershipplan->long_description=$request->input('long_description');
         $membershipplan->price=$request->input('price');
         $membershipplan->save();
-        return redirect()->route('adminmembership');
+        if($membershipplan) {
+            return redirect('admin/membership')->with('success', trans('Membership Updated Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
     }
     public function delete($id)
     {
-        Membershipplan::where('id',$id)->update(['status'=>0]);
-        return redirect()->route('adminmembership');
+       $membershipplan = Membershipplan::where('id',$id)->update(['status'=>0]);
+        if($membershipplan) {
+            return redirect('admin/membership')->with('success', trans('Membership deleted Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
     }
 }

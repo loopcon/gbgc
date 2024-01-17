@@ -17,9 +17,18 @@ use App\Http\Controllers\Fornted\FrontedController;
 Route::get('/',[FrontedController::class,'index'])->name('index');
 Route::post('/store-newsletter',[FrontedController::class, 'storeNewsletter'])->name('store-newsletter');
 Route::get('Faq',[FrontedController::class,'faq'])->name('faq');
-Route::post('customer-checklogin',[FrontedController::class,'checklogin'])->name('customer-checklogin');
-Route::get('customer-logout',[FrontedController::class,'logout'])->name('customer-logout');
 Route::get('How_its_Work',[FrontedController::class,'howitswork'])->name('howitswork');
+Route::get('Membership',[FrontedController::class,'membership'])->name('membership');
+Route::get('thank-you',[FrontedController::class,'thankyou'])->name('thankyou');
+Route::get('lost-password',[FrontedController::class,'lostpassword'])->name('lostpassword');
+Route::get('check-out',[FrontedController::class,'checkout'])->name('checkout');
+Route::get('/contactus',[FrontedController::class, 'contactus'])->name('frontcontactus');
+Route::post('/store-contactus',[FrontedController::class, 'storeContactus'])->name('store-contactus');
+
+Route::post('registration',[App\Http\Controllers\Fornted\FrontLoginController::class, 'registration'])->name('registration');
+Route::post('customer-checklogin',[App\Http\Controllers\Fornted\FrontLoginController::class,'checklogin'])->name('customer-checklogin');
+
+
 
 Route::group(['middleware' => ['auth']], function () { 
 
@@ -51,7 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
     //endaboutus
 
     //faq
-    Route::get('admin/faq', [App\Http\Controllers\Admin\FaqController::class,'index'])->name('faq');
+    Route::get('admin/faq', [App\Http\Controllers\Admin\FaqController::class,'index'])->name('adminfaq');
     Route::get('admin/faq-create',[App\Http\Controllers\Admin\FaqController::class, 'create'])->name('faq-create');
     Route::post('admin/faq-store',[App\Http\Controllers\Admin\FaqController::class, 'store'])->name('faq-store');
     Route::get('admin/faq-edit/{id}',[App\Http\Controllers\Admin\FaqController::class, 'edit'])->name('faq-edit');
@@ -61,8 +70,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     //customer
     Route::get('admin/customer', [App\Http\Controllers\Admin\CustomerController::class,'index'])->name('customer');
-    Route::get('admin/customer-create',[App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer-create');
-    Route::post('admin/customer-store',[App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('customer-store');
     Route::get('admin/customer-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('customer-delete');
     //endcustomer
 
@@ -94,6 +101,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/region-delete/{id}', [App\Http\Controllers\Admin\RegionController::class, 'destroy'])->name('region-delete');
     //endnewsletter
 
+    //conatcus
+    Route::get('admin/contactus', [App\Http\Controllers\Admin\ContactusController::class,'index'])->name('contactus');
+    Route::get('admin/contactus-delete/{id}', [App\Http\Controllers\Admin\ContactusController::class, 'destroy'])->name('contactus-delete');
+    //endconatctus
 
 });
 

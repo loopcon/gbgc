@@ -61,11 +61,6 @@
                                 </div>
                                 <div class="card-header">
                                     <h5>Customer</h5>
-                                    <div class="form-row">
-                                        <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('customer-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
@@ -75,7 +70,6 @@
                                                     <th>{{__('Sr No.')}}</th>
                                                         <th>{{__('Name')}}</th>
                                                         <th>{{__('Email')}}</th>
-                                                        <th>{{__('User Name')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
@@ -88,11 +82,10 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->name}} </td>
+                                                            <td >  {{$data->first_name}} </td>
                                                             <td >  {{$data->email}} </td>
-                                                            <td >  {{$data->username}} </td>
                                                             <td>
-                                                            <a href='javascript:void(0);' data-href="{{ route('customer-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                                <a href='javascript:void(0);' data-href="{{ route('customer-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach

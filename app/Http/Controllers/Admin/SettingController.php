@@ -36,7 +36,11 @@ class SettingController extends Controller
                 $websitelogo->favicon = $filename;
         }
         $websitelogo->save();
-        return redirect()->route('websitelogo');
+        if($websitelogo){
+            return redirect()->route('websitelogo')->with('success', trans('Logo updated Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
     }
 
     public function generalSetting()

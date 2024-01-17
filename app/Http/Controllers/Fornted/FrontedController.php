@@ -9,6 +9,8 @@ use App\Models\FAQ;
 use App\Models\websitelogo;
 use App\Models\Customer;
 use App\Models\NewsLetter;
+use App\Models\Contactus;
+use Mail;
 use Auth;
 
 class FrontedController extends Controller
@@ -31,49 +33,25 @@ class FrontedController extends Controller
     {
         return view('fronted.howitswork');
     }
-    public function customerLogin()
-    {
-        return view('fronted.customer_login');
-    }
-    public function checklogin(Request $request)
-    {
-        
-     $this->validate($request,[
-      'username'   => 'required',
-      'password'  => 'required'
-     ],$messages = [
-        'username.required' => 'Email is required!',
-        'password.required' => 'Password is required!',
-     ]);
 
-     
-      $user  = $request->get('username');
-      $pass = $request->get('password');
-     
-     $customers = Customer::get();
-    
-     foreach ($customers as $customer) {
-        $username = $customer->username;
-        $password = $customer->password;
-     }
-     
-    // print_r($olddata);print_r($user_data);exit;
-     if($user == $username && $pass == $password)
-     {
-      return redirect('/')->with('alert-success', 'You are now logged in.');
-     }
-     else
-     {
-        return redirect('/')->with('alert-danger', 'Login Failed');
-     }
-
+    public function membership()
+    {
+        return view('fronted.membership');
     }
 
-    public function logout()
+    public function thankyou()
     {
-     $customers = Customer::get();
-     $customers::logout();
-     return redirect('/')->with('alert-success', 'You are now logged out.');
+        return view('fronted.thankyou');
+    }
+
+    public function lostpassword()
+    {
+        return view('fronted.lostpassword');
+    }
+
+    public function checkout()
+    {
+        return view('fronted.checkout');
     }
 
     public function storeNewsletter(Request $request)
@@ -95,6 +73,47 @@ class FrontedController extends Controller
 
         if($newsletter){
             return redirect('/')->with('success', trans('Your Mail Sent Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }  
+    }
+
+    public function contactus()
+    {
+        return view('fronted.contactus');
+    }
+
+    public function storeContactus(Request $request)
+    {
+        $this->validate($request, [
+                'email' => ['required','email'],
+                'phone' => ['required','digits:10','numeric'],
+                'message' => ['required'],
+            ],[
+                'required'  => trans('The :attribute field is required.')
+            ]
+        );
+        $contactus = new Contactus();
+
+        $fields = array('email','phone','message');
+        foreach($fields as $key => $value){
+            $contactus->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
+        }
+
+        $contactus->save();
+
+        // $data = [
+        //     'email'   => $request->input('email'), 
+        // ];
+
+        // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
+        //     $message->to($data['email'], 'Customer of GBGC')->subject
+        //         ('Hello Dear Customer, your email sent successfully!');
+        //     $message->from('loopcon16@gmail.com','Loopcon Technology');
+        // });
+
+        if($contactus){
+            return redirect('/contactus')->with('success', trans('Your Message Sent Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }  

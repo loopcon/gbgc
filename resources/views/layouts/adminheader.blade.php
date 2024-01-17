@@ -175,19 +175,19 @@
                     <span class="pcoded-mtext">Static Page</span>
                 </a>
             </li>
-            <li class>
-                <a href="{{route('aboutus')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">About Us</span>
-                </a>
-            </li>
              <li class>
-                <a href="{{route('faq')}}" class="waves-effect waves-dark">
+                <a href="{{route('adminfaq')}}" class="waves-effect waves-dark">
                     <span class="pcoded-mtext">FAQ</span>
                 </a>
             </li>
              <li class>
                 <a href="{{route('newsletter')}}" class="waves-effect waves-dark">
                     <span class="pcoded-mtext">Customer NewsLetter</span>
+                </a>
+            </li>
+            <li class>
+                <a href="{{route('contactus')}}" class="waves-effect waves-dark">
+                    <span class="pcoded-mtext">Contact List</span>
                 </a>
             </li>
         </ul>

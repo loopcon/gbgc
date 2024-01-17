@@ -54,9 +54,16 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Description</label>
+                                        <label class="col-sm-2 col-form-label">Short Description</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control ckeditor" id="description" name="details" placeholder="Description"  data-parsley-required-message="{{ __("This value is required.")}}" ">{{$membershipplan->details}}</textarea>
+                                            <textarea class="form-control ckeditor" id="short_description" name="short_description" placeholder="Long Description"  data-parsley-required-message="{{ __("This value is required.")}}" ">{{$membershipplan->short_description}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Long Description</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control ckeditor" id="long_description" name="long_description" placeholder="Long Description"  data-parsley-required-message="{{ __("This value is required.")}}" ">{{$membershipplan->long_description}}</textarea>
                                         </div>
                                     </div>
 
@@ -77,7 +84,8 @@
 @section('javascript')
 <script>
     $(document).ready(function(){
-        CKEDITOR.replace('description');       
+        CKEDITOR.replace('short_description');       
+        CKEDITOR.replace('long_description');        
     });
 </script>
 @endsection

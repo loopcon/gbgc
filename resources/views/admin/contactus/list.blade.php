@@ -4,8 +4,9 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
+                    <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>MemberShip Plan</h5>
+                        <h5>Contact Us</h5>
                     </div>
                 </div>
             </div>
@@ -13,10 +14,13 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="{{route('adminindex')}}">Dashboard</a>
+                            <a href="../index.html"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#!">MemberShip Plan</a>
+                            <a href="{{route('adminindex')}}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{route('contactus')}}">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -31,7 +35,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-12">
                                         @if ($message = Session::get('success'))
                                             <div class="alert alert-success alert-dismissible" role="alert">
@@ -56,12 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <h5>MemberShip Plan</h5>
-                                    <!-- <div class="form-row">
-                                        <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('addmembershipplan')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__(' + Add')}}</a></div>
-                                        </div>
-                                    </div> -->
+                                    <h5>Contact List</h5>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
@@ -69,8 +68,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                        <th>{{__('Title')}}</th>
-                                                        <th>{{__('Price')}}</th>
+                                                        <th>{{__('Email')}}</th>
+                                                        <th>{{__('Phone')}}</th>
+                                                        <th>{{__('Message')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
@@ -78,15 +78,16 @@
                                                 <?php
                                                     $i=1;
                                                 ?>
-                                                @if(count($membershipplan)>0)
-                                                    @foreach($membershipplan as $data) 
+                                                @if(count($contactus)>0)
+                                                    @foreach($contactus as $data) 
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td>{{$data->name}} </td>
-                                                            <td> {{$data->price}} </td>
-                                                            <td><a href="{{ route('membershipplanedit',$data->id) }}" rel='tooltip' class="btn btn-info" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href="{{ route('membershipplandelete',$data->id) }}" rel='tooltip' class="btn btn-danger" title="Delete" onclick="return confirm('Are you sure you want to delete This record?');"><i class="fa fa-trash"></i></a>
+                                                            <td >  {{$data->email}} </td>
+                                                            <td >  {{$data->phone}} </td>
+                                                            <td >  {{$data->message}} </td>
+                                                            <td>
+                                                                <a href='javascript:void(0);' data-href="{{ route('contactus-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -104,4 +105,26 @@
         <div id="styleSelector">
         </div>
     </div>
+@endsection
+@section('javascript')
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete', function() {
+            var href = $(this).data('href');
+            swal({
+                title: "",
+                text: "{{__('Are you sure? Delete this Contact!')}}",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-info",
+                confirmButtonText: "{{__('Yes, delete it!')}}",
+                cancelButtonText: "{{__('Cancel')}}",
+                closeOnConfirm: true
+            },
+            function(){
+                location.href = href;
+            });
+        });
+    });
+</script>
 @endsection
