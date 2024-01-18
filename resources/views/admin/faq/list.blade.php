@@ -20,7 +20,7 @@
                             <a href="{{route('adminindex')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('faq')}}">FAQ</a>
+                            <a href="{{route('adminfaq')}}">FAQ</a>
                         </li>
                     </ul>
                 </div>

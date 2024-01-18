@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item">
                         <a href="#"><i class="feather icon-info"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{route('faq')}}">FAQ</a> </li>
+                    <li class="breadcrumb-item"><a href="{{route('adminfaq')}}">FAQ</a> </li>
                 </ul>
             </div>
         </div>

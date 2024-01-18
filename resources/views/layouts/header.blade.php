@@ -22,16 +22,16 @@
                         <a href="javascript:void(0)" id="menu-btn" class="menu-icon"><i class="fa-solid fa-bars"></i><span>MENU</span></a>
                         <div class="dropdown-show" id="menu-popup">
                             <ul>
-                                <li><a href="#">home</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="{{route('howitswork')}}">How It Works</a></li>
+                                <li><a href="{{route('membership')}}">Memberships</a></li>
                                 <li><a href="#">Reports</a></li>
                                 <li><a href="#">News</a></li>
-                                <li><a href="{{route('frontcontactus')}}">Contact</a></li>
-                                <li><a href="#">Account</a></li>
-                                <li><a href="{{route('faq')}}">FAQs</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="{{route('membership')}}">Memberships</a></li>
-                                <li><a href="#">How ItWorks</a></li>
-                                <li><a class="navbar-sign-upbtn" href="" data-bs-toggle="modal" data-bs-target="#siguploginModal">SIGN UP / LOGIN</a></li>
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#siguploginModal">Sign Up / Login</a></li>
+                                <li><a href="{{route('frontcontactus')}}">Contact Us</a></li>
+                                
                             </ul>
                         </div>
                     </div>   
@@ -210,10 +210,11 @@
                             <li><a href="#">Reports</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="#">Contact</a></li>
+                            <li><a href="{{route('faq')}}">Faqs</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Cookies Policy</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">other legal disclaimers</a></li>
+                            <li><a href="#">Legal Disclaimers</a></li>
                         </ul>
                     </div>
                 </div>

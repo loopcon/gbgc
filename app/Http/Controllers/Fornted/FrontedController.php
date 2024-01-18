@@ -10,6 +10,7 @@ use App\Models\websitelogo;
 use App\Models\Customer;
 use App\Models\NewsLetter;
 use App\Models\Contactus;
+use App\Models\HomepageBanner;
 use Mail;
 use Auth;
 
@@ -19,6 +20,7 @@ class FrontedController extends Controller
     {
         $return_data = array();       
         $return_data['staticpage'] = StaticPage::get();
+        $return_data['homepagebanner'] = HomepageBanner::first();
         return view('fronted.index', array_merge($return_data));
     }
 

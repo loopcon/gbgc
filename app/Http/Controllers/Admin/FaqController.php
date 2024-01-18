@@ -47,7 +47,7 @@ class FaqController extends Controller
         foreach($fields as $key => $value){
             $faq->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
-        $faq->answer = strip_tags($request->answer);
+        // $faq->answer = strip_tags($request->answer);
         $faq->save();
 
         if($faq){
@@ -94,7 +94,7 @@ class FaqController extends Controller
             $faq->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
 
-        $faq->answer = strip_tags($request->answer);
+        // $faq->answer = strip_tags($request->answer);
         $faq->save();
         if($faq) {
             return redirect('admin/faq')->with('success', trans('FAQ Updated Successfully!'));

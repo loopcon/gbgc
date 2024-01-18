@@ -106,6 +106,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/contactus-delete/{id}', [App\Http\Controllers\Admin\ContactusController::class, 'destroy'])->name('contactus-delete');
     //endconatctus
 
+    //homepage banner
+    Route::get('admin/homepagebanner', [App\Http\Controllers\Admin\HomepageBannerController::class,'index'])->name('homepagebanner');
+    Route::post('admin/homepagebanner-update',[App\Http\Controllers\Admin\HomepageBannerController::class, 'update'])->name('homepagebanner-update');
+    //end homepage banner
+
 });
 
 Auth::routes();

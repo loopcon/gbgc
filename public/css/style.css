@@ -1719,3 +1719,14 @@ a.login-active {
 
 
 /* get in  touch  css end  */
+
+
+/* registration error*/
+
+.invalid-feedback {
+    display: block !important;
+    width: 100% !important;
+}
+
+
+/* registration error end*/

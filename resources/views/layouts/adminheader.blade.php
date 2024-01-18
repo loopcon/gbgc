@@ -36,258 +36,248 @@
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/css/pages.css')}}">
 </head>
 <body>
+    <div class="loader-bg">
+        <div class="loader-bar"></div>
+    </div>
 
-<div class="loader-bg">
-<div class="loader-bar"></div>
-</div>
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a href="{{route('adminindex')}}">
+                            <img class="img-fluid" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo" / style="height: 50px;">
+                        </a>
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle" data-toggle="dropdown">
+                                        <img src="{{asset('admin/assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
+                                        <span>@if(auth()->user()){{ Auth::user()->name }}@endif</span>
+                                        <i class="feather icon-chevron-down"></i>
+                                    </div>
+                                    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                        <li>
+                                            <a href="{{route('adminprofile')}}">
+                                                <i class="feather icon-user"></i> Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action border-0 "><i class="feather icon-log-out"></i> Logout</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
-<div id="pcoded" class="pcoded">
-<div class="pcoded-overlay-box"></div>
-<div class="pcoded-container navbar-wrapper">
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="nav-list">
+                            <div class="pcoded-inner-navbar main-menu">
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class>
+                                        <a href="{{route('adminindex')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-home"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Dashboard</span>
+                                        </a>
+                                    </li>
 
-<nav class="navbar header-navbar pcoded-header">
-<div class="navbar-wrapper">
-<div class="navbar-logo">
+                                    <li class="pcoded-hasmenu  pcoded-trigger">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-upload"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">GBGC Data Upload</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class>
+                                                <a href="{{route('region')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Region</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-user"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Users</span>
+                                        </a>
+                                    </li>
     
-<a href="{{route('adminindex')}}">
-<img class="img-fluid" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo" / style="height: 50px;">
-</a>
+                                    <li class>
+                                        <a href="{{route('adminmembership')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-list"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Membership Plan</span>
+                                        </a>
+                                    </li>
 
-<a class="mobile-options waves-effect waves-light">
-<i class="feather icon-more-horizontal"></i>
-</a>
-</div>
-<div class="navbar-container container-fluid">
+                                    <li class>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Orders</span>
+                                        </a>
+                                    </li>
 
-<ul class="nav-right">
+                                    <li class>
+                                        <a href="{{route('customer')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-users"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Customer</span>
+                                        </a>
+                                    </li>
 
+                                    <li class="pcoded-hasmenu  pcoded-trigger">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
+                                            <span class="pcoded-mtext">CMS</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class>
+                                                <a href="{{route('staticpage')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Static Page</span>
+                                                </a>
+                                            </li>
+                                            <li class>
+                                                <a href="{{route('adminfaq')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">FAQ</span>
+                                                </a>
+                                            </li>
+                                            <li class>
+                                                <a href="{{route('newsletter')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Customer NewsLetter</span>
+                                                </a>
+                                            </li>
+                                            <li class>
+                                                <a href="{{route('contactus')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Contact List</span>
+                                                </a>
+                                            </li>
+                                            <li class>
+                                                <a href="{{route('homepagebanner')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Homepage Banner</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
+                                    <li class>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Reports</span>
+                                        </a>
+                                    </li>
 
-<li class="user-profile header-notification">
-<div class="dropdown-primary dropdown">
-<div class="dropdown-toggle" data-toggle="dropdown">
-<img src="{{asset('admin/assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
-<span>@if(auth()->user()){{ Auth::user()->name }}@endif</span>
-<i class="feather icon-chevron-down"></i>
-</div>
-<ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <li class="pcoded-hasmenu  pcoded-trigger">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
+                                            <span class="pcoded-mtext">Settings</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class>
+                                                <a href="{{route('websitelogo')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Website Logo</span>
+                                                </a>
+                                            </li>
+                                            <li class>
+                                                <a href="{{route('generalsetting')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">General Setting</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
-<li>
-<a href="{{route('adminprofile')}}">
-<i class="feather icon-user"></i> Profile
-</a>
-</li>
-<li>
-<a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action border-0 "><i class="feather icon-log-out"></i> Logout</a>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-@csrf
-</form>
-</li>
+                                    @if(auth()->user())
+                                    <li class>
+                                        <a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-log-out"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Log Out</span>
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                        </form>
+                                    </li>
+                                    @endif
 
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</nav>
+                                </ul>
 
+                            </div>
+                        </div>
+                    </nav>
 
-<div class="pcoded-main-container">
-<div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        @yield('content')
 
-<nav class="pcoded-navbar">
-<div class="nav-list">
-<div class="pcoded-inner-navbar main-menu">
+                    </div>
 
-
-<ul class="pcoded-item pcoded-left-item">
-
-    <li class>
-        <a href="{{route('adminindex')}}" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-home"></i>
-            </span>
-            <span class="pcoded-mtext">Dashboard</span>
-        </a>
-    </li>
-
-    <li class="pcoded-hasmenu  pcoded-trigger">
-        <a href="javascript:void(0)" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-upload"></i>
-            </span>
-            <span class="pcoded-mtext">GBGC Data Upload</span>
-        </a>
-        <ul class="pcoded-submenu">
-            <li class>
-                <a href="{{route('region')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">Region</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-
-    <li class>
-        <a href="#" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-user"></i>
-            </span>
-            <span class="pcoded-mtext">Users</span>
-        </a>
-    </li>
-    
-    <li class>
-        <a href="{{route('adminmembership')}}" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-list"></i>
-            </span>
-            <span class="pcoded-mtext">Membership Plan</span>
-        </a>
-    </li>
-
-    <li class>
-        <a href="#" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-info"></i>
-            </span>
-            <span class="pcoded-mtext">Orders</span>
-        </a>
-    </li>
-
-    <li class>
-        <a href="{{route('customer')}}" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-users"></i>
-            </span>
-            <span class="pcoded-mtext">Customer</span>
-        </a>
-    </li>
-
-    <li class="pcoded-hasmenu  pcoded-trigger">
-        <a href="javascript:void(0)" class="waves-effect waves-dark">
-            <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
-            <span class="pcoded-mtext">CMS</span>
-        </a>
-        <ul class="pcoded-submenu">
-            <li class>
-                <a href="{{route('staticpage')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">Static Page</span>
-                </a>
-            </li>
-             <li class>
-                <a href="{{route('adminfaq')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">FAQ</span>
-                </a>
-            </li>
-             <li class>
-                <a href="{{route('newsletter')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">Customer NewsLetter</span>
-                </a>
-            </li>
-            <li class>
-                <a href="{{route('contactus')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">Contact List</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-
-     <li class>
-        <a href="#" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-info"></i>
-            </span>
-            <span class="pcoded-mtext">Reports</span>
-        </a>
-    </li>
-
-    <li class="pcoded-hasmenu  pcoded-trigger">
-        <a href="javascript:void(0)" class="waves-effect waves-dark">
-            <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
-            <span class="pcoded-mtext">Settings</span>
-        </a>
-        <ul class="pcoded-submenu">
-            <li class>
-                <a href="{{route('websitelogo')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">Website Logo</span>
-                </a>
-            </li>
-            <li class>
-                <a href="{{route('generalsetting')}}" class="waves-effect waves-dark">
-                    <span class="pcoded-mtext">General Setting</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-
-    @if(auth()->user())
-    <li class>
-        <a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="waves-effect waves-dark">
-            <span class="pcoded-micon">
-                <i class="feather icon-log-out"></i>
-            </span>
-            <span class="pcoded-mtext">Log Out</span>
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-           @csrf
-        </form>
-    </li>
-    @endif
-
-</ul>
-
-</div>
-</div>
-</nav>
-
-<div class="pcoded-content">
-
- @yield('content')
-
-</div>
-
-<div id="styleSelector">
-</div>
-</div>
-</div>
+                    <div id="styleSelector">
+                    </div>
+                </div>
+            </div>
 
 
-</div>
-</div>
+        </div>
+    </div>
 
-<script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
+    <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
 
-<script src="{{asset('plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
+    <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
 
-<script type="text/javascript" src="{{asset('admin/files/bower_components/jquery/js/jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/files/bower_components/jquery-ui/js/jquery-ui.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/files/bower_components/popper.js/js/popper.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/files/bower_components/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/jquery/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/jquery-ui/js/jquery-ui.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/popper.js/js/popper.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/bootstrap/js/bootstrap.min.js')}}"></script>
 
-<script src="{{asset('admin/files/assets/pages/waves/js/waves.min.js')}}"></script>
+    <script src="{{asset('admin/files/assets/pages/waves/js/waves.min.js')}}"></script>
 
-<script type="text/javascript" src="{{asset('admin/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js')}}"></script>
 
-<script type="text/javascript" src="{{asset('admin/files/bower_components/modernizr/js/modernizr.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/files/bower_components/modernizr/js/css-scrollbars.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/modernizr/js/modernizr.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/modernizr/js/css-scrollbars.js')}}"></script>
 
-<script src="{{asset('admin/files/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('admin/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('admin/files/assets/pages/data-table/js/jszip.min.js')}}"></script>
-<script src="{{asset('admin/files/assets/pages/data-table/js/pdfmake.min.js')}}"></script>
-<script src="{{asset('admin/files/assets/pages/data-table/js/vfs_fonts.js')}}"></script>
-<script src="{{asset('admin/files/bower_components/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('admin/files/bower_components/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('admin/files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('admin/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('admin/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{asset('admin/files/assets/pages/data-table/js/data-table-custom.js')}}"></script>
-<script src="{{asset('admin/files/assets/js/pcoded.min.js')}}"></script>
-<script src="{{asset('admin/files/assets/js/vertical/vertical-layout.min.js')}}"></script>
-<script src="{{asset('admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/files/assets/js/script.js')}}"></script>
+    <script src="{{asset('admin/files/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin/files/assets/pages/data-table/js/jszip.min.js')}}"></script>
+    <script src="{{asset('admin/files/assets/pages/data-table/js/pdfmake.min.js')}}"></script>
+    <script src="{{asset('admin/files/assets/pages/data-table/js/vfs_fonts.js')}}"></script>
+    <script src="{{asset('admin/files/bower_components/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin/files/bower_components/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('admin/files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('admin/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/files/assets/pages/data-table/js/data-table-custom.js')}}"></script>
+    <script src="{{asset('admin/files/assets/js/pcoded.min.js')}}"></script>
+    <script src="{{asset('admin/files/assets/js/vertical/vertical-layout.min.js')}}"></script>
+    <script src="{{asset('admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/assets/js/script.js')}}"></script>
 
-@yield('javascript')
+    @yield('javascript')
+
 </body>
 </html>

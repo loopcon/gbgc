@@ -2,14 +2,15 @@
 @section('content')
 
  <div class="navbar-bgimg">
-        <img src="{{asset('img/slider-img.png')}}" class="img-fluid slider-img" alt="">
+        <img src="{{asset('uploads/homepagebanner/'.$homepagebanner->image)}}" class="img-fluid slider-img" alt="">
         <div class="the-only-slidertext">
-            <h4>THE ONLY PROVIDER OF GLOBAL GAMBLING REVENUE DATA YOU’LL EVER USE.</h4>
-            <ul>
+            <h4>{{$homepagebanner->title}}</h4>
+            {!!$homepagebanner->description!!}
+           <?php /* <ul>
                 <li>Stack the odds in your favour.</li>
                 <li>Stop relying on topline reporting to make complex decisions.</li>
                 <li>Subscribe to access revenue data split by every European gambling jurisdiction and market.</li>
-            </ul>
+            </ul>*/ ?>
             <button>Read More</button>
         </div>
     </div>
@@ -24,7 +25,7 @@
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="repote-box">
-                            <p class="report-heading">REPOTE</p>
+                            <p class="report-heading">REPORTS</p>
                             <h4 class="current-report-heading">CURRENT</h4>
                             <p class="report-text">Our data is updated quarterly, and so are our expert projections. Say goodbye to once-a-year reports that are outdated as soon as you click ‘buy.’</p>
                         </div>
@@ -39,7 +40,7 @@
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="repote-box">
-                            <p class="report-heading">REPOTE</p>
+                            <p class="report-heading">REPORTS</p>
                             <h4 class="current-report-heading">CURRENT</h4>
                             <p class="report-text">Our data is updated quarterly, and so are our expert projections. Say goodbye to once-a-year reports that are outdated as soon as you click ‘buy.’</p>
                         </div>
@@ -54,7 +55,7 @@
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="repote-box">
-                            <p class="report-heading">REPOTE</p>
+                            <p class="report-heading">REPORTS</p>
                             <h4 class="current-report-heading">CURRENT</h4>
                             <p class="report-text">Our data is updated quarterly, and so are our expert projections. Say goodbye to once-a-year reports that are outdated as soon as you click ‘buy.’</p>
                         </div>
