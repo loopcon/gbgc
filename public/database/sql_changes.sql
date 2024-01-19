@@ -48,3 +48,21 @@ ALTER TABLE `homepage_banners`
 
 INSERT INTO `homepage_banners` (`id`, `title`, `description`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'THE ONLY PROVIDER OF GLOBAL GAMBLING REVENUE DATA YOU’LL EVER USE.', '<ul>\r\n	<li>STACK THE ODDS IN YOUR FAVOUR.</li>\r\n	<li>STOP RELYING ON TOPLINE REPORTING TO MAKE COMPLEX DECISIONS.</li>\r\n	<li>SUBSCRIBE TO ACCESS REVENUE DATA SPLIT BY EVERY EUROPEAN GAMBLING JURISDICTION AND MARKET.</li>\r\n</ul>', '65a8f2c402d82_1705571012.png', NULL, '2024-01-18 04:31:39');
+
+
+--Nirali : 19-01-2024 10:09 PM
+-- Table structure for table `homepage_reports`
+--
+
+CREATE TABLE `homepage_reports` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ALTER TABLE `homepage_reports`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `homepage_reports`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

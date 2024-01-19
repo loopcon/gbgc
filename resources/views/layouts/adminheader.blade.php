@@ -180,11 +180,25 @@
                                                     <span class="pcoded-mtext">Homepage Banner</span>
                                                 </a>
                                             </li>
+                                            <li class>
+                                                <a href="{{route('homepagereport')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Homepage Reports</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 
                                     <li class>
-                                        <a href="#" class="waves-effect waves-dark">
+                                        <a href="{{route('adminglossary')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Glossary</span>
+                                        </a>
+                                    </li>
+
+                                    <li class>
+                                        <a href="{{route('adminreport')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
                                             </span>

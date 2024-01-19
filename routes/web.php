@@ -111,6 +111,23 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('admin/homepagebanner-update',[App\Http\Controllers\Admin\HomepageBannerController::class, 'update'])->name('homepagebanner-update');
     //end homepage banner
 
+    //homepage reports
+    Route::get('admin/homepagereport', [App\Http\Controllers\Admin\HomepageReportController::class,'index'])->name('homepagereport');
+    Route::get('admin/homepagereport-create',[App\Http\Controllers\Admin\HomepageReportController::class, 'create'])->name('homepagereport-create');
+    Route::post('admin/homepagereport-store',[App\Http\Controllers\Admin\HomepageReportController::class, 'store'])->name('homepagereport-store');
+    Route::get('admin/homepagereport-edit/{id}',[App\Http\Controllers\Admin\HomepageReportController::class, 'edit'])->name('homepagereport-edit');
+    Route::post('admin/homepagereport-update/{id}',[App\Http\Controllers\Admin\HomepageReportController::class, 'update'])->name('homepagereport-update');
+    Route::get('admin/homepagereport-delete/{id}', [App\Http\Controllers\Admin\HomepageReportController::class, 'destroy'])->name('homepagereport-delete');
+    //end homepage reports
+
+    //reports
+    Route::get('admin/report', [App\Http\Controllers\Admin\ReportController::class,'index'])->name('adminreport');
+    //end reports
+
+     //reports
+    Route::get('admin/glossary', [App\Http\Controllers\Admin\GlossaryController::class,'index'])->name('adminglossary');
+    //end reports
+
 });
 
 Auth::routes();
