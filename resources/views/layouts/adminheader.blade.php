@@ -87,8 +87,8 @@
                     <nav class="pcoded-navbar">
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
-                                <ul class="pcoded-item pcoded-left-item ">
-                                    <li class="{{ (request()->is('/backend*'))? 'active' : '' }}">
+                                <ul class="pcoded-item pcoded-left-item" >
+                                    <li class="{{ (request()->is('backend'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('adminindex')}}" class="waves-effect waves-dark ">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-home"></i>
@@ -113,7 +113,7 @@
                                         </ul>
                                     </li>
 
-                                    <li class>
+                                    <li class="{{ (request()->is('admin/user*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('user')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-user"></i>
@@ -122,7 +122,7 @@
                                         </a>
                                     </li>
     
-                                    <li class>
+                                    <li class="{{ (request()->is('admin/membership*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('adminmembership')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-list"></i>
@@ -131,7 +131,7 @@
                                         </a>
                                     </li>
 
-                                    <li class>
+                                    <li class="{{ (request()->is('admin/order*'))? 'pcoded-trigger' : '' }}">
                                         <a href="#" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
@@ -140,46 +140,55 @@
                                         </a>
                                     </li>
 
-                                    <li class="pcoded-hasmenu  pcoded-trigger">
+                                    <li class="pcoded-hasmenu  {{ (request()->is('admin/staticpage*') || request()->is('admin/faq*') || request()->is('admin/newsletter*') || request()->is('admin/contactus*') || request()->is('admin/homepagebanner*') || request()->is('admin/homepagereport*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
                                             <span class="pcoded-mtext">CMS</span>
                                         </a>
-                                        <ul class="pcoded-submenu">
-                                            <li class>
+                                        <ul class="pcoded-submenu" style="{{ (request()->is('admin/staticpage*') || request()->is('admin/faq*') || request()->is('admin/newsletter*') || request()->is('admin/contactus*') || request()->is('admin/homepagebanner*') || request()->is('admin/homepagereport*'))? 'display:block' : 'display:none' }}">
+                                            <li class="{{ (request()->is('admin/staticpage*'))? 'active' : '' }}">
                                                 <a href="{{route('staticpage')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Static Page</span>
                                                 </a>
                                             </li>
-                                            <li class>
+                                            <li class="{{ (request()->is('admin/faq*'))? 'active' : '' }}">
                                                 <a href="{{route('adminfaq')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">FAQ</span>
                                                 </a>
                                             </li>
-                                            <li class>
+                                            <li class="{{ (request()->is('admin/newsletter*'))? 'active' : '' }}">
                                                 <a href="{{route('newsletter')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Customer NewsLetter</span>
                                                 </a>
                                             </li>
-                                            <li class>
+                                            <li class="{{ (request()->is('admin/contactus*'))? 'active' : '' }}">
                                                 <a href="{{route('contactus')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Contact List</span>
                                                 </a>
                                             </li>
-                                            <li class>
+                                            <li class="{{ (request()->is('admin/homepagebanner*'))? 'active' : '' }}">
                                                 <a href="{{route('homepagebanner')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Homepage Banner</span>
                                                 </a>
                                             </li>
-                                            <li class>
+                                            <li class="{{ (request()->is('admin/homepagereport*'))? 'active' : '' }}">
                                                 <a href="{{route('homepagereport')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Homepage Reports</span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
+                                    
+                                    <li class="{{ (request()->is('admin/datatext*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('admindatatext')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Data Text</span>
+                                        </a>
+                                    </li>
 
-                                    <li class>
+                                    <li class="{{ (request()->is('admin/glossary*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('adminglossary')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
@@ -188,7 +197,7 @@
                                         </a>
                                     </li>
 
-                                    <li class>
+                                    <li class="{{ (request()->is('admin/report*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('adminreport')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
@@ -197,18 +206,18 @@
                                         </a>
                                     </li>
 
-                                    <li class="pcoded-hasmenu  pcoded-trigger">
+                                    <li class="pcoded-hasmenu {{ (request()->is('admin/generalsetting*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
                                             <span class="pcoded-mtext">Settings</span>
                                         </a>
-                                        <ul class="pcoded-submenu">
+                                        <ul class="pcoded-submenu" style="{{ (request()->is('admin/generalsetting*'))? 'display:block' : 'display:none' }}">
                                            <?php /* <li class>
                                                 <a href="{{route('websitelogo')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Website Logo</span>
                                                 </a>
                                             </li> */ ?>
-                                            <li class>
+                                            <li class="{{ (request()->is('admin/generalsetting*'))? 'active' : '' }}">
                                                 <a href="{{route('generalsetting')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">General Setting</span>
                                                 </a>

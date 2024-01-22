@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Fornted\FrontedController;
+use App\Http\Controllers\Frontend\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +14,19 @@ use App\Http\Controllers\Fornted\FrontedController;
 |
 */
 
-Route::get('/',[FrontedController::class,'index'])->name('index');
-Route::post('/store-newsletter',[FrontedController::class, 'storeNewsletter'])->name('store-newsletter');
-Route::get('Faq',[FrontedController::class,'faq'])->name('faq');
-Route::get('How_its_Work',[FrontedController::class,'howitswork'])->name('howitswork');
-Route::get('Membership',[FrontedController::class,'membership'])->name('membership');
-Route::get('thank-you',[FrontedController::class,'thankyou'])->name('thankyou');
-Route::get('lost-password',[FrontedController::class,'lostpassword'])->name('lostpassword');
-Route::get('check-out',[FrontedController::class,'checkout'])->name('checkout');
-Route::get('/contactus',[FrontedController::class, 'contactus'])->name('frontcontactus');
-Route::post('/store-contactus',[FrontedController::class, 'storeContactus'])->name('store-contactus');
+Route::get('/',[FrontendController::class,'index'])->name('index');
+Route::post('/store-newsletter',[FrontendController::class, 'storeNewsletter'])->name('store-newsletter');
+Route::get('Faq',[FrontendController::class,'faq'])->name('faq');
+Route::get('How_its_Work',[FrontendController::class,'howitswork'])->name('howitswork');
+Route::get('Membership',[FrontendController::class,'membership'])->name('membership');
+Route::get('thank-you',[FrontendController::class,'thankyou'])->name('thankyou');
+Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lostpassword');
+Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
+Route::get('/contactus',[FrontendController::class, 'contactus'])->name('frontcontactus');
+Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->name('store-contactus');
 
-Route::post('registration',[App\Http\Controllers\Fornted\FrontLoginController::class, 'registration'])->name('registration');
-Route::post('customer-checklogin',[App\Http\Controllers\Fornted\FrontLoginController::class,'checklogin'])->name('customer-checklogin');
+Route::post('registration',[App\Http\Controllers\Frontend\FrontLoginController::class, 'registration'])->name('registration');
+Route::post('customer-checklogin',[App\Http\Controllers\Frontend\FrontLoginController::class,'checklogin'])->name('customer-checklogin');
 
 
 
@@ -127,6 +127,15 @@ Route::group(['middleware' => ['auth']], function () {
      //reports
     Route::get('admin/glossary', [App\Http\Controllers\Admin\GlossaryController::class,'index'])->name('adminglossary');
     //end reports
+
+    //datatext
+    Route::get('admin/datatext', [App\Http\Controllers\Admin\DatatextController::class,'index'])->name('admindatatext');
+    Route::get('admin/datatext-create',[App\Http\Controllers\Admin\DatatextController::class, 'create'])->name('datatext-create');
+    Route::post('admin/datatext-store',[App\Http\Controllers\Admin\DatatextController::class, 'store'])->name('datatext-store');
+    Route::get('admin/datatext-edit/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'edit'])->name('datatext-edit');
+    Route::post('admin/datatext-update/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'update'])->name('datatext-update');
+    Route::get('admin/datatext-delete/{id}', [App\Http\Controllers\Admin\DatatextController::class, 'destroy'])->name('datatext-delete');
+    //end datatext
 
 });
 

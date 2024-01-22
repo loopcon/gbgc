@@ -22,7 +22,7 @@
                         <a href="javascript:void(0)" id="menu-btn" class="menu-icon"><i class="fa-solid fa-bars"></i><span>MENU</span></a>
                         <div class="dropdown-show" id="menu-popup">
                             <ul>
-                                <li><a href="#">Home</a></li>
+                                <li><a href="{{route('index')}}">Home</a></li>
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="{{route('howitswork')}}">How It Works</a></li>
                                 <li><a href="{{route('membership')}}">Memberships</a></li>

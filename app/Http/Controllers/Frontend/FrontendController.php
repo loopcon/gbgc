@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Fornted;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ use App\Models\HomepageReport;
 use Mail;
 use Auth;
 
-class FrontedController extends Controller
+class FrontendController extends Controller
 {
     public function index()
     {
@@ -23,39 +23,39 @@ class FrontedController extends Controller
         $return_data['staticpage'] = StaticPage::get();
         $return_data['homepagebanner'] = HomepageBanner::first();
         $return_data['homepagereport'] = HomepageReport::get();
-        return view('fronted.index', array_merge($return_data));
+        return view('frontend.index', array_merge($return_data));
     }
 
     public function faq()
     {
         $return_data = array();       
         $return_data['faq'] = FAQ::get();
-        return view('fronted.faq', array_merge($return_data));
+        return view('frontend.faq', array_merge($return_data));
     }
 
     public function howitswork()
     {
-        return view('fronted.howitswork');
+        return view('frontend.howitswork');
     }
 
     public function membership()
     {
-        return view('fronted.membership');
+        return view('frontend.membership');
     }
 
     public function thankyou()
     {
-        return view('fronted.thankyou');
+        return view('frontend.thankyou');
     }
 
     public function lostpassword()
     {
-        return view('fronted.lostpassword');
+        return view('frontend.lostpassword');
     }
 
     public function checkout()
     {
-        return view('fronted.checkout');
+        return view('frontend.checkout');
     }
 
     public function storeNewsletter(Request $request)
@@ -84,7 +84,7 @@ class FrontedController extends Controller
 
     public function contactus()
     {
-        return view('fronted.contactus');
+        return view('frontend.contactus');
     }
 
     public function storeContactus(Request $request)

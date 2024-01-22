@@ -6,7 +6,7 @@
             <div class="page-header-title">
                 <i class="feather icon-info bg-c-blue"></i>
                 <div class="d-inline">
-                    <h5>Homepage Banner Create</h5>
+                    <h5>Homepage Banner</h5>
                 </div>
             </div>
         </div>
