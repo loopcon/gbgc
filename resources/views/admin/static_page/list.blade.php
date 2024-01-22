@@ -60,7 +60,6 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <h5>Static Page</h5>
                                     <div class="form-row">
                                         <div class="col-md-12 text-right">
                                             <div class="col-md-12 text-right"><a href="{{route('staticpage-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>

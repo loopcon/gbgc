@@ -56,7 +56,6 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <h5>MemberShip Plan</h5>
                                     <!-- <div class="form-row">
                                         <div class="col-md-12 text-right">
                                             <div class="col-md-12 text-right"><a href="{{route('addmembershipplan')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__(' + Add')}}</a></div>

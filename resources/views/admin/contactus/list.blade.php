@@ -6,7 +6,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Contact Us</h5>
+                        <h5>Customer's Contact</h5>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,6 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <h5>Contact List</h5>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">

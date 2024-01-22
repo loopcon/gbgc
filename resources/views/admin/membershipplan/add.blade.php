@@ -31,7 +31,6 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>MemberShip Plan Create</h5>
                             </div>
                             <div class="card-block"><ul>
                                 <form method="post" action="{{route('storemembershipplan')}}" enctype="multipart/form-data">

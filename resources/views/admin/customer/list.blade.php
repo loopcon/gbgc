@@ -4,9 +4,9 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-user bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Customer</h5>
+                        <h5>Users</h5>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                             <a href="{{route('adminindex')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('customer')}}">Customer</a>
+                            <a href="{{route('user')}}">Users</a>
                         </li>
                     </ul>
                 </div>
@@ -60,7 +60,6 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <h5>Customer</h5>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
@@ -85,7 +84,7 @@
                                                             <td >  {{$data->first_name}} </td>
                                                             <td >  {{$data->email}} </td>
                                                             <td>
-                                                                <a href='javascript:void(0);' data-href="{{ route('customer-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                                <a href='javascript:void(0);' data-href="{{ route('user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -111,7 +110,7 @@
             var href = $(this).data('href');
             swal({
                 title: "",
-                text: "{{__('Are you sure? Delete this Customer!')}}",
+                text: "{{__('Are you sure? Delete this User!')}}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-info",

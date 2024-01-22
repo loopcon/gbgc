@@ -81,7 +81,7 @@ class HomepageReportController extends Controller
     public function edit(string $id)
     {
         $return_data = array();
-        $record = HomepageReport::first();
+        $record = HomepageReport::find($id);
         $return_data['record'] = $record;
         return view('admin.homepage_report.form', array_merge($return_data));
     }

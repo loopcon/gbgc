@@ -55,7 +55,6 @@
                                 </div>
                             </div>
                             <div class="card-header">
-                                <h5>General Setting</h5>
                             </div>
                             <div class="card-block">
                                 <form method="post" action="{{route('generalsetting-update')}}" enctype="multipart/form-data">

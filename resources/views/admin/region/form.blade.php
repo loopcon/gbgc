@@ -31,7 +31,6 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Region Create</h5>
                             </div>
                             <div class="card-block">
                                 <form method="post" action="@if(isset($record)){{ route('region-update', array('id' => $record->id)) }}@else{{route('region-store')}}@endif" enctype="multipart/form-data">

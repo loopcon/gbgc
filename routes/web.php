@@ -69,8 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
     //endfaq
 
     //customer
-    Route::get('admin/customer', [App\Http\Controllers\Admin\CustomerController::class,'index'])->name('customer');
-    Route::get('admin/customer-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('customer-delete');
+    Route::get('admin/user', [App\Http\Controllers\Admin\CustomerController::class,'index'])->name('user');
+    Route::get('admin/user-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('user-delete');
     //endcustomer
 
     //general-setting
@@ -92,14 +92,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/newsletter-delete/{id}', [App\Http\Controllers\Admin\NewsletterController::class, 'destroy'])->name('newsletter-delete');
     //endnewsletter
 
-    //newsletter
+    //region
     Route::get('admin/region', [App\Http\Controllers\Admin\RegionController::class,'index'])->name('region');
     Route::get('admin/region-create',[App\Http\Controllers\Admin\RegionController::class, 'create'])->name('region-create');
     Route::post('admin/region-store',[App\Http\Controllers\Admin\RegionController::class, 'store'])->name('region-store');
     Route::get('admin/region-edit/{id}',[App\Http\Controllers\Admin\RegionController::class, 'edit'])->name('region-edit');
     Route::post('admin/region-update/{id}',[App\Http\Controllers\Admin\RegionController::class, 'update'])->name('region-update');
     Route::get('admin/region-delete/{id}', [App\Http\Controllers\Admin\RegionController::class, 'destroy'])->name('region-delete');
-    //endnewsletter
+    //endregion
 
     //conatcus
     Route::get('admin/contactus', [App\Http\Controllers\Admin\ContactusController::class,'index'])->name('contactus');
@@ -132,4 +132,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 Auth::routes();
 
-Route::get('/home',[App\Http\Controllers\Admin\IndexController::class, 'index'])->name('adminindex');
+// Route::get('/home',[App\Http\Controllers\Admin\IndexController::class, 'index'])->name('adminindex');

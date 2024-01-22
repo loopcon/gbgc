@@ -31,7 +31,6 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>FAQ Create</h5>
                             </div>
                             <div class="card-block">
                                 <form method="post" action="@if(isset($record)){{ route('faq-update', array('id' => $record->id)) }}@else{{route('faq-store')}}@endif" enctype="multipart/form-data">

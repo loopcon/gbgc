@@ -63,11 +63,11 @@
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                        <li>
+                                    <?php /*    <li>
                                             <a href="{{route('adminprofile')}}">
                                                 <i class="feather icon-user"></i> Profile
                                             </a>
-                                        </li>
+                                        </li> */ ?>
                                         <li>
                                             <a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action border-0 "><i class="feather icon-log-out"></i> Logout</a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -87,9 +87,9 @@
                     <nav class="pcoded-navbar">
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
-                                <ul class="pcoded-item pcoded-left-item">
-                                    <li class>
-                                        <a href="{{route('adminindex')}}" class="waves-effect waves-dark">
+                                <ul class="pcoded-item pcoded-left-item ">
+                                    <li class="{{ (request()->is('/backend*'))? 'active' : '' }}">
+                                        <a href="{{route('adminindex')}}" class="waves-effect waves-dark ">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-home"></i>
                                             </span>
@@ -97,15 +97,15 @@
                                         </a>
                                     </li>
 
-                                    <li class="pcoded-hasmenu  pcoded-trigger">
+                                    <li class="pcoded-hasmenu {{ (request()->is('admin/region*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-upload"></i>
                                             </span>
                                             <span class="pcoded-mtext">GBGC Data Upload</span>
                                         </a>
-                                        <ul class="pcoded-submenu">
-                                            <li class>
+                                        <ul class="pcoded-submenu " style="{{ (request()->is('admin/region*'))? 'display:block' : 'display:none' }}">
+                                            <li class="{{ (request()->is('admin/region*'))? 'active' : '' }}">
                                                 <a href="{{route('region')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Region</span>
                                                 </a>
@@ -114,11 +114,11 @@
                                     </li>
 
                                     <li class>
-                                        <a href="#" class="waves-effect waves-dark">
+                                        <a href="{{route('user')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-user"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Users</span>
+                                            <span class="pcoded-mtext">User</span>
                                         </a>
                                     </li>
     
@@ -137,15 +137,6 @@
                                                 <i class="feather icon-info"></i>
                                             </span>
                                             <span class="pcoded-mtext">Orders</span>
-                                        </a>
-                                    </li>
-
-                                    <li class>
-                                        <a href="{{route('customer')}}" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-users"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Customer</span>
                                         </a>
                                     </li>
 
@@ -212,11 +203,11 @@
                                             <span class="pcoded-mtext">Settings</span>
                                         </a>
                                         <ul class="pcoded-submenu">
-                                            <li class>
+                                           <?php /* <li class>
                                                 <a href="{{route('websitelogo')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Website Logo</span>
                                                 </a>
-                                            </li>
+                                            </li> */ ?>
                                             <li class>
                                                 <a href="{{route('generalsetting')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">General Setting</span>
@@ -290,7 +281,13 @@
     <script src="{{asset('admin/files/assets/js/vertical/vertical-layout.min.js')}}"></script>
     <script src="{{asset('admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('admin/files/assets/js/script.js')}}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'UA-23581568-13');
+    </script>
     @yield('javascript')
 
 </body>

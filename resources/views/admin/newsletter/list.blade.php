@@ -60,7 +60,6 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <h5>NewsLetter</h5>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">

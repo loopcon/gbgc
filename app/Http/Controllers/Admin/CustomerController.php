@@ -25,7 +25,7 @@ class CustomerController extends Controller
     {
          $customer = Customer::where('id', $id)->delete();
         if($customer) {
-            return redirect('admin/customer')->with('success', trans('Customer Deleted Successfully!'));
+            return redirect('admin/user')->with('success', trans('User Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

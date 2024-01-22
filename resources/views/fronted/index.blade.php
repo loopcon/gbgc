@@ -16,24 +16,29 @@
     </div>
     
     <!-- report  section  start  -->
+     @if(count($homepagereport)>0)
      <div class="container">
         <div id="report-carousel" class="owl-carousel owl-theme">
+       
+            @foreach($homepagereport as $report)
             <div class="reports-mainbg">
                 <div class="row m-0 align-items-center">
                     <div class="col-12 col-sm-6">
-                        <img src="{{asset('img/report-img.png')}}" class="img-fluid" alt="">
+                        <img src="{{asset('uploads/homepagereport/'.$report->image)}}" class="img-fluid" alt="">
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="repote-box">
                             <p class="report-heading">REPORTS</p>
-                            <h4 class="current-report-heading">CURRENT</h4>
-                            <p class="report-text">Our data is updated quarterly, and so are our expert projections. Say goodbye to once-a-year reports that are outdated as soon as you click ‘buy.’</p>
+                            <h4 class="current-report-heading">{{$report->title}}</h4>
+                            <p class="report-text">{!!$report->description!!}</p>
                         </div>
                     </div>
                 </div>
-            </div>   
+            </div>  
+            @endforeach
+    
 
-            <div class="reports-mainbg">
+          <?php /*  <div class="reports-mainbg">
                 <div class="row m-0 align-items-center">
                     <div class="col-12 col-sm-6">
                         <img src="{{asset('img/report-img.png')}}" class="img-fluid" alt="">
@@ -61,10 +66,11 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div> */ ?>
 
         </div>   
      </div>
+     @endif 
     <!-- report  section  end  -->
     <!-- how it  work  start  -->
         <div class="container">
