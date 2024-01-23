@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         @if ($message = Session::get('success'))
-                                            <div class="alert alert-success alert-dismissible" role="alert">
+                                            <div class="alert text- alert-dismissible" role="alert" style="border-color:#4099ff;color:#4099ff">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>

@@ -52,7 +52,8 @@
                                     </div>
                                     
                                     <div class="container row">
-                                        <button class="btn btn-success btn-round waves-effect waves-light" type="submit">Submit</button>
+                                        <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button>&nbsp;&nbsp;
+                                        <a href="{{route('adminfaq')}}" class="btn btn-danger ">{{__('Cancel')}}</a>
                                     </div>
 
                                 </form>

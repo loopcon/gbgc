@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         @if ($message = Session::get('success'))
-                                            <div class="alert alert-success alert-dismissible" role="alert">
+                                            <div class="alert alert-dismissible" role="alert" style="border-color:#4099ff;color:#4099ff">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
@@ -62,7 +62,7 @@
                                 <div class="card-header">
                                     <div class="form-row">
                                         <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('faq-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                            <div class="col-md-12 text-right"><a href="{{route('faq-create')}}" class="btn text-light" style="background:#4099ff" ><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,8 +87,8 @@
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
                                                             <td >  {{$data->question}} </td>
-                                                            <td >  {{$data->answer}} </td>
-                                                            <td><a href="{{ route('faq-edit',$data->id) }}" rel='tooltip' class="btn btn-info" title="Edit"><i class="fa fa-edit"></i></a>
+                                                            <td >  {!!$data->answer!!} </td>
+                                                            <td><a href="{{ route('faq-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
                                                             <a href='javascript:void(0);' data-href="{{ route('faq-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>

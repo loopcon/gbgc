@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-md-6">
-                                        <h6>Numbeer of User</h6>
+                                        <h6>Number of User</h6>
                                         <h5 class="m-b-30 f-w-700">4,569<span class="text-c-red m-l-10">-0.5%</span></h5>
                                         <div class="progress">
                                             <div class="progress-bar bg-c-blue" style="width:65%"></div>

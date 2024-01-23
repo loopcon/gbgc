@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item">
                       <a href="{{route('adminindex')}}">Dashboard</a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{route('customer')}}">MemberShip Plan</a> </li>
+                    <li class="breadcrumb-item"><a href="{{route('adminmembership')}}">MemberShip Plan</a> </li>
                 </ul>
             </div>
         </div>
@@ -67,7 +67,8 @@
                                     </div>
 
                                     <div class="container row">
-                                        <button class="btn btn-success btn-round waves-effect waves-light" type="submit">Submit</button>
+                                        <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button>&nbsp;&nbsp;
+                                        <a href="{{route('adminmembership')}}" class="btn btn-danger ">{{__('Cancel')}}</a>
                                     </div>
 
                                 </form>

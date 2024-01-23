@@ -57,8 +57,11 @@ class SettingController extends Controller
                 // 'image' => ['required'],
                 'site_name' => ['required'],
                 'phone' => ['required','numeric'],
+                'logo' => ['mimes:png,jpg,webp','dimensions:max_width=210,max_height=100'],
+                'fevicon' => ['mimes:png,jpg,webp','dimensions:max_width=210,max_height=100'],
             ],[
-                'required'  => trans('The :attribute field is required.')
+                'required'  => trans('The :attribute field is required.'),
+                'dimensions' => trans('size should not be more than 210 x 100 px'),
             ]
         );
         $generalsetting = GeneralSetting::find($request->id);

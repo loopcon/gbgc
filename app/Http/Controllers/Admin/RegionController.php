@@ -33,15 +33,15 @@ class RegionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-                'countryCode' => ['required','max:2','regex:/^[A-Z]+$/u'],
+                // 'countryCode' => ['required','max:2','regex:/^[A-Z]+$/u'],
                 'name' => ['required'],
             ],[
                 'required'  => trans('The :attribute field is required.'),
-                'regex'  => trans('The :attribute field format is only upper-case'),
+                // 'regex'  => trans('The :attribute field format is only upper-case'),
             ]
         );
         $region = new Region();
-        $fields = array('countryCode', 'name');
+        $fields = array('name');
         foreach($fields as $key => $value){
             $region->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
@@ -72,15 +72,15 @@ class RegionController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
-                'countryCode' => ['required','max:2','regex:/^[A-Z]+$/u'],
+                // 'countryCode' => ['required','max:2','regex:/^[A-Z]+$/u'],
                 'name' => ['required'],
             ],[
                 'required'  => trans('The :attribute field is required.'),
-                'regex'  => trans('The :attribute field format is only upper-case'),
+                // 'regex'  => trans('The :attribute field format is only upper-case'),
             ]
         );
         $region = Region::find($id);
-        $fields = array('countryCode', 'name');
+        $fields = array('name');
         foreach($fields as $key => $value){
             $region->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }

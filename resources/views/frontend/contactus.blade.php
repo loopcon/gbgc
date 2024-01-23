@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-12">
                         @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-dismissible" role="alert">
+                            <div class="alert alert-dismissible" role="alert" style="border-color:#00ace0;color:#00ace0">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -62,4 +62,19 @@
         </div>
     </div>
     <!-- get in  touch  end -->
+@endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.close', function() {
+            var href = $(this).data('href');
+            swal({
+                closeOnConfirm: true
+            },
+            function(){
+                location.href = href;
+            });
+        });
+    });
+</script>
 @endsection

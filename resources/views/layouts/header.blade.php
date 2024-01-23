@@ -40,11 +40,6 @@
                             {{ $alert }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                    @elseif($alert = Session::get('alert-danger'))
-                        <div class="alert alert-danger alert-dismissible fade show" id="danger-alert">
-                            {{ $alert }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
                     @endif
                 </div>
             </div>    
@@ -69,6 +64,7 @@
                                 <a href="#" class="register-text ">Register</a>
                             </div>
                             <div>
+                            
                                 <form action="/customer-checklogin" method="POST" class="login-form">
                                     @csrf
                                     <div class="input-group mb-3">
@@ -83,6 +79,7 @@
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1"> Remember me</label>
                                     </div>
+                                    <lable class="text-danger">{{Session::get('alert-danger')}}</lable>
                                     <a href="{{route('customer-checklogin')}}"><button class="login-form-signin">SIGN IN</button></a>
                                 </form>
                             </div>
@@ -160,6 +157,7 @@
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">I accept the Terms of Service and Privacy Policy</label>
                                     </div>
+                                    <lable class="text-danger">{{Session::get('register-error')}}</lable>
                                     <a href="{{route('registration')}}"><button class="login-form-signin">SIGN IN</button></a>
                                 </form>
                             </div>
@@ -231,11 +229,13 @@
         </div>
     </footer>
     <!-- footer  end  -->
+    <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/all.min.js')}}"></script>
     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script>
+
         $(document).ready(function(){
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
                 $("#success-alert").slideUp(500);
@@ -325,7 +325,15 @@
                 $('.register-text').removeClass('login-active');
                 
             });
-        
+
+            @if(Session::get('alert-danger'))
+                $("#siguploginModal").modal('show');
+            @endif
+            @if(isset($errors) && ($errors->has('first_name') || $errors->has('last_name') || $errors->has('password') || $errors->has('confirm_password')))
+                $("#siguploginModal").modal('show');
+                $('.register-text').click();
+            @endif
+    
 
         });
     </script>

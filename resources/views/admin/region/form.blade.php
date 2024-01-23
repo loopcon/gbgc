@@ -37,13 +37,6 @@
                                     @csrf
                                     <input type="hidden" id="id" name="id" value="{{ isset($record->id) ? $record->id : '' }}">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Country Code</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="countryCode"  id="countryCode" class="form-control" placeholder="Country Code" maxlength="2" value="{{ isset($record->countryCode) ? $record->countryCode : old('countryCode') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            @if ($errors->has('countryCode')) <div class="text-danger">{{ $errors->first('countryCode') }}</div>@endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="name"  id="name" class="form-control" placeholder="Name" value="{{ isset($record->name) ? $record->name : old('name') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
@@ -52,7 +45,8 @@
                                     </div>
                                     
                                     <div class="container row">
-                                        <button class="btn btn-success btn-round waves-effect waves-light" type="submit">Submit</button>
+                                        <button class="btn text-light " style="background:#4099ff" type="submit">Submit</button> &nbsp;&nbsp;
+                                        <a href="{{route('region')}}" class="btn btn-danger ">{{__('Cancel')}}</a>
                                     </div>
 
                                 </form>

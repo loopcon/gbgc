@@ -37,8 +37,10 @@ class StaticPageController extends Controller
                 'title' => ['required'],
                 'slug' => ['required'],
                 'description' => ['required'],
+                'image' => ['mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080']
             ],[
-                'required'  => trans('The :attribute field is required.')
+                'required'  => trans('The :attribute field is required.'),
+                'dimensions' => trans('Image size should not be more than 1920 x 1080 px'),
             ]
         );
         $staticpage = new StaticPage();
@@ -96,8 +98,10 @@ class StaticPageController extends Controller
                 'title' => ['required'],
                 'slug' => ['required'],
                 'description' => ['required'],
+                'image' => ['mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080']
             ],[
-                'required'  => trans('The :attribute field is required.')
+                'required'  => trans('The :attribute field is required.'),
+                'dimensions' => trans('Image size should not be more than 1920 x 1080 px'),
             ]
         );
         $staticpage = StaticPage::find($id);

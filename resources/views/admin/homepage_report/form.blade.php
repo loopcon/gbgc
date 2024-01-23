@@ -63,12 +63,14 @@
                                         <label class="col-sm-2 col-form-label">Image</label>
                                         <div class="col-sm-10">
                                             <input type="file" class="form-control" placeholder="Upload Banner Image"  name="image" value="{{ isset($record->image) ? $record->image : old('image') }}" data-parsley-required-message="{{ __("This value is required.")}}">
+                                            <label class=" text-danger"><small>Image size : 1920 x 1080 px and Type : .jpg, .png, .webp</small></label>
                                             @if ($errors->has('image')) <div class="text-danger">{{ $errors->first('image') }}</div>@endif
                                         </div>
                                     </div>
                                     
                                     <div class="container row">
-                                        <button class="btn btn-success btn-round waves-effect waves-light" type="submit">Submit</button>
+                                        <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button> &nbsp;&nbsp;
+                                        <a href="{{route('homepagereport')}}" class="btn btn-danger ">{{__('Cancel')}}</a>
                                     </div>
 
                                 </form>

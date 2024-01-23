@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     @if ($message = Session::get('success'))
-                                        <div class="alert alert-success alert-dismissible" role="alert">
+                                        <div class="alert alert-dismissible" role="alert" style="border-color:#4099ff;color:#4099ff">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
@@ -126,6 +126,8 @@
                                         <label class="col-sm-2 col-form-label">Logo</label>
                                         <div class="col-sm-10">
                                             <input type="file" class="form-control" placeholder="Upload Logo"  name="logo">
+                                            <label class=" text-danger"><small>Logo size : 210 x 100 px and Type : .jpg, .png, .webp</small></label>
+                                            @if ($errors->has('logo')) <div class="text-danger">{{ $errors->first('logo') }}</div>@endif
                                         </div>
                                     </div>
 
@@ -141,6 +143,8 @@
                                         <label class="col-sm-2 col-form-label">Fevicon</label>
                                         <div class="col-sm-10">
                                             <input type="file" class="form-control" placeholder="Upload Fevicon"  name="fevicon">
+                                            <label class=" text-danger"><small>Fevicon size : 210 x 100 px and Type : .jpg, .png, .webp</small></label>
+                                            @if ($errors->has('fevicon')) <div class="text-danger">{{ $errors->first('fevicon') }}</div>@endif
                                         </div>
                                     </div>
 
@@ -179,7 +183,7 @@
                                     </div>
 
                                     <div class="container row">
-                                        <button class="btn btn-success btn-round waves-effect waves-light" type="submit">Submit</button>
+                                        <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button>
                                     </div>
 
                                 </form>

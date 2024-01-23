@@ -36,9 +36,11 @@ class HomepageReportController extends Controller
         $this->validate($request, [
                 'title' => ['required'],
                 'description' => ['required'],
-                'image' => ['required'],
+                'image' => ['required','mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080'],
+                
             ],[
-                'required'  => trans('The :attribute field is required.')
+                'required'  => trans('The :attribute field is required.'),
+                'dimensions' => trans('Image size should not be more than 1920 x 1080 px'),
             ]
         );
         $homepagereports = new HomepageReport();
@@ -94,8 +96,10 @@ class HomepageReportController extends Controller
         $this->validate($request, [
                 'title' => ['required'],
                 'description' => ['required'],
+                'image' => ['mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080']
             ],[
-                'required'  => trans('The :attribute field is required.')
+                'required'  => trans('The :attribute field is required.'),
+                'dimensions' => trans('Image size should not be more than 1920 x 1080 px'),
             ]
         );
         $homepagereports = HomepageReport::find($id);

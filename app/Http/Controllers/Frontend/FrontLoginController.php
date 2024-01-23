@@ -49,7 +49,7 @@ class FrontLoginController extends Controller
         if($customer){
             return redirect('/')->with('alert-success', 'Registration Successfull!');
         } else {
-            return redirect()->back()>with('alert-danger', 'Something went wrong please try again...');
+            return redirect()->with('register-error', 'Something went wrong please try again...');
         }
     }
 
@@ -67,18 +67,18 @@ class FrontLoginController extends Controller
      
       $user  = $request->get('email');
       $pass = $request->get('password');
-     
-     $customers = Customer::get();
+      
+    $customers = Customer::where([['email', '=', $request->email]])->first();
     
-     foreach ($customers as $customer) {
-        $email = $customer->email;
-        $password = $customer->password;
-     }
+    //  foreach ($customers as $customer) {
+    //     $email = $customer->email;
+    //     $password = $customer->password;
+    //  }
      
     // print_r($olddata);print_r($user_data);exit;
-     if($user == $email && $pass == $password)
+     if(isset($customers) && $user == $customers->email && $pass == $customers->password)
      {
-      return redirect('/')->with('alert-success', 'You are now logged in.');
+        return redirect('/')->with('alert-success', 'You are now logged in.');
      }
      else
      {

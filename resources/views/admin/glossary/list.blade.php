@@ -154,17 +154,17 @@ input:checked + .slider .off
             </div>
             <div class="col-lg-5">
                 <div class="d-inline">
-                    <h4>Years</h4>
+                    
                     <div class="row">
                         <div class="col-4">
-                            <label> From
+                            <label> <h4>Year From</h4>
                             <select id="ddlYearsfrom" class="form-control select2">
                                 <option value="" hidden>{{__('-- select --')}}</option>
                             </select>
                             </lable>
                         </div>
                         <div class="col-4">
-                            <label> To
+                            <label> <h4>Year To</h4>
                             <select id="ddlYearsto" class="form-control select2">
                                 <option value="" hidden>{{__('-- select --')}}</option>
                             </select>
@@ -185,7 +185,7 @@ input:checked + .slider .off
                                 <div class="row">
                                     <div class="col-12">
                                         @if ($message = Session::get('success'))
-                                            <div class="alert alert-success alert-dismissible" role="alert">
+                                            <div class="alert alert-dismissible" role="alert" style="border-color:#4099ff;color:#4099ff">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
