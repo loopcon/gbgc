@@ -550,6 +550,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 0px;
+    justify-content: center;
 }
 
 .footer-second-secmenu ul li a {
@@ -919,7 +920,7 @@ section.one:after {
     text-align: center;
 }
 
-.faq-heading-worktextsection button {
+.faq-heading-worktextsection  .faq-contactbtn{
     background-color: #00ACE0;
     display: block;
     margin-left: auto;
@@ -932,6 +933,9 @@ section.one:after {
     font-size: 20px;
     border-radius: 10px;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: 45px;
 }
 
 .faq-section-main {

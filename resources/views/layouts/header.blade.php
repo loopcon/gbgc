@@ -189,7 +189,7 @@
                             <p class="newslatter-text">Newsletter</p>
                             <h5 class="join-our-mailing-heading">Join our Mailing list</h5>
                         </div>
-                        <div class="col-12 col-sm-5">
+                        <div class="col-12 col-sm-6">
                             <div class="footer-email-input">
                                 <input  class="form-control" name="newsletter_email"  type="email" data-parsley-required-message="{{ __("This value is required.")}}">
                                 @if ($errors->has('newsletter_email')) <div class="text-danger">{{ $errors->first('newsletter_email') }}</div>@endif
