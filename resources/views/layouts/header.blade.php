@@ -180,7 +180,10 @@
                 <form method="post" action="{{route('store-newsletter')}}" enctype="multipart/form-data">
                 @csrf
                     <div class="row m-0 footer-first-box">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-3">
+                            <img src="img/gbgc-logo-black.png" class="footer-logo" alt="">
+                        </div>
+                        <div class="col-12 col-sm-4">
                             <p class="newslatter-text">Newsletter</p>
                             <h5 class="join-our-mailing-heading">Join our Mailing list</h5>
                         </div>
@@ -199,9 +202,6 @@
         <div class="footer-second-section">
             <div class="container">
                 <div class="footer-second-box">
-                    <div>
-                        <img src="img/gbgc-logo-black.png" class="footer-logo" alt="">
-                    </div>
                     <div class="footer-second-secmenu">
                         <ul>
                             <li><a href="#">Home</a></li>
