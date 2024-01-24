@@ -16,9 +16,9 @@ use App\Http\Controllers\Frontend\FrontendController;
 
 Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::post('/store-newsletter',[FrontendController::class, 'storeNewsletter'])->name('store-newsletter');
-Route::get('Faq',[FrontendController::class,'faq'])->name('faq');
-Route::get('How_its_Work',[FrontendController::class,'howitswork'])->name('howitswork');
-Route::get('Membership',[FrontendController::class,'membership'])->name('membership');
+Route::get('faq',[FrontendController::class,'faq'])->name('faq');
+Route::get('how-its-work',[FrontendController::class,'howitswork'])->name('howitswork');
+Route::get('membership',[FrontendController::class,'membership'])->name('membership');
 Route::get('thank-you',[FrontendController::class,'thankyou'])->name('thankyou');
 Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lostpassword');
 Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
@@ -27,6 +27,7 @@ Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->n
 
 Route::post('registration',[App\Http\Controllers\Frontend\FrontLoginController::class, 'registration'])->name('registration');
 Route::post('customer-checklogin',[App\Http\Controllers\Frontend\FrontLoginController::class,'checklogin'])->name('customer-checklogin');
+Route::get('customer-logout', [\App\Http\Controllers\Frontend\FrontLoginController::class, 'logout'])->name('customer-logout');
 
 
 
@@ -137,8 +138,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/datatext-delete/{id}', [App\Http\Controllers\Admin\DatatextController::class, 'destroy'])->name('datatext-delete');
     //end datatext
 
+    //levelmaster
+    Route::get('admin/level', [App\Http\Controllers\Admin\LevelMasterController::class,'index'])->name('adminlevel');
+    Route::get('admin/level-create',[App\Http\Controllers\Admin\LevelMasterController::class, 'create'])->name('level-create');
+    Route::post('admin/level-store',[App\Http\Controllers\Admin\LevelMasterController::class, 'store'])->name('level-store');
+    Route::get('admin/level-edit/{id}',[App\Http\Controllers\Admin\LevelMasterController::class, 'edit'])->name('level-edit');
+    Route::post('admin/level-update/{id}',[App\Http\Controllers\Admin\LevelMasterController::class, 'update'])->name('level-update');
+    Route::get('admin/level-delete/{id}', [App\Http\Controllers\Admin\LevelMasterController::class, 'destroy'])->name('level-delete');
+    //end levelmaster
+
 });
 
 Auth::routes();
 
-// Route::get('/home',[App\Http\Controllers\Admin\IndexController::class, 'index'])->name('adminindex');
+

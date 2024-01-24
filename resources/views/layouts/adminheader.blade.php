@@ -175,17 +175,29 @@
                                                 <a href="{{route('homepagereport')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Homepage Reports</span>
                                                 </a>
-                                            </li>
+                                            </li>    
                                         </ul>
                                     </li>
                                     
-                                    <li class="{{ (request()->is('admin/datatext*'))? 'pcoded-trigger' : '' }}">
-                                        <a href="{{route('admindatatext')}}" class="waves-effect waves-dark">
+                                    <li class="pcoded-hasmenu {{ (request()->is('admin/datatext*') || request()->is('admin/level*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
                                             </span>
                                             <span class="pcoded-mtext">Data Text</span>
                                         </a>
+                                        <ul class="pcoded-submenu" style="{{ (request()->is('admin/datatext*') || request()->is('admin/level*'))? 'display:block' : 'display:none' }}">
+                                            <li class="{{ (request()->is('admin/level*'))? 'active' : '' }}">
+                                                <a href="{{route('adminlevel')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Level</span>
+                                                </a>
+                                            </li>
+                                            <li class="{{ (request()->is('admin/datatext*'))? 'active' : '' }}">
+                                                <a href="{{route('admindatatext')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Upload DataText</span>
+                                                </a>
+                                            </li>
+                                        </ul>   
                                     </li>
 
                                     <li class="{{ (request()->is('admin/glossary*'))? 'pcoded-trigger' : '' }}">

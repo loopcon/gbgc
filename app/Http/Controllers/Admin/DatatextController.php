@@ -36,18 +36,19 @@ class DatatextController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+                'view' => ['required'],
                 'region_id' => ['required'],
-                'title' => ['required'],
-                'type' => ['required'],
-                'category' => ['required'],
-                'sub_category' => ['required'],
+                'main_category' => ['required'],
+                'sub_category_1' => ['required'],
+                'sub_category_2' => ['required'],
+                'level_4' => ['required'],
                 'description' => ['required'],
             ],[
                 'required'  => trans('The :attribute field is required.')
             ]
         );
         $datatext = new DataText();
-        $fields = array('region_id', 'title','type','category','sub_category','description');
+        $fields = array('view','region_id', 'main_category','sub_category_1','sub_category_2','level_4','description');
         foreach($fields as $key => $value){
             $datatext->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
@@ -87,18 +88,19 @@ class DatatextController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
+                'view' => ['required'],
                 'region_id' => ['required'],
-                'title' => ['required'],
-                'type' => ['required'],
-                'category' => ['required'],
-                'sub_category' => ['required'],
+                'main_category' => ['required'],
+                'sub_category_1' => ['required'],
+                'sub_category_2' => ['required'],
+                'level_4' => ['required'],
                 'description' => ['required'],
             ],[
                 'required'  => trans('The :attribute field is required.')
             ]
         );
         $datatext = DataText::find($id);
-        $fields = array('region_id', 'title','type','category','sub_category','description');
+        $fields = array('view','region_id', 'main_category','sub_category_1','sub_category_2','level_4','description');
         foreach($fields as $key => $value){
             $datatext->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }

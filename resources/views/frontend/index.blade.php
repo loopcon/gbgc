@@ -113,6 +113,7 @@
     <!-- how it  work  end  -->
 
     <!-- member  benifits  start  -->
+    @if($membership != null)
           <div class="member-benifits-bg">
             <div class="container">
                 <div class="row m-0 member-benifits-box">    
@@ -120,31 +121,26 @@
                         <div class="subscript-text-box">
                             <p>Subscription</p>
                             <h4>Member Benifits</h4>
-                            <button>Buy Now</button>
+                             <a href="{{route('checkout')}}" style="text-decoration:none"><button>Buy Now</button></a>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="standard-box">
                             <div class="standard-btnbox">
-                                <button>Standard</button>
+                                <button>{{$membership->name}}</button>
                             </div>
                             <div class="standard-box-detail">
-                                <p class="prise-text-year"><span class="standard-price"><i class="fa-solid fa-sterling-sign"></i> 99.99 </span>  /YEAR </p>
+                                <p class="prise-text-year"><span class="standard-price"><i class="fa-solid fa-sterling-sign"></i>{{$membership->price}}</span>  /YEAR </p>
                                 <div class="standard-prise-textdetail">
-                                    <i class="fa-solid fa-check"></i><p>Unlimited Withdrawal Limit</p>
-                                </div>
-                                <div class="standard-prise-textdetail">
-                                    <i class="fa-solid fa-check"></i><p>Extra tips and Rewards</p>
-                                </div>
-                                <div class="standard-prise-textdetail">
-                                    <i class="fa-solid fa-check"></i><p>Unlimited Life line Limit</p>
+                                    <p>{!!$membership->short_description!!}</p>
                                 </div>
                             </div>
                         </div>  
                     </div>
                 </div>
             </div>
-          </div>                          
+          </div>   
+    @endif                       
     <!-- member  benifits  end  -->
 @foreach($staticpage as $page)
 @if($page->slug == 'about_us')

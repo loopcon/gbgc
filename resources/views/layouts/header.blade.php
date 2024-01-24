@@ -28,10 +28,15 @@
                                 <li><a href="{{route('membership')}}">Memberships</a></li>
                                 <li><a href="#">Reports</a></li>
                                 <li><a href="#">News</a></li>
-                                <li><a href="#">My Account</a></li>
+                                @if(!Auth::guard('customers')->user())
                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#siguploginModal">Sign Up / Login</a></li>
+                                @else
+                                <li><a href="#">My Account</a></li>
+                                @endif
                                 <li><a href="{{route('frontcontactus')}}">Contact Us</a></li>
-                                
+                                @if(Auth::guard('customers')->user())
+                                <li><a href="{{route('customer-logout')}}">Logout</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>   
@@ -204,10 +209,10 @@
                 <div class="footer-second-box">
                     <div class="footer-second-secmenu">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{{route('index')}}">Home</a></li>
                             <li><a href="#">Reports</a></li>
                             <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{route('frontcontactus')}}">Contact</a></li>
                             <li><a href="{{route('faq')}}">Faqs</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Cookies Policy</a></li>

@@ -6,7 +6,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Data Text</h5>
+                        <h5>Level</h5>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                             <a href="{{route('adminindex')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('admindatatext')}}">Data Text</a>
+                            <a href="{{route('adminlevel')}}">Level</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
                                 <div class="card-header">
                                     <div class="form-row">
                                         <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('datatext-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                            <div class="col-md-12 text-right"><a href="{{route('level-create')}}" class="btn text-light" style="background:#4099ff" ><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -72,34 +72,24 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                    <th>{{__('View')}}</th>
-                                                    <th>{{__('Region')}}</th>
-                                                    <th>{{__('Category')}}</th>
-                                                    <th>{{__('Sub Category-1')}}</th>
-                                                    <th>{{__('Sub Category-2')}}</th>
-                                                    <th>{{__('Level-4')}}</th>
-                                                    <th>{{__('Description')}}</th>
-                                                    <th>{{__('Action')}}</th>
+                                                        <th>{{__('Title')}}</th>
+                                                        <th>{{__('level')}}</th>
+                                                        <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
                                                     $i=1;
                                                 ?>
-                                                @if(count($datatext)>0)
-                                                    @foreach($datatext as $data) 
+                                                @if(count($level)>0)
+                                                    @foreach($level as $data) 
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->view}} </td>
-                                                            <td >  {{$data->regionDetail->name}} </td>
-                                                            <td >  {{$data->main_category}} </td>
-                                                            <td >  {{$data->sub_category_1}} </td>
-                                                            <td >  {{$data->sub_category_2}} </td>
-                                                            <td >  {{$data->level_4}} </td>
-                                                            <td >  {!!$data->description!!} </td>
-                                                            <td><a href="{{ route('datatext-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('datatext-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <td >  {{$data->title}} </td>
+                                                            <td >  {{$data->level_number}} </td>
+                                                            <td><a href="{{ route('level-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
+                                                            <a href='javascript:void(0);' data-href="{{ route('level-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -125,7 +115,7 @@
             var href = $(this).data('href');
             swal({
                 title: "",
-                text: "{{__('Are you sure? Delete this Data!')}}",
+                text: "{{__('Are you sure? Delete this Level!')}}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-info",

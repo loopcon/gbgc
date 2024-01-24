@@ -47,8 +47,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Price</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="price"  id="price" class="form-control" placeholder="Price" value="{{$membershipplan->price}}" data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
+                                            <input type="number" name="price"  id="price" class="form-control" placeholder="Price" value="{{$membershipplan->price}}" data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            @if ($errors->has('price')) <div class="text-danger">{{ $errors->first('price') }}</div>@endif
                                         </div>
                                     </div>
 

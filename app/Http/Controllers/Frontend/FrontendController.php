@@ -12,6 +12,7 @@ use App\Models\NewsLetter;
 use App\Models\Contactus;
 use App\Models\HomepageBanner;
 use App\Models\HomepageReport;
+use App\Models\Membershipplan;
 use Mail;
 use Auth;
 
@@ -23,6 +24,7 @@ class FrontendController extends Controller
         $return_data['staticpage'] = StaticPage::get();
         $return_data['homepagebanner'] = HomepageBanner::first();
         $return_data['homepagereport'] = HomepageReport::get();
+        $return_data['membership'] = Membershipplan::first();
         return view('frontend.index', array_merge($return_data));
     }
 
@@ -40,7 +42,16 @@ class FrontendController extends Controller
 
     public function membership()
     {
-        return view('frontend.membership');
+        $return_data = array();
+        $return_data['membership'] = Membershipplan::first();
+        return view('frontend.membership', array_merge($return_data));
+    }
+    
+    public function checkout()
+    {
+        $return_data = array();
+        $return_data['membership'] = Membershipplan::first();
+        return view('frontend.checkout', array_merge($return_data));
     }
 
     public function thankyou()
@@ -51,11 +62,6 @@ class FrontendController extends Controller
     public function lostpassword()
     {
         return view('frontend.lostpassword');
-    }
-
-    public function checkout()
-    {
-        return view('frontend.checkout');
     }
 
     public function storeNewsletter(Request $request)

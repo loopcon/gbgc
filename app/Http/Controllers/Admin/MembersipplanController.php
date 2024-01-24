@@ -21,6 +21,12 @@ class MembersipplanController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+                'price' => ['numeric'],
+            ],[
+                'required'  => trans('The :attribute field is required.')
+            ]
+        );
         $membershipplan= new Membershipplan();
         $membershipplan->name=$request->input('name');
         $membershipplan->short_description=$request->input('short_description');
@@ -42,6 +48,12 @@ class MembersipplanController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+                'price' => ['numeric'],
+            ],[
+                'required'  => trans('The :attribute field is required.')
+            ]
+        );
         $membershipplan= Membershipplan::find($request->id);
         $membershipplan->name=$request->input('name');
         $membershipplan->short_description=$request->input('short_description');

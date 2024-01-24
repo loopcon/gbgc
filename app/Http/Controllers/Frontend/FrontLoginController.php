@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Cookie;
 
 class FrontLoginController extends Controller
 {
@@ -21,8 +24,9 @@ class FrontLoginController extends Controller
                 'same'  => trans('Password and Confirm Password must be same.'),
             ]
         );
+        $password = Hash::make($request->password);
         $customer = new Customer();
-        $fields = array('first_name','last_name', 'email','password','confirm_password');
+        $fields = array('first_name','last_name', 'email');
         foreach($fields as $key => $value){
             $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
@@ -43,7 +47,8 @@ class FrontLoginController extends Controller
         // });
 
         /* End Email sending */
-
+        
+        $customer->password = $password;
         $customer->save();
 
         if($customer){
@@ -76,8 +81,15 @@ class FrontLoginController extends Controller
     //  }
      
     // print_r($olddata);print_r($user_data);exit;
-     if(isset($customers) && $user == $customers->email && $pass == $customers->password)
+    //  if(isset($customers) && $user == $customers->email && $pass == $customers->password)
+    if (Auth::guard('customers')->attempt(['email' => $request->email, 'password' => $request->password])) 
      {
+        $customer_id = Auth::guard('customers')->id();
+        $customer_detail = Customer::where([['id', '=', $customer_id]])->first();
+        Cookie::queue(Cookie::forget('email'));
+        Cookie::queue(Cookie::forget('password'));
+
+        session()->put('customerInfo', $customer_detail);
         return redirect('/')->with('alert-success', 'You are now logged in.');
      }
      else
@@ -85,5 +97,12 @@ class FrontLoginController extends Controller
         return redirect('/')->with('alert-danger', 'Username and pasword are Invalid.');
      }
 
+    }
+
+    public function logout()
+    {
+        session()->forget('customerInfo');
+        Auth::guard('customers')->logout();
+        return redirect('/')->with('alert-success', 'You are loged out');;
     }
 }

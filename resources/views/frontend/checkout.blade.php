@@ -17,7 +17,7 @@
 
     <div class="container">
         <div class="global-gaming-addtoreport">
-            <span><i class="fa-solid fa-circle-check"></i></span> <p>“Global Gambling Report” has been added to your basket.</p>
+            <span><i class="fa-solid fa-circle-check"></i></span> <p>“{{$membership->name}}” has been added to your basket.</p>
         </div>
 
         <div class="rerurn-customerbox">
@@ -154,17 +154,17 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Global Gambling Report </td>
-                    <td>£4,645</td>
+                    <td>{{$membership->name}}</td>
+                    <td>£{{$membership->price}}</td>
                     
                 </tr>
                 <tr>
                     <td class="order-tablecheck-subtotal">Subtotal</td>
-                    <td class="order-tablecheck-subtotal">£4,645</td>
+                    <td class="order-tablecheck-subtotal">£{{$membership->price}}</td>
                 </tr>
                 <tr>
                     <td class="order-tablecheck-subtotal">Total</td>
-                    <td class="order-tablecheck-subtotal">£4,645</td>
+                    <td class="order-tablecheck-subtotal">£{{$membership->price}}</td>
                 </tr>
                 
                 </tbody>
