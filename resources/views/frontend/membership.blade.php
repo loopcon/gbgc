@@ -7,8 +7,7 @@
         </div>
         <div class="faq-heading-worktextsection">
             <h1>Internet Gambling Report</h1>
-            
-            <button>Contact Us</button>
+            <a href="#" class="faq-contactbtn">Contact Us</a>
         </div>
         <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">
         <img class="badal-imgset-2"  src="img/badal-img.svg" alt="">
@@ -37,10 +36,10 @@
 
 
     <div class="row membership-imganddetailtext">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <img src="img/membership-img.jpg" class="img-fluid" alt="">
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <div class="membership-detailtext">
                 <ul>
                     <li><span><i class="fa-solid fa-check"></i></span><p>250 Jurisdictions</p></li>
