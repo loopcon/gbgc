@@ -28,7 +28,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <h2 class="get-in-touchtext">CONTACT</h2>
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -55,7 +55,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <img src="img/gt-in-touch.png" class="img-fluid" alt="">
                 </div>
             </div>

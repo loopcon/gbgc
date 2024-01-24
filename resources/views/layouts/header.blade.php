@@ -185,14 +185,14 @@
                 <form method="post" action="{{route('store-newsletter')}}" enctype="multipart/form-data">
                 @csrf
                     <div class="row m-0 footer-first-box">
-                        <div class="col-12 col-sm-3">
+                        <div class="col-12 col-sm-5 col-md-5 col-lg-3">
                             <img src="img/gbgc-logo-black.png" class="footer-logo" alt="">
                         </div>
-                        <div class="col-12 col-sm-4">
+                        <div class="col-12 col-sm-7 col-md-7 col-lg-4">
                             <p class="newslatter-text">Newsletter</p>
                             <h5 class="join-our-mailing-heading">Join our Mailing list</h5>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-5">
                             <div class="footer-email-input">
                                 <input  class="form-control" name="newsletter_email"  type="email" data-parsley-required-message="{{ __("This value is required.")}}">
                                 @if ($errors->has('newsletter_email')) <div class="text-danger">{{ $errors->first('newsletter_email') }}</div>@endif

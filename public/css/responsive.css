@@ -1,222 +1,160 @@
 @media screen and (max-width:1200px) {
-    .the-only-slidertext{
-        margin-top: 20px;
-        width: 60%;
-    }
-    .the-only-slidertext h4{
-        font-size: 38px;
-    }
-    .click-here-text{
-        white-space: wrap;
-    }
+    .the-only-slidertext{margin-top: 20px;width: 60%;}
+    .the-only-slidertext h4{font-size: 38px;}
+    .click-here-text{white-space: wrap;}
+    .join-our-mailing-heading{ font-size: 24px;}
+    .newslatter-text{ font-size: 17px;}
+    .footer-second-secmenu ul li a { padding-left: 18px; font-size: 17px;}
+
 }
 
 @media screen and (max-width:991px) {
-    .the-only-slidertext{
-        width: 90%;
-        margin-top: 20px;
-    }
-    .the-only-slidertext h4{
-        font-size: 30px;
-    }
-    .navbar-imglogo{
-        margin-left: 35px;
-    }
-    .the-only-slidertext{
-        left: 7%;
-    }
-    .repote-box{
-        margin-left: 30px;
-    }
-    .current-report-heading{
-        font-size: 35px;
-    }
-    #report-carousel .owl-nav{
-        top: 75%;
-        left: 55%;
-    }
-    #report-carousel .owl-dots{
-        top: 77%;
-        right: 5%;
-    }
-    .sign-up-step-heading{
-        font-size: 30px;
-    }
-    .hiw-offers-box-text{
-        width: 165px;
-        font-size: 13px;
-    }
-    .hiw-offers-box img{
-        width: 165px;
-    }
-    .click-here-text{
-        width: 80%;
-        white-space: wrap;
-    }
-    .hiw-offers-box {
-        left: 54%;
-    }
-    .click-here-text p {
-        font-size: 15px;
-    }
-    .subscript-text-box h4{
-        font-size: 35px;
-    }
-    .subscript-text-box{
-        width: 100%;
-    }
-    .standard-btnbox button{
-        left: -80px;
-    }
-    .standard-box-detail{
-        padding: 20px 15px;
-    }
-    .aboutus-text-box h4{
-        font-size: 35px;
-    }
-    .about-imgmain{
-        padding: 10px;
-    }
-    .footer-copyrighttext p{
-        font-size: 16px;
-    }
-    .footer-social-icon svg{
-        font-size: 20px;
-    }
-    .footer-logo{
-        width: 140px;
-    }
-    .footer-second-secmenu ul li a{
-        font-size: 16px;
-    }
-    .subscrib-footer{
-        width: 120px;
-    }
+    .the-only-slidertext{width: 90%;margin-top: 20px;}
+    .the-only-slidertext h4{font-size: 30px;}
+    .navbar-imglogo{margin-left: 35px;}
+    .the-only-slidertext{left: 7%;}
+    .repote-box{margin-left: 30px;}
+    .current-report-heading{font-size: 35px;}
+    #report-carousel .owl-nav{top: 75%;left: 55%;}
+    #report-carousel .owl-dots{top: 77%;right: 5%;}
+    .sign-up-step-heading{font-size: 30px;}
+    .hiw-offers-box-text{width: 165px;font-size: 13px;}
+    .hiw-offers-box img{width: 165px;}
+    .click-here-text{width: 80%;white-space: wrap;}
+    .hiw-offers-box {left: 54%;}
+    .click-here-text p {font-size: 15px;}
+    .subscript-text-box h4{font-size: 35px;}
+    .subscript-text-box{width: 100%;}
+    .standard-btnbox button{left: -80px;}
+    .standard-box-detail{padding: 20px 15px;}
+    .aboutus-text-box h4{font-size: 35px;}
+    .about-imgmain{padding: 10px;}
+    .footer-copyrighttext p{font-size: 16px;}
+    .footer-social-icon svg{font-size: 20px;}
+    .footer-logo{width: 140px;}
+    .footer-second-secmenu ul li a{font-size: 16px;}
+    .subscrib-footer{width: 120px;}
+
+    .left{width: 100%; float: unset; }
+    .left-child.posFix { z-index: 2; background-color: #fff;}
+    .left-child{display: flex; width: 100%;}
+    .create-your-domain-text{display: none;}
+    .sign-up-text a span{ display: none;}
+    .sign-up-text a{ margin-right: 17px;}
+    .badalimg-scrollsection{ display: none;}
+    .right{ width: 100%; float: unset;}
+    .sign-up-text a.active{border-bottom: 2px  solid #00ACE0;}
+    .create-domain-box{ display: block;}
+    .scroll-section-main{ padding: 2rem 0;}
+
+    .footer-first-box{ justify-content: center;}
+    .footer-email-input{ margin-top: 20px;}
+    .get-in-touchtext{ font-size: 30px; line-height: 30px;}
+    .get-request-btn{ height: 50px; font-size: 18px; margin-bottom: 30px;}
+    .gbgc-text-empoyees-text{ padding: 4rem 0px;}
+    .gbgc-text-empoyees-text p{ font-size: 30px;}
+    .learn-more-watch-text{ font-size: 30px !important;}
+    .watch-webinar-box{padding-top: 11rem;padding-bottom: 4rem;padding-left: 0;padding-right: 0;}
+}
+
+@media screen and (max-width:767px) {
+    .bird-svg-main svg{display: none;}
+    .badal-imgset-1{display: none;}
+    .badal-imgset-2{display: none;}
+    .faq-heading-section{padding: 30px 0;}
+    .faq-heading-worktextsection h1{font-size: 35px;}
+    .faq-heading-worktextsection p{ width: 100%; font-size: 15px;}
+    .faq-heading-worktextsection button{ width: 150px;}
+    .faq-section-main{ padding: 30px 0;}
 }
 
 @media screen and (max-width:575px) {
-    .subscript-text-box{
-        width: 100%;
-    }
-    .subscript-text-box h4{
-        font-size: 30px;
-    }
-    .standard-box{
-        margin-left: 0px;
-        margin-top: 15px;
-    }
-    .standard-box-detail{
-        height: 250px;
-        padding-left: 30px !important;
-        padding-right: 20px !important;
-        padding-top: 30px !important;
-        padding-bottom: 30px !important ;
-    }
-    .standard-btnbox button{
-        left: -80px;
-        width: 250px;
-    }
-    .footer-second-box{
-        display: block;
-    }
-    .footer-second-secmenu ul{
-        display: block;
-        margin-top: 20px;
-        padding-left: 10px;
-    }
-    .footer-logo{ 
-        margin-left: 15px;
-    }
-    .footer-second-secmenu ul li a{
-        padding-left: 15px;
-    }
-    .footer-copyrighttext{
-        display: block;
-        text-align: center;
-    }
-    .footer-social-icon{
-        display: flex;
-        justify-content: center;
-        margin-top: 15px;
-    }
-    .click-here-text{
-        white-space: wrap;
-        width: 100%;
-    }
-    .sign-up-step-heading{
-        font-size: 30px;
-    }
-    .hiw-offers-box{
-        position: unset;
-        transform: translateX(0%);
-        text-align: center;
-    }
-    .hiw-offers-box-text{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;
-    }
-    .navbar-bgimg .slider-img{
-        height: 500px !important;
-        width: 100%;
-        object-fit: cover !important;
-    }
-    .the-only-slidertext{
-        width: 90%;
-        margin-top: 20px;
-    }
-    .the-only-slidertext h4{
-        font-size: 25px;
-    }
-    .navbar-main{
-        align-items: start;
-        margin-bottom: 20px;
-    }
-    .navbar-imglogo{
-        margin-left: 15px;
-        width: 100px;
-    }
-    .menu-icon{
-        margin-right: 7px;
-    }
-    .dropdown-show{
-        right: 20%;
-    }
-    .the-only-slidertext ul{
-        width: 95%;
-    }
-    .repote-box{
-        margin-left: 0px;
-    }
-    #report-carousel .owl-nav{
-        top: 90%;
-        left: 5%;
-    }
-    #report-carousel .owl-dots{
-        top: 90%;
-        right: 5%;
-    }
-    .current-report-heading{
-        font-size: 30px;
-    }
-    .aboutus-text-box h4{
-        font-size: 30px;
-    }
-    .join-our-mailing-heading{
-        font-size: 30px;
-    }
-    .footer-copyrighttext p{
-        font-size: 16px;
-    }
-    .footer-social-icon svg{
-        font-size: 20px;
-    }
-    .standard-prise-textdetail{
-        font-size: 15px;
-    }
-    .subscrib-footer{
-        width: 100px;
-        
-    }
+    .reports-bg{ padding: 20px 0px;}
+    .subscript-text-box{width: 100%;}
+    .subscript-text-box p{ font-size: 16px;}
+    .subscript-text-box h4{font-size: 24px;}
+    .standard-box{margin-left: 0px;margin-top: 15px;}
+    .standard-box-detail{height: 250px;padding-left: 30px !important;padding-right: 20px !important;padding-top: 30px !important;padding-bottom: 30px !important;}
+    .standard-btnbox button{left: -80px;width: 250px;}
+    .footer-second-box{display: block;}
+    .footer-second-secmenu ul{margin-top: 0px;padding-left: 10px;justify-content: start;}
+    .footer-second-secmenu ul li { width: 50%;}
+    .footer-logo{ margin-left: 15px;}
+    .footer-second-secmenu ul li a{padding-left: 15px;}
+    .footer-copyrighttext{display: block;text-align: center;}
+    .footer-social-icon{display: flex;justify-content: center;margin-top: 15px;}
+    .click-here-text{white-space: wrap;width: 100%;}
+    .sign-up-step-heading{font-size: 24px;}
+    .how-it-workheading{ font-size: 16px;}
+    .hiw-offers-box{position: unset;transform: translateX(0%);text-align: center;}
+    .hiw-offers-box-text{display: block;margin-left: auto;margin-right: auto;margin-bottom: 20px;}
+    .navbar-bgimg .slider-img{height: 500px !important;width: 100%;object-fit: cover !important;}
+    .the-only-slidertext{width: 90%;margin-top: 20px;}
+    .the-only-slidertext h4{font-size: 25px;}
+    .navbar-main{align-items: start; }
+    .navbar-imglogo{margin-left: 15px;width: 100px;}
+    .menu-icon{margin-right: 7px;}
+    /* .dropdown-show{right: 20%;} */
+    .the-only-slidertext ul{width: 95%;}
+    .repote-box{margin-left: 0px;}
+    #report-carousel .owl-nav{top: 90%;left: 5%;}
+    #report-carousel .owl-dots{top: 90%;right: 5%;}
+    .current-report-heading{font-size: 30px;}
+    .about-usheading{font-size: 16px; margin-bottom: 0px;}
+    .aboutus-text-box h4{font-size: 24px; margin-bottom: 10px;}
+    .newslatter-text{font-size: 15px; margin-top: 20px;}
+    .join-our-mailing-heading{font-size: 23px; margin-bottom: 20px;}
+    .footer-copyrighttext p{font-size: 16px;}
+    .footer-social-icon svg{font-size: 20px;}
+    .standard-prise-textdetail{font-size: 15px;}
+    .subscrib-footer{width: 100px; height: 36px;}
+    /* faq  */
+    .bird-svg-main svg{display: none;}
+    .badal-imgset-1{display: none;}
+    .badal-imgset-2{display: none;}
+    .faq-heading-section{padding: 30px 0;}
+    .faq-heading-worktextsection h1{font-size: 35px;}
+    .faq-heading-worktextsection p{ width: 100%; font-size: 15px;}
+    .faq-heading-worktextsection button{ width: 150px;}
+    .faq-section-main{ padding: 30px 0;}
+    /* faq  */
+    /* how  it  workd  */
+    .how-its-worktextsection{padding: 30px 0;}
+    .how-its-worktextsection h1{ font-size: 35px;}
+    .how-its-worktextsection p{ width:100%; font-size: 15px;}
+    .how-its-worktextsection button{width: 150px;}
+    .left{width: 100%; float: unset;}
+    .right{width: 100%; float: unset;}
+    .right .active{ position: unset; top: 0;}
+    .badalimg-scrollsection{ display: none; position: unset;}
+    .gbgc-text-empoyees-text p{width: 100%;font-size: 18px;line-height: 22px;}
+    .gbgc-text-empoyees-text{padding: 30px 0;}
+    .watch-webinar-box{padding: 30px 0;}
+    .learn-more-watch-text{font-size: 30px !important;}
+    .gear-img-scroll{ display: none;}
+    .scroll-section-main{ padding: 30px  0px;}
+    .create-domain-img{ margin-bottom: 25px;}
+    .create-domain-box{ display: block;}
+    /* how  it  workd  */
+    /* membership css start  */
+    .purchase-prise-box{display: block;}
+    .purchase-prise-item{width: 100%;}
+    .purchase-prise-text{text-align: center;}
+    .purchase-add-button{justify-content: center; margin-top: 20px;}
+    .purchase-add-button::before{top: 85%;width: 100%;}
+    .membership-detailtext ul{margin-top: 20px;}
+    .membership-imganddetailtext img{ margin-bottom: 20px; margin-top: 20px;}
+    .rerurn-customerbox{flex-wrap: wrap;}
+    .login-form-detailcheck .loginbtn-group{ flex-wrap: wrap;}
+    .lost-password-detail .form-control{ width: 100%;}
+    /* membership css end  */
+    .footer-email-input .form-control{ height: 45px;}
+    .the-only-slidertext button{ height: 45px;}
+    .purchase-now-btn{ height: 45px; font-size: 15px;}
+    .faq-heading-worktextsection .faq-contactbtn{height: 45px; font-size: 15px;}
+    .get-in-touchtext{ font-size: 24px; line-height: 24px;}
+    .get-in-touchsection{ padding: 20px;}
+    .get-request-btn{ height: 45px; font-size: 16px; margin-bottom: 30px;}
 }
+
+
