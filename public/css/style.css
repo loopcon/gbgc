@@ -287,63 +287,12 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 /* registration error*/
 .invalid-feedback {display: block !important;width: 100% !important;}
 /* registration error end*/
-.watching-overview-bg{
-    background-color: #f5f5f5;
-    margin-top: 20px;
-}
-
-
-.mobile-view{
-    /* display: none; */
-}
-.mobile-view .sign-up-text{
-    
-    
-}
-
-
-.section-stick  .header-color{
-    position: -webkit-sticky;
-    position: sticky;
-    top: 77px;
-    z-index: 1;
-}
-.msignmain-menu{
-    text-decoration: none;
-    display: inline-block;
-    width: 100%;
-    background-color: #fff;
-    padding: 10px 0;
-    border-bottom: 1px solid  #ddd;
-    color: #333333;
-    font-weight: 600;
-}
-.msignmain-menu:hover{
-    color: #333333;
-}
-.msignmain-menu .mobile-number-bg{
-    background-color: #00abf4;
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    text-align: center;
-    border-radius: 50%;
-    line-height: 30px;
-    color: #fff;
-    margin-right: 10px;
-}
-
-.msignmain-menu svg{
-    text-align: right;
-}
-.mobile-iconhit{
-    float: right;
-    clear: both;
-}
-.mo-hit-menuclick{ 
-    display: none;
-}
-.mo-hit-menuclick .mobile-number-bg{ 
-    background-color: #ddd;
-    color: #333333;
-}
+.watching-overview-bg{background-color: #f5f5f5;margin-top: 20px;}
+.section-stick  .header-color{position: -webkit-sticky;position: sticky;top: 77px;z-index: 1;}
+.msignmain-menu{text-decoration: none;display: inline-block;width: 100%;background-color: #fff;padding: 10px 0;border-bottom: 1px solid  #ddd;color: #333333;font-weight: 600;}
+.msignmain-menu:hover{color: #333333;}
+.msignmain-menu .mobile-number-bg{background-color: #00abf4;height: 30px;width: 30px;display: inline-block;text-align: center;border-radius: 50%;line-height: 30px;color: #fff;margin-right: 10px;}
+.msignmain-menu svg{text-align: right;}
+.mobile-iconhit{float: right;clear: both;}
+.mo-hit-menuclick{ display: none;}
+.mo-hit-menuclick .mobile-number-bg{ background-color: #ddd;color: #333333;}
