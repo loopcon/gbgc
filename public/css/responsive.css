@@ -159,9 +159,9 @@
     .the-only-slidertext button{ height: 45px;}
     .purchase-now-btn{ height: 45px; font-size: 15px;}
     .faq-heading-worktextsection .faq-contactbtn{height: 45px; font-size: 15px;}
-    .get-in-touchtext{ font-size: 24px; line-height: 24px;}
+    .get-in-touchtext{ font-size: 24px; line-height: 24px;margin-bottom: 30px;}
     .get-in-touchsection{ padding: 20px;}
-    .get-request-btn{ height: 45px; font-size: 16px; margin-bottom: 30px;}
+    .get-request-btn{ height: 45px; font-size: 16px; margin-bottom: 30px; width:100%;}
     
     .scroll-section-main{ overflow: unset;}
     .create-domain-box-item-2 h4{font-size: 20px;line-height: 20px; margin-top: 20px;}
@@ -171,6 +171,7 @@
     .create-domain-box-item-1{
         margin-top: 25px;
     }
+    .report-heading{ margin-top: 15px;}
 }
 
 

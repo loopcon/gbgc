@@ -1,6 +1,6 @@
 * {padding: 0;margin: 0;}
 /* navbar  css start  */
-.sticky {position: fixed;top: 0;width: 100%;z-index: 2;background-color: #2e9cc5;}
+.sticky {position: fixed;top: 0;width: 100%;z-index: 3;background-color: #2e9cc5;}
 .navbar-bgimg {position: relative;}
 .navbar-main {display: flex;justify-content: space-between;align-items: center;padding: 20px 15px;}
 .navbar-main-box {background-color: #2e9cc5;position: relative;}
@@ -178,7 +178,7 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 #siguploginModal.modal.fade.show .modal-dialog {transform: scale(1);}
 /* login  popup  css start  */
 /* membership css start  */
-.purchase-now-boxbtn {background: #00ACE0;color: #fff;width: 180px;height: 45px;display: block;text-align: center;line-height: 45px;text-decoration: none;border-radius: 8px;font-size: 18px;position: relative;z-index: 2;}
+.purchase-now-boxbtn {background: #00ACE0;color: #fff;width: 180px;height: 45px;display: block;text-align: center;line-height: 45px;text-decoration: none;border-radius: 8px;font-size: 18px;position: relative;z-index: 1;}
 .purchase-now-boxbtn:hover {color: #fff;}
 .purchase-prise-box {display: flex;justify-content: space-between;width: 100%;position: relative;margin-bottom: 30px;}
 .purchase-prise-item {width: 50%;}
@@ -306,6 +306,7 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
     position: -webkit-sticky;
     position: sticky;
     top: 77px;
+    z-index: 1;
 }
 .msignmain-menu{
     text-decoration: none;
@@ -341,4 +342,8 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 }
 .mo-hit-menuclick{ 
     display: none;
+}
+.mo-hit-menuclick .mobile-number-bg{ 
+    background-color: #ddd;
+    color: #333333;
 }

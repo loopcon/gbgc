@@ -93,10 +93,10 @@
                                                                 <?php $i++;?>
                                                             <td >  {{$data->view}} </td>
                                                             <td >  {{$data->regionDetail->name}} </td>
-                                                            <td >  {{$data->main_category}} </td>
-                                                            <td >  {{$data->sub_category_1}} </td>
-                                                            <td >  {{$data->sub_category_2}} </td>
-                                                            <td >  {{$data->level_4}} </td>
+                                                            <td >  {{$data->maincategoryDetail->title}} </td>
+                                                            <td >  {{$data->subcategory1Detail->title}} </td>
+                                                            <td >  {{$data->subcategory2Detail->title}} </td>
+                                                            <td >  {{$data->level4Detail->title}} </td>
                                                             <td >  {!!$data->description!!} </td>
                                                             <td><a href="{{ route('datatext-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
                                                             <a href='javascript:void(0);' data-href="{{ route('datatext-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>

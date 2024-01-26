@@ -16,8 +16,6 @@ return new class extends Migration
             $table->Integer('parent_id');
             $table->string('title')->nullable();
             $table->Integer('level_number')->nullable();
-            $table->Integer('level')->nullable();
-            $table->timestamps();
         });
     }
 

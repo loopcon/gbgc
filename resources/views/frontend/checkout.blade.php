@@ -7,8 +7,7 @@
             </div>
             <div class="faq-heading-worktextsection">
                 <h1>Checkout</h1>
-                
-                <button>Contact Us</button>
+                <a href="#" class="faq-contactbtn">Contact Us</a>
             </div>
             <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">
             <img class="badal-imgset-2"  src="img/badal-img.svg" alt="">

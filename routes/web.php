@@ -134,6 +134,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/datatext-edit/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'edit'])->name('datatext-edit');
     Route::post('admin/datatext-update/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'update'])->name('datatext-update');
     Route::get('admin/datatext-delete/{id}', [App\Http\Controllers\Admin\DatatextController::class, 'destroy'])->name('datatext-delete');
+    Route::post('admin/sub_category_1', [App\Http\Controllers\Admin\DatatextController::class, 'fetchsub_category_1']);
+    Route::post('admin/sub_category_2', [App\Http\Controllers\Admin\DatatextController::class, 'fetchsub_category_2']);
+    Route::post('admin/level_4', [App\Http\Controllers\Admin\DatatextController::class, 'fetchlevel_4']);
     //end datatext
 
     //levelmaster
@@ -143,6 +146,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/level-edit/{id}',[App\Http\Controllers\Admin\LevelMasterController::class, 'edit'])->name('level-edit');
     Route::post('admin/level-update/{id}',[App\Http\Controllers\Admin\LevelMasterController::class, 'update'])->name('level-update');
     Route::get('admin/level-delete/{id}', [App\Http\Controllers\Admin\LevelMasterController::class, 'destroy'])->name('level-delete');
+    Route::post('admin/parent_level', [App\Http\Controllers\Admin\LevelMasterController::class, 'fetchParentLevel']);
     //end levelmaster
 
 });

@@ -61,10 +61,10 @@
             </div>
             <div class="modal-body">
               <div class="row m-0">
-                    <div class="col-5 p-0">
+                    <div class="col-12 col-md-5 p-0">
                         <img src="" class="img-fluid login-img-popup" alt="">
                     </div>
-                    <div class="col-7 p-0">
+                    <div class="col-12 col-md-7 p-0">
                         <div class="login-register-form-box">
                             <div class="login-register-box">
                                 <a href="#" class="login-text login-active">Login</a>
@@ -94,7 +94,7 @@
                                 <form action="{{route('registration')}}" class="register-form" method="POST">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
                                                 <input type="text" id="first_name" name="first_name" class="form-control  @error('email') is-invalid @enderror" placeholder="FIRST NAME" aria-label="Username" aria-describedby="basic-addon1"> 
@@ -105,7 +105,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
                                                 <input type="text" id="last_name" name="last_name" class="form-control  @error('email') is-invalid @enderror " placeholder="LAST NAME" aria-label="Username" aria-describedby="basic-addon1">
