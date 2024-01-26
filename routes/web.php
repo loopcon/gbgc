@@ -28,6 +28,8 @@ Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->n
 Route::post('registration',[App\Http\Controllers\Frontend\FrontLoginController::class, 'registration'])->name('registration');
 Route::post('customer-checklogin',[App\Http\Controllers\Frontend\FrontLoginController::class,'checklogin'])->name('customer-checklogin');
 Route::get('customer-logout', [\App\Http\Controllers\Frontend\FrontLoginController::class, 'logout'])->name('customer-logout');
+Route::get('myaccount',[App\Http\Controllers\Frontend\FrontLoginController::class, 'myAccount'])->name('myaccount');
+Route::post('/updatemyaccount', [App\Http\Controllers\Frontend\FrontLoginController::class, 'updateMyAccount'])->name('updatemyaccount');
 
 Route::group(['middleware' => ['auth']], function () { 
 

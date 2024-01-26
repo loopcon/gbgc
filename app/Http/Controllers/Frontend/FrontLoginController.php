@@ -90,7 +90,7 @@ class FrontLoginController extends Controller
         Cookie::queue(Cookie::forget('password'));
 
         session()->put('customerInfo', $customer_detail);
-        return redirect('/')->with('alert-success', 'You are now logged in.');
+        return redirect('myaccount')->with('alert-success', 'You are now logged in.');
      }
      else
      {
@@ -104,5 +104,30 @@ class FrontLoginController extends Controller
         session()->forget('customerInfo');
         Auth::guard('customers')->logout();
         return redirect('/')->with('alert-success', 'You are loged out');;
+    }
+    public function myAccount()
+    {
+        $return_data = array();       
+        $customer_id = Auth::guard('customers')->id();
+        $customer_detail = Customer::where([['id', '=', $customer_id]])->first();
+        $return_data['customer_detail'] = $customer_detail;
+        return view('frontend.myaccount', array_merge($return_data));
+    }
+    public function updateMyAccount(Request $request)
+    {
+        $customer_detail = Customer::find($request->id);
+        $customer_detail->first_name = $request->input('first_name');
+        $customer_detail->last_name = $request->input('last_name');
+        $customer_detail->email = $request->input('email');
+
+        // if ($request->password) {
+        //     $user->password = Hash::make($request->password);
+        // }
+        $customer_detail->save();
+        if($customer_detail){
+            return redirect('myaccount')->with('alert-success', 'Profile updated Successfully!');
+        } else {
+            return redirect()->with('register-error', 'Something went wrong please try again...');
+        }
     }
 }
