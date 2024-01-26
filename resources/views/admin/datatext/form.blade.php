@@ -40,13 +40,13 @@
                                         <label class="col-sm-2 col-form-label">View<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="view" class="form-control select2" name="view" required="">
-                                                <option value="" selected disabled>--Select View--</option>
+                                                <option value="0">--Select View--</option>
                                                 <option value="Standard" @if((isset($record->view) && $record->view=="Standard")) selected="selected" @endif>Standard</option>
                                                 <option value="Local" @if((isset($record->view) && $record->view=="Local")) selected="selected" @endif>Local</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row" id="step_1">
                                         <label class="col-sm-2 col-form-label">Region<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="region_id" class="form-control select2" name="region_id" required="">
@@ -60,49 +60,48 @@
                                             @if ($errors->has('region_id')) <div class="text-danger">{{ $errors->first('region_id') }}</div>@endif
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Level 1<span class="text-danger">*</span></label>
+                                    <div class="form-group row" id="step_2">
+                                        <label class="col-sm-2 col-form-label">Main Category-1<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="level_1"  id="level_1" class="form-control" placeholder="Level 1" value="{{ isset($record->level_1) ? $record->level_1 : old('level_1') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            @if ($errors->has('level_1')) <div class="text-danger">{{ $errors->first('level_1') }}</div>@endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Level 2<span class="text-danger">*</span></label>
-                                        <div class="col-sm-10">
-                                            <select id="level_2" class="form-control select2" name="level_2" required="">
-                                                <option value="" selected disabled>--Select Level 2--</option>
-                                                <option value="Landbased" @if((isset($record->level_2) && $record->level_2=="Landbased")) selected="selected" @endif>Landbased</option>
-                                                <option value="Remote" @if((isset($record->level_2) && $record->level_2=="Remote")) selected="selected" @endif>Remote</option>
-                                                <option value="Total" @if((isset($record->level_2) && $record->level_2=="Total")) selected="selected" @endif>Total</option>
+                                            <select id="main_category" class="form-control select2" name="main_category" required="">
+                                                <option value="0" selected>--Select Main Category--</option>
+                                                 @if($level_1->count())
+                                                    @foreach($level_1 as $data)
+                                                        <option value="{{$data->id}}" @if(isset($record) && $data->id==$record->region_id) selected="selected" @endif>{{ucfirst($data->title)}}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Level 3<span class="text-danger">*</span></label>
+                                    <div class="form-group row" id="step_3">
+                                        <label class="col-sm-2 col-form-label">Sub Category-1<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
-                                            <select id="level_3" class="form-control select2" name="level_3"  required="">
-                                                <option value="" selected disabled>--Select Level 3--</option>
-                                                <option value="Lottery" @if((isset($record->level_3) && $record->level_3=="Lottery")) selected="selected" @endif>Lottery</option>
-                                                <option value="Betting" @if((isset($record->level_3) && $record->level_3=="Betting")) selected="selected" @endif>Betting</option>
-                                                <option value="Gaming" @if((isset($record->level_3) && $record->level_3=="Gaming")) selected="selected" @endif>Gaming</option>
+                                            <select id="sub_category_1" class="form-control select2" name="sub_category_1" required="">
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Level 4<span class="text-danger">*</span></label>
+                                    <div class="form-group row" id="step_4">
+                                        <label class="col-sm-2 col-form-label">Sub category-2<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="level_4"  id="level_4" class="form-control" placeholder="Level 4" value="{{ isset($record->level_4) ? $record->level_4 : old('level_4') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            @if ($errors->has('level_4')) <div class="text-danger">{{ $errors->first('level_4') }}</div>@endif
+                                            <select id="sub_category_2" class="form-control select2" name="sub_category_2"  required="">
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Description</label>
+                                    <div class="form-group row" id="step_5">
+                                        <label class="col-sm-2 col-form-label">Level-4<span class="text-danger">*</span></label>
+                                        <div class="col-sm-10">
+                                            <select id="level_4" class="form-control select2" name="level_4"  required="">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" id="step_6">
+                                        <label class="col-sm-2 col-form-label">Description<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <textarea class="form-control ckeditor" id="description" name="description" placeholder="Description"  data-parsley-required-message="{{ __("This value is required.")}}">{{ isset($record->description) ? $record->description : old('description') }}</textarea>
                                             @if ($errors->has('description')) <div class="text-danger">{{ $errors->first('description') }}</div>@endif
                                         </div>
                                     </div>
+                                   
                                     
                                     <div class="container row">
                                         <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button>&nbsp;&nbsp;
@@ -122,7 +121,178 @@
 @section('javascript')
 <script>
     $(document).ready(function(){
-        CKEDITOR.replace('description');       
+        // CKEDITOR.replace('description');   
+
+           
+    
+  @if(empty($record))
+    $('#step_1').hide();
+    $('#step_2').hide();
+    $('#step_3').hide();
+    $('#step_4').hide();
+    $('#step_5').hide();
+    $('#step_6').hide();
+@else
+var view = $('#view').val();
+changeView(view);
+if(view!= "" && view!=0){
+    var main_category = $('#main_category').val();
+    var selected_sub_category_1 = "{{$record->sub_category_1}}";
+    changeMainCategory(main_category,selected_sub_category_1);
+
+    // var sub_category_1 = $('#sub_category_1').val();
+    var selected_sub_category_2 = "{{$record->sub_category_2}}";
+    changeSubCategory1(selected_sub_category_1,selected_sub_category_2);
+
+    var selected_level_4 = "{{$record->level_4}}";
+    changeSubCategory2(selected_sub_category_2,selected_level_4);
+}
+@endif
+     $('#view').change( function() {
+        var view = $(this).val();
+        changeView(view);
     });
+    // $('#main_category').change( function() { 
+    //     var main_category = $(this).val();
+    //     changeMainCategory(main_category);
+    // });
+    // $('#step_3').change( function() { 
+    //     $('#step_4').show();
+    // });
+    // $('#step_4').change( function() { 
+    //     $('#step_5').show();
+    // });
+    // $('#step_5').change( function() { 
+    //     $('#step_6').show();
+    // });
+ 
+    $('#main_category').on('change', function () {
+        var main_category = $(this).val();
+        changeMainCategory(main_category,0)
+        // $("#sub_category_1").html('');
+    });
+    $('#sub_category_1').on('change', function () {
+        var sub_category_1 = $(this).val();
+        changeSubCategory1(sub_category_1,0);
+        // $("#sub_category_2").html('');
+    });
+    $('#sub_category_2').on('change', function () {
+        var sub_category_2 = $(this).val();
+        changeSubCategory2(sub_category_2,0);
+
+        // $("#level_4").html('');
+    });
+});     
+function changeView(view){
+    if(view != "" && view!= 0){
+        $('#step_1').show();
+        $('#step_2').show();
+    }
+    else{
+        $('#step_1').hide();
+        $('#step_2').hide();
+        $('#step_3').hide();
+        $('#step_4').hide();
+        $('#step_5').hide();
+        $('#step_6').hide();
+    }
+}
+function changeMainCategory(main_category,selected_sub_category_1){
+    if(main_category != "" && main_category != 0){
+        $('#step_3').show();
+        $.ajax({
+            url: "{{url('admin/sub_category_1')}}",
+            type: "POST",
+            data: {
+                parent_id: main_category,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (result) {
+                $('#sub_category_1').html('<option value="0">--Select Sub category 1--</option>');
+                $('#sub_category_2').html('<option value="0">--Select Sub category 2--</option>');
+                $('#level_4').html('<option value="0">--Select Level 4--</option>');
+                $.each(result.sub_category_1, function (key, value) {
+                    var selected = "";
+                    if(selected_sub_category_1 == value.id){
+                        selected = "selected='selected'";
+                    }
+                    $("#sub_category_1").append('<option value="' + value
+                        .id + '"' + selected + '>' + value.title + '</option>');
+                });
+            }
+        });
+    }
+    else{
+        $('#step_3').hide();
+        $('#step_4').hide();
+        $('#step_5').hide();
+        $('#step_6').hide();
+    }
+}
+function changeSubCategory1(sub_category_1,selected_sub_category_2){
+    if(sub_category_1!= "" && sub_category_1!= 0){
+        $('#step_4').show();
+        $.ajax({
+            url: "{{url('admin/sub_category_2')}}",
+            type: "POST",
+            data: {
+                parent_id: sub_category_1,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (res) {
+                $('#sub_category_2').html('<option value="0">--Select Sub category 2--</option>');
+                $('#level_4').html('<option value="0">--Select Level 4--</option>');
+                $.each(res.sub_category_2, function (key, value) {
+                    var selected = "";
+                    if(selected_sub_category_2 == value.id){
+                        selected = "selected='selected'";
+                    }
+                    $("#sub_category_2").append('<option value="' + value
+                        .id + '"' + selected + '>' + value.title + '</option>');
+                });
+            }
+        });
+    }
+    else{
+        $('#step_4').hide();
+        $('#step_5').hide();
+        $('#step_6').hide();
+    }
+}
+function changeSubCategory2(sub_category_2,selected_level_4){
+    if(sub_category_2!= "" && sub_category_2!= 0){
+        $('#step_5').show();
+        $.ajax({
+            url: "{{url('admin/level_4')}}",
+            type: "POST",
+            data: {
+                parent_id: sub_category_2,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (res) {
+                $('#level_4').html('<option value="0">--Select Level 4--</option>');
+                $.each(res.level_4, function (key, value) {
+                    var selected = "";
+                    if(selected_level_4 == value.id){
+                        selected = "selected='selected'";
+                    }
+                    $("#level_4").append('<option value="' + value
+                        .id + '"' + selected + '>' + value.title + '</option>');
+                });
+            }
+        });
+    }
+    else{
+        $('#step_5').hide();
+        $('#step_6').hide();
+    }
+    $('#step_5').change( function() { 
+        $('#step_6').show();
+    });
+}
+
 </script>
 @endsection

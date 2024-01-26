@@ -128,4 +128,10 @@ class FrontendController extends Controller
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }  
     }
+
+    public function staticpage($slug)
+    {
+        $staticpage=StaticPage::where('slug',$slug)->first();
+        return view('frontend.staticpage',compact('staticpage'));
+    }
 }

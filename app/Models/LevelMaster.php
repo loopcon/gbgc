@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class LevelMaster extends Model
 {
     use HasFactory;
-    protected $table ='level_masters';    
+    protected $table ='level_masters'; 
+    protected $fields = ['id','parent_id', 'title', 'level_number'];
+    public function masterDetail()
+    {
+        return $this->hasOne(LevelMaster::class,'id','parent_id');
+    }   
 
 }

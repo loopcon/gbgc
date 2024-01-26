@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\StaticPage;
 use File;
-
+use Illuminate\Support\Str;
 class StaticPageController extends Controller
 {
     /**
@@ -35,7 +35,6 @@ class StaticPageController extends Controller
     {
         $this->validate($request, [
                 'title' => ['required'],
-                'slug' => ['required'],
                 'description' => ['required'],
                 'image' => ['mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080']
             ],[
@@ -60,7 +59,7 @@ class StaticPageController extends Controller
             $staticpage->image = $filename;
         }
 
-        $staticpage->description = strip_tags($request->description);
+        $staticpage->description =$request->description;
         $staticpage->save();
 
         if($staticpage){
@@ -96,7 +95,6 @@ class StaticPageController extends Controller
     {
         $this->validate($request, [
                 'title' => ['required'],
-                'slug' => ['required'],
                 'description' => ['required'],
                 'image' => ['mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080']
             ],[
@@ -105,29 +103,21 @@ class StaticPageController extends Controller
             ]
         );
         $staticpage = StaticPage::find($id);
-
         $old_image = isset($staticpage->image) ? $staticpage->image : NULL;
         if($old_image){
             $old_image = File::delete('/uploads/staticpage/'.$old_image);
         }
-
         $imageFiles = $request->file('image');
-
-        $fields = array('title', 'slug','description');
-        foreach($fields as $key => $value){
-            $staticpage->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
-        }
-
         if ($imageFiles) {
-            
             $extension = $imageFiles->getClientOriginalExtension();
             $dir = public_path() . '/uploads/staticpage/';
             $filename = uniqid() . '_' . time() . '.' . $extension;
             $imageFiles->move($dir, $filename);
             $staticpage->image = $filename;
         }
-
-        $staticpage->description = strip_tags($request->description);
+        $staticpage->title=$request->input('title');
+        $staticpage->slug=Str::slug($request->title);
+        $staticpage->description = $request->description;
         $staticpage->save();
         if($staticpage) {
             return redirect('admin/staticpage')->with('success', trans('Page Updated Successfully!'));

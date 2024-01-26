@@ -1,4 +1,7 @@
 @extends('layouts.header')
+@section('title')
+<title>GBGC - Consultancy & market reports for the global gambling industry.</title>
+@endsection
 @section('content')
 
  <div class="navbar-bgimg">
