@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DataText;
 use App\Models\Region;
+use App\Models\LevelMaster;
+use DB;
 
 class DatatextController extends Controller
 {
@@ -27,9 +29,26 @@ class DatatextController extends Controller
     {
         $region = Region::get();
         $return_data['region'] = $region;
+        $level_1 = LevelMaster::where('level_number',1)->get();
+        $return_data['level_1'] = $level_1;
         return view('admin.datatext.form', array_merge($return_data));
     }
-
+    public function fetchsub_category_1(Request $request)
+    {
+        $data['sub_category_1'] = LevelMaster::where("parent_id",$request->parent_id)->get();
+        return response()->json($data);
+    }
+    public function fetchsub_category_2(Request $request)
+    {
+        $data['sub_category_2'] = LevelMaster::where("parent_id",$request->parent_id)->get();
+        return response()->json($data);
+    }
+    public function fetchlevel_4(Request $request)
+    {
+        // print_r($request->all());exit;
+        $data['level_4'] = LevelMaster::where("parent_id",$request->parent_id)->get();
+        return response()->json($data);
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -79,6 +98,8 @@ class DatatextController extends Controller
         $return_data['record'] = $record;
         $region = Region::get();
         $return_data['region'] = $region;
+        $level_1 = LevelMaster::where('level_number',1)->get();
+        $return_data['level_1'] = $level_1;
         return view('admin.datatext.form', array_merge($return_data));
     }
 
