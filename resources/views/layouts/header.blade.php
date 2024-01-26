@@ -33,7 +33,7 @@
                                 @if(!Auth::guard('customers')->user())
                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#siguploginModal">Sign Up / Login</a></li>
                                 @else
-                                <li><a href="#">My Account</a></li>
+                                <li><a href="{{route('myaccount')}}">My Account</a></li>
                                 @endif
                                 <li><a href="{{route('frontcontactus')}}">Contact Us</a></li>
                                 @if(Auth::guard('customers')->user())
@@ -165,7 +165,7 @@
                                         <label class="form-check-label" for="exampleCheck1">I accept the Terms of Service and Privacy Policy</label>
                                     </div>
                                     <lable class="text-danger">{{Session::get('register-error')}}</lable>
-                                    <a href="{{route('registration')}}"><button class="login-form-signin">SIGN IN</button></a>
+                                    <a href="{{route('registration')}}"><button class="login-form-signin register-btn">SIGN IN</button></a>
                                 </form>
                             </div>
                         </div>
@@ -334,6 +334,10 @@
                 $(this).addClass('login-active');
                 $('.register-text').removeClass('login-active');
                 
+            });
+            $('.register-btn').click(function(){
+                $('.login-form').show();
+                $('.register-form').hide(); 
             });
 
             @if(Session::get('alert-danger'))

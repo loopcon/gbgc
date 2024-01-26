@@ -24,15 +24,12 @@ Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lo
 Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
 Route::get('/contactus',[FrontendController::class, 'contactus'])->name('frontcontactus');
 Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->name('store-contactus');
-Route::get('/{slug}',[FrontendController::class, 'staticpage'])->name('frontedstaticpage');
-
-
 
 Route::post('registration',[App\Http\Controllers\Frontend\FrontLoginController::class, 'registration'])->name('registration');
 Route::post('customer-checklogin',[App\Http\Controllers\Frontend\FrontLoginController::class,'checklogin'])->name('customer-checklogin');
 Route::get('customer-logout', [\App\Http\Controllers\Frontend\FrontLoginController::class, 'logout'])->name('customer-logout');
-
-
+Route::get('myaccount',[App\Http\Controllers\Frontend\FrontLoginController::class, 'myAccount'])->name('myaccount');
+Route::post('/updatemyaccount', [App\Http\Controllers\Frontend\FrontLoginController::class, 'updateMyAccount'])->name('updatemyaccount');
 
 Route::group(['middleware' => ['auth']], function () { 
 
@@ -155,6 +152,16 @@ Route::group(['middleware' => ['auth']], function () {
     //end levelmaster
 
 });
+ $static = Cache::remember('static_pages', 10, function() { 
+                    return DB::table('static_pages')
+                    ->get();
+                });
+
+        if(!empty($static)) {
+            foreach ($static as $value) {
+               Route::get('$value->slug',[FrontendController::class, 'staticpage'])->name('frontedstaticpage');
+            }
+        }
 
 Auth::routes();
 
