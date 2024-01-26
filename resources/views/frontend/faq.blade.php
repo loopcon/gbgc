@@ -1,4 +1,7 @@
 @extends('layouts.header')
+@section('title')
+<title>GBGC - FAQs.</title>
+@endsection
 @section('content')
     <div class="faq-heading-section">
         <div class="container">

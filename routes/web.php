@@ -24,6 +24,9 @@ Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lo
 Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
 Route::get('/contactus',[FrontendController::class, 'contactus'])->name('frontcontactus');
 Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->name('store-contactus');
+Route::get('/{slug}',[FrontendController::class, 'staticpage'])->name('frontedstaticpage');
+
+
 
 Route::post('registration',[App\Http\Controllers\Frontend\FrontLoginController::class, 'registration'])->name('registration');
 Route::post('customer-checklogin',[App\Http\Controllers\Frontend\FrontLoginController::class,'checklogin'])->name('customer-checklogin');

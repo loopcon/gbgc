@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBGC</title>
+     @yield('title')
     <link rel="icon" href="{{asset('gbgc-logo.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
@@ -23,7 +23,9 @@
                         <div class="dropdown-show" id="menu-popup">
                             <ul>
                                 <li><a href="{{route('index')}}">Home</a></li>
-                                <li><a href="#">About Us</a></li>
+                                @if(isset($data2))
+                                <li><a href="{{ route('frontedstaticpage', ['slug' => $data2->slug]) }}">{{$data2->title}}</a></li>
+                                @endif
                                 <li><a href="{{route('howitswork')}}">How It Works</a></li>
                                 <li><a href="{{route('membership')}}">Memberships</a></li>
                                 <li><a href="#">Reports</a></li>
@@ -214,10 +216,13 @@
                             <li><a href="#">News</a></li>
                             <li><a href="{{route('frontcontactus')}}">Contact</a></li>
                             <li><a href="{{route('faq')}}">Faqs</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Cookies Policy</a></li>
+
+                            @foreach($data1 as $staticpage)
+                            <li><a href="{{ route('frontedstaticpage', ['slug' => $staticpage->slug]) }}">{{$staticpage->title}}</a></li>
+                            @endforeach
+         <!--                    <li><a href="#">Cookies Policy</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Legal Disclaimers</a></li>
+                            <li><a href="#">Legal Disclaimers</a></li> -->
                         </ul>
                     </div>
                 </div>
