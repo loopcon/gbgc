@@ -44,29 +44,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Slug</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="slug"  id="slug" class="form-control" placeholder="Slug" value="{{ isset($record->slug) ? $record->slug : old('slug') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            @if ($errors->has('slug')) <div class="text-danger">{{ $errors->first('slug') }}</div>@endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Description</label>
                                         <div class="col-sm-10">
                                             <textarea class="form-control ckeditor" id="description" name="description" placeholder="Description"  data-parsley-required-message="{{ __("This value is required.")}}">{{ isset($record->description) ? $record->description : old('description') }}</textarea>
                                             @if ($errors->has('description')) <div class="text-danger">{{ $errors->first('description') }}</div>@endif
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-9">
-                                            <div class="card-body"> 
-                                            @if(isset($record->image))
-                                                <img src="{{asset('uploads/staticpage/'.$record->image)}}" height="250px" width="250px">
-                                            @endif
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @if($record->slug == 'about_us')
+                                   
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Image</label>
                                         <div class="col-sm-10">
@@ -75,6 +60,17 @@
                                             @if ($errors->has('image')) <div class="text-danger">{{ $errors->first('image') }}</div>@endif
                                         </div>
                                     </div>
+                                     <div class="form-group row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-9">
+                                            <div class="card-body"> 
+                                            @if(isset($record->image))
+                                                <img src="{{asset('uploads/staticpage/'.$record->image)}}" height="150px" width="150px">
+                                            @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
                                     
                                     <div class="container row">
                                         <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button> &nbsp; &nbsp;

@@ -59,13 +59,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="card-header">
+                              <!--   <div class="card-header">
                                     <div class="form-row">
                                         <div class="col-md-12 text-right">
                                             <div class="col-md-12 text-right"><a href="{{route('staticpage-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
                                         <table id="complex-dt" class="table table-striped table-bordered nowrap">
@@ -87,7 +87,7 @@
                                                                 <?php $i++;?>
                                                             <td >  {{$data->title}} </td>
                                                             <td><a href="{{ route('staticpage-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('staticpage-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <!-- <a href='javascript:void(0);' data-href="{{ route('staticpage-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a> -->
                                                              </td>
                                                         </tr>
                                                     @endforeach

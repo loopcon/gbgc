@@ -1,4 +1,7 @@
 @extends('layouts.header')
+@section('title')
+<title>GBGC - How it's Work</title>
+@endsection
 @section('content')
     <!-- how  it  work page css start  -->
     <div class="how-it-work-section">
