@@ -24,7 +24,7 @@
                             <ul>
                                 <li><a href="{{route('index')}}">Home</a></li>
                                 @if(isset($data2))
-                                <li><a href="{{ route('frontedstaticpage', ['slug' => $data2->slug]) }}">{{$data2->title}}</a></li>
+                                <li><a href="{{ route($data2->slug) }}">{{$data2->title}}</a></li>
                                 @endif
                                 <li><a href="{{route('howitswork')}}">How It Works</a></li>
                                 <li><a href="{{route('membership')}}">Memberships</a></li>
@@ -91,82 +91,69 @@
                                 </form>
                             </div>
                             <div>
-                                <form action="{{route('registration')}}" class="register-form" method="POST">
-                                    @csrf
-                                    <div class="row">
+                            <form method="POST" id="submit_form" class="register-form">
+                                @csrf
+                            <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
-                                                <input type="text" id="first_name" name="first_name" class="form-control  @error('email') is-invalid @enderror" placeholder="FIRST NAME" aria-label="Username" aria-describedby="basic-addon1"> 
-                                                @if ($errors->has('first_name'))
-                                                    <span class="invalid-feedback">
-                                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
+                                                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="FIRST NAME" aria-label="Username" aria-describedby="basic-addon1"> 
+                                             </div>
+                                              <span class="firstname" id="firstname"></span>
                                         </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
-                                                <input type="text" id="last_name" name="last_name" class="form-control  @error('email') is-invalid @enderror " placeholder="LAST NAME" aria-label="Username" aria-describedby="basic-addon1">
-                                                @if ($errors->has('last_name'))
-                                                    <span class="invalid-feedback">
-                                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                        <input type="text" id="last_name" name="last_name" class="form-control" placeholder="LAST NAME" aria-label="Username" aria-describedby="basic-addon1">
+                                     </div>
+                                     <span class="lastname" id="lastname"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="EMAIL" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
-                                                <input type="email" id="email" name="email" class="form-control  @error('email') is-invalid @enderror" placeholder="EMAIL" aria-label="Username" aria-describedby="basic-addon1">
-                                                @if ($errors->has('email'))
-                                                    <span class="invalid-feedback">
-                                                        <strong>{{ $errors->first('email') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>    
+                                    <span class="emailerror" id="emailerror"></span>
+                                </div>    
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
-                                                <input type="password" id="password" name="password" class="form-control  @error('email') is-invalid @enderror" placeholder="PASSWORD" aria-label="Username" aria-describedby="basic-addon1">
-                                                @if ($errors->has('password'))
-                                                    <span class="invalid-feedback">
-                                                        <strong>{{ $errors->first('password') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                    <span class="password" id="password"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
-                                                <input type="password" id="confirm_password" name="confirm_password" class="form-control  @error('email') is-invalid @enderror" placeholder="CONFIRM PASSWORD" aria-label="Username" aria-describedby="basic-addon1">
-                                                @if ($errors->has('confirm_password'))
-                                                    <span class="invalid-feedback">
-                                                        <strong>{{ $errors->first('confirm_password') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-1 form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1"> Subscribe to our newsletter </label>
-                                    </div>
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">I accept the Terms of Service and Privacy Policy</label>
-                                    </div>
-                                    <lable class="text-danger">{{Session::get('register-error')}}</lable>
-                                    <a href="{{route('registration')}}"><button class="login-form-signin register-btn">SIGN IN</button></a>
-                                </form>
+                                    <span class="confirmpassword" id="confirmpassword"></span>
+                                </div>
+                            </div>
+                            <div class="mb-1 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="subscribe" value="1">
+                                <label class="form-check-label" for="exampleCheck1"> Subscribe to our newsletter </label><br>
+                                <span id="errorsubscribe"></span>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="accept" value="1">
+                                <label class="form-check-label" for="exampleCheck1">I accept the Terms of Service and Privacy Policy</label><br>
+                                <span id="accept"></span>
+                            </div>
+                            <span id="registrationsuccessmessage" style="color:green;"></span>
+                            <span id="registrationwarningmessage" style="color:red;"></span>
+
+                            <button type="button" class="login-form-signin register-btn" id="save_ajax_data">SIGN IN</button>
+                        </form>
+
                             </div>
                         </div>
                     </div>
@@ -218,7 +205,7 @@
                             <li><a href="{{route('faq')}}">Faqs</a></li>
 
                             @foreach($data1 as $staticpage)
-                            <li><a href="{{ route('frontedstaticpage', ['slug' => $staticpage->slug]) }}">{{$staticpage->title}}</a></li>
+                            <li><a href="{{ route($staticpage->slug) }}">{{$staticpage->title}}</a></li>
                             @endforeach
          <!--                    <li><a href="#">Cookies Policy</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
@@ -245,6 +232,64 @@
     <script src="{{asset('js/all.min.js')}}"></script>
     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script>
+
+    $(document).on('click','#save_ajax_data',function() //id(button)
+    {
+        var formdata=$('#submit_form').serialize();
+        $.ajax(
+        {
+          url:"{{route('registration')}}",
+          type: "post",
+          data: formdata,
+          dataType:'JSON',
+          success: function(data)
+          {
+            if (data.status == 1) 
+            {
+                $('#firstnamestrong, #lastnamestrong, #emailstrong, #acceptstrong').hide();
+                $('#submit_form')[0].reset();
+                $('.login-form').hide();
+                $('.login-text').removeClass('login-active');
+                $('.register-text').addClass('login-active');
+                $('.register-form').show();
+                 $('#registrationsuccessmessage').html('<p>Your Account has been successfully Created.</p>');
+            }
+            if (data.status == 0) {
+                $('#firstnamestrong, #lastnamestrong, #emailstrong, #acceptstrong').hide();
+                $('.login-form').hide();
+                $('.login-text').removeClass('login-active');
+                $('.register-text').addClass('login-active');
+                $('.register-form').show();
+                if(data.errorsubscribe)
+                {
+                    $('#errorsubscribe').html('<strong style="color:red">You are already Subscribe</strong>');
+                }
+                else if(data.errors)
+                {
+                    if(data.errors.first_name){$('#firstname').html('<strong id="firstnamestrong" style="color:red">First Name is Required </strong>');}
+                    if(data.errors.last_name){$('#lastname').html('<strong style="color:red" id="lastnamestrong">Last Name is Required </strong>');}
+
+                    if(data.errors.email){$('#emailerror').html('<strong id="emailstrong" style="color:red">' + data.errors.email + '</strong>');}
+
+                    if(data.errors.accept){$('#accept').html('<strong style="color:red" id="acceptstrong">Accept Terms and Condition</strong>');}
+
+                    if (data.errors.confirm_password) {
+                        $('#confirmpassword').html('<strong style="color:red">' + data.errors.confirm_password[0] + '</strong>');
+                    }
+                    if (data.errors.password) {
+                        for (var i = 0; i < data.errors.password.length; i++) {
+                            $('#password').append('<strong style="color:red">' + data.errors.password[i] + '</strong><br>');
+                        }
+                    }
+                }else{
+                    $('#registrationwarningmessage').html('<p>Something went wrong</p>');
+                }
+                
+            }
+          }
+        })
+    });
+
 
         $(document).ready(function(){
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
@@ -335,6 +380,7 @@
                 $('.register-text').removeClass('login-active');
                 
             });
+
             $('.register-btn').click(function(){
                 $('.login-form').show();
                 $('.register-form').hide(); 

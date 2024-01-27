@@ -129,9 +129,10 @@ class FrontendController extends Controller
         }  
     }
 
-    public function staticpage($slug)
+    public function staticpage()
     {
-        $staticpage=StaticPage::where('slug',$slug)->first();
+        $segment = request()->segment(1);
+        $staticpage = StaticPage::where('slug', $segment)->first();
         return view('frontend.staticpage',compact('staticpage'));
     }
 }
