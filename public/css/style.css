@@ -59,58 +59,19 @@
 .subscript-text-box button {background: #00ACE0;height: 50px;width: 100%;border: 0px;color: #fff;border-radius: 10px;text-transform: uppercase;}
 /* .standard-box {display: flex;justify-content: center;position: relative;margin-left: 40px;} */
 /* .standard-btnbox button {border: 0px;background: #00ACE0;width: 220px;height: 45px;text-transform: uppercase;transform: rotate(270deg) translateY(-50%);position: absolute;left: 6px;top: 40%;color: #fff;border-radius: 20px 20px 0 0;letter-spacing: 2px;font-weight: bold;} */
-.standard-box-detail {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    background-color: #fff;padding: 20px 30px;
-    border-radius:  20px ;
-    width: 100%;
-}
+.standard-box-detail {box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;background-color: #fff;padding: 20px 30px;border-radius:  20px ;width: 100%;}
 .standard-prise-textdetail ul{ padding-left: 40px;}
-.standard-prise-textdetail {margin-bottom: 10px;color: #333333;display: flex;align-items: center;}
+.standard-prise-textdetail {margin-bottom: 10px;color: #333333;display: flex;align-items: center; margin-bottom: 0px;}
 .standard-prise-textdetail p {margin-bottom: 0px;}
 .standard-prise-textdetail svg {color: #00ACE0;padding-right: 10px;}
 .standard-price {color: #333333;font-size: 25px;font-weight: bold;}
 .prise-text-year {font-size: 17px;font-weight: 600;}
 /* .standard-btnbox {height: 50px;width: auto;} */
-.free-access-heading{
-    color: #333333;
-    font-size: 25px;
-    font-weight: bold;
-}
-.free-access-btn{
-    background-color: #00ACE0;
-    width: 100%;
-    display: block;
-    height: 50px;
-    text-align: center;
-    color: #ffF;
-    text-decoration: none;
-    line-height: 50px;
-    font-size: 17px;
-    font-weight: 600;
-    border-radius: 10px;
-    margin-top: 30px;
-}
-.free-access-btn:hover{
-    color: #ffF;
-}
-.pri-signupbtn{
-    background-color: #00ACE0;
-    width: 100%;
-    display: block;
-    height: 50px;
-    text-align: center;
-    color: #ffF;
-    text-decoration: none;
-    line-height: 50px;
-    font-size: 17px;
-    font-weight: 600;
-    border-radius: 10px;
-    margin-top: 30px;
-}
-.pri-signupbtn:hover{
-    color: #ffF;
-}
+.free-access-heading{color: #333333;font-size: 25px;font-weight: bold;}
+.free-access-btn{background-color: #00ACE0;width: 100%;display: block;height: 50px;text-align: center;color: #ffF;text-decoration: none;line-height: 50px;font-size: 17px;font-weight: 600;border-radius: 10px;margin-top: 30px;}
+.free-access-btn:hover{color: #ffF;}
+.pri-signupbtn{background-color: #00ACE0;width: 100%;display: block;height: 50px;text-align: center;color: #ffF;text-decoration: none;line-height: 50px;font-size: 17px;font-weight: 600;border-radius: 10px;margin-top: 30px;}
+.pri-signupbtn:hover{color: #ffF;}
 /* member benifit  css end  */
 /* abouts css start  */
 .about-box {align-items: center;justify-content: center;padding: 10px 0px;}
