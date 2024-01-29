@@ -17,7 +17,7 @@
         <div id="header-sticky">
             <div class="container">
                 <div class="navbar-main">
-                    <a href="#"><img src="{{asset('uploads/settings/'.$data->logo)}}" class="navbar-imglogo" alt=""></a>
+                    <a href="{{route('index')}}"><img src="{{asset('uploads/settings/'.$data->logo)}}" class="navbar-imglogo" alt=""></a>
                     <div>
                         <a href="javascript:void(0)" id="menu-btn" class="menu-icon"><i class="fa-solid fa-bars"></i><span>MENU</span></a>
                         <div class="dropdown-show" id="menu-popup">
@@ -188,7 +188,7 @@
                 @csrf
                     <div class="row m-0 footer-first-box">
                         <div class="col-12 col-sm-5 col-md-5 col-lg-3">
-                            <img src="img/gbgc-logo-black.png" class="footer-logo" alt="">
+                           <a href="{{route('index')}}"><img src="{{asset('img/gbgc-logo-black.png')}}" class="footer-logo" alt=""></a>
                         </div>
                         <div class="col-12 col-sm-7 col-md-7 col-lg-4">
                             <p class="newslatter-text">Newsletter</p>

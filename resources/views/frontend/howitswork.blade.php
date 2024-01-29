@@ -12,10 +12,10 @@
             <div class="how-its-worktextsection">
                 <h1>How Its Works</h1>
                 <p>Prepare to fall in love. gbgc makes online training easy and delightful for everyone. And it takes just minutes to get started.</p>
-                <button>Contact Us</button>
+                <a href="{{route('frontcontactus')}}" style="text-decoration: none;"><button>Contact Us</button></a>
             </div>
-            <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">
-            <img class="badal-imgset-2"  src="img/badal-img.svg" alt="">
+            <img class="badal-imgset-1"  src="{{asset('img/badal-img-2.svg')}}" alt="">
+            <img class="badal-imgset-2"  src="{{asset('img/badal-img.svg')}}" alt="">
             <hr>
         </div>
     </div>  
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="right">
-                            <img src="img/badal-img-2.svg" class="badalimg-scrollsection" alt="">
+                            <img src="{{asset('img/badal-img-2.svg')}}" class="badalimg-scrollsection" alt="">
                         <div id="step1-create-domain">
                             <div class="create-domain-box">
                                 <div class="create-domain-box-item-1">
@@ -92,7 +92,7 @@
                                     <p>Claim your .rise domain to get started. For example, if you work at Glivy, set up your Rise account as glivy.rise.com</p>
                                 </div>
                             </div>  
-                            <img src="img/create-domain-img.png" class="img-fluid  create-domain-img" alt="">  
+                            <img src="{{asset('img/create-domain-img.png')}}" class="img-fluid  create-domain-img" alt="">  
                         </div>
                         <div id="step2-opt-ingbgc">
                             <div class="create-domain-box">
@@ -117,7 +117,7 @@
                                     <p>Grant learners access to the complete Rise course catalog—including hundreds of professionally developed courses—instantly.</p>
                                 </div>
                             </div>  
-                            <img src="img/opt-inthegbgc.png" class="img-fluid create-domain-img" alt="">  
+                            <img src="{{asset('img/opt-inthegbgc.png')}}" class="img-fluid create-domain-img" alt="">  
                         </div>
                         <div id="step3-invitepeople">
                             <div class="create-domain-box">
@@ -139,7 +139,7 @@
                                     <p>Add admins, content creators, reporters, and learners, then set their permissions. You can do this step at any time.</p>
                                 </div>
                             </div>  
-                            <img src="img/invite-people-img.jpg" class="img-fluid create-domain-img" alt="">  
+                            <img src="{{asset('img/invite-people-img.jpg')}}" class="img-fluid create-domain-img" alt="">  
                         </div>
                         <div id="step4-build-scratch">
                             <div class="create-domain-box">
@@ -229,7 +229,7 @@
                                     <p>Publish the training to your library, tag with a category, and enroll individuals or groups as learners. You can also choose to let learners self‑enroll.</p>
                                 </div>
                             </div>  
-                            <img src="img/publish-training-img.png" class="img-fluid create-domain-img" alt="">
+                            <img src="{{asset('img/publish-training-img.png')}}" class="img-fluid create-domain-img" alt="">
                         </div>
                         <div id="step8-discover-learn">
                             <div class="create-domain-box">
@@ -248,7 +248,7 @@
                                     <p>Learners take courses, view scores, and download completion certificates. And they discover new training material by browsing your library by category.</p>
                                 </div>
                             </div>  
-                            <img src="img/discover-learn-img.png" class="img-fluid create-domain-img" alt="">
+                            <img src="{{asset('img/discover-learn-img.png')}}" class="img-fluid create-domain-img" alt="">
                         </div>
                         <div id="step9-analyze-impact">
                             <div class="create-domain-box">
@@ -272,7 +272,7 @@
                                     <p>See what training materials learners have accessed, the time they’ve spent learning, and the lessons they’ve completed. Drill into any content to view enrollees, learner progress, question level reporting, quiz scores, and more.</p>
                                 </div>
                             </div>  
-                            <img src="img/analyze-img.png" class="img-fluid create-domain-img" alt="">
+                            <img src="{{asset('img/analyze-img.png')}}" class="img-fluid create-domain-img" alt="">
                         </div>
                         <div id="step10-integrations">
                             <div class="create-domain-box">
@@ -295,7 +295,7 @@
                                     <p>See what training materials learners have accessed, the time they’ve spent learning, and the lessons they’ve completed. Drill into any content to view enrollees, learner progress, question level reporting, quiz scores, and more.</p>
                                 </div>
                             </div>  
-                            <img src="img/integrations-img.png" class="img-fluid create-domain-img" alt="">
+                            <img src="{{asset('img/integrations-img.png')}}" class="img-fluid create-domain-img" alt="">
                         </div>
                     </div>
             
@@ -342,7 +342,7 @@
                                 <p>Claim your .rise domain to get started. For example, if you work at Glivy, set up your Rise account as glivy.rise.com</p>
                             </div>
                         </div>  
-                        <img src="img/create-domain-img.png" class="img-fluid  create-domain-img" alt="">  
+                        <img src="{{asset('img/create-domain-img.png')}}" class="img-fluid  create-domain-img" alt="">  
                     </div>
                     <div id="step2-opt-ingbgc">
                         <div class="create-domain-box">
@@ -367,7 +367,7 @@
                                 <p>Grant learners access to the complete Rise course catalog—including hundreds of professionally developed courses—instantly.</p>
                             </div>
                         </div>  
-                        <img src="img/opt-inthegbgc.png" class="img-fluid create-domain-img" alt="">  
+                        <img src="{{asset('img/opt-inthegbgc.png')}}" class="img-fluid create-domain-img" alt="">  
                     </div>
                 </div>  
                 <div class="section-stick">
@@ -405,7 +405,7 @@
                                 <p>Add admins, content creators, reporters, and learners, then set their permissions. You can do this step at any time.</p>
                             </div>
                         </div>  
-                        <img src="img/invite-people-img.jpg" class="img-fluid create-domain-img" alt="">  
+                        <img src="{{asset('img/invite-people-img.jpg')}}" class="img-fluid create-domain-img" alt="">  
                     </div>
                 </div> 
                 <div class="section-stick">
@@ -523,7 +523,7 @@
                                 <p>Publish the training to your library, tag with a category, and enroll individuals or groups as learners. You can also choose to let learners self‑enroll.</p>
                             </div>
                         </div>  
-                        <img src="img/publish-training-img.png" class="img-fluid create-domain-img" alt="">
+                        <img src="{{asset('img/publish-training-img.png')}}" class="img-fluid create-domain-img" alt="">
                     </div>
                 </div>
                 <div class="section-stick">
@@ -558,7 +558,7 @@
                                 <p>Learners take courses, view scores, and download completion certificates. And they discover new training material by browsing your library by category.</p>
                             </div>
                         </div>  
-                        <img src="img/discover-learn-img.png" class="img-fluid create-domain-img" alt="">
+                        <img src="{{asset('img/discover-learn-img.png')}}" class="img-fluid create-domain-img" alt="">
                     </div>
                 </div>
                 <div class="section-stick">
@@ -598,7 +598,7 @@
                                 <p>See what training materials learners have accessed, the time they’ve spent learning, and the lessons they’ve completed. Drill into any content to view enrollees, learner progress, question level reporting, quiz scores, and more.</p>
                             </div>
                         </div>  
-                        <img src="img/analyze-img.png" class="img-fluid create-domain-img" alt="">
+                        <img src="{{asset('img/analyze-img.png')}}" class="img-fluid create-domain-img" alt="">
                     </div>
                 </div>
                 <div class="section-stick">
@@ -637,13 +637,13 @@
                                 <p>See what training materials learners have accessed, the time they’ve spent learning, and the lessons they’ve completed. Drill into any content to view enrollees, learner progress, question level reporting, quiz scores, and more.</p>
                             </div>
                         </div>  
-                        <img src="img/integrations-img.png" class="img-fluid create-domain-img" alt="">
+                        <img src="{{asset('img/integrations-img.png')}}" class="img-fluid create-domain-img" alt="">
                     </div>
                 </div>
             </div>
         </div>
         <div>
-            <img src="img/gear.svg" class="gear-img-scroll" alt="">
+            <img src="{{asset('img/gear.svg')}}" class="gear-img-scroll" alt="">
         </div>
     </div>
 
@@ -672,7 +672,7 @@
         <div class="gbgc-text-empoyees-text">
             <svg viewBox="0 0 48 48"><path fill="#00ACE0" d="M24 0C10.74 0 0 10.74 0 24s10.74 24 24 24 24-10.74 24-24C47.956 10.74 37.215 0 24 0zm0 40.707c-7.293 0-13.48-4.64-15.779-11.182h31.558C37.481 36.066 31.249 40.707 24 40.707z"></path></svg>
             <p>GBGC is the online training system your employees will love</p>
-            <button>Contact Us</button>
+            <a href="{{route('frontcontactus')}}" style="text-decoration: none;"><button>Contact Us</button></a>
         </div>
     </div>  
     <!-- how  it  work page css end  -->

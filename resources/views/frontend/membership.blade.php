@@ -37,7 +37,7 @@
 
     <div class="row membership-imganddetailtext">
         <div class="col-12 col-md-6">
-            <img src="img/membership-img.jpg" class="img-fluid" alt="">
+            <img src="{{asset('img/membership-img.jpg')}}" class="img-fluid" alt="">
         </div>
 
         <div class="col-12 col-md-6">

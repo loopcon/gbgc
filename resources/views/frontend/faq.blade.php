@@ -11,7 +11,7 @@
             <div class="faq-heading-worktextsection">
                 <h1>FAQs</h1>
                 <p>Prepare to fall in love. gbgc makes online training easy and delightful for everyone. And it takes just minutes to get started.</p>
-                <a href="#" class="faq-contactbtn">Contact Us</a>
+                <a href="{{route('frontcontactus')}}" class="faq-contactbtn">Contact Us</a>
                 
             </div>
             <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">

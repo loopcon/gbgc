@@ -97,17 +97,22 @@
                                         </a>
                                     </li>
 
-                                    <li class="pcoded-hasmenu {{ (request()->is('admin/region*'))? 'pcoded-trigger' : '' }}">
+                                    <li class="pcoded-hasmenu {{ (request()->is('admin/region*') || request()->is('admin/score*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-upload"></i>
                                             </span>
                                             <span class="pcoded-mtext">GBGC Data Upload</span>
                                         </a>
-                                        <ul class="pcoded-submenu " style="{{ (request()->is('admin/region*'))? 'display:block' : 'display:none' }}">
+                                        <ul class="pcoded-submenu " style="{{ (request()->is('admin/region*') || request()->is('admin/score*'))? 'display:block' : 'display:none' }}">
                                             <li class="{{ (request()->is('admin/region*'))? 'active' : '' }}">
                                                 <a href="{{route('region')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Region</span>
+                                                </a>
+                                            </li>
+                                            <li class="{{ (request()->is('admin/score*'))? 'active' : '' }}">
+                                                <a href="{{route('adminscore')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Score</span>
                                                 </a>
                                             </li>
                                         </ul>
