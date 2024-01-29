@@ -1,4 +1,7 @@
 @extends('layouts.header')
+@section('title')
+<title>GBGC - Contact Us.</title>
+@endsection
 @section('content')
 <!-- get  in touch  start  -->
       <div class="container">
