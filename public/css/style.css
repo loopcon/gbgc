@@ -52,20 +52,65 @@
 /* how it work css end  */
 /* member benifit  css start  */
 .member-benifits-bg {background: #f5f5f5;}
-.member-benifits-box {justify-content: center;padding: 50px 0px;}
-.subscript-text-box {width: 370px;display: block;margin: auto;}
+.member-benifits-box {justify-content: center;padding-bottom: 35px; padding-top:10px;}
+.subscript-text-box {width: 370px;display: block;margin-left: auto; margin-right: auto; padding-top: 30px; padding-bottom: 25px; }
 .subscript-text-box p {text-transform: uppercase;color: #00ACE0;font-weight: bold;font-size: 18px;margin-bottom: 0px;}
-.subscript-text-box h4 {color: #333333;font-size: 40px;font-weight: bold;text-transform: uppercase;margin-bottom: 30px;}
+.subscript-text-box h4 {color: #333333;font-size: 40px;font-weight: bold;text-transform: uppercase;margin-bottom: 0px;}
 .subscript-text-box button {background: #00ACE0;height: 50px;width: 100%;border: 0px;color: #fff;border-radius: 10px;text-transform: uppercase;}
-.standard-box {display: flex;justify-content: center;position: relative;margin-left: 40px;}
-.standard-btnbox button {border: 0px;background: #00ACE0;width: 220px;height: 45px;text-transform: uppercase;transform: rotate(270deg) translateY(-50%);position: absolute;left: 6px;top: 40%;color: #fff;border-radius: 20px 20px 0 0;letter-spacing: 2px;font-weight: bold;}
-.standard-box-detail {box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;background-color: #fff;padding: 20px 30px;height: 220px;border-radius: 0 20px 20px 0;width: 300px;margin-left: 30px;}
+/* .standard-box {display: flex;justify-content: center;position: relative;margin-left: 40px;} */
+/* .standard-btnbox button {border: 0px;background: #00ACE0;width: 220px;height: 45px;text-transform: uppercase;transform: rotate(270deg) translateY(-50%);position: absolute;left: 6px;top: 40%;color: #fff;border-radius: 20px 20px 0 0;letter-spacing: 2px;font-weight: bold;} */
+.standard-box-detail {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    background-color: #fff;padding: 20px 30px;
+    border-radius:  20px ;
+    width: 100%;
+}
+.standard-prise-textdetail ul{ padding-left: 40px;}
 .standard-prise-textdetail {margin-bottom: 10px;color: #333333;display: flex;align-items: center;}
 .standard-prise-textdetail p {margin-bottom: 0px;}
 .standard-prise-textdetail svg {color: #00ACE0;padding-right: 10px;}
 .standard-price {color: #333333;font-size: 25px;font-weight: bold;}
 .prise-text-year {font-size: 17px;font-weight: 600;}
-.standard-btnbox {height: 50px;width: auto;}
+/* .standard-btnbox {height: 50px;width: auto;} */
+.free-access-heading{
+    color: #333333;
+    font-size: 25px;
+    font-weight: bold;
+}
+.free-access-btn{
+    background-color: #00ACE0;
+    width: 100%;
+    display: block;
+    height: 50px;
+    text-align: center;
+    color: #ffF;
+    text-decoration: none;
+    line-height: 50px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.free-access-btn:hover{
+    color: #ffF;
+}
+.pri-signupbtn{
+    background-color: #00ACE0;
+    width: 100%;
+    display: block;
+    height: 50px;
+    text-align: center;
+    color: #ffF;
+    text-decoration: none;
+    line-height: 50px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.pri-signupbtn:hover{
+    color: #ffF;
+}
 /* member benifit  css end  */
 /* abouts css start  */
 .about-box {align-items: center;justify-content: center;padding: 10px 0px;}

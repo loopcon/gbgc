@@ -119,25 +119,42 @@
     @if($membership != null)
           <div class="member-benifits-bg">
             <div class="container">
+                <div>
+                    <div class="subscript-text-box">
+                        <p>Subscription</p>
+                        <h4>Member Benifits</h4>
+                         {{-- <a href="{{route('checkout')}}" style="text-decoration:none"><button>Buy Now</button></a> --}}
+                    </div>
+                </div>
                 <div class="row m-0 member-benifits-box">    
                     <div class="col-12 col-sm-6">
-                        <div class="subscript-text-box">
-                            <p>Subscription</p>
-                            <h4>Member Benifits</h4>
-                             <a href="{{route('checkout')}}" style="text-decoration:none"><button>Buy Now</button></a>
+                        <div class="standard-box-detail">
+                            <p class="free-access-heading">FREE ACCESS</p>
+                            <div>
+                                <ul>
+                                    <li>250 Jurisdictions </li>
+                                    <li>4000 pages </li>
+                                    <li>Global Gambling Revenues</li>
+                                    <li>Global Operators Database</li>    
+                                    <li>Key Markets Database</li>
+                                    <li>With Forecasts to 2025</li>   
+                                </ul>
+                            </div>   
                         </div>
+                        <a href="#" class="free-access-btn">  ACCESS NOW</a>
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="standard-box">
-                            <div class="standard-btnbox">
+                            {{-- <div class="standard-btnbox">
                                 <button>{{$membership->name}}</button>
-                            </div>
+                            </div> --}}
                             <div class="standard-box-detail">
-                                <p class="prise-text-year"><span class="standard-price"><i class="fa-solid fa-sterling-sign"></i>{{$membership->price}}</span>  /YEAR </p>
+                                <p class="prise-text-year"><span class="standard-price">{{$membership->price}}</span>  /YEAR </p>
                                 <div class="standard-prise-textdetail">
                                     <p>{!!$membership->short_description!!}</p>
                                 </div>
                             </div>
+                            <a href="#" class="pri-signupbtn">SIGN UP NOW</a>
                         </div>  
                     </div>
                 </div>
