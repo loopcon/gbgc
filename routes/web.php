@@ -158,6 +158,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('admin/parent_level', [App\Http\Controllers\Admin\LevelMasterController::class, 'fetchParentLevel']);
     //end levelmaster
 
+    //score
+    Route::get('admin/score', [App\Http\Controllers\Admin\ScoreController::class,'index'])->name('adminscore');
+    Route::get('admin/export-score',[App\Http\Controllers\Admin\ScoreController::class,'exportScore'])->name('export-scores');
+    Route::post('admin/import-score',[App\Http\Controllers\Admin\ScoreController::class,'importScore'])->name('import-scores');
+    //end score
+
 });
 
  $static = Cache::remember('static_pages', 10, function() { 

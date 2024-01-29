@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('membershipplans', function (Blueprint $table) {
             $table->id();
+            $table->string('access_status')->nullable();
             $table->string('name')->nullable();
             $table->string('price')->nullable();
             $table->string('details')->nullable();

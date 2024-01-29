@@ -36,7 +36,7 @@
                                 <form method="post" action="@if(isset($record)){{ route('datatext-update', array('id' => $record->id)) }}@else{{route('datatext-store')}}@endif" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" id="id" name="id" value="{{ isset($record->id) ? $record->id : '' }}">
-                                    <div class="form-group row">
+                                  <?php /*  <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">View<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="view" class="form-control select2" name="view" required="">
@@ -45,12 +45,12 @@
                                                 <option value="Local" @if((isset($record->view) && $record->view=="Local")) selected="selected" @endif>Local</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> */ ?>
                                     <div class="form-group row" id="step_1">
                                         <label class="col-sm-2 col-form-label">Region<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="region_id" class="form-control select2" name="region_id" required="">
-                                                <option value="" selected disabled>-- Select region --</option>
+                                                <option value="0" selected>-- Select region --</option>
                                                 @if($region->count())
                                                     @foreach($region as $data)
                                                         <option value="{{$data->id}}" @if(isset($record) && $data->id==$record->region_id) selected="selected" @endif>{{ucfirst($data->name)}}</option>
@@ -126,16 +126,15 @@
            
     
   @if(empty($record))
-    $('#step_1').hide();
     $('#step_2').hide();
     $('#step_3').hide();
     $('#step_4').hide();
     $('#step_5').hide();
     $('#step_6').hide();
 @else
-var view = $('#view').val();
-changeView(view);
-if(view!= "" && view!=0){
+var region_id = $('#region_id').val();
+changeRegion(region_id);
+if(region_id!= "" && region_id!=0){
     var main_category = $('#main_category').val();
     var selected_sub_category_1 = "{{$record->sub_category_1}}";
     changeMainCategory(main_category,selected_sub_category_1);
@@ -148,9 +147,9 @@ if(view!= "" && view!=0){
     changeSubCategory2(selected_sub_category_2,selected_level_4);
 }
 @endif
-     $('#view').change( function() {
-        var view = $(this).val();
-        changeView(view);
+     $('#region_id').change( function() {
+        var region_id = $(this).val();
+        changeRegion(region_id);
     });
     // $('#main_category').change( function() { 
     //     var main_category = $(this).val();
@@ -183,13 +182,11 @@ if(view!= "" && view!=0){
         // $("#level_4").html('');
     });
 });     
-function changeView(view){
-    if(view != "" && view!= 0){
-        $('#step_1').show();
+function changeRegion(region_id){
+    if(region_id != "" && region_id!= 0){
         $('#step_2').show();
     }
     else{
-        $('#step_1').hide();
         $('#step_2').hide();
         $('#step_3').hide();
         $('#step_4').hide();
