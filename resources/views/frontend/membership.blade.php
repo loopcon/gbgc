@@ -13,14 +13,45 @@
         <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">
         <img class="badal-imgset-2"  src="img/badal-img.svg" alt="">
     </div>
-</div> 
+</div>
 
 <div class="container">
     <div class="purchase-prise-box">
         <div class="purchase-prise-item">
+            <div class="">
+                <h4>{{$free_membership->name}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <p>{!!$free_membership->long_description!!}</p>
+    </div>
+
+
+    <div class="row membership-imganddetailtext">
+        <div class="col-12 col-md-6">
+            <img src="{{asset('img/membership-img.jpg')}}" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="standard-prise-textdetail">
+                <p>{!!$free_membership->short_description!!}</p>
+            </div>    
+        </div>
+    </div>
+    <div class="purchase-box">
+        <a href="#" style="text-decoration:none"><button class="purchase-now-btn">ACCESS NOW </button></a>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="purchase-prise-box">
+        <div class="purchase-prise-item">
+            <h4>PAID ACCESS
             <div class="purchase-prise-text">
-                <h4><i class="fa-solid fa-sterling-sign"></i> {{$paid_membership->price}}</h4>
-                <p>One-time fee, 30-day access to downloads.</p>
+                <h4><i class="fa-solid fa-sterling-sign"></i>{{$paid_membership->price}}</h4>
             </div>
         </div>
         <div class="purchase-prise-item">
