@@ -37,6 +37,16 @@
                                     @csrf
                                     <input type="hidden" id="id" name="id" value="">
                                     <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Access Status<span class="text-danger">*</span></label>
+                                        <div class="col-sm-10">
+                                            <select id="access_status" class="form-control select2" name="access_status" required="">
+                                                <option value="0">--Select access_status--</option>
+                                                <option value="free">Free</option>
+                                                <option value="paid">Paid</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Title</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="name"  id="title" class="form-control" placeholder="Title" value="" data-parsley-required-message="{{ __("This value is required.")}}" >

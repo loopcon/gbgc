@@ -7,7 +7,7 @@
         </div>
         <div class="faq-heading-worktextsection">
 
-            <h1>{{$membership->name}}</h1>
+            <h1>{{$paid_membership->name}}</h1>
             <a href="{{route('frontcontactus')}}" class="faq-contactbtn">Contact Us</a>
         </div>
         <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">
@@ -19,7 +19,7 @@
     <div class="purchase-prise-box">
         <div class="purchase-prise-item">
             <div class="purchase-prise-text">
-                <h4><i class="fa-solid fa-sterling-sign"></i> {{$membership->price}}</h4>
+                <h4><i class="fa-solid fa-sterling-sign"></i> {{$paid_membership->price}}</h4>
                 <p>One-time fee, 30-day access to downloads.</p>
             </div>
         </div>
@@ -31,7 +31,7 @@
     </div>
 
     <div>
-        <p>{!!$membership->long_description!!}</p>
+        <p>{!!$paid_membership->long_description!!}</p>
     </div>
 
 
@@ -42,7 +42,7 @@
 
         <div class="col-12 col-md-6">
             <div class="standard-prise-textdetail">
-                <p>{!!$membership->short_description!!}</p>
+                <p>{!!$paid_membership->short_description!!}</p>
             </div>    
         </div>
     </div>

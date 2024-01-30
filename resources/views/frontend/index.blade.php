@@ -116,7 +116,7 @@
     <!-- how it  work  end  -->
 
     <!-- member  benifits  start  -->
-    @if($membership != null)
+    @if($free_membership != null || $paid_membership != null)
           <div class="member-benifits-bg">
             <div class="container">
                 <div>
@@ -126,37 +126,35 @@
                          {{-- <a href="{{route('checkout')}}" style="text-decoration:none"><button>Buy Now</button></a> --}}
                     </div>
                 </div>
-                <div class="row m-0 member-benifits-box">    
+                <div class="row m-0 member-benifits-box"> 
+                    @if($free_membership != null)
                     <div class="col-12 col-sm-6">
                         <div class="standard-box-detail">
-                            <p class="free-access-heading">FREE ACCESS</p>
+                            <p class="free-access-heading">{{$free_membership->name}}</p>
                             <div>
-                                <ul>
-                                    <li>250 Jurisdictions </li>
-                                    <li>4000 pages </li>
-                                    <li>Global Gambling Revenues</li>
-                                    <li>Global Operators Database</li>    
-                                    <li>Key Markets Database</li>
-                                    <li>With Forecasts to 2025</li>   
-                                </ul>
+                                <p>{!!$free_membership->short_description!!}</p>
                             </div>   
                         </div>
                         <a href="#" class="free-access-btn">  ACCESS NOW</a>
                     </div>
+                    @endif
+                    @if($paid_membership != null)
                     <div class="col-12 col-sm-6">
                         <div class="standard-box">
                             {{-- <div class="standard-btnbox">
-                                <button>{{$membership->name}}</button>
+                                <button>{{$paid_membership->name}}</button>
                             </div> --}}
                             <div class="standard-box-detail">
-                                <p class="prise-text-year"><span class="standard-price">{{$membership->price}}</span>  /YEAR </p>
+                            <p class="free-access-heading">{{$paid_membership->name}}</p>
+                                <p class="prise-text-year"><span class="standard-price">€ {{$paid_membership->price}}</span>  /YEAR </p>
                                 <div class="standard-prise-textdetail">
-                                    <p>{!!$membership->short_description!!}</p>
+                                    <p>{!!$paid_membership->short_description!!}</p>
                                 </div>
                             </div>
-                            <a href="#" class="pri-signupbtn">SIGN UP NOW</a>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal" class="pri-signupbtn">SIGN UP NOW</a>
                         </div>  
                     </div>
+                    @endif
                 </div>
             </div>
           </div>   

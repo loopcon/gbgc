@@ -24,7 +24,8 @@ class FrontendController extends Controller
         $return_data['staticpage'] = StaticPage::get();
         $return_data['homepagebanner'] = HomepageBanner::first();
         $return_data['homepagereport'] = HomepageReport::get();
-        $return_data['membership'] = Membershipplan::first();
+        $return_data['free_membership'] = Membershipplan::where('access_status','=','free')->first();
+        $return_data['paid_membership'] = Membershipplan::where('access_status','=','paid')->first();
         return view('frontend.index', array_merge($return_data));
     }
 
@@ -43,7 +44,8 @@ class FrontendController extends Controller
     public function membership()
     {
         $return_data = array();
-        $return_data['membership'] = Membershipplan::first();
+        $return_data['free_membership'] = Membershipplan::where('access_status','=','free')->first();
+        $return_data['paid_membership'] = Membershipplan::where('access_status','=','paid')->first();
         return view('frontend.membership', array_merge($return_data));
     }
     

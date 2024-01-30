@@ -68,10 +68,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                        <th>{{__('Title')}}</th>
-                                                        <th>{{__('Price')}}</th>
-                                                        <th>{{__('Action')}}</th>
-                                                    </tr>
+                                                    <th>{{__('Access Status')}}</th>
+                                                    <th>{{__('Title')}}</th>
+                                                    <th>{{__('Price')}}</th>
+                                                    <th>{{__('Action')}}</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
@@ -82,6 +83,7 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
+                                                            <td>{{$data->access_status}} </td>
                                                             <td>{{$data->name}} </td>
                                                             <td> {{$data->price}} </td>
                                                             <td><a href="{{ route('membershipplanedit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>

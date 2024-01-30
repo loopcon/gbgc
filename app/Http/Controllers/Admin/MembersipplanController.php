@@ -49,6 +49,7 @@ class MembersipplanController extends Controller
     public function update(Request $request)
     {
         $membershipplan= Membershipplan::find($request->id);
+        $membershipplan->access_status=$request->input('access_status');
         $membershipplan->name=$request->input('name');
         $membershipplan->short_description=$request->input('short_description');
         $membershipplan->long_description=$request->input('long_description');

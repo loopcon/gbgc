@@ -31,7 +31,7 @@
                                 <li><a href="#">Reports</a></li>
                                 <li><a href="#">News</a></li>
                                 @if(!Auth::guard('customers')->user())
-                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#siguploginModal">Sign Up / Login</a></li>
+                                <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal">Sign Up / Login</a></li>
                                 @else
                                 <li><a href="{{route('myaccount')}}">My Account</a></li>
                                 @endif
