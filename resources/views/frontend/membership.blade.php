@@ -10,8 +10,8 @@
             <h1>{{$paid_membership->name}}</h1>
             <a href="{{route('frontcontactus')}}" class="faq-contactbtn">Contact Us</a>
         </div>
-        <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">
-        <img class="badal-imgset-2"  src="img/badal-img.svg" alt="">
+        <img class="badal-imgset-1"  src="{{asset('img/badal-img-2.svg')}}" alt="">
+        <img class="badal-imgset-2"  src="{{asset('img/badal-img.svg')}}" alt="">
     </div>
 </div>
 
