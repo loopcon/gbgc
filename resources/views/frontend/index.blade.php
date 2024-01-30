@@ -131,6 +131,7 @@
                     <div class="col-12 col-sm-6">
                         <div class="standard-box-detail">
                             <p class="free-access-heading">{{$free_membership->name}}</p>
+                            <p>ACCESS NOW FOR</p>
                             <div>
                                 <p>{!!$free_membership->short_description!!}</p>
                             </div>   
