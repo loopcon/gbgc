@@ -52,7 +52,7 @@ class FrontendController extends Controller
     public function checkout()
     {
         $return_data = array();
-        $return_data['membership'] = Membershipplan::first();
+        $return_data['membership'] = Membershipplan::where('access_status','=','paid')->first();
         return view('frontend.checkout', array_merge($return_data));
     }
 
