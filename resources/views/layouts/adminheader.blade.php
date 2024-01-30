@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/sweetalert/sweetalert.css') }}">
-
+<link class="js-stylesheet" href="{{ asset('plugins/parsley/parsley.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/bootstrap/css/bootstrap.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('admin/files/assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
@@ -34,6 +34,7 @@
 
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/css/pages.css')}}">
+@yield('css')
 </head>
 <body>
     <div class="loader-bg">
@@ -223,6 +224,15 @@
                                         </a>
                                     </li>
 
+                                    <li class="{{ (request()->is('admin/emailtemplates*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('admin-emailtemplates')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Email Templates</span>
+                                        </a>
+                                    </li>
+
                                     <li class="pcoded-hasmenu {{ (request()->is('admin/generalsetting*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
@@ -277,7 +287,7 @@
     </div>
 
     <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
-
+    <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
     <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
 
     <script type="text/javascript" src="{{asset('admin/files/bower_components/jquery/js/jquery.min.js')}}"></script>

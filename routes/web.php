@@ -164,6 +164,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('admin/import-score',[App\Http\Controllers\Admin\ScoreController::class,'importScore'])->name('import-scores');
     //end score
 
+    //emailtemplates
+    Route::get('admin/emailtemplates', [App\Http\Controllers\Admin\EmailTemplateController::class,'index'])->name('admin-emailtemplates');
+    Route::post('admin/emailtemplate-update',[App\Http\Controllers\Admin\EmailTemplateController::class, 'update'])->name('admin-emailtemplate-update');
+    //end email-template
 });
 
  $static = Cache::remember('static_pages', 10, function() { 
