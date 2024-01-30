@@ -132,7 +132,7 @@
                         <div class="standard-box-detail">
                             <p class="free-access-heading">{{$free_membership->name}}</p>
                             <p>ACCESS NOW FOR</p>
-                            <div>
+                            <div class="free-text-ullisttext">
                                 <p>{!!$free_membership->short_description!!}</p>
                             </div>   
                         </div>
