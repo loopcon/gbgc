@@ -145,8 +145,7 @@
                                 <button>{{$paid_membership->name}}</button>
                             </div> --}}
                             <div class="standard-box-detail">
-                            <p class="free-access-heading">{{$paid_membership->name}}</p>
-                                <p class="prise-text-year"><span class="standard-price">€ {{$paid_membership->price}}</span>  /YEAR </p>
+                                <p class="prise-text-year"><span class="standard-price">£ {{$paid_membership->price}}</span> - 12 months access</p>
                                 <div class="standard-prise-textdetail">
                                     <p>{!!$paid_membership->short_description!!}</p>
                                 </div>
