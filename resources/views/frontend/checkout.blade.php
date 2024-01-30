@@ -9,8 +9,8 @@
                 <h1>Checkout</h1>
                 <a href="#" class="faq-contactbtn">Contact Us</a>
             </div>
-            <img class="badal-imgset-1"  src="img/badal-img-2.svg" alt="">
-            <img class="badal-imgset-2"  src="img/badal-img.svg" alt="">
+            <img class="badal-imgset-1"  src="{{asset('img/badal-img-2.svg')}}" alt="">
+            <img class="badal-imgset-2"  src="{{asset('img/badal-img.svg')}}" alt="">
         </div>
     </div> 
 
@@ -20,7 +20,7 @@
         </div>
 
         <div class="rerurn-customerbox">
-            <span><i class="fa-regular fa-calendar"></i></span> <p>Returning customer? </p> <a href="javascript:void(0)" class="clicktologinform">Click here to login</a>
+            <span><i class="fa-regular fa-calendar"></i></span> <p>Returning customer? </p> <a  href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal" class="clicktologinform">Click here to login</a>
         </div>
 
         <div class="login-click-show">
@@ -81,10 +81,12 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Country/Region <span>*</span></label>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="0" selected>Open this select menu</option>
+                            @if($region->count())
+                                @foreach($region as $data)
+                                    <option value="{{$data->id}}" @if(isset($record) && $data->id==$record->region_id) selected="selected" @endif>{{ucfirst($data->name)}}</option>
+                                @endforeach
+                            @endif
                           </select>
                     </div>
 
@@ -207,7 +209,7 @@
                 </div>
             </div>
             <div class="your-personal-databox">
-                <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#">privacy policy.</a></p>
+                <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="{{route($staticpage->slug)}}">privacy policy.</a></p>
                 <a href="#" class="place-order-btn"> PLACE ORDER </a>
             </div>
         </div>

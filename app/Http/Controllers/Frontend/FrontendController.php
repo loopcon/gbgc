@@ -13,6 +13,7 @@ use App\Models\Contactus;
 use App\Models\HomepageBanner;
 use App\Models\HomepageReport;
 use App\Models\Membershipplan;
+use App\Models\Region;
 use Mail;
 use Auth;
 
@@ -52,6 +53,8 @@ class FrontendController extends Controller
     public function checkout()
     {
         $return_data = array();
+        $return_data['region'] = Region::get();
+        $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
         $return_data['membership'] = Membershipplan::where('access_status','=','paid')->first();
         return view('frontend.checkout', array_merge($return_data));
     }
