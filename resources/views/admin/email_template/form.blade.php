@@ -117,7 +117,11 @@
             $('#'+tab).addClass('show');
             $('.list-group-item-action').removeClass('active');
             $(this).addClass('active');
-        });   
+        });  
+
+        CKEDITOR.replace( {{$value->label}}, {
+            filebrowserUploadUrl: "img/" 
+        } ); 
 });
     
 </script>
