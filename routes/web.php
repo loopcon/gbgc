@@ -78,10 +78,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     //customer
     Route::get('admin/user', [App\Http\Controllers\Admin\CustomerController::class,'index'])->name('user');
-    Route::get('admin/user-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('user-delete');
     Route::get('admin/user-change-status/{id}/{status}',[App\Http\Controllers\Admin\CustomerController::class,'changeStatus'])->name('user-change-status');
     Route::get('admin/user-password-create/{id}',[App\Http\Controllers\Admin\CustomerController::class, 'createIdPassword'])->name('user-password-create');
     Route::post('admin/password-update/{id}',[App\Http\Controllers\Admin\CustomerController::class, 'updatePassword'])->name('password-update');
+     Route::get('admin/user-cancel/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'cancelRequest'])->name('user-cancel');
+    Route::get('admin/user-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('user-delete');
     //endcustomer
 
     //general-setting

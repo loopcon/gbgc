@@ -15,22 +15,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::get();
+        $customer = Customer::wherenot('status',4)->get();
         $return_data['customer'] = $customer;
         return view('admin.customer.list', array_merge($return_data));
     }
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(string $id)
-    // {
-    //      $customer = Customer::where('id', $id)->delete();
-    //     if($customer) {
-    //         return redirect('admin/user')->with('success', trans('User Deleted Successfully!'));
-    //     } else {
-    //         return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
-    //     }
-    // }
 
     public function changeStatus($id, $status)
     {
@@ -78,6 +69,26 @@ class CustomerController extends Controller
 
         if($customer) {
             return redirect('admin/user')->with('success', trans('User ID Password Created Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
+
+    public function cancelRequest(string $id)
+    {
+         $customer = Customer::where('id', $id)->update(array('status' => 3));
+        if($customer) {
+            return redirect('admin/user')->with('success', trans('User Request Cacnceled Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
+
+    public function destroy(string $id)
+    {
+         $customer = Customer::where('id', $id)->update(array('status' => 4));
+        if($customer) {
+            return redirect('admin/user')->with('success', trans('User Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

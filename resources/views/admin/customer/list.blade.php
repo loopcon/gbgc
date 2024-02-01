@@ -96,14 +96,20 @@
                                                             <td >  {{$data->access_type}} </td>
                                                             <td > 
                                                                 @if($data->status==0) 
-                                                                    <a href='javascript:void(0);' data-href="{{route('user-change-status', array($data->id, '1'))}} " rel='tooltip' title='Approved' class='btn btn-danger btn-sm mt-1 status'>Pending</a>
+                                                                    <a href='javascript:void(0);' data-href="{{route('user-change-status', array($data->id, '1'))}} " rel='tooltip' title='Approve Request' class='btn btn-danger btn-sm mt-1 status'>Pending</a>
+                                                                @elseif($data->status==3) 
+                                                                    Canceled
                                                                 @else
-                                                                    <button type="button" class='btn btn-success btn-sm mt-1'>Approved</button>
+                                                                   <button type="button" class='btn btn-success btn-sm mt-1'>Approved</button><br><br>
+                                                                   <a href='javascript:void(0);' data-href="{{ route('user-cancel',$data->id) }}" rel='tooltip' class="btn btn-secondary cancel" title="Cancel Request"><i class="fa fa-times  "></i></a>
+                                                                   <a href='javascript:void(0);' data-href="{{ route('user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete User"><i class="fa fa-trash"></i></a>
                                                                 @endif
                                                             </td>
                                                             <td>
                                                                 @if($data->status==1) 
                                                                     <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Create User Id-Password">Create Id Password</a>
+                                                                @elseif($data->status==3)
+                                                                    <button type="button" class='btn text-light btn-sm mt-1' style="background:#4099ff">Request is Canceled</button>    
                                                                 @else
                                                                     <button type="button" class='btn text-light btn-sm mt-1' style="background:#4099ff">Request is Pending</button>
                                                                 @endif
@@ -133,16 +139,51 @@
             var href = $(this).data('href');
             swal({
                 title: "",
-                text: "Are you sure? "+title+" this user!",
+                text: "Are you sure? "+title+" !",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-info",
-                confirmButtonText: "Yes, "+title+" it!",
+                confirmButtonText: "Yes, "+title+" !",
                 closeOnConfirm: true
             }, function() {
                 location.href = href;
             });
         });
+
+        $(document).on('click', '.delete', function() {
+            var href = $(this).data('href');
+            swal({
+                title: "",
+                text: "{{__('Are you sure? Delete this User!')}}",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-info",
+                confirmButtonText: "{{__('Yes, delete it!')}}",
+                cancelButtonText: "{{__('Cancel')}}",
+                closeOnConfirm: true
+            },
+            function(){
+                location.href = href;
+            });
+        });
+
+        $(document).on('click', '.cancel', function() {
+            var href = $(this).data('href');
+            swal({
+                title: "",
+                text: "{{__('Are you sure? Cancel this User Request!')}}",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-info",
+                confirmButtonText: "{{__('Yes, Cancel it!')}}",
+                cancelButtonText: "{{__('No')}}",
+                closeOnConfirm: true
+            },
+            function(){
+                location.href = href;
+            });
+        });
+
     });
 </script>
 @endsection

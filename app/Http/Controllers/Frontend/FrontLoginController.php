@@ -63,7 +63,7 @@ class FrontLoginController extends Controller
         foreach ($fields as $value) {
             $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : null;
         }
-        $customer->access_type = 0;
+        $customer->email_verify = 0;
         $customer->access_type = "free";
         $customer->save();
 
@@ -104,9 +104,9 @@ class FrontLoginController extends Controller
         
         $user  = $request->get('email1');
         $pass = $request->get('password');
-        
-        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""]])->first();
-        
+
+        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""],['email_verify', '=', 1],['status', '=', 1]])->first();
+
         if(isset($customers)){
             if (Auth::guard('customers')->attempt(['email' => $request->email1, 'password' => $request->password])) 
             {
@@ -124,7 +124,7 @@ class FrontLoginController extends Controller
             } 
         }
         else{
-            return redirect('/')->with('alert-danger', 'Username and password are Invalid.');
+            return redirect('/')->with('alert-danger', 'Your Account not Activeted by Admin');
         }
          
         
@@ -147,8 +147,11 @@ class FrontLoginController extends Controller
     public function updateMyAccount(Request $request)
     {
         $customer_detail = Customer::find($request->id);
-        $customer_detail->first_name = $request->input('first_name');
-        $customer_detail->last_name = $request->input('last_name');
+        $customer_detail->name = $request->input('name');
+        $customer_detail->job_title = $request->input('job_title');
+        $customer_detail->bussiness_name = $request->input('bussiness_name');
+        $customer_detail->bussiness_size = $request->input('bussiness_size');
+        $customer_detail->phone = $request->input('phone');
         $customer_detail->email = $request->input('email');
 
         // if ($request->password) {

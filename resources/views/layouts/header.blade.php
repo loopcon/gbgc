@@ -227,7 +227,7 @@
                                                     <option value="0" selected disabled>SELECT BUSSINESS SIZE</option>
                                                     <option value="small">Small</option>
                                                     <option value="medium">Medium-sized</option>
-                                                    <option value="medium">Large</option>
+                                                    <option value="large">Large</option>
                                                 </select>
                                             </div>
                                                 @if ($errors->has('bussiness_size')) <div class="text-danger">{{ $errors->first('bussiness_size') }}</div>@endif
