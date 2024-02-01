@@ -94,26 +94,27 @@
                                                             <td >  {{$data->bussiness_name}} </td>
                                                             <td >  {{$data->bussiness_size}} </td>
                                                             <td >  {{$data->access_type}} </td>
-                                                            <td > 
-                                                                @if($data->status==0) 
-                                                                    <a href='javascript:void(0);' data-href="{{route('user-change-status', array($data->id, '1'))}} " rel='tooltip' title='Approve Request' class='btn btn-danger btn-sm mt-1 status'>Pending</a>
-                                                                @elseif($data->status==3) 
-                                                                    Canceled
-                                                                @else
-                                                                   <button type="button" class='btn btn-success btn-sm mt-1'>Approved</button><br><br>
-                                                                   <a href='javascript:void(0);' data-href="{{ route('user-cancel',$data->id) }}" rel='tooltip' class="btn btn-secondary cancel" title="Cancel Request"><i class="fa fa-times  "></i></a>
-                                                                   <a href='javascript:void(0);' data-href="{{ route('user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete User"><i class="fa fa-trash"></i></a>
-                                                                @endif
-                                                            </td>
                                                             <td>
                                                                 @if($data->status==1) 
-                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Create User Id-Password">Create Id Password</a>
+                                                                    Request is Approved<br>
+                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light btn-sm mt-1" style="background:#4099ff" title="Create User Id-Password">Create Id Password</a>
                                                                 @elseif($data->status==3)
-                                                                    <button type="button" class='btn text-light btn-sm mt-1' style="background:#4099ff">Request is Canceled</button>    
+                                                                   Request is Canceled    
                                                                 @else
-                                                                    <button type="button" class='btn text-light btn-sm mt-1' style="background:#4099ff">Request is Pending</button>
+                                                                    Request is Pending
                                                                 @endif
                                                              </td>
+                                                             <td > 
+                                                                @if($data->status==0) 
+                                                                    <a href='javascript:void(0);' data-href="{{route('user-change-status', array($data->id, '1'))}} " rel='tooltip' title='Approve Request' class='btn text-light btn-sm mt-1 status' style="background:#4099ff"><i class="fa fa-clock-o"></i></a>
+                                                                    <a href='javascript:void(0);' data-href="{{ route('user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm mt-1 delete" title="Delete User"><i class="fa fa-trash"></i></a>
+                                                                @elseif($data->status==3) 
+                                                                    <a href='javascript:void(0);' data-href="{{ route('user-delete',$data->id) }}" rel='tooltip' class="btn btn-sm mt-1 btn-danger delete" title="Delete User"><i class="fa fa-trash"></i></a>
+                                                                @else
+                                                                   <a href='javascript:void(0);' data-href="{{ route('user-cancel',$data->id) }}" rel='tooltip' class="btn btn-secondary btn-sm mt-1 cancel" title="Cancel Request"><i class="fa fa-times  "></i></a>
+                                                                   <a href='javascript:void(0);' data-href="{{ route('user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm mt-1 delete" title="Delete User"><i class="fa fa-trash"></i></a>
+                                                                @endif
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 @endif

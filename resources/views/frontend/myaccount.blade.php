@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-12">
                     <h2 class="get-in-touchtext">Profile</h2>
-                    <h5>Hi,{{$customer_detail->first_name}} here you can see your account details.</h5>
+                    <h5>Hi,{{$customer_detail->name}} here you can see your account details.</h5>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li class="text-danger">{{ $error }}</li>
