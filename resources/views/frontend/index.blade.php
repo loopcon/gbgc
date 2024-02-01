@@ -136,7 +136,7 @@
                                 <p>{!!$free_membership->short_description!!}</p>
                             </div>   
                         </div>
-                        <a href="#" class="free-access-btn">  ACCESS NOW</a>
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#registerModal" class="free-access-btn">  ACCESS NOW</a>
                     </div>
                     @endif
                     @if($paid_membership != null)

@@ -31,7 +31,7 @@
                                 <li><a href="#">Reports</a></li>
                                 <li><a href="#">News</a></li>
                                 @if(!Auth::guard('customers')->user())
-                                <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal">Sign Up / Login</a></li>
+                                <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal">Login</a></li>
                                 @else
                                 <li><a href="{{route('myaccount')}}">My Account</a></li>
                                 @endif
@@ -68,7 +68,7 @@
                         <div class="login-register-form-box">
                             <div class="login-register-box">
                                 <a href="#" class="login-text login-active">Login</a>
-                                <a href="#" class="register-text ">Register</a>
+                              <?php /*  <a href="#" class="register-text ">Register</a> */ ?>
                             </div>
                             <div>
                             
@@ -76,12 +76,14 @@
                                     @csrf
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-plus"></i></span>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" aria-label="email" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="email1" name="email1" placeholder="Email" aria-label="email" aria-describedby="basic-addon1"> 
                                     </div>
+                                    @if ($errors->has('email1')) <div class="text-danger">{{ $errors->first('email1') }}</div>@endif
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
                                         <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="PASSWORD" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
+                                    @if ($errors->has('password')) <div class="text-danger">{{ $errors->first('password') }}</div>@endif
                                     <div class="mb-3 form-check">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1"> Remember me</label>
@@ -90,71 +92,71 @@
                                     <a href="{{route('customer-checklogin')}}"><button class="login-form-signin">SIGN IN</button></a>
                                 </form>
                             </div>
-                            <div>
-                            <form method="POST" id="submit_form" class="register-form">
-                                @csrf
-                            <div class="row">
+                           <?php /* <div>
+                                <form method="POST" id="submit_form" class="register-form">
+                                    @csrf
+                                    <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                        <input type="text" id="first_name" name="first_name" class="form-control" placeholder="FIRST NAME" aria-label="Username" aria-describedby="basic-addon1"> 
+                                                    </div>
+                                                    <span class="firstname" id="firstname"></span>
+                                                </div>
                                         <div class="col-12 col-md-6">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
-                                                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="FIRST NAME" aria-label="Username" aria-describedby="basic-addon1"> 
-                                             </div>
-                                              <span class="firstname" id="firstname"></span>
+                                                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="LAST NAME" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                            <span class="lastname" id="lastname"></span>
                                         </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
-                                        <input type="text" id="last_name" name="last_name" class="form-control" placeholder="LAST NAME" aria-label="Username" aria-describedby="basic-addon1">
-                                     </div>
-                                     <span class="lastname" id="lastname"></span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="EMAIL" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
-                                    <span class="emailerror" id="emailerror"></span>
-                                </div>    
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
-                                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="EMAIL" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                            <span class="emailerror" id="emailerror"></span>
+                                        </div>    
                                     </div>
-                                    <span class="password" id="password"></span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
-                                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" aria-label="Username" aria-describedby="basic-addon1">
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                                                <input type="password" id="password" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                            <span class="password" id="password"></span>
+                                        </div>
                                     </div>
-                                    <span class="confirmpassword" id="confirmpassword"></span>
-                                </div>
-                            </div>
-                            <div class="mb-1 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="subscribe" value="1">
-                                <label class="form-check-label" for="exampleCheck1"> Subscribe to our newsletter </label><br>
-                                <span id="errorsubscribe"></span>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="accept" value="1">
-                                <label class="form-check-label" for="exampleCheck1">I accept the Terms of Service and Privacy Policy</label><br>
-                                <span id="accept"></span>
-                            </div>
-                            <span id="registrationsuccessmessage" style="color:green;"></span>
-                            <span id="registrationwarningmessage" style="color:red;"></span>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                                                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" aria-label="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                            <span class="confirmpassword" id="confirmpassword"></span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-1 form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="subscribe" value="1">
+                                        <label class="form-check-label" for="exampleCheck1"> Subscribe to our newsletter </label><br>
+                                        <span id="errorsubscribe"></span>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="accept" value="1">
+                                        <label class="form-check-label" for="exampleCheck1">I accept the Terms of Service and Privacy Policy</label><br>
+                                        <span id="accept"></span>
+                                    </div>
+                                    <span id="registrationsuccessmessage" style="color:green;"></span>
+                                    <span id="registrationwarningmessage" style="color:red;"></span>
 
-                            <button type="button" class="login-form-signin register-btn" id="save_ajax_data">SIGN IN</button>
-                        </form>
+                                    <button type="button" class="login-form-signin register-btn" id="save_ajax_data">SIGN IN</button>
+                                </form>
+                            </div> */ ?>
 
-                            </div>
                         </div>
                     </div>
               </div>
@@ -166,6 +168,93 @@
           </div>
         </div>
     </div>
+<!-- Login popup end -->
+<!-- Register popup -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog siguplogin-dailog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+              <div class="row m-0">
+                    <div class="col-12 col-md-5 p-0">
+                        <img src="" class="img-fluid login-img-popup" alt="">
+                    </div>
+                    <div class="col-12 col-md-7 p-0">
+                        <div class="login-register-form-box">
+                            <div>
+                                <form method="post" action="{{route('registration')}}" class="register-form1" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="name" name="name" class="form-control" placeholder="NAME" aria-label="Username" aria-describedby="basic-addon1"> 
+                                                @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="job_title" name="job_title" class="form-control" placeholder="JOB TITLE" aria-label="Username" aria-describedby="basic-addon1">
+                                                @if ($errors->has('job_title')) <div class="text-danger">{{ $errors->first('job_title') }}</div>@endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="bussiness_name" name="bussiness_name" class="form-control" placeholder="BUSSINESS NAME" aria-label="Username" aria-describedby="basic-addon1"> 
+                                                @if ($errors->has('bussiness_name')) <div class="text-danger">{{ $errors->first('bussiness_name') }}</div>@endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-12 col-md-6" >
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                                <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="PHONE NUMBER" id="phone" name="phone">
+                                                @if ($errors->has('phone')) <div class="text-danger">{{ $errors->first('phone') }}</div>@endif
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <select id="bussiness_size" class="form-control select2 text-secondary" name="bussiness_size" required="">
+                                                    <option value="0" selected disabled>SELECT BUSSINESS SIZE</option>
+                                                    <option value="small">Small</option>
+                                                    <option value="medium">Medium-sized</option>
+                                                    <option value="medium">Large</option>
+                                                </select>
+                                            </div>
+                                                @if ($errors->has('bussiness_size')) <div class="text-danger">{{ $errors->first('bussiness_size') }}</div>@endif
+                                        </div>    
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="EMAIL" aria-label="Username" aria-describedby="basic-addon1"> 
+                                            </div>
+                                            @if ($errors->has('email')) <div class="text-danger">{{ $errors->first('email') }}</div>@endif
+                                        </div>    
+                                    </div>
+                                    <button type="submit" class="login-form-signin register-btn">Register</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Register Pop up end -->
  @yield('content')
     <!-- footer  start  -->
     <footer class="footer-bg">
@@ -389,9 +478,20 @@
             @if(Session::get('alert-danger'))
                 $("#siguploginModal").modal('show');
             @endif
-            @if(isset($errors) && ($errors->has('first_name') || $errors->has('last_name') || $errors->has('password') || $errors->has('confirm_password')))
+            @if(isset($errors) && $errors->has('email1') || $errors->has('password'))
                 $("#siguploginModal").modal('show');
-                $('.register-text').click();
+            @endif
+            // @if(isset($errors) && ($errors->has('first_name') || $errors->has('last_name') || $errors->has('password') || $errors->has('confirm_password')))
+            //     $("#siguploginModal").modal('show');
+            //     $('.register-text').click();
+            // @endif
+
+            @if(Session::get('registration-error'))
+                $("#registerModal").modal('show');
+            @endif
+            
+            @if(isset($errors) &&($errors->has('name') || $errors->has('job_titlename') || $errors->has('business_name') || $errors->has('business_size') || $errors->has('email') || $errors->has('phone')))
+                $("#registerModal").modal('show');
             @endif
     
 

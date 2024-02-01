@@ -69,6 +69,12 @@
                                                     <th>{{__('Sr No.')}}</th>
                                                         <th>{{__('Name')}}</th>
                                                         <th>{{__('Email')}}</th>
+                                                        <th>{{__('Phone')}}</th>
+                                                        <th>{{__('Job Title')}}</th>
+                                                        <th>{{__('Bussiness Name')}}</th>
+                                                        <th>{{__('Bussiness Size')}}</th>
+                                                        <th>{{__('Access Type')}}</th>
+                                                        <th>{{__('Status')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
@@ -81,10 +87,26 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->first_name}} </td>
+                                                            <td >  {{$data->name}} </td>
                                                             <td >  {{$data->email}} </td>
+                                                            <td >  {{$data->phone}} </td>
+                                                            <td >  {{$data->job_title}} </td>
+                                                            <td >  {{$data->bussiness_name}} </td>
+                                                            <td >  {{$data->bussiness_size}} </td>
+                                                            <td >  {{$data->access_type}} </td>
+                                                            <td > 
+                                                                @if($data->status==0) 
+                                                                    <a href='javascript:void(0);' data-href="{{route('user-change-status', array($data->id, '1'))}} " rel='tooltip' title='Approved' class='btn btn-danger btn-sm mt-1 status'>Pending</a>
+                                                                @else
+                                                                    <button type="button" class='btn btn-success btn-sm mt-1'>Approved</button>
+                                                                @endif
+                                                            </td>
                                                             <td>
-                                                                <a href='javascript:void(0);' data-href="{{ route('user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                                @if($data->status==1) 
+                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Create User Id-Password">Create Id Password</a>
+                                                                @else
+                                                                    <button type="button" class='btn text-light btn-sm mt-1' style="background:#4099ff">Request is Pending</button>
+                                                                @endif
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -106,19 +128,18 @@
 @section('javascript')
 <script>
     $(document).ready(function() {
-        $(document).on('click', '.delete', function() {
+        $(document).on('click', '.status', function() {
+            var title = $(this).attr('title');
             var href = $(this).data('href');
             swal({
                 title: "",
-                text: "{{__('Are you sure? Delete this User!')}}",
+                text: "Are you sure? "+title+" this user!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-info",
-                confirmButtonText: "{{__('Yes, delete it!')}}",
-                cancelButtonText: "{{__('Cancel')}}",
+                confirmButtonText: "Yes, "+title+" it!",
                 closeOnConfirm: true
-            },
-            function(){
+            }, function() {
                 location.href = href;
             });
         });

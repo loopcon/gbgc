@@ -16,87 +16,119 @@ class FrontLoginController extends Controller
     
     public function registration(Request $request)
     {
-        // dd($request->all());
-        $validator = Validator::make($request->all(), [
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'accept' => ['required'],
-            'email' => ['required', 'unique:customers,email', 'email'],
-            'password' => ['required', 'required_with:confirm_password', 'same:confirm_password', 'min:8'],
-            'confirm_password' => ['required', 'min:8'],
-        ], [
-            'required' => trans('The :attribute field is required.'),
-            'same' => trans('Password and Confirm Password must be the same.'),
-        ]);
+        //for old register
 
-        if ($validator->fails()) {
-            return response()->json(['status' => 0, 'errors' => $validator->errors()]);
-        }
-        if($request->subscribe ==1)
-        {   
-            $checknewsletter=NewsLetter::where('newsletter_email',$request->email)->first();
-            if($checknewsletter ==null)
-            {
-                $newsletter=new NewsLetter();
-                $newsletter->newsletter_email=$request->input('email');
-                $newsletter->save(); 
-            }else{
-               return response()->json(['status' => 0, 'errorsubscribe' => 'You are already Subscribe']);
-            }
-        }
-        $password = Hash::make($request->password);
+        // dd($request->all());
+        // $validator = Validator::make($request->all(), [
+        //     'name' => ['required'],
+        //     'job_title' => ['required'],
+        //     'bussiness_name' => ['required'],
+        //     'bussiness_size' => ['required'],
+        //     'email' => ['required', 'unique:customers,email', 'email'],
+        //     'phone' => ['required', 'numeric','digits:10'],
+        // ], [
+        //     'required' => trans('The :attribute field is required.'),
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return response()->json(['status' => 0, 'errors' => $validator->errors()]);
+        // }
+        // if($request->subscribe ==1)
+        // {   
+        //     $checknewsletter=NewsLetter::where('newsletter_email',$request->email)->first();
+        //     if($checknewsletter ==null)
+        //     {
+        //         $newsletter=new NewsLetter();
+        //         $newsletter->newsletter_email=$request->input('email');
+        //         $newsletter->save(); 
+        //     }else{
+        //        return response()->json(['status' => 0, 'errorsubscribe' => 'You are already Subscribe']);
+        //     }
+        // }
+
+        $this->validate($request, [
+                'name' => ['required'],
+                'job_title' => ['required'],
+                'bussiness_name' => ['required'],
+                'bussiness_size' => ['required'],
+                'email' => ['required', 'unique:customers,email', 'email'],
+                'phone' => ['required', 'numeric','digits:10'],
+            ],[
+                'required'  => trans('The :attribute field is required.')
+            ]
+        );
+
         $customer = new Customer();
-        $fields = ['first_name', 'last_name', 'email'];
+        $fields = ['name', 'job_title', 'bussiness_name','bussiness_size','email','phone'];
         foreach ($fields as $value) {
             $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : null;
         }
-        $customer->password = $password;
+        $customer->access_type = 0;
+        $customer->access_type = "free";
         $customer->save();
-        if ($customer) {
-            return response()->json(['status' => 1]);
-        } 
+
+        // mail-send to admin for accept ruser request.
+        // $data = [
+        //     'email'   => $request->input('email'), 
+        // ];
+
+        // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
+        //     $message->to(gbgc@gmail.com, 'Admin of GBGC')->subject
+        //         ('Hello Admin, New user create account check it');
+        //     $message->from($data['email'],'Customer of GBGC');
+        // });
+
+        // for old register
+
+        // if ($customer) {
+        //     return response()->json(['status' => 1]);
+        // } 
+        if($customer){
+            return redirect('/')->with('alert-success', 'Request Sent Successfully!');
+        } else {
+            return redirect()->with('registration-error', 'Something went wrong please try again...');
+        }
     }
 
     public function checklogin(Request $request)
     {
+            
+        $this->validate($request,[
+        'email1'   => 'required',
+        'password'  => 'required'
+        ],$messages = [
+            'email1.required' => 'Email is required!',
+            'password.required' => 'Password is required!',
+        ]);
+
         
-     $this->validate($request,[
-      'email'   => 'required',
-      'password'  => 'required'
-     ],$messages = [
-        'email.required' => 'Email is required!',
-        'password.required' => 'Password is required!',
-     ]);
+        $user  = $request->get('email1');
+        $pass = $request->get('password');
+        
+        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""]])->first();
+        
+        if(isset($customers)){
+            if (Auth::guard('customers')->attempt(['email' => $request->email1, 'password' => $request->password])) 
+            {
+                $customer_id = Auth::guard('customers')->id();
+                $customer_detail = Customer::where([['id', '=', $customer_id]])->first();
+                Cookie::queue(Cookie::forget('email'));
+                Cookie::queue(Cookie::forget('password'));
 
-     
-      $user  = $request->get('email');
-      $pass = $request->get('password');
-      
-    $customers = Customer::where([['email', '=', $request->email]])->first();
-    
-    //  foreach ($customers as $customer) {
-    //     $email = $customer->email;
-    //     $password = $customer->password;
-    //  }
-     
-    // print_r($olddata);print_r($user_data);exit;
-    //  if(isset($customers) && $user == $customers->email && $pass == $customers->password)
-    if (Auth::guard('customers')->attempt(['email' => $request->email, 'password' => $request->password])) 
-     {
-        $customer_id = Auth::guard('customers')->id();
-        $customer_detail = Customer::where([['id', '=', $customer_id]])->first();
-        Cookie::queue(Cookie::forget('email'));
-        Cookie::queue(Cookie::forget('password'));
-
-        session()->put('customerInfo', $customer_detail);
-        return redirect('myaccount')->with('alert-success', 'You are now logged in.');
-     }
-     else
-     {
-        return redirect('/')->with('alert-danger', 'Username and pasword are Invalid.');
-     }
-
-    }
+                session()->put('customerInfo', $customer_detail);
+                return redirect('myaccount')->with('alert-success', 'You are now logged in.');
+            }
+            else
+            {
+                return redirect('/')->with('alert-danger', 'Username and password are Invalid.');
+            } 
+        }
+        else{
+            return redirect('/')->with('alert-danger', 'Username and password are Invalid.');
+        }
+         
+        
+    }  
 
     public function logout()
     {
