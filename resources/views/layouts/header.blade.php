@@ -291,7 +291,7 @@
                             <li><a href="#">Reports</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="{{route('frontcontactus')}}">Contact</a></li>
-                            <li><a href="{{route('faq')}}">Faqs</a></li>
+                            <li><a href="{{route('faq')}}">FAQ's</a></li>
 
                             @foreach($data1 as $staticpage)
                             <li><a href="{{ route($staticpage->slug) }}">{{$staticpage->title}}</a></li>
@@ -307,9 +307,9 @@
 
         <div class="container">
             <div class="footer-copyrighttext">
-                <p>Copyright © 2024 GBGC. All Rights Reserved.</p>
+                <p style="font-size:13px">Copyright © 2024 GBGC. All Rights Reserved.</p>
                 <div class="footer-social-icon">
-                    <i class="fa-brands fa-linkedin"></i>
+                    <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
         </div>

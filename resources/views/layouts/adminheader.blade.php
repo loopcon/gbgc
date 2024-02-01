@@ -97,6 +97,15 @@
                                             <span class="pcoded-mtext">Dashboard</span>
                                         </a>
                                     </li>
+                                    
+                                    <li class="{{ (request()->is('admin/report*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('adminreport')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Reports</span>
+                                        </a>
+                                    </li>
 
                                     <li class="pcoded-hasmenu {{ (request()->is('admin/region*') || request()->is('admin/score*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -185,7 +194,7 @@
                                         </ul>
                                     </li>
                                     
-                                    <li class="pcoded-hasmenu {{ (request()->is('admin/datatext*') || request()->is('admin/level*'))? 'pcoded-trigger' : '' }}">
+                                 <?php /*  <li class="pcoded-hasmenu {{ (request()->is('admin/datatext*') || request()->is('admin/level*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
@@ -204,7 +213,7 @@
                                                 </a>
                                             </li>
                                         </ul>   
-                                    </li>
+                                    </li> */ ?>
 
                                     <li class="{{ (request()->is('admin/glossary*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('adminglossary')}}" class="waves-effect waves-dark">
@@ -212,15 +221,6 @@
                                                 <i class="feather icon-info"></i>
                                             </span>
                                             <span class="pcoded-mtext">Glossary</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="{{ (request()->is('admin/report*'))? 'pcoded-trigger' : '' }}">
-                                        <a href="{{route('adminreport')}}" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Reports</span>
                                         </a>
                                     </li>
 

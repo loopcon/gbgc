@@ -20,7 +20,7 @@ use App\Http\Controllers\Frontend\FrontLoginController;
 Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::post('/store-newsletter',[FrontendController::class, 'storeNewsletter'])->name('store-newsletter');
 Route::get('faq',[FrontendController::class,'faq'])->name('faq');
-Route::get('how-its-work',[FrontendController::class,'howitswork'])->name('howitswork');
+Route::get('how-it-works',[FrontendController::class,'howitswork'])->name('howitswork');
 Route::get('membership',[FrontendController::class,'membership'])->name('membership');
 Route::get('thank-you',[FrontendController::class,'thankyou'])->name('thankyou');
 Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lostpassword');

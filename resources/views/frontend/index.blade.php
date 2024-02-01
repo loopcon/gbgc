@@ -104,8 +104,8 @@
                         <div class="click-here-text">
                             <span>04.</span> <p> We’ll send you an access code</p>
                         </div>
-                        
                         <p class="well-send-textdetail">Once your invoice is paid, you’ll receive your access code within one business day.</p>
+                        <a href="{{route('howitswork')}}" class="faq-contactbtn"><button class="btn btn-info text-light"> Read More </button></a>
                     </div>
                     <div class="col-12 col-sm-6">
                         <img src="{{asset('img/how-it-works-img1.png')}}" class="img-fluid" alt="">

@@ -108,6 +108,7 @@ input:checked + .slider .off
                 </div>
             </div>
         </div>
+     <?php /*   <!-- Fillter Start -->
         <div class="row align-items-end mt-4">
             <div class="col-lg-2">
                 <div class="d-inline">
@@ -174,6 +175,7 @@ input:checked + .slider .off
                 </div>
             </div>
         </div>
+        <!-- Fillter End --> */?>
     </div>
     <div class="pcoded-inner-content">
         <div class="main-body">
