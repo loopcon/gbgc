@@ -43,10 +43,12 @@
                         </div>
                     </div>   
                     @if ($alert = Session::get('alert-success'))
-                        <div class="alert alert-success alert-dismissible fade show"  id="success-alert">
+                    <div id="message" style="position: fixed;top: 0;right: 0;">
+                        <div class="alert bg-success text-light alert-dismissible fade show"  id="success-alert">
                             {{ $alert }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-theme="white" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+                    </div>
                     @endif
                 </div>
             </div>    

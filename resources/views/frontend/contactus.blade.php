@@ -10,25 +10,17 @@
                 <div class="row">
                     <div class="col-12">
                         @if ($message = Session::get('success'))
-                            <div class="alert alert-dismissible" role="alert" style="border-color:#00ace0;color:#00ace0">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <div class="alert-message">
-                                    {{ $message }}
-                                </div>
-                            </div>
-                        @endif
-                        @if ($message = Session::get('error'))
-                            <div class="alert alert-danger alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <div class="alert-message">
-                                    {{ $message }}
-                                </div>
-                            </div>
-                        @endif
+                    <div class="alert text-success alert-dismissible fade show" style="background-white;border-color:green;" id="success-alert">
+                        {{ $message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show"  id="danger-alert">
+                        {{ $message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -69,14 +61,11 @@
 @section('script')
 <script>
     $(document).ready(function() {
-        $(document).on('click', '.close', function() {
-            var href = $(this).data('href');
-            swal({
-                closeOnConfirm: true
-            },
-            function(){
-                location.href = href;
-            });
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+            $("#success-alert").slideUp(500);
+        });
+        $("#danger-alert").fadeTo(2000, 500).slideUp(500, function(){
+            $("#danger-alert").slideUp(500);
         });
     });
 </script>

@@ -33,6 +33,8 @@ Route::post('customer-checklogin',[FrontLoginController::class,'checklogin'])->n
 Route::get('customer-logout', [FrontLoginController::class, 'logout'])->name('customer-logout');
 Route::get('myaccount',[FrontLoginController::class, 'myAccount'])->name('myaccount');
 Route::post('/updatemyaccount', [FrontLoginController::class, 'updateMyAccount'])->name('updatemyaccount');
+Route::get('dashboard',[FrontLoginController::class, 'dashboard'])->name('frontdashboard');
+
 
 //fronted Route End
 

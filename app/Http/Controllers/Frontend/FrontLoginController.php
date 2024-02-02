@@ -116,7 +116,7 @@ class FrontLoginController extends Controller
                 Cookie::queue(Cookie::forget('password'));
 
                 session()->put('customerInfo', $customer_detail);
-                return redirect('myaccount')->with('alert-success', 'You are now logged in.');
+                return redirect('dashboard')->with('success', 'You are now logged in.');
             }
             else
             {
@@ -159,9 +159,18 @@ class FrontLoginController extends Controller
         // }
         $customer_detail->save();
         if($customer_detail){
-            return redirect('myaccount')->with('alert-success', 'Profile updated Successfully!');
+            return redirect('myaccount')->with('success', 'Profile updated Successfully!');
         } else {
             return redirect()->with('register-error', 'Something went wrong please try again...');
         }
+    }
+
+    public function dashboard() 
+    {
+        $return_data = array();
+        $customer_id = Auth::guard('customers')->id();
+        $customer= Customer::where([['id', '=', $customer_id]])->first();
+        $return_data['customer'] = $customer;
+        return view('frontend.dashboard.index',array_merge($return_data));
     }
 }
