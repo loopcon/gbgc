@@ -29,6 +29,7 @@ Route::get('/contactus',[FrontendController::class, 'contactus'])->name('frontco
 Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->name('store-contactus');
 
 Route::post('registration',[FrontLoginController::class, 'registration'])->name('registration');
+Route::post('registration-update',[FrontLoginController::class, 'registrationUpdate'])->name('registration-update');
 Route::post('customer-checklogin',[FrontLoginController::class,'checklogin'])->name('customer-checklogin');
 Route::get('customer-logout', [FrontLoginController::class, 'logout'])->name('customer-logout');
 Route::get('myaccount',[FrontLoginController::class, 'myAccount'])->name('myaccount');

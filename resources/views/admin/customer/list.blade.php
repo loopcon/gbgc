@@ -95,13 +95,15 @@
                                                             <td >  {{$data->bussiness_size}} </td>
                                                             <td >  {{$data->access_type}} </td>
                                                             <td>
-                                                                @if($data->status==1) 
-                                                                    Request is Approved<br>
-                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light btn-sm mt-1" style="background:#4099ff" title="Create User Id-Password">Create Id Password</a>
+                                                                @if($data->status==1 && $data->payment==1)
+                                                                    {{"Pro access is live"}}
+                                                                @elseif($data->status==1) 
+                                                                    {{"Request is Approved"}}<br>
+                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light btn-sm mt-1" style="background:#4099ff" title="Create User Id-Password">{{"Create Id Password"}}</a>
                                                                 @elseif($data->status==3)
-                                                                   Request is Canceled    
+                                                                   {{"Request is Canceled"}}    
                                                                 @else
-                                                                    Request is Pending
+                                                                    {{"Request is Pending"}}
                                                                 @endif
                                                              </td>
                                                              <td > 

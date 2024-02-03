@@ -67,7 +67,7 @@ class FrontLoginController extends Controller
         $customer->access_type = "free";
         $customer->save();
 
-        // mail-send to admin for accept ruser request.
+        // mail-send to admin for accept user request.
         // $data = [
         //     'email'   => $request->input('email'), 
         // ];
@@ -173,4 +173,51 @@ class FrontLoginController extends Controller
         $return_data['customer'] = $customer;
         return view('frontend.dashboard.index',array_merge($return_data));
     }
+    public function registrationUpdate(Request $request)
+    {
+        $this->validate($request, [
+                'name' => ['required'],
+                'job_title' => ['required'],
+                'bussiness_name' => ['required'],
+                'bussiness_size' => ['required'],
+                'additional_user_no' => ['required'],
+                'billing_address' => ['required'],
+            ],[
+                'required'  => trans('The :attribute field is required.')
+            ]
+        );
+        $customer = Customer::find($request->id);
+        $fields = array('name', 'job_title', 'bussiness_name','bussiness_size','email','phone','additional_user_no', 'billing_address');
+        foreach($fields as $key => $value){
+            $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
+        }
+
+        $customer->access_type = "paid";
+        $customer->status = 0;
+        $customer->save();
+
+        // mail-send to admin for accept user paid request.
+        // $data = [
+        //     'email'   => $request->input('email'), 
+        // ];
+
+        // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
+        //     $message->to(gbgc@gmail.com, 'Admin of GBGC')->subject
+        //         ('Hello Admin, user sent paid request please, check it.');
+        //     $message->from($data['email'],'Customer of GBGC');
+        // });
+
+        // for old register
+
+        // if ($customer) {
+        //     return response()->json(['status' => 1]);
+        // }
+
+        if($customer) {
+            return redirect('dashboard')->with('alert-success', 'Request Sent Successfully!');
+        } else {
+            return redirect()->with('registration-error', 'Something went wrong please try again...');
+        }
+    }
+
 }

@@ -25,8 +25,34 @@ class CustomerController extends Controller
 
     public function changeStatus($id, $status)
     {
-        $customer_fields['status'] = $status;
-        $customer = Customer::where('id', $id)->update($customer_fields);
+        $customer = Customer::where('id', $id)->first();
+        if($customer->access_type=="paid")
+        {
+            $customer->status = $status;
+            $customer->payment = 1;
+            $customer->save();
+           
+            // User mail-sent for pro access live
+
+            // $data = [
+            //     'email'   => $customer->email, 
+            // ];
+
+            // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
+            //     $message->to($data['email'], 'Customer of GBGC')->subject
+            //         ('Hello Dear Customer, your pro access is live now.');
+            //     $message->from('loopcon16@gmail.com','GBGC');
+            // });
+
+            // end mail-sent
+
+        }
+        else
+        {
+            $customer_fields['status'] = $status;
+            $customer = Customer::where('id', $id)->update($customer_fields);
+        }
+        
         return redirect('admin/user')->with('success', trans('User status changed successfully.'));
     }
 

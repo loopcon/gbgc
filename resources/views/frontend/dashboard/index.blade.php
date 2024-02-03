@@ -40,6 +40,9 @@
             @include('frontend.dashboard.sidebar')
             <div class="col-12 col-md-8 col-lg-9 ">
                 <h3>Hello !! {{$customer->name}}</h3> 
+                @if($customer->access_type!="paid")
+                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#registerModal" class="free-access-btn freetopro" style="width:15%">  Free to Pro</a>
+                @endif
             </div>
         </div>
     </div>
