@@ -48,11 +48,11 @@
                     </div>
                     <div class="contact-label col-12 col-lg-6">
                         <label for="email">Email</label>
-                        <input  class="form-control" type="text" id="email" name="email" value="{{$customer_detail->email}}">
+                        <input  class="form-control" type="text" id="email" name="email" value="{{$customer_detail->email}}" readOnly>
                     </div>
                     <div class="contact-label col-12 col-lg-6">
                         <label for="phone">Phone number</label>
-                        <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="PHONE NUMBER" id="phone" name="phone" value="{{$customer_detail->phone}}">
+                        <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="PHONE NUMBER" id="phone" name="phone" value="{{$customer_detail->phone}}" readOnly>
                     </div>
                     <div class="contact-label col-12 col-lg-6">
                         <label for="job_title">Job Title</label>

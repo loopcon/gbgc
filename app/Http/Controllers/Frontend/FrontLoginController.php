@@ -104,8 +104,12 @@ class FrontLoginController extends Controller
         
         $user  = $request->get('email1');
         $pass = $request->get('password');
+        $customer = Customer::where([['email', '=', $request->email1]])->first();  
+        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""],['email_verify', '=', 1],['status','=',1]])->first();
 
-        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""],['email_verify', '=', 1],['status', '=', 1]])->first();
+        if(empty($customer)){
+            return redirect('/')->with('alert-danger', 'Your have not account, please Register First');
+        }
 
         if(isset($customers)){
             if (Auth::guard('customers')->attempt(['email' => $request->email1, 'password' => $request->password])) 
@@ -151,8 +155,6 @@ class FrontLoginController extends Controller
         $customer_detail->job_title = $request->input('job_title');
         $customer_detail->bussiness_name = $request->input('bussiness_name');
         $customer_detail->bussiness_size = $request->input('bussiness_size');
-        $customer_detail->phone = $request->input('phone');
-        $customer_detail->email = $request->input('email');
 
         // if ($request->password) {
         //     $user->password = Hash::make($request->password);
@@ -216,7 +218,7 @@ class FrontLoginController extends Controller
         if($customer) {
             return redirect('dashboard')->with('alert-success', 'Request Sent Successfully!');
         } else {
-            return redirect()->with('registration-error', 'Something went wrong please try again...');
+            return redirect()->with('registration-pro-error', 'Something went wrong please try again...');
         }
     }
 

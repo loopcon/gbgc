@@ -539,8 +539,19 @@
             @if(isset($errors) &&($errors->has('name') || $errors->has('job_titlename') || $errors->has('business_name') || $errors->has('business_size') || $errors->has('email') || $errors->has('phone')))
                 $("#registerModal").modal('show');
             @endif
-    
 
+             @if(Session::get('registration-pro-error'))
+                $("#registerModal").modal('show');
+            @endif
+
+            @if(isset($errors) &&($errors->has('additional_user_no') || $errors->has('billing_address')))
+                $("#registerModal").modal('show');
+                $('.freetopro_additionaluser').show();
+                $('.freetopro_billing_address').show();
+                $('.freetopro-btn').show();
+                $('.register-btn').hide();
+            @endif
+    
         });
     </script>
 @yield('script')
