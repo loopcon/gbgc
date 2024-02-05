@@ -43,6 +43,7 @@
                                                 <option value="0">--Select access_status--</option>
                                                 <option value="free">Free</option>
                                                 <option value="paid">Paid</option>
+                                                <option value="additional user">Additional User</option>
                                             </select>
                                         </div>
                                     </div>
