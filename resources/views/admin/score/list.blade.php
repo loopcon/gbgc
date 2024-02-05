@@ -14,7 +14,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="feather icon-home"></i></a>
+                            <a href="#"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{route('adminindex')}}">Home</a>
@@ -95,14 +95,18 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->view}} </td>
-                                                            <td >  {{$data->regionDetail->name}} </td>
-                                                            <td >  {{$data->maincategoryDetail->title}} </td>
-                                                            <td >  {{$data->subcategory1Detail->title}} </td>
-                                                            <td >  {{$data->subcategory2Detail->title}} </td>
-                                                            <td >  {{$data->level4Detail->title}} </td>
-                                                            <td >  {{$data->year}} </td>
-                                                            <td >  {{$data->score}} </td>
+                                                            <td>{{$data->view}}</td>
+                                                            <td>@if($data->regionDetail){{$data->regionDetail->name}}@else - @endif
+                                                            </td>
+                                                            <td> @if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
+
+                                                            <td>@if($data->subcategory1Detail){{$data->subcategory1Detail->title}}@else - @endif</td>
+
+                                                           <td>@if($data->subcategory2Detail){{$data->subcategory2Detail->title}}@else - @endif</td>
+
+                                                           <td>@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
+                                                            <td>{{$data->year}}</td>
+                                                            <td>{{$data->score}}</td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
@@ -133,9 +137,22 @@
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Region<span class="text-danger">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select id="region" class="form-control select2" name="region" required="">
+                                                    <option value="0">--Select Region--</option>
+                                                    @foreach($region as $regiondata)
+                                                    <option value="{{$regiondata->id}}">{{$regiondata->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="form-row col-md-12" id="import">
-                                            <div class="form-group col-sm-6">
-                                                <input type="file" accept=".xlsx" name="score_import" id="score_import" value="" class="btn btn-secondary btn-block btn-sm" placeholder="Select Excel" required />
+                                            <div class="form-group col-sm-12">
+                                                <input type="file" accept=".xlsx" name="file" id="score_import" value="" class="btn btn-secondary btn-block btn-sm" placeholder="Select Excel" required />
                                             </div>
                                         </div>
                                     </div>

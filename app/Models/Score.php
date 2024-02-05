@@ -9,7 +9,7 @@ class Score extends Model
 {
     use HasFactory;
     protected $table ='scores';
-    protected $fields = ['view','region_id', 'main_category', 'sub_category_1','sub_category_2','level_4','year','score'];
+    protected $fillable  = ['view','region_id', 'level_1', 'level_2','level_3','level_4','year','score'];
     
     public function regionDetail()
     {
@@ -17,15 +17,15 @@ class Score extends Model
     }
     public function maincategoryDetail()
     {
-        return $this->hasOne(LevelMaster::class,'id','main_category');
+        return $this->hasOne(LevelMaster::class,'id','level_1');
     }
     public function subcategory1Detail()
     {
-        return $this->hasOne(LevelMaster::class,'id','sub_category_1');
+        return $this->hasOne(LevelMaster::class,'id','level_2');
     }
     public function subcategory2Detail()
     {
-        return $this->hasOne(LevelMaster::class,'id','sub_category_2');
+        return $this->hasOne(LevelMaster::class,'id','level_3');
     }
     public function level4Detail()
     {
