@@ -63,10 +63,10 @@
             </div>
             <div class="modal-body">
               <div class="row m-0">
-                    <div class="col-12 col-md-5 p-0">
+                    {{-- <div class="col-12 col-md-5 p-0">
                         <img src="" class="img-fluid login-img-popup" alt="">
-                    </div>
-                    <div class="col-12 col-md-7 p-0">
+                    </div> --}}
+                    <div class="col-12 p-0">
                         <div class="login-register-form-box">
                             <div class="login-register-box">
                                 <a href="#" class="login-text login-active">Login</a>

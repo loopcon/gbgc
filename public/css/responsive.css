@@ -76,6 +76,7 @@
 }
 
 @media screen and (max-width:575px) {
+    .order-check-firstname{padding-right: 0px;}
     .faq-contactbtn{margin-bottom: 20px; display: block;}
     .reports-bg{ padding: 20px 0px;}
     .subscript-text-box{width: 100%;}
