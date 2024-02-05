@@ -28,13 +28,13 @@
 
             <form action="" class="login-form-detailcheck">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Username or Email <span>*</span></label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password <span>*</span></label>
                             <input type="password" class="form-control" id="exampleInputPassword1">
@@ -55,17 +55,17 @@
 
     <div class="container">
         <div class="row m-0">
-            <div class="col-6 p-0">
+            <div class="col-12 col-sm-6 p-0">
                 <h4 class="check-order-headtext">Billing details</h4>
                 <form action="" class="billing-form-detail">
                     <div class="row m-0">
-                        <div class="col-6 order-check-firstname">
+                        <div class="col-12 col-sm-6 order-check-firstname">
                             <div class="mb-3">
                                 <label for="firstname" class="form-label">First name <span>*</span></label>
                                 <input type="text" class="form-control" id="firstname" >
                             </div>
                         </div>
-                        <div class="col-6 p-0">
+                        <div class="col-12 col-sm-6 p-0">
                             <div class="mb-3">
                                 <label for="lastname" class="form-label">Last name <span>*</span></label>
                                 <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp">
@@ -123,7 +123,7 @@
                 </form>
             </div>
 
-            <div class="col-6">
+            <div class="col-12 col-sm-6">
                 <h4 class="check-order-headtext">Additional information</h4>
                 <form action="" class="additional-form-detail">
                     <div class="mb-3">
