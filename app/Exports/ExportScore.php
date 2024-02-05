@@ -4,21 +4,25 @@ namespace App\Exports;
 
 use App\Models\Score;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Concerns\ToCollection;
 
-class ExportScore implements FromView
+class ExportScore implements FromCollection
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    // public function collection()
-    // {
-    //     return Score::all();
-    // }
+    private $data;
 
-    public function view(): View
+    public function __construct($data)
     {
-        return view('admin.score.sample-export');
+        $this->data = $data;
+    }
+
+    public function collection()
+    {
+        $val = collect($this->data)->toArray();
+        if(count($val) > 0){
+            return new Collection($val);
+        }   
     }
 }
