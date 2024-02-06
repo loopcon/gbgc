@@ -69,10 +69,7 @@
 }
 
 @media screen and (min-width:575px) {
-    .mobile-view{
-        display: none;
-    }
-    
+    .mobile-view{display: none;}
 }
 
 @media screen and (max-width:575px) {
@@ -167,12 +164,8 @@
     
     .scroll-section-main{ overflow: unset;}
     .create-domain-box-item-2 h4{font-size: 20px;line-height: 20px; margin-top: 20px;}
-    .desktop-view{
-        display: none;
-    }
-    .create-domain-box-item-1{
-        margin-top: 25px;
-    }
+    .desktop-view{display: none;}
+    .create-domain-box-item-1{margin-top: 25px;}
     .report-heading{ margin-top: 15px;}
 }
 
