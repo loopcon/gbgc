@@ -16,78 +16,49 @@ class FrontLoginController extends Controller
     
     public function registration(Request $request)
     {
-        //for old register
+       $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['required', 'unique:customers,email', 'email'],
+            'phone' => ['required', 'numeric','digits:10'],
+        ], [
+            'required' => trans('The :attribute field is required.'),
+        ]);
 
-        // dd($request->all());
-        // $validator = Validator::make($request->all(), [
-        //     'name' => ['required'],
-        //     'job_title' => ['required'],
-        //     'bussiness_name' => ['required'],
-        //     'bussiness_size' => ['required'],
-        //     'email' => ['required', 'unique:customers,email', 'email'],
-        //     'phone' => ['required', 'numeric','digits:10'],
-        // ], [
-        //     'required' => trans('The :attribute field is required.'),
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return response()->json(['status' => 0, 'errors' => $validator->errors()]);
-        // }
-        // if($request->subscribe ==1)
-        // {   
-        //     $checknewsletter=NewsLetter::where('newsletter_email',$request->email)->first();
-        //     if($checknewsletter ==null)
-        //     {
-        //         $newsletter=new NewsLetter();
-        //         $newsletter->newsletter_email=$request->input('email');
-        //         $newsletter->save(); 
-        //     }else{
-        //        return response()->json(['status' => 0, 'errorsubscribe' => 'You are already Subscribe']);
-        //     }
-        // }
-
-        $this->validate($request, [
-                'name' => ['required'],
-                'job_title' => ['required'],
-                'bussiness_name' => ['required'],
-                'bussiness_size' => ['required'],
-                'email' => ['required', 'unique:customers,email', 'email'],
-                'phone' => ['required', 'numeric','digits:10'],
-            ],[
-                'required'  => trans('The :attribute field is required.')
-            ]
-        );
+        if ($validator->fails()) {
+            return response()->json(['status' => 0, 'errors' => $validator->errors()]);
+        }
 
         $customer = new Customer();
-        $fields = ['name', 'job_title', 'bussiness_name','bussiness_size','email','phone'];
-        foreach ($fields as $value) {
-            $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : null;
-        }
-        $customer->email_verify = 0;
-        $customer->access_type = "free";
+        $customer->name=$request->input('name');
+        $customer->job_title=$request->input('job_title');
+        $customer->phone=$request->input('phone');
+        $customer->email=$request->input('email');
+        $customer->bussiness_name=$request->input('bussiness_name');
+        $customer->business_wider_group=$request->input('business_wider_group');
+        $customer->access_type= 'free';
         $customer->save();
 
-        // mail-send to admin for accept user request.
-        // $data = [
-        //     'email'   => $request->input('email'), 
-        // ];
-
-        // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
-        //     $message->to(gbgc@gmail.com, 'Admin of GBGC')->subject
-        //         ('Hello Admin, New user create account check it');
-        //     $message->from($data['email'],'Customer of GBGC');
-        // });
-
-        // for old register
-
-        // if ($customer) {
-        //     return response()->json(['status' => 1]);
-        // } 
         if($customer){
-            return redirect('/')->with('alert-success', 'Request Sent Successfully!');
-        } else {
-            return redirect()->with('registration-error', 'Something went wrong please try again...');
+            return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
         }
+        else
+        {
+            return response()->json(['status' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
+        }
+
+        // $customer = new Customer();
+        // $fields = ['name', 'job_title', 'bussiness_name','bussiness_size','email','phone'];
+        // foreach ($fields as $value) {
+        //     $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : null;
+        // }
+        // $customer->email_verify = 0;
+        // $customer->access_type = "free";
+        // $customer->save();
+        // if($customer){
+        //     return redirect('/')->with('alert-success', 'Request Sent Successfully!');
+        // } else {
+        //     return redirect()->with('registration-error', 'Something went wrong please try again...');
+        // }
     }
 
     public function checklogin(Request $request)
@@ -171,29 +142,31 @@ class FrontLoginController extends Controller
     {
         $return_data = array();
         $customer_id = Auth::guard('customers')->id();
-        $customer= Customer::where([['id', '=', $customer_id]])->first();
-        $return_data['customer'] = $customer;
-        return view('frontend.dashboard.index',array_merge($return_data));
+        $customer= Customer::where('id',$customer_id)->first();
+        return view('frontend.dashboard.index',compact('customer'));
     }
     public function registrationUpdate(Request $request)
     {
-        $this->validate($request, [
-                'name' => ['required'],
-                'job_title' => ['required'],
-                'bussiness_name' => ['required'],
-                'bussiness_size' => ['required'],
-                'additional_user_no' => ['required'],
-                'billing_address' => ['required'],
-            ],[
-                'required'  => trans('The :attribute field is required.')
-            ]
-        );
-        $customer = Customer::find($request->id);
-        $fields = array('name', 'job_title', 'bussiness_name','bussiness_size','email','phone','additional_user_no', 'billing_address');
-        foreach($fields as $key => $value){
-            $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
-        }
-
+        // $this->validate($request, [
+        //         'name' => ['required'],
+        //         'job_title' => ['required'],
+        //         'bussiness_name' => ['required'],
+        //         'bussiness_size' => ['required'],
+        //         'additional_user_no' => ['required'],
+        //         'billing_address' => ['required'],
+        //     ],[
+        //         'required'  => trans('The :attribute field is required.')
+        //     ]
+        // );
+        $customer=Customer::find($request->id);
+        $customer->name=$request->input('name');
+        $customer->job_title=$request->input('job_title');
+        $customer->phone=$request->input('phone');
+        $customer->email=$request->input('email');
+        $customer->bussiness_name=$request->input('bussiness_name');
+        $customer->business_wider_group=$request->input('business_wider_group');
+        $customer->additional_details=$request->input('additional_details');
+        $customer->additional_user_no=$request->input('additional_user_no');
         $customer->access_type = "paid";
         $customer->status = 0;
         $customer->save();
@@ -216,9 +189,9 @@ class FrontLoginController extends Controller
         // }
 
         if($customer) {
-            return redirect('dashboard')->with('alert-success', 'Request Sent Successfully!');
+            return response()->json(['status' =>1, 'msg' => 'We will send you an invoice within 2 business days. This wil Provide the information to pay.']);
         } else {
-            return redirect()->with('registration-pro-error', 'Something went wrong please try again...');
+           return response()->json(['status' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
         }
     }
 

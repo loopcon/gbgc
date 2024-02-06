@@ -136,9 +136,10 @@
                                 <p>{!!$free_membership->short_description!!}</p>
                             </div>   
                         </div>
-                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#registerModal" class="free-access-btn">  ACCESS NOW</a>
+                        <a href="javascript:void(0)"  class="free-access-btn freeaccess">  ACCESS NOW</a>
                     </div>
                     @endif
+
                     @if($paid_membership != null)
                     <div class="col-12 col-sm-6">
                         <div class="standard-box">
@@ -185,4 +186,139 @@
 @endif
 @endforeach
 
+
+<!-- Free Access -->
+<!-- Register popup -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog siguplogin-dailog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Registed to for Free Access</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row m-0">
+                    <div class="col-12 col-md-12 p-0">
+                        <div class="login-register-form-box">
+                            <div>
+                                <form method="post" action="@if(isset($customer)){{ route('registration-update', array('id' => $customer->id)) }}@else{{route('registration')}}@endif" class="register-form1" enctype="multipart/form-data" id="freeaccessform">
+                                    @csrf
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6 ">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+                                            </div>
+                                            <div id="nameerror"></div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group ">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-nib"></i></span>
+                                                <input type="text" id="job_title" name="job_title"  class="form-control" placeholder="Job Title">
+                                            </div>
+                                            <div id="jobtitleerror"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="Email"> 
+                                            </div>
+                                            <div id="emailerror"></div>
+                                        </div> 
+                                         <div class="col-12 col-md-6" >
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
+                                                <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="phone" name="phone">
+                                            </div> 
+                                            <div id="phoneerror"></div>  
+                                        </div>
+                                         
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-pen"></i></span>
+                                                <input type="text" id="bussiness_name" name="bussiness_name" class="form-control" placeholder="Business Name"> 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-circle-info"></i></span>
+                                                <textarea class="form-control" placeholder="If Your Business is Part of a Wider Group Please let us  Know" class="form-control" name="business_wider_group"></textarea> 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="errormsg"></div>
+                                    <div id="successmsg"></div>
+                                    <button type="button" class="login-form-signin register-btn" id="save_freeaccess">Register</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Free Access -->
+
+
+@section('script')
+<script type="text/javascript">
+  $(document).on('click','.freeaccess',function()
+  {
+    $('#freeaccessform').trigger('reset');
+    $('#registerModal').modal('show');
+  });
+
+  $(document).on('click','#save_freeaccess',function(){
+    var formdata=$('#freeaccessform').serialize();
+
+      $.ajax(
+        {
+          url:"{{route('registration')}}",
+          type: "post",
+          data: formdata,
+          dataType:'JSON',
+          success: function(data)
+          {
+           if (data.status == 1) 
+            {
+               $('#successmsg').html('<strong id="successmsgshow" style="color:green">Your Account Request Sent Successfully.</strong>');
+               setTimeout(function() {
+                   location.reload();
+               }, 4000);
+            }
+            
+            if (data.status == 0) {
+                $('#nameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
+                if(data.errors)
+                {
+                    if(data.errors.name){$('#nameerror').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
+                    if (data.errors.email) {$('#emailerror').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
+                    if(data.errors.phone){$('#phoneerror').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
+                }
+                if(data.errormsg)
+                {
+                    $('#errormsg').html('<strong id="errormsg" style="color:red">Something went Wrong Please Try again.</strong>');
+                }
+            }
+
+          }
+        });
+
+  });
+    
+</script>
+@endsection
 @endsection

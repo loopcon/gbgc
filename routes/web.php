@@ -30,6 +30,7 @@ Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->n
 
 Route::post('registration',[FrontLoginController::class, 'registration'])->name('registration');
 Route::post('registration-update',[FrontLoginController::class, 'registrationUpdate'])->name('registration-update');
+
 Route::post('customer-checklogin',[FrontLoginController::class,'checklogin'])->name('customer-checklogin');
 Route::get('customer-logout', [FrontLoginController::class, 'logout'])->name('customer-logout');
 Route::get('myaccount',[FrontLoginController::class, 'myAccount'])->name('myaccount');

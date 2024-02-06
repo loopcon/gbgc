@@ -33,7 +33,7 @@ class ScoreController extends Controller
         ->get();
     
     $data = [];
-    $data[] = ['Level1', 'Level2', 'Level3', 'Level4'];
+    $data[] = ['Level1', 'Level2', 'Level3', 'Level4','2022','2023'];
 
     $prevLevel2 = null;
     $prevLevel1 = null;
@@ -42,19 +42,18 @@ class ScoreController extends Controller
 
     foreach ($newquery as $line) {
         if ($prevLevel3 !== null && $prevLevel3 !== $line->Level3) {
-            $data[] = ['', '', '', 'Total']; // level 3 change
+            $data[] = ['', '', '', 'Total'];
             $total = 0;
         }
        if ($prevLevel2 !== null && $prevLevel2 !== $line->Level2) {
-            // Add the total row for the previous Level2
-            $data[] = ['', '',  'Total ' . $prevLevel1 . ' ' . $prevLevel2,  '']; // Add the total row for Level2 change
+            $data[] = ['', '',  'Total ' . $prevLevel1 . ' ' . $prevLevel2,  ''];
         }
    
-        $data[] = [$line->Level1, $line->Level2, $line->Level3, $line->Level4];   
+        $data[] = [$line->Level1, $line->Level2, $line->Level3, $line->Level4 ,'20','50'];   
         
         $prevLevel3 = $line->Level3;
         $prevLevel2 = $line->Level2;
-          $prevLevel1 = $line->Level1;
+        $prevLevel1 = $line->Level1;
         
         
     }
@@ -62,10 +61,10 @@ class ScoreController extends Controller
         $data[] = ['', '', '', 'Total'];
     }
     if ($prevLevel2 !== null) {
-        $data[] = ['', '', 'Total ' . $prevLevel1 . ' ' . $prevLevel2,  '']; // Add the total row for the last Level2
+        $data[] = ['', '', 'Total ' . $prevLevel1 . ' ' . $prevLevel2,  ''];
     }
     return Excel::download(new ExportScore($data), 'Sample Data.xlsx');
-}
+    }
 
     public function importScore(Request $request)
     {
