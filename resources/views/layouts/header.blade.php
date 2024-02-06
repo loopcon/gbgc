@@ -54,7 +54,6 @@
             </div>    
         </div>    
     </nav>
-
     <!-- login popup-->
    <div class="modal fade" id="siguploginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog siguplogin-dailog modal-dialog-centered">
@@ -64,7 +63,10 @@
             </div>
             <div class="modal-body">
               <div class="row m-0">
-                    <div class="col-12 col-md-12 p-0">
+                    {{-- <div class="col-12 col-md-5 p-0">
+                        <img src="" class="img-fluid login-img-popup" alt="">
+                    </div> --}}
+                    <div class="col-12 p-0">
                         <div class="login-register-form-box">
                             <div class="login-register-box">
                                 <a href="#" class="login-text login-active">Login</a>
@@ -92,6 +94,7 @@
                                     <a href="{{route('customer-checklogin')}}"><button class="login-form-signin">SIGN IN</button></a>
                                 </form>
                             </div>
+
                         </div>
                     </div>
               </div>
@@ -104,8 +107,109 @@
         </div>
     </div>
 <!-- Login popup end -->
+<!-- Register popup -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog siguplogin-dailog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+              <div class="row m-0">
+                   
+                    <div class="col-12 col-md-12 p-0">
+                        <div class="login-register-form-box">
+                            <div>
+                                <form method="post" action="@if(isset($customer)){{ route('registration-update', array('id' => $customer->id)) }}@else{{route('registration')}}@endif" class="register-form1" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <input type="hidden" id="id" name="id" value="{{ isset($customer->id) ? $customer->id : '' }}">
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="name" name="name" value="{{ isset($customer->name) ? $customer->name : old('name') }}" class="form-control" placeholder="NAME" aria-label="Username" aria-describedby="basic-addon1"> 
+                                                @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="job_title" name="job_title" value="{{ isset($customer->job_title) ? $customer->job_title : old('job_title') }}"  class="form-control" placeholder="JOB TITLE" aria-label="Username" aria-describedby="basic-addon1">
+                                                @if ($errors->has('job_title')) <div class="text-danger">{{ $errors->first('job_title') }}</div>@endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="bussiness_name" name="bussiness_name" value="{{ isset($customer->bussiness_name) ? $customer->bussiness_name : old('bussiness_name') }}" class="form-control" placeholder="BUSSINESS NAME" aria-label="Username" aria-describedby="basic-addon1"> 
+                                                @if ($errors->has('bussiness_name')) <div class="text-danger">{{ $errors->first('bussiness_name') }}</div>@endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-12 col-md-6" >
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                                <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="PHONE NUMBER" id="phone" name="phone" @if(isset($customer->phone)) readOnly @endif value="{{ isset($customer->phone) ? $customer->phone : old('phone') }}">
+                                                @if ($errors->has('phone')) <div class="text-danger">{{ $errors->first('phone') }}</div>@endif
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <select id="bussiness_size" class="form-control select2 text-secondary" name="bussiness_size" required="">
+                                                    <option value="0" selected disabled>SELECT BUSSINESS SIZE</option>
+                                                    <option value="small"  @if(isset($customer->bussiness_size) && $customer->bussiness_size=="small") selected="selected" @endif>Small</option>
+                                                    <option value="medium" @if(isset($customer->bussiness_size) && $customer->bussiness_size=="medium") selected="selected" @endif>Medium-sized</option>
+                                                    <option value="large" @if(isset($customer->bussiness_size) && $customer->bussiness_size=="large") selected="selected" @endif>Large</option>
+                                                </select>
+                                            </div>
+                                                @if ($errors->has('bussiness_size')) <div class="text-danger">{{ $errors->first('bussiness_size') }}</div>@endif
+                                        </div>    
+                                    </div>
 
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                                <input type="email" id="email" name="email" value="{{ isset($customer->email) ? $customer->email : old('email') }}" class="form-control" placeholder="EMAIL" @if(isset($customer->email)) readOnly @endif aria-label="Username" aria-describedby="basic-addon1"> 
+                                            </div>
+                                            @if ($errors->has('email')) <div class="text-danger">{{ $errors->first('email') }}</div>@endif
+                                        </div>    
+                                    </div>
+                                    <div class="row freetopro_additionaluser">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                                <input  class="form-control"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Number of Additional Users" id="additional_user_no" name="additional_user_no">
+                                            </div>
+                                            @if ($errors->has('additional_user_no')) <div class="text-danger">{{ $errors->first('additional_user_no') }}</div>@endif
+                                        </div>    
+                                    </div>
+                                    <div class="row freetopro_billing_address">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                                                <textarea class="form-control" id="billing_address" name="billing_address" placeholder="Billing Address"  data-parsley-required-message="{{ __("This value is required.")}}"></textarea>
+                                            </div>
+                                            @if ($errors->has('billing_address')) <div class="text-danger">{{ $errors->first('billing_address') }}</div>@endif
+                                        </div>    
+                                    </div>
+                                    <button type="submit" class="login-form-signin register-btn">Register</button>
+                                    <button type="submit" class="login-form-signin freetopro-btn" id="freetopro-btn">Send Request</button>
+                                </form>
+                            </div>
 
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Register Pop up end -->
  @yield('content')
     <!-- footer  start  -->
@@ -148,6 +252,9 @@
                             @foreach($data1 as $staticpage)
                             <li><a href="{{ route($staticpage->slug) }}">{{$staticpage->title}}</a></li>
                             @endforeach
+         <!--                    <li><a href="#">Cookies Policy</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Legal Disclaimers</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -171,7 +278,67 @@
     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script>
 
-            $(document).ready(function(){
+    $(document).on('click','#save_ajax_data',function() //id(button)
+    {
+        var formdata=$('#submit_form').serialize();
+        $.ajax(
+        {
+          url:"{{route('registration')}}",
+          type: "post",
+          data: formdata,
+          dataType:'JSON',
+          success: function(data)
+          {
+            if (data.status == 1) 
+            {
+                $('#firstnamestrong, #lastnamestrong, #emailstrong, #acceptstrong').hide();
+                $('#submit_form')[0].reset();
+                $('.login-form').hide();
+                $('.login-text').removeClass('login-active');
+                $('.register-text').addClass('login-active');
+                $('.register-form').show();
+                 $('#registrationsuccessmessage').html('<p>Your Account has been successfully Created.</p>');
+            }
+            if (data.status == 0) {
+                $('#firstnamestrong, #lastnamestrong, #emailstrong, #acceptstrong').hide();
+                $('.login-form').hide();
+                $('.login-text').removeClass('login-active');
+                $('.register-text').addClass('login-active');
+                $('.register-form').show();
+                if(data.errorsubscribe)
+                {
+                    $('#errorsubscribe').html('<strong style="color:red">You are already Subscribe</strong>');
+                }
+                else if(data.errors)
+                {
+                    if(data.errors.first_name){$('#firstname').html('<strong id="firstnamestrong" style="color:red">First Name is Required </strong>');}
+                    if(data.errors.last_name){$('#lastname').html('<strong style="color:red" id="lastnamestrong">Last Name is Required </strong>');}
+
+                    if(data.errors.email){$('#emailerror').html('<strong id="emailstrong" style="color:red">' + data.errors.email + '</strong>');}
+
+                    if(data.errors.accept){$('#accept').html('<strong style="color:red" id="acceptstrong">Accept Terms and Condition</strong>');}
+
+                    if (data.errors.confirm_password) {
+                        $('#confirmpassword').html('<strong style="color:red">' + data.errors.confirm_password[0] + '</strong>');
+                    }
+                    if (data.errors.password) {
+                        for (var i = 0; i < data.errors.password.length; i++) {
+                            $('#password').append('<strong style="color:red">' + data.errors.password[i] + '</strong><br>');
+                        }
+                    }
+                }else{
+                    $('#registrationwarningmessage').html('<p>Something went wrong</p>');
+                }
+                
+            }
+          }
+        })
+    });
+
+    
+
+
+        $(document).ready(function(){
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
                 $("#success-alert").slideUp(500);
             });
@@ -291,7 +458,33 @@
             @if(Session::get('alert-danger'))
                 $("#siguploginModal").modal('show');
             @endif
+            @if(isset($errors) && $errors->has('email1') || $errors->has('password'))
+                $("#siguploginModal").modal('show');
+            @endif
+            // @if(isset($errors) && ($errors->has('first_name') || $errors->has('last_name') || $errors->has('password') || $errors->has('confirm_password')))
+            //     $("#siguploginModal").modal('show');
+            //     $('.register-text').click();
+            // @endif
 
+            @if(Session::get('registration-error'))
+                $("#registerModal").modal('show');
+            @endif
+            
+            @if(isset($errors) &&($errors->has('name') || $errors->has('job_titlename') || $errors->has('business_name') || $errors->has('business_size') || $errors->has('email') || $errors->has('phone')))
+                $("#registerModal").modal('show');
+            @endif
+
+             @if(Session::get('registration-pro-error'))
+                $("#registerModal").modal('show');
+            @endif
+
+            @if(isset($errors) &&($errors->has('additional_user_no') || $errors->has('billing_address')))
+                $("#registerModal").modal('show');
+                $('.freetopro_additionaluser').show();
+                $('.freetopro_billing_address').show();
+                $('.freetopro-btn').show();
+                $('.register-btn').hide();
+            @endif
     
         });
     </script>
