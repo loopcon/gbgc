@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="purchase-box">
-        <a href="#" style="text-decoration:none"><button class="purchase-now-btn">ACCESS NOW </button></a>
+        <a href="javascript:void(0)" style="text-decoration:none" data-bs-toggle="modal" data-bs-target="#registerModal"><button class="purchase-now-btn">ACCESS NOW </button></a>
     </div>
 
 </div>
