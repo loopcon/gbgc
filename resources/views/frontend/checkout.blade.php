@@ -7,7 +7,7 @@
             </div>
             <div class="faq-heading-worktextsection">
                 <h1>Checkout</h1>
-                <a href="#" class="faq-contactbtn">Contact Us</a>
+                <a href="{{route('frontcontactus')}}" class="faq-contactbtn">Contact Us</a>
             </div>
             <img class="badal-imgset-1"  src="{{asset('img/badal-img-2.svg')}}" alt="">
             <img class="badal-imgset-2"  src="{{asset('img/badal-img.svg')}}" alt="">
