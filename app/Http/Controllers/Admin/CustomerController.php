@@ -56,7 +56,7 @@ class CustomerController extends Controller
         return redirect('admin/user')->with('success', trans('User status changed successfully.'));
     }
 
-     public function createIdPassword(string $id)
+    public function createIdPassword(string $id)
     {
         $return_data = array();
         $detail = Customer::find($id);

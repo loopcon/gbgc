@@ -136,6 +136,15 @@
                                             <span class="pcoded-mtext">User</span>
                                         </a>
                                     </li>
+
+                                    <li class="{{ (request()->is('admin/additional-user*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('additional-user')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-users"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Additional Users</span>
+                                        </a>
+                                    </li>
     
                                     <li class="{{ (request()->is('admin/membership*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('adminmembership')}}" class="waves-effect waves-dark">
