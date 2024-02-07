@@ -89,6 +89,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/user-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('user-delete');
     //endcustomer
 
+    //additional user
+    Route::get('admin/additional-user', [App\Http\Controllers\Admin\AdditionalUserController::class,'index'])->name('additional-user');
+    Route::get('admin/additional-user-create/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'additionalUserCreate'])->name('additional-user-create');
+    Route::post('admin/additional-user-store/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'additionalUserStore'])->name('additional-user-store');
+    Route::get('admin/additional-user-delete/{id}', [App\Http\Controllers\Admin\AdditionalUserController::class, 'destroy'])->name('additional-user-delete');
+    //end additional user
+
     //general-setting
     Route::get('admin/generalsetting', [App\Http\Controllers\Admin\SettingController::class,'generalSetting'])->name('generalsetting');
     Route::post('admin/generalsetting-update',[App\Http\Controllers\Admin\SettingController::class, 'generalSettingUpdate'])->name('generalsetting-update');
