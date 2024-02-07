@@ -43,6 +43,10 @@
                 @if($customer->access_type!="paid")
                 <a href="javascript:void(0)"  class="free-access-btn freetoproacess" style="width:15%">  Free to Pro</a>
                 @endif
+
+                @if($customer->additional_user_no > 0  && $customer->accept_additional_user >0)
+                <a href="javascript:void(0)"  class="free-access-btn additionaluser" style="width:15%">Additional User Payment </a>
+                @endif
             </div>
         </div>
     </div>
@@ -50,7 +54,7 @@
 
 <!-- Free to Pro Access-->
 <div class="modal fade" id="freetopromodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog siguplogin-dailog modal-dialog-centered">
+    <div class="modal-dialog  modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5>Free To Pro</h5>
@@ -161,6 +165,82 @@
 </div>
 
 <!-- End Free to Pro Access-->
+<div class="modal fade" id="additionalusermodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Free To Pro</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             <div class="row m-0">
+                    <div class="col-12 col-md-12 p-0">
+                        <div class="login-register-form-box">
+                            <div>
+                                @if($customer->additional_user_no > 0  && $customer->accept_additional_user >0)
+                                    <form method="post" id="freetoproform" action="{{route('storeadditionaluser')}}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$customer->id}}">
+    
+                                @for($i = 1; $i <= $customer->accept_additional_user; $i++)
+                                <label>Add Details for Additional User {{$i}}</label>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-6 ">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                            <input type="text" id="name{{$i}}" name="name[]" class="form-control" placeholder="Name">
+                                        </div>
+                                        <div id="nameerror{{$i}}"></div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <div class="input-group ">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-nib"></i></span>
+                                            <input type="text" id="job_title{{$i}}" name="job_title[]" class="form-control" placeholder="Job Title">
+                                        </div>
+                                        <div id="jobtitleerror{{$i}}"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-6" >
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
+                                            <input class="form-control" maxlength="10" type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="phone{{$i}}" name="phone[]">
+                                        </div> 
+                                        <div id="phoneerror{{$i}}"></div>  
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
+                                            <input type="email" id="email{{$i}}" name="email[]" class="form-control" placeholder="Email"> 
+                                        </div>
+                                        <div id="emailerror{{$i}}"></div>
+                                    </div>
+                                </div>
+                                @endfor
+
+                                <button type="submit" class="login-form-signin register-btn">Submit</button>
+                                </form>
+
+                                @else
+                                <div class="row">
+                                    <h4>You Can not Create a Additional User</h4>
+                                </div>
+                                 @endif
+                            </div>
+
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Additional User -->
+
+<!-- End Additional User -->
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @section('script')
@@ -179,6 +259,12 @@
         $('#freetopromodel').modal('show');
     });
 
+    $(document).on('click','.additionaluser',function()
+    {
+        $('#additionalusermodel').modal('show');
+    });
+
+
    $(document).on('click','#save_freetopro',function(){
     var formdata=$('#freetoproform').serialize();
       $.ajax(
@@ -192,10 +278,10 @@
 
            if (data.status == 1) 
             {
-               $('#successmsg').html('<strong id="successmsgshow" style="color:green">'+ data.msg +'</strong>');
-               setTimeout(function() {
-                   location.reload();
-               }, 4000);
+               window.location.href = "{{ route('checkout') }}";
+               // setTimeout(function() {
+               //     location.reload();
+               // }, 4000);
             }
             
             if (data.status == 0) {

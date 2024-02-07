@@ -277,31 +277,30 @@
     <div class="modal-dialog  modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5>Registed to for Free Access</h5>
+                <h5>Sign Up</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="row m-0">
+                 <div class="row m-0">
                     <div class="col-12 col-md-12 p-0">
                         <div class="login-register-form-box">
                             <div>
-                                <form method="post" action="@if(isset($customer)){{ route('registration-update', array('id' => $customer->id)) }}@else{{route('registration')}}@endif" class="register-form1" enctype="multipart/form-data" id="prosignupform">
+                                <form method="post" id="proaccessform">
                                     @csrf
-                                    
                                     <div class="row mb-3">
-                                    <div class="col-12 col-md-6 ">
-                                        <div class="input-group">
+                                        <div class="col-12 col-md-6 ">
+                                            <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
                                                 <input type="text" id="proname" name="name" class="form-control" placeholder="Name">
+                                            </div>
+                                            <div id="nameerror"></div>
                                         </div>
-                                            <div id="pronameerror"></div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
+
+                                        <div class="col-12 col-md-6">
                                             <div class="input-group ">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-nib"></i></span>
                                                 <input type="text" id="projob_title" name="job_title"  class="form-control" placeholder="Job Title">
                                             </div>
-                                            <div id="jobtitleerror"></div>
                                         </div>
                                     </div>
 
@@ -309,24 +308,32 @@
                                         <div class="col-12 col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
-                                                <input type="email" id="email" name="email" class="form-control" placeholder="Email"> 
+                                                <input type="email" id="proemail" name="email" class="form-control" placeholder="Email"> 
                                             </div>
                                             <div id="emailerror"></div>
                                         </div> 
                                          <div class="col-12 col-md-6" >
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
-                                                <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="phone" name="phone">
+                                                <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="prophone" name="phone">
                                             </div> 
                                             <div id="phoneerror"></div>  
-                                        </div> 
+                                        </div>
+                                         
                                     </div>
 
                                     <div class="row mb-3">
-                                        <div class="col-12 col-md-12">
+                                        <div class="col-12 col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-pen"></i></span>
-                                                <input type="text" id="bussiness_name" name="bussiness_name" class="form-control" placeholder="Business Name"> 
+                                                <input type="text" id="probussiness_name" name="bussiness_name" class="form-control" placeholder="Business Name"> 
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-g"></i></span>
+                                                <input type="text" id="gstnumber" name="gst" class="form-control" placeholder="VAT/GST Number"> 
                                             </div>
                                         </div>
                                     </div>
@@ -335,7 +342,35 @@
                                         <div class="col-12 col-md-12">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-circle-info"></i></span>
-                                                <textarea class="form-control" placeholder="If Your Business is Part of a Wider Group Please let us  Know" class="form-control" name="business_wider_group"></textarea> 
+                                                <input class="form-control" placeholder="If Your Business is Part of a Wider Group Please let us  Know" class="form-control" name="business_wider_group">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                           <div class="col-12 col-md-12">
+                                            <div class="input-group ">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-users"></i></span>
+                                                <input type="text" id="additional_user_no" name="additional_user_no"  class="form-control" placeholder="Number of Additional User" value="" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                            </div>
+                                            <div id="jobtitleerror"></div>
+                                        </div>
+                                    </div>
+
+                                      <div class="row mb-3">
+                                        <div class="col-12 col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
+                                                <textarea class="form-control" placeholder="Biling Address" class="form-control" name="billing_address" placeholder="Biling Address"></textarea> 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                      <div class="row mb-3">
+                                        <div class="col-12 col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-file"></i></span>
+                                                <textarea class="form-control"class="form-control" name="additional_details" placeholder="Is there is Anything You Require Additional on Your Invoice"></textarea> 
                                             </div>
                                         </div>
                                     </div>
@@ -343,7 +378,7 @@
 
                                     <div id="errormsg"></div>
                                     <div id="successmsg"></div>
-                                    <button type="button" class="login-form-signin register-btn" id="save_pro">Register</button>
+                                    <button type="button" class="login-form-signin register-btn" id="save_proaccess">Register</button>
                                 </form>
                             </div>
 
@@ -405,9 +440,45 @@
 
 $(document).on('click','.prosignup',function()
   {
-    $('#prosignupform').trigger('reset');
+    $('#proaccessform').trigger('reset');
     $('#prosignupmodel').modal('show');
   });    
+
+
+  $(document).on('click','#save_proaccess',function(){
+    var formdata=$('#proaccessform').serialize();
+
+      $.ajax(
+        {
+          url:"{{route('proregistration')}}",
+          type: "post",
+          data: formdata,
+          dataType:'JSON',
+          success: function(data)
+          {
+           if (data.status == 1) 
+            {
+                window.location.href = "{{ route('checkout') }}";
+            }
+            
+            if (data.status == 0) {
+                $('#nameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
+                if(data.errors)
+                {
+                    if(data.errors.name){$('#nameerror').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
+                    if (data.errors.email) {$('#emailerror').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
+                    if(data.errors.phone){$('#phoneerror').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
+                }
+                if(data.errormsg)
+                {
+                    $('#errormsg').html('<strong id="errormsg" style="color:red">Something went Wrong Please Try again.</strong>');
+                }
+            }
+
+          }
+        });
+
+  });
 </script>
 
 

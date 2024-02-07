@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Cookie;
 use Illuminate\Support\Facades\Validator;
 use App\Models\NewsLetter;
+use Session;
+use App\Models\AdditionalUser;
 
 class FrontLoginController extends Controller
 {
@@ -45,20 +47,68 @@ class FrontLoginController extends Controller
         {
             return response()->json(['status' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
         }
+    }
 
-        // $customer = new Customer();
-        // $fields = ['name', 'job_title', 'bussiness_name','bussiness_size','email','phone'];
-        // foreach ($fields as $value) {
-        //     $customer->$value = isset($request->$value) && $request->$value != '' ? $request->$value : null;
-        // }
-        // $customer->email_verify = 0;
-        // $customer->access_type = "free";
-        // $customer->save();
-        // if($customer){
-        //     return redirect('/')->with('alert-success', 'Request Sent Successfully!');
-        // } else {
-        //     return redirect()->with('registration-error', 'Something went wrong please try again...');
-        // }
+    public function proregistration(Request $request)
+    {
+
+       $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['required', 'unique:customers,email', 'email'],
+            'phone' => ['required', 'numeric','digits:10'],
+        ], [
+            'required' => trans('The :attribute field is required.'),
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => 0, 'errors' => $validator->errors()]);
+        }
+
+        $customer = new Customer();
+        $customer->name=$request->input('name');
+        $customer->job_title=$request->input('job_title');
+        $customer->phone=$request->input('phone');
+        $customer->email=$request->input('email');
+        $customer->bussiness_name=$request->input('bussiness_name');
+        $customer->business_wider_group=$request->input('business_wider_group');
+        $customer->additional_details=$request->input('additional_details');
+        $customer->additional_user_no=$request->input('additional_user_no');
+        $customer->gst=$request->input('gst');
+        $customer->access_type= 'pro';
+        $customer->save();
+        $session= Session::put('customer', $customer->id);
+
+        if($customer){
+            return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
+        }
+        else
+        {
+            return response()->json(['status' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
+        }
+    }
+
+
+    public function storeadditionaluser(Request $request)
+    {
+        $numEntries = count($request->name);
+        for ($i = 0; $i < $numEntries; $i++) {
+            $customer = new Customer();
+            $customer->name = $request->name[$i];
+            $customer->job_title = $request->job_title[$i];
+            $customer->phone = $request->phone[$i];
+            $customer->email = $request->email[$i];
+            $customer->save();
+
+            $additionaluser = new AdditionalUser();
+            $additionaluser->customer_id =$request->id;
+            $additionaluser->name =$request->name[$i];
+            $additionaluser->job_title =$request->job_title[$i];
+            $additionaluser->phone =$request->phone[$i];
+            $additionaluser->email =$request->email[$i];
+            $additionaluser->save();
+
+        }
+        return redirect()->route('checkout');
     }
 
     public function checklogin(Request $request)
@@ -105,11 +155,13 @@ class FrontLoginController extends Controller
         
     }  
 
+
+
     public function logout()
     {
         session()->forget('customerInfo');
         Auth::guard('customers')->logout();
-        return redirect('/')->with('alert-success', 'You are loged out');;
+        return redirect('/')->with('alert-success', 'You are loged out');
     }
     public function myAccount()
     {

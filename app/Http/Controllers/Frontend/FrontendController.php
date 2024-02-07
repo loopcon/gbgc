@@ -16,7 +16,9 @@ use App\Models\Membershipplan;
 use App\Models\Region;
 use Mail;
 use Auth;
-
+use App\Models\Orderdetail;
+use App\Models\Order;
+use Session;
 class FrontendController extends Controller
 {
     public function index()
@@ -52,11 +54,23 @@ class FrontendController extends Controller
     
     public function checkout()
     {
+        $sessioncustomer=Session::get('customer');
+        $user = Auth::guard('customers')->id();
+        if($user != null){
+            $membership = Membershipplan::where('access_status','=','freetopro')->first();
+            $customer=Customer::where('id',$user)->first();
+        }elseif($sessioncustomer != null){
+            $membership = Membershipplan::where('access_status','=','paid')->first();
+            $customer=Customer::where('id',$sessioncustomer)->first();
+        }else{
+          return redirect('/')->with('error', trans('Something went wrong, please try again later!'));
+        }
+        
         $return_data = array();
         $return_data['region'] = Region::get();
         $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
-        $return_data['membership'] = Membershipplan::where('access_status','=','paid')->first();
-        return view('frontend.checkout', array_merge($return_data));
+        
+        return view('frontend.checkout', array_merge($return_data),compact('customer','membership'));
     }
 
     public function thankyou()
@@ -140,4 +154,38 @@ class FrontendController extends Controller
         $staticpage = StaticPage::where('slug', $segment)->first();
         return view('frontend.staticpage',compact('staticpage'));
     }
+
+    public function placeorder(Request $request)
+    {
+        $order= new Order();
+        $order->customer_id=$request->input('customerid');
+        $order->membershipplans_id=$request->input('membershipid');
+        $order->amount=$request->input('membershipprice');
+        $order->save();
+
+        $orderdetail= new Orderdetail();
+        $orderdetail->order_id=$order->id;
+        $orderdetail->firstname=$request->input('first_name');
+        $orderdetail->lastname=$request->input('last_name');
+        $orderdetail->companyname=$request->input('companyname');
+        $orderdetail->country=$request->input('country');
+        $orderdetail->streetaddress=$request->input('street_address');
+        $orderdetail->streetaddress1=$request->input('street_address1');
+        $orderdetail->city=$request->input('city');
+        $orderdetail->postalcode=$request->input('postalcode');
+        $orderdetail->phone=$request->input('phone');
+        $orderdetail->email=$request->input('email');
+        $orderdetail->save();
+
+        $membership=Membershipplan::where('id',$request->input('membershipid'))->first();
+        if($membership->access_status =='paid')
+        {
+            return redirect('/')->with('alert-success', 'Payment Do Successfully After Admin Verfication You Can Access a PaidMembership');
+        }else
+        {
+            return redirect()->route('frontdashboard')->with('success', trans('Payment Do Successfully After Admin Verfication You Can Access a PaidMembership'));
+        }
+
+    }
 }
+

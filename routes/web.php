@@ -25,11 +25,16 @@ Route::get('membership',[FrontendController::class,'membership'])->name('members
 Route::get('thank-you',[FrontendController::class,'thankyou'])->name('thankyou');
 Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lostpassword');
 Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
+Route::post('placeorder',[FrontendController::class,'placeorder'])->name('placeorder');
+
 Route::get('/contactus',[FrontendController::class, 'contactus'])->name('frontcontactus');
 Route::post('/store-contactus',[FrontendController::class, 'storeContactus'])->name('store-contactus');
 
 Route::post('registration',[FrontLoginController::class, 'registration'])->name('registration');
 Route::post('registration-update',[FrontLoginController::class, 'registrationUpdate'])->name('registration-update');
+
+Route::post('proregistration',[FrontLoginController::class, 'proregistration'])->name('proregistration');
+Route::post('storeadditionaluser',[FrontLoginController::class, 'storeadditionaluser'])->name('storeadditionaluser');
 
 Route::post('customer-checklogin',[FrontLoginController::class,'checklogin'])->name('customer-checklogin');
 Route::get('customer-logout', [FrontLoginController::class, 'logout'])->name('customer-logout');
