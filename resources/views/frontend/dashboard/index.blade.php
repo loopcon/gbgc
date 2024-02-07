@@ -152,7 +152,7 @@
 
                                     <div id="errormsg"></div>
                                     <div id="successmsg"></div>
-                                    <button type="button" class="login-form-signin register-btn" id="save_freetopro">Register</button>
+                                    <button type="button" class="login-form-signin register-btn" id="save_freetopro">Submit</button>
                                 </form>
                             </div>
 
@@ -169,21 +169,22 @@
     <div class="modal-dialog  modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5>Free To Pro</h5>
+                <h5>Additional User</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height:400px;overflow: auto;">
              <div class="row m-0">
                     <div class="col-12 col-md-12 p-0">
                         <div class="login-register-form-box">
                             <div>
                                 @if($customer->additional_user_no > 0  && $customer->accept_additional_user >0)
-                                    <form method="post" id="freetoproform" action="{{route('storeadditionaluser')}}">
+                            <form method="post" id="additionaluserform">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$customer->id}}">
-    
-                                @for($i = 1; $i <= $customer->accept_additional_user; $i++)
-                                <label>Add Details for Additional User {{$i}}</label>
+                                <?php $j=1;?>
+                              @for($i = 0; $i < $customer->accept_additional_user; $i++)
+                                <label>Add Details for Additional User {{$j}}</label>
+                                <?php $j++;?>
                                 <div class="row mb-3">
                                     <div class="col-12 col-md-6 ">
                                         <div class="input-group">
@@ -214,14 +215,16 @@
                                     <div class="col-12 col-md-6">
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
-                                            <input type="email" id="email{{$i}}" name="email[]" class="form-control" placeholder="Email"> 
+                                            <input type="text" id="additonalemail{{$i}}" name="email[]" class="form-control" placeholder="Email">
                                         </div>
                                         <div id="emailerror{{$i}}"></div>
                                     </div>
                                 </div>
                                 @endfor
 
-                                <button type="submit" class="login-form-signin register-btn">Submit</button>
+                                <div id="emailerror{{$i}}" data-index="{{$i}}"></div>
+
+                                <button type="button" class="login-form-signin register-btn saveadditional" id="saveadditional">Submit</button>
                                 </form>
 
                                 @else
@@ -269,6 +272,7 @@
     var formdata=$('#freetoproform').serialize();
       $.ajax(
         {
+
           url:"{{route('registration-update')}}",
           type: "post",
           data: formdata,
@@ -300,7 +304,54 @@
 
           }
         });
+  });
 
+
+
+
+   $(document).on('click','#saveadditional',function(){
+    var formdata=$('#additionaluserform').serialize();
+      $.ajax(
+        {
+          url:"{{route('storeadditionaluser')}}",
+          type: "post",
+          data: formdata,
+          dataType:'JSON',
+          success: function(data)
+          {
+
+            if (data.status == 1) 
+            {
+                window.location.href = "{{ route('additionalcheckout') }}";
+            }
+            
+            if (data.status == 0 && data.errors) {
+
+                $.each(data.errors, function(key, value) {
+                    if (key.includes('email')) {
+                        var index = key.replace('email', '').replace('.', '');
+                        $('#emailerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
+                    }
+
+                    if (key.includes('phone')) {
+                        var index = key.replace('phone', '').replace('.', '');
+                        $('#phoneerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
+                    }
+
+                    if (key.includes('name')) {
+                        var index = key.replace('name', '').replace('.', '');
+                        $('#nameerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
+                    }
+
+                    if (key.includes('job_title')) {
+                        var index = key.replace('job_title', '').replace('.', '');
+                        $('#jobtitleerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
+                    }
+                });
+            }
+
+          }
+        });
   });
 </script>
 @endsection

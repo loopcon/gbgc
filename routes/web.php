@@ -25,6 +25,8 @@ Route::get('membership',[FrontendController::class,'membership'])->name('members
 Route::get('thank-you',[FrontendController::class,'thankyou'])->name('thankyou');
 Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lostpassword');
 Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
+Route::get('additional-check-out',[FrontendController::class,'additionalcheckout'])->name('additionalcheckout');
+
 Route::post('placeorder',[FrontendController::class,'placeorder'])->name('placeorder');
 
 Route::get('/contactus',[FrontendController::class, 'contactus'])->name('frontcontactus');
@@ -34,6 +36,7 @@ Route::post('registration',[FrontLoginController::class, 'registration'])->name(
 Route::post('registration-update',[FrontLoginController::class, 'registrationUpdate'])->name('registration-update');
 
 Route::post('proregistration',[FrontLoginController::class, 'proregistration'])->name('proregistration');
+
 Route::post('storeadditionaluser',[FrontLoginController::class, 'storeadditionaluser'])->name('storeadditionaluser');
 
 Route::post('customer-checklogin',[FrontLoginController::class,'checklogin'])->name('customer-checklogin');

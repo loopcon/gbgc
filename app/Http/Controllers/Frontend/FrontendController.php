@@ -73,6 +73,23 @@ class FrontendController extends Controller
         return view('frontend.checkout', array_merge($return_data),compact('customer','membership'));
     }
 
+    public function additionalcheckout()
+    {
+        $sessioncustomer=Session::get('customer');
+        $user = Auth::guard('customers')->id();
+
+        $membership = Membershipplan::where('access_status','=','additionaluser')->first();
+        $customer=Customer::where('id',$user)->first();
+        
+        
+        $return_data = array();
+        $return_data['region'] = Region::get();
+        $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
+        
+        return view('frontend.checkout', array_merge($return_data),compact('customer','membership'));
+    }
+
+
     public function thankyou()
     {
         return view('frontend.thankyou');
