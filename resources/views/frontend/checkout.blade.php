@@ -18,13 +18,13 @@
     </div> 
 
     <div class="container">
-       <!--  <div class="global-gaming-addtoreport">
+     <?php  /*  <div class="global-gaming-addtoreport">
             <span><i class="fa-solid fa-circle-check"></i></span> <p>“{{$membership->name}}” has been added to your basket.</p>
         </div>
 
         <div class="rerurn-customerbox">
             <span><i class="fa-regular fa-calendar"></i></span> <p>Returning customer? </p> <a  href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal" class="clicktologinform">Click here to login</a>
-        </div> -->
+        </div> */ ?>
 
         <div class="login-click-show">
             <p>If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing section.</p>

@@ -99,6 +99,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/additional-user-create/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'additionalUserCreate'])->name('additional-user-create');
     Route::post('admin/additional-user-store/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'additionalUserStore'])->name('additional-user-store');
     Route::get('admin/additional-user-delete/{id}', [App\Http\Controllers\Admin\AdditionalUserController::class, 'destroy'])->name('additional-user-delete');
+    Route::get('admin/additionaluser-password-create/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'createIdPassword'])->name('additionaluser-password-create');
+    Route::post('admin/additionaluser-password-update/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'updatePassword'])->name('additionaluser-password-update');
     //end additional user
 
     //general-setting

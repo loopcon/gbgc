@@ -15,7 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::wherenot('status',4)->get();
+        $customer = Customer::where([['status','!=',4],['access_type','!=','additionaluser']])->get();
         $return_data['customer'] = $customer;
         return view('admin.customer.list', array_merge($return_data));
     }
