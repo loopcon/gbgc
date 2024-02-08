@@ -156,18 +156,18 @@
                 <tbody>
                 <tr>
                     <td>{{$membership->name}}</td>
-                    <td>£{{$membership->price}}</td>
+                    <td>£{{$membershipamount}}</td>
                     
                 </tr>
                 <tr>
                     <input type="hidden" name="membershipid" value="{{$membership->id}}">
-                    <input type="hidden" name="membershipprice" value="{{$membership->price}}">
+                    <input type="hidden" name="membershipprice" value="{{$membershipamount}}">
                     <td class="order-tablecheck-subtotal">Subtotal</td>
-                    <td class="order-tablecheck-subtotal">£{{$membership->price}}</td>
+                    <td class="order-tablecheck-subtotal">£{{$membershipamount}}</td>
                 </tr>
                 <tr>
                     <td class="order-tablecheck-subtotal">Total</td>
-                    <td class="order-tablecheck-subtotal">£{{$membership->price}}</td>
+                    <td class="order-tablecheck-subtotal">£{{$membershipamount}}</td>
                 </tr>
                 
                 </tbody>

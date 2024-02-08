@@ -73,8 +73,10 @@
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
                                                         <th>{{__('Parent User')}}</th>
-                                                        <th>{{__('Additional User Number')}}</th>
-                                                        <th>{{__('Accept Additional User')}}</th>
+                                                        <th>{{__('Total')}}</th>
+                                                        <th>Remain</th>
+                                                        <th>{{__('Accept')}}</th>
+                                                        <th>{{__('Payment')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
@@ -89,7 +91,9 @@
                                                                 <?php $i++;?>
                                                             <td>{{$data->name}} </td>
                                                             <td>{{$data->additional_user_no}} </td>
+                                                            <td>{{$data->remainadditional_user}}</td>
                                                             <td>{{$data->accept_additional_user}} </td>
+                                                            <td>{{$data->payment_additional_user}} </td>
                                                             <td><a href="{{ route('additional-user-create',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Accept Additional user"><i class="fa fa-edit"></i></a>
                                                             <a href='javascript:void(0);' data-href="{{ route('additional-user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>

@@ -40,12 +40,12 @@
             @include('frontend.dashboard.sidebar')
             <div class="col-12 col-md-8 col-lg-9 ">
                 <h3>Hello !! {{$customer->name}}</h3> 
-                @if($customer->access_type!="paid")
+                @if($customer->access_type!="paid"  && $customer->access_type!="additionaluser")
                 <a href="javascript:void(0)"  class="free-access-btn freetoproacess" style="width:15%">  Free to Pro</a>
                 @endif
 
-                @if($customer->additional_user_no > 0  && $customer->accept_additional_user >0)
-                <a href="javascript:void(0)"  class="free-access-btn additionaluser" style="width:15%">Additional User Payment </a>
+                @if($customer->remain_payment_additional_user > 0)
+                <a href="javascript:void(0)"  class=" btn btn-primary additionaluser">Add Additional User</a>
                 @endif
             </div>
         </div>
@@ -177,12 +177,12 @@
                     <div class="col-12 col-md-12 p-0">
                         <div class="login-register-form-box">
                             <div>
-                                @if($customer->additional_user_no > 0  && $customer->accept_additional_user >0)
+                                @if($customer->remain_payment_additional_user > 0)
                             <form method="post" id="additionaluserform">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$customer->id}}">
                                 <?php $j=1;?>
-                              @for($i = 0; $i < $customer->accept_additional_user; $i++)
+                              @for($i = 0; $i < $customer->remain_payment_additional_user; $i++)
                                 <label>Add Details for Additional User {{$j}}</label>
                                 <?php $j++;?>
                                 <div class="row mb-3">

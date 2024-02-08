@@ -45,7 +45,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Additional User Number</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="additional_user_no"  id="additional_user_no" class="form-control" value="{{$additonaluser->additional_user_no}}" readOnly >
+                                            <input type="text" name="additional_user_no"  id="additional_user_no" class="form-control" value="{{$additonaluser->remainadditional_user}} " readOnly >
                                         </div>
                                     </div>
                                     <div class="form-group row">

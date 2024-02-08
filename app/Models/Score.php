@@ -9,7 +9,7 @@ class Score extends Model
 {
     use HasFactory;
     protected $table ='scores';
-    protected $fillable  = ['view','region_id', 'level_1', 'level_2','level_3','level_4','year','score'];
+    protected $fillable  = ['view','region_id', 'level_1', 'level_2','level_3','level_4','year','score','comment'];
     
     public function regionDetail()
     {

@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/user-delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('user-delete');
     //endcustomer
 
+
     //additional user
     Route::get('admin/additional-user', [App\Http\Controllers\Admin\AdditionalUserController::class,'index'])->name('additional-user');
     Route::get('admin/additional-user-create/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'additionalUserCreate'])->name('additional-user-create');
@@ -105,6 +106,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/additionaluser-password-create/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'createIdPassword'])->name('additionaluser-password-create');
     Route::post('admin/additionaluser-password-update/{id}',[App\Http\Controllers\Admin\AdditionalUserController::class, 'updatePassword'])->name('additionaluser-password-update');
     //end additional user
+
+
 
     //general-setting
     Route::get('admin/generalsetting', [App\Http\Controllers\Admin\SettingController::class,'generalSetting'])->name('generalsetting');

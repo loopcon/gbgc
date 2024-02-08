@@ -71,7 +71,7 @@ class ScoreController extends Controller
         $view=$request->input('view');
         $region=$request->input('region');
         $file = $request->file('file');
-        Excel::import(new ImportScore($view, $region), $file);
+        Excel::import(new ImportScore($view, $region,$file), $file);
         return redirect('admin/score')->with('success', trans('Score Imported successfully.'));
     }
 }
