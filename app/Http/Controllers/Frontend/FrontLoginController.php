@@ -37,7 +37,7 @@ class FrontLoginController extends Controller
         $customer->email=$request->input('email');
         $customer->bussiness_name=$request->input('bussiness_name');
         $customer->business_wider_group=$request->input('business_wider_group');
-        $customer->access_type= 'free';
+        $customer->access_type= 'requestforfree';
         $customer->save();
 
         if($customer){
@@ -73,6 +73,7 @@ class FrontLoginController extends Controller
         $customer->business_wider_group=$request->input('business_wider_group');
         $customer->additional_details=$request->input('additional_details');
         $customer->additional_user_no=$request->input('additional_user_no');
+        $customer->remainadditional_user=$request->input('additional_user_no');
         $customer->gst=$request->input('gst');
         $customer->access_type= 'paid';
         $customer->save();
@@ -122,16 +123,15 @@ class FrontLoginController extends Controller
             $additionaluser->phone =$request->phone[$i];
             $additionaluser->email =$request->email[$i];
             $additionaluser->save();
+        }
 
-
-            if($customer){
+         if($customer){
             return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
             }
             else
             {
             return response()->json(['status' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
             }
-        }
     }
     public function checklogin(Request $request)
     {
@@ -197,11 +197,15 @@ class FrontLoginController extends Controller
     }
     public function updateMyAccount(Request $request)
     {
+        $customer=Customer::where('id',$request->id)->first();
+        $totaladditional=$customer->remainadditional_user + $customer->accept_additional_user;
+        $remainadditional=$customer->remainadditional_user;
         $customer_detail = Customer::find($request->id);
         $customer_detail->name = $request->input('name');
         $customer_detail->job_title = $request->input('job_title');
         $customer_detail->bussiness_name = $request->input('bussiness_name');
-        $customer_detail->bussiness_size = $request->input('bussiness_size');
+        $customer_detail->additional_user_no = $request->input('additional_user_no') + $totaladditional;
+        $customer_detail->remainadditional_user =$request->input('additional_user_no') + $remainadditional;
 
         // if ($request->password) {
         //     $user->password = Hash::make($request->password);
@@ -243,6 +247,7 @@ class FrontLoginController extends Controller
         $customer->business_wider_group=$request->input('business_wider_group');
         $customer->additional_details=$request->input('additional_details');
         $customer->additional_user_no=$request->input('additional_user_no');
+        $customer->remainadditional_user=$request->input('additional_user_no');
         $customer->access_type = "paid";
         $customer->status = 0;
         $customer->save();

@@ -40,9 +40,11 @@ class AdditionalUserController extends Controller
                 'required'  => trans('The :attribute field is required.')
             ]
         );
-
+        $findcustomer = Customer::where('id',$request->id)->first();
         $additionaluser = Customer::find($id);
-        $additionaluser->accept_additional_user = $request->accept_additional_user;
+        $additionaluser->accept_additional_user = $findcustomer->payment_additional_user + $request->accept_additional_user;
+        $additionaluser->remainadditional_user = $request->additional_user_no - $request->accept_additional_user;
+        $additionaluser->remain_payment_additional_user=$request->accept_additional_user;
         $additionaluser->save();
 
         if($additionaluser) {
