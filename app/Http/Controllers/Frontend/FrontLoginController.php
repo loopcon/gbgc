@@ -128,7 +128,9 @@ class FrontLoginController extends Controller
         $user  = $request->get('email1');
         $pass = $request->get('password');
         $customer = Customer::where([['email', '=', $request->email1]])->first();  
-        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""],['email_verify', '=', 1],['status','=',1]])->first();
+        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""],['email_verify', '=', 1],['status','=',1]])->first(
+            0
+        );
 
         if(empty($customer)){
             return redirect('/')->with('alert-danger', 'Your have not account, please Register First');
