@@ -133,6 +133,7 @@
         <div id="styleSelector">
         </div>
     </div>
+
 @endsection
 @section('javascript')
 <script>

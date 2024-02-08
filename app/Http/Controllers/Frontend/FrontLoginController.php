@@ -77,7 +77,6 @@ class FrontLoginController extends Controller
         $customer->access_type= 'paid';
         $customer->save();
         $session= Session::put('customer', $customer->id);
-
         if($customer){
             return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
         }
@@ -90,6 +89,21 @@ class FrontLoginController extends Controller
 
     public function storeadditionaluser(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+        'name.*' => ['required'],
+        'job_title.*' => ['required'],
+        'email.*' => ['required', 'unique:customers,email', 'email'],
+        'phone.*' => ['required', 'numeric','digits:10'],
+        ],[
+            'required' => 'This Field is required.',
+        ]);
+
+         if ($validator->fails()) {
+            return response()->json(['status' => 0, 'errors' => $validator->errors()]);
+        }
+
+
         $numEntries = count($request->name);
         for ($i = 0; $i < $numEntries; $i++) {
             $customer = new Customer();
@@ -109,10 +123,16 @@ class FrontLoginController extends Controller
             $additionaluser->email =$request->email[$i];
             $additionaluser->save();
 
-        }
-        return redirect()->route('checkout');
-    }
 
+            if($customer){
+            return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
+            }
+            else
+            {
+            return response()->json(['status' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
+            }
+        }
+    }
     public function checklogin(Request $request)
     {
             
