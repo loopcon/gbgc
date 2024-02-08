@@ -9,11 +9,15 @@ class Score extends Model
 {
     use HasFactory;
     protected $table ='scores';
-    protected $fillable  = ['view','region_id', 'level_1', 'level_2','level_3','level_4','year','score'];
+    protected $fillable  = ['view','region_id','currency_id', 'level_1', 'level_2','level_3','level_4','year','score'];
     
     public function regionDetail()
     {
         return $this->belongsTo(Region::class,'region_id');
+    }
+    public function currencyDetail()
+    {
+        return $this->belongsTo(Currency::class,'currency_id');
     }
     public function maincategoryDetail()
     {

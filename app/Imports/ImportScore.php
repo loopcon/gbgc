@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Score;
 use App\Models\Region;
+use App\Models\Currency;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Models\LevelMaster;
@@ -12,11 +13,13 @@ class ImportScore implements ToModel
 {
     private $view;
     private $region;
+    private $currency;
 
-    public function __construct($view, $region)
+    public function __construct($view, $region, $currency)
     {
         $this->view = $view;
         $this->region = $region;
+        $this->currency = $currency;
     }
 
     public function model(array $row)
@@ -43,6 +46,7 @@ class ImportScore implements ToModel
             $data = [
                 'view' => $this->view,
                 'region_id' => $this->region,
+                'currency_id' => $this->currency,
                 'level_1' => $level1,
                 'level_2' => $level2,
                 'level_3' => $level3,
@@ -53,6 +57,7 @@ class ImportScore implements ToModel
                 $existingData = DB::table('scores')
                 ->where('view', $this->view)
                 ->where('region_id', $this->region)
+                ->where('currency_id', $this->currency)
                 ->where('level_1', $level1)
                 ->where('level_2', $level2)
                 ->where('level_3', $level3)

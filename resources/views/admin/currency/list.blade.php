@@ -6,7 +6,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Jurisdiction </h5>
+                        <h5>Currency</h5>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                             <a href="{{route('adminindex')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('region')}}">Jurisdiction </a>
+                            <a href="{{route('admincurrency')}}">Currency</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
                                 <div class="card-header">
                                     <div class="form-row">
                                         <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('region-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                            <div class="col-md-12 text-right"><a href="{{route('currency-create')}}" class="btn text-light" style="background:#4099ff" ><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                        <th>{{__('Name')}}</th>
+                                                        <th>{{__('name')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
@@ -80,14 +80,14 @@
                                                 <?php
                                                     $i=1;
                                                 ?>
-                                                @if(count($region)>0)
-                                                    @foreach($region as $data) 
+                                                @if(count($currency)>0)
+                                                    @foreach($currency as $data) 
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
                                                             <td >  {{$data->name}} </td>
-                                                            <td><a href="{{ route('region-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('region-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <td><a href="{{ route('currency-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
+                                                            <a href='javascript:void(0);' data-href="{{ route('currency-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -113,7 +113,7 @@
             var href = $(this).data('href');
             swal({
                 title: "",
-                text: "{{__('Are you sure? Delete this Region!')}}",
+                text: "{{__('Are you sure? Delete this Currency!')}}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-info",

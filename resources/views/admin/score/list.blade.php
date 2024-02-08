@@ -77,7 +77,8 @@
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
                                                     <th>{{__('View')}}</th>
-                                                    <th>{{__('Region')}}</th>
+                                                    <th>{{__('Jurisdiction')}}</th>
+                                                    <th>{{__('Currency')}}</th>
                                                     <th>{{__('Level 1')}}</th>
                                                     <th>{{__('level 2')}}</th>
                                                     <th>{{__('Level 3')}}</th>
@@ -97,6 +98,8 @@
                                                                 <?php $i++;?>
                                                             <td>{{$data->view}}</td>
                                                             <td>@if($data->regionDetail){{$data->regionDetail->name}}@else - @endif
+                                                            </td>
+                                                            <td>@if($data->currencyDetail){{$data->currencyDetail->name}}@else - @endif
                                                             </td>
                                                             <td> @if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
 
@@ -139,12 +142,24 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Region<span class="text-danger">*</span></label>
+                                            <label class="col-sm-2 col-form-label">Jurisdiction<span class="text-danger">*</span></label>
                                             <div class="col-sm-10">
                                                 <select id="region" class="form-control select2" name="region" required="">
-                                                    <option value="0">--Select Region--</option>
+                                                    <option value="0">--Select Jurisdiction--</option>
                                                     @foreach($region as $regiondata)
                                                     <option value="{{$regiondata->id}}">{{$regiondata->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Currency<span class="text-danger">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select id="currency" class="form-control select2" name="currency" required="">
+                                                    <option value="0">--Select Currency--</option>
+                                                    @foreach($currencies as $currency)
+                                                    <option value="{{$currency->id}}">{{$currency->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
