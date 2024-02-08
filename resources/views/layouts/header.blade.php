@@ -58,9 +58,7 @@
    <div class="modal fade" id="siguploginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog siguplogin-dailog modal-dialog-centered ">
           <div class="modal-content">
-            <div class="modal-header">
-                <button data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i></button>
-            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
               <div class="row m-0">
                     {{-- <div class="col-12 col-md-5 p-0">

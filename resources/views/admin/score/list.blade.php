@@ -123,7 +123,7 @@
                     <div class="modal fade" id="scoreImportModal" tabindex="-1" role="dialog" aria-labelledby="scoreImportModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('import-scores') }}" method="post" data-parsley-validate enctype="multipart/form-data">
+                                <form action="{{ route('import-scores') }}" method="post" data-parsley-validate enctype="multipart/form-data" id="importScore">
                                     {{ csrf_field() }}
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="sizeOptionModalLabel">Import Score</h5>
@@ -199,6 +199,12 @@ $(document).ready(function(){
             $('#import').hide();
         }
     });
+    
+    $('#scoreImportModal').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        $('#import').hide();
+    })
+
 });
 </script>
 @endsection
