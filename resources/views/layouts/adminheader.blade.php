@@ -107,17 +107,22 @@
                                         </a>
                                     </li>
 
-                                    <li class="pcoded-hasmenu {{ (request()->is('admin/region*') || request()->is('admin/score*'))? 'pcoded-trigger' : '' }}">
+                                    <li class="pcoded-hasmenu {{ (request()->is('admin/region*') || request()->is('admin/currency*') || request()->is('admin/score*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-upload"></i>
                                             </span>
                                             <span class="pcoded-mtext">GBGC Data Upload</span>
                                         </a>
-                                        <ul class="pcoded-submenu " style="{{ (request()->is('admin/region*') || request()->is('admin/score*'))? 'display:block' : 'display:none' }}">
+                                        <ul class="pcoded-submenu " style="{{ (request()->is('admin/region*') || request()->is('admin/currency*') || request()->is('admin/score*'))? 'display:block' : 'display:none' }}">
                                             <li class="{{ (request()->is('admin/region*'))? 'active' : '' }}">
                                                 <a href="{{route('region')}}" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Region</span>
+                                                    <span class="pcoded-mtext">Jurisdiction</span>
+                                                </a>
+                                            </li>
+                                            <li class="{{ (request()->is('admin/currency*'))? 'active' : '' }}">
+                                                <a href="{{route('admincurrency')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Currency</span>
                                                 </a>
                                             </li>
                                             <li class="{{ (request()->is('admin/score*'))? 'active' : '' }}">

@@ -196,6 +196,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/emailtemplates', [App\Http\Controllers\Admin\EmailTemplateController::class,'index'])->name('admin-emailtemplates');
     Route::post('admin/emailtemplate-update',[App\Http\Controllers\Admin\EmailTemplateController::class, 'update'])->name('admin-emailtemplate-update');
     //end email-template
+
+    //currency
+    Route::get('admin/currency',[App\Http\Controllers\Admin\CurrencyController::class,'index'])->name('admincurrency');
+    Route::get('admin/currency-create',[App\Http\Controllers\Admin\CurrencyController::class,'create'])->name('currency-create');
+    Route::post('admin/currency-store',[App\Http\Controllers\Admin\CurrencyController::class,'store'])->name("currency-store");
+    Route::get('admin/currency-edit/{id}',[App\Http\Controllers\Admin\CurrencyController::class, 'edit'])->name('currency-edit');
+    Route::post('admin/currency-update/{id}',[App\Http\Controllers\Admin\CurrencyController::class, 'update'])->name('currency-update');
+    Route::get('admin/currency-delete/{id}', [App\Http\Controllers\Admin\CurrencyController::class, 'destroy'])->name('currency-delete');
+    //end currency
 });
 
  $static = Cache::remember('static_pages', 10, function() { 

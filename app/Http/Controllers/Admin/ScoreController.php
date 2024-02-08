@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Score;
 use App\Models\Region;
+use App\Models\Currency;
 use App\Exports\ExportScore;
 use App\Imports\ImportScore;
 use Excel;
@@ -17,10 +18,11 @@ class ScoreController extends Controller
     public function index()
     {
         $return_data = array();
-        $score = Score::with('regionDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->get();
+        $score = Score::with('regionDetail','currencyDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->get();
         $return_data['score'] = $score;
         $region=Region::get();
-        return view('admin.score.list', array_merge($return_data),compact('region','score'));
+        $currencies=Currency::get();
+        return view('admin.score.list', array_merge($return_data),compact('region','score','currencies'));
     }
 
     public function exportScore(Request $request){
@@ -70,8 +72,9 @@ class ScoreController extends Controller
     {
         $view=$request->input('view');
         $region=$request->input('region');
+        $currency=$request->input('currency');
         $file = $request->file('file');
-        Excel::import(new ImportScore($view, $region,$file), $file);
+        Excel::import(new ImportScore($view, $region,$currency,$file), $file);
         return redirect('admin/score')->with('success', trans('Score Imported successfully.'));
     }
 }

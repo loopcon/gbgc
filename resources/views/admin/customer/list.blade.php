@@ -72,7 +72,7 @@
                                                         <th>{{__('Phone')}}</th>
                                                         <th>{{__('Job Title')}}</th>
                                                         <th>{{__('Bussiness Name')}}</th>
-                                                        <th>{{__('Bussiness Size')}}</th>
+                                                        <th>{{__('Bussiness Wider Group')}}</th>
                                                         <th>{{__('Access Type')}}</th>
                                                         <th>{{__('Status')}}</th>
                                                         <th>{{__('Action')}}</th>
@@ -92,7 +92,7 @@
                                                             <td >  {{$data->phone}} </td>
                                                             <td >  {{$data->job_title}} </td>
                                                             <td >  {{$data->bussiness_name}} </td>
-                                                            <td >  {{$data->bussiness_size}} </td>
+                                                            <td >  {{$data->business_wider_group}} </td>
                                                             <td >  {{$data->access_type}} </td>
                                                             <td>
                                                                 @if($data->status==1 && $data->payment==1)
