@@ -45,7 +45,7 @@
                 @endif
 
                 @if($customer->remain_payment_additional_user > 0)
-                <a href="javascript:void(0)"  class=" btn btn-primary additionaluser">Add Additional User</a>
+                <a href="javascript:void(0)"  class=" btn text-light additionaluser" style="background:#4099ff">Add Additional User</a>
                 @endif
             </div>
         </div>

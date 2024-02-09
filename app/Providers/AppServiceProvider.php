@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\websitelogo;
+use App\Models\GeneralSetting;
 use App\Models\StaticPage;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $data = websitelogo::first();
+        $data = GeneralSetting::first();
         view()->share('data', $data);
 
         $staticpage = StaticPage::wherenot('slug', 'about_us')->get();

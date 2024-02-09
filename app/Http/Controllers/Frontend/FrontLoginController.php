@@ -148,6 +148,7 @@ class FrontLoginController extends Controller
         $user  = $request->get('email1');
         $pass = $request->get('password');
         $customer = Customer::where([['email', '=', $request->email1]])->first();  
+
         $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""],['email_verify', '=', 1]])->first();
 
         if(empty($customer)){
@@ -177,8 +178,6 @@ class FrontLoginController extends Controller
         
     }  
 
-
-
     public function logout()
     {
         session()->forget('customerInfo');
@@ -202,8 +201,11 @@ class FrontLoginController extends Controller
         $customer_detail->name = $request->input('name');
         $customer_detail->job_title = $request->input('job_title');
         $customer_detail->bussiness_name = $request->input('bussiness_name');
+        $customer_detail->business_wider_group = $request->input('business_wider_group');
+        $customer_detail->billing_address = $request->input('billing_address');
         $customer_detail->additional_user_no = $request->input('additional_user_no') + $totaladditional;
         $customer_detail->remainadditional_user =$request->input('additional_user_no') + $remainadditional;
+        $customer_detail->additional_details = $request->input('additional_details');
 
         // if ($request->password) {
         //     $user->password = Hash::make($request->password);
