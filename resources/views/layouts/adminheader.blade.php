@@ -130,6 +130,12 @@
                                                     <span class="pcoded-mtext">Score</span>
                                                 </a>
                                             </li>
+
+                                             <li class="{{ (request()->is('admin/level*'))? 'active' : '' }}">
+                                                <a href="{{route('adminlevel')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Level</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 

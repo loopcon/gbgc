@@ -58,18 +58,15 @@
    <div class="modal fade" id="siguploginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog siguplogin-dailog modal-dialog-centered ">
           <div class="modal-content">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header">
+                <h5>Sign In</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body">
               <div class="row m-0">
-                    {{-- <div class="col-12 col-md-5 p-0">
-                        <img src="" class="img-fluid login-img-popup" alt="">
-                    </div> --}}
                     <div class="col-12 p-0">
                         <div class="login-register-form-box">
-                            <div class="login-register-box">
-                                <a href="#" class="login-text login-active">Login</a>
-                              <?php /*  <a href="#" class="register-text ">Register</a> */ ?>
-                            </div>
+                           
                             <div>
                             
                                 <form action="/customer-checklogin" method="POST" class="login-form">

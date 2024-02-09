@@ -35,7 +35,7 @@ class ImportScore implements ToModel
         } elseif ($columnHeaders !== null) {
             if($row[0] !== null && count($row) >= 4)
             {
-            $years = array_slice($columnHeaders, 4, 2);
+            $years = array_slice($columnHeaders, 4);
             $numScores = count($row) - 4;
             $scores = [];
 

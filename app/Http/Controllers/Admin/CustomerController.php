@@ -31,21 +31,6 @@ class CustomerController extends Controller
             $customer->status = $status;
             $customer->payment = 1;
             $customer->save();
-           
-            // User mail-sent for pro access live
-
-            // $data = [
-            //     'email'   => $customer->email, 
-            // ];
-
-            // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
-            //     $message->to($data['email'], 'Customer of GBGC')->subject
-            //         ('Hello Dear Customer, your pro access is live now.');
-            //     $message->from('loopcon16@gmail.com','GBGC');
-            // });
-
-            // end mail-sent
-
         }
         else
         {
