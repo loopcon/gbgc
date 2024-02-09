@@ -193,7 +193,7 @@
     <div class="modal-dialog  modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5>Registed to for Free Access</h5>
+                <h5>Registed  for Free Access</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -416,7 +416,7 @@
                $('#successmsg').html('<strong id="successmsgshow" style="color:green">Your Account Request Sent Successfully.</strong>');
                setTimeout(function() {
                    location.reload();
-               }, 4000);
+               }, 2000);
             }
             
             if (data.status == 0) {

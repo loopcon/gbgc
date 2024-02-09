@@ -249,7 +249,6 @@ class FrontLoginController extends Controller
         $customer->additional_user_no=$request->input('additional_user_no');
         $customer->remainadditional_user=$request->input('additional_user_no');
         $customer->access_type = "paid";
-        $customer->status = 0;
         $customer->save();
 
         // mail-send to admin for accept user paid request.

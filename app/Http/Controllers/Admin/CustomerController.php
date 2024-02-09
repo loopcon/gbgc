@@ -25,19 +25,14 @@ class CustomerController extends Controller
 
     public function changeStatus($id, $status)
     {
-        $customer = Customer::where('id', $id)->first();
-        if($customer->access_type=="paid")
-        {
-            $customer->status = $status;
-            $customer->payment = 1;
-            $customer->save();
-        }
-        else
-        {
-            $customer_fields['status'] = $status;
-            $customer = Customer::where('id', $id)->update($customer_fields);
-        }
-        
+        $customerfind = Customer::where('id', $id)->first();
+        $customer=Customer::find($id);
+        if($customerfind->access_type = 'requestforfree'){$customer->access_type='free';}
+        elseif($customerfind->access_type = 'requestforpaid'){$customer->access_type='paid';}
+        elseif($customerfind->access_type = 'requestforadditionaluser'){$customer->access_type='additionaluser';}
+        $customer->status = 1;
+        $customer->payment = 1;
+        $customer->save();
         return redirect('admin/user')->with('success', trans('User status changed successfully.'));
     }
 
