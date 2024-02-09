@@ -43,7 +43,7 @@
                                                 <option value="0">--Select access_status--</option>
                                                 <option value="free" @if((isset($membershipplan->access_status) && $membershipplan->access_status=="free")) selected="selected" @endif>Free</option>
                                                 <option value="paid" @if((isset($membershipplan->access_status) && $membershipplan->access_status=="paid")) selected="selected" @endif>Paid</option>
-                                                <option value="additional user" @if((isset($membershipplan->access_status) && $membershipplan->access_status=="additional user")) selected="selected" @endif>Additional User</option>
+                                                <option value="additionaluser" @if((isset($membershipplan->access_status) && $membershipplan->access_status=="additionaluser")) selected="selected" @endif>Additional User</option>
                                             </select>
                                         </div>
                                     </div>

@@ -122,7 +122,7 @@
                 <div>
                     <div class="subscript-text-box">
                         <p>Subscription</p>
-                        <h4>Member Benifits</h4>
+                        <h4>Member Benefits</h4>
                          {{-- <a href="{{route('checkout')}}" style="text-decoration:none"><button>Buy Now</button></a> --}}
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
                                                 <input type="text" id="proname" name="name" class="form-control" placeholder="Name">
                                             </div>
-                                            <div id="nameerror"></div>
+                                            <div id="nameerror-pro"></div>
                                         </div>
 
                                         <div class="col-12 col-md-6">
@@ -310,14 +310,14 @@
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
                                                 <input type="email" id="proemail" name="email" class="form-control" placeholder="Email"> 
                                             </div>
-                                            <div id="emailerror"></div>
+                                            <div id="emailerror-pro"></div>
                                         </div> 
                                          <div class="col-12 col-md-6" >
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
                                                 <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="prophone" name="phone">
                                             </div> 
-                                            <div id="phoneerror"></div>  
+                                            <div id="phoneerror-pro"></div>  
                                         </div>
                                          
                                     </div>
@@ -353,7 +353,7 @@
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-users"></i></span>
                                                 <input type="text" id="additional_user_no" name="additional_user_no"  class="form-control" placeholder="Number of Additional User" value="" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                                             </div>
-                                            <div id="jobtitleerror"></div>
+                                            <div id="jobtitleerror-pro"></div>
                                         </div>
                                     </div>
 
@@ -465,9 +465,9 @@ $(document).on('click','.prosignup',function()
                 $('#nameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
                 if(data.errors)
                 {
-                    if(data.errors.name){$('#nameerror').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
-                    if (data.errors.email) {$('#emailerror').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
-                    if(data.errors.phone){$('#phoneerror').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
+                    if(data.errors.name){$('#nameerror-pro').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
+                    if (data.errors.email) {$('#emailerror-pro').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
+                    if(data.errors.phone){$('#phoneerror-pro').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
                 }
                 if(data.errormsg)
                 {

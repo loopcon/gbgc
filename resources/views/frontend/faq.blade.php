@@ -30,7 +30,7 @@
                             @foreach($faq as $data) 
                                 <div class="faq-accordion-box">
                                     <a href="#" class="faq-accordion-header faq-active-accordion" data-target="acrd_1">{{$data->question}}</a>
-                                    <div class="faq-accordion-content" id="acrd_1" style="display:block">
+                                    <div class="faq-accordion-content acrd_1" id="acrd_1">
                                         <p>{!!$data->answer!!}</p>
                                     </div>
                                 </div>
@@ -56,5 +56,10 @@
         </div>
     </div>
     <!-- faq section end  -->
+@endsection
+@section('script')
+<script>
+$(".acrd_1:first").show();
+</script>
 @endsection
 

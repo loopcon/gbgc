@@ -76,6 +76,7 @@ class AdditionalUserController extends Controller
         $customer = Customer::where('id',$additionaluser->customer_id)->update([
             'password' => Hash::make($request->password),
             'email_verify' => 1,
+            'status' => 1,
         ]);
         
         

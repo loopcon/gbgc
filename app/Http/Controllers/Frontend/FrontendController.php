@@ -81,6 +81,7 @@ class FrontendController extends Controller
         $user = Auth::guard('customers')->id();
 
         $membership = Membershipplan::where('access_status','=','additionaluser')->first();
+        
         $customer=Customer::where('id',$user)->first();
         
         $membershipamount=$customer->remain_payment_additional_user * $membership->price;

@@ -17,7 +17,7 @@
         <div id="header-sticky">
             <div class="container">
                 <div class="navbar-main">
-                    <a href="{{route('index')}}"><img src="{{asset('uploads/settings/'.$data->logo)}}" class="navbar-imglogo" alt=""></a>
+                    <a href="{{route('index')}}"><img src="{{asset('uploads/generalsetting/'.$data->logo)}}" class="navbar-imglogo" alt=""></a>
                     <div>
                         <a href="javascript:void(0)" id="menu-btn" class="menu-icon"><i class="fa-solid fa-bars"></i><span>MENU</span></a>
                         <div class="dropdown-show" id="menu-popup">
