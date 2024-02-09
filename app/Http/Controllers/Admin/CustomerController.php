@@ -15,7 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::where([['status','!=',4],['access_type','!=','additionaluser']])->get();
+        $customer = Customer::where([['status','!=',4],['access_type','!=','requestforadditionaluser'],['access_type','!=','additionaluser']])->get();
         $return_data['customer'] = $customer;
         return view('admin.customer.list', array_merge($return_data));
     }
@@ -27,11 +27,10 @@ class CustomerController extends Controller
     {
         $customerfind = Customer::where('id', $id)->first();
         $customer=Customer::find($id);
-        if($customerfind->access_type = 'requestforfree'){$customer->access_type='free';}
-        elseif($customerfind->access_type = 'requestforpaid'){$customer->access_type='paid';}
-        elseif($customerfind->access_type = 'requestforadditionaluser'){$customer->access_type='additionaluser';}
+        if($customerfind->access_type == 'requestforfree'){$customer->access_type='free';}
+        elseif($customerfind->access_type == 'requestforpaid'){$customer->access_type='paid';}
+        elseif($customerfind->access_type == 'requestforadditionaluser'){$customer->access_type='additionaluser';}
         $customer->status = 1;
-        $customer->payment = 1;
         $customer->save();
         return redirect('admin/user')->with('success', trans('User status changed successfully.'));
     }

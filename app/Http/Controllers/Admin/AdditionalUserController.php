@@ -77,6 +77,7 @@ class AdditionalUserController extends Controller
             'password' => Hash::make($request->password),
             'email_verify' => 1,
             'status' => 1,
+            'access_type' => 'additionaluser',
         ]);
         
         

@@ -40,7 +40,7 @@
             @include('frontend.dashboard.sidebar')
             <div class="col-12 col-md-8 col-lg-9 ">
                 <h3>Hello !! {{$customer->name}}</h3> 
-                @if($customer->access_type!="paid"  && $customer->access_type!="additionaluser")
+                @if($customer->access_type!="paid"  && $customer->access_type!="additionaluser"  && $customer->access_type!="requestforadditional")
                 <a href="javascript:void(0)"  class="free-access-btn freetoproacess" style="width:15%">  Free to Pro</a>
                 @endif
 

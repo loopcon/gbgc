@@ -75,7 +75,7 @@ class FrontLoginController extends Controller
         $customer->additional_user_no=$request->input('additional_user_no');
         $customer->remainadditional_user=$request->input('additional_user_no');
         $customer->gst=$request->input('gst');
-        $customer->access_type= 'paid';
+        $customer->access_type= 'requestforpaid';
         $customer->save();
         $session= Session::put('customer', $customer->id);
         if($customer){
@@ -112,7 +112,7 @@ class FrontLoginController extends Controller
             $customer->job_title = $request->job_title[$i];
             $customer->phone = $request->phone[$i];
             $customer->email = $request->email[$i];
-            $customer->access_type= 'additionaluser';
+            $customer->access_type= 'requestforadditionaluser';
             $customer->save();
 
             $additionaluser = new AdditionalUser();
@@ -248,7 +248,7 @@ class FrontLoginController extends Controller
         $customer->additional_details=$request->input('additional_details');
         $customer->additional_user_no=$request->input('additional_user_no');
         $customer->remainadditional_user=$request->input('additional_user_no');
-        $customer->access_type = "paid";
+        $customer->access_type = "requestforpaid";
         $customer->save();
 
         // mail-send to admin for accept user paid request.
