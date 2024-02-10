@@ -63,6 +63,7 @@
                 <form action="{{route('placeorder')}}" class="billing-form-detail" method="post">
                     @csrf
                     <input type="hidden" value="{{$customer->id}}" name="customerid">
+                    <input type="hidden" value="{{$customer->access_type}}" name="access_type">
                     <div class="row m-0">
                         <div class="col-12 col-sm-6 order-check-firstname">
                             <div class="mb-3">

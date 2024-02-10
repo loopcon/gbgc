@@ -72,10 +72,10 @@ class FrontLoginController extends Controller
         $customer->bussiness_name=$request->input('bussiness_name');
         $customer->business_wider_group=$request->input('business_wider_group');
         $customer->additional_details=$request->input('additional_details');
-        $customer->additional_user_no=$request->input('additional_user_no');
-        $customer->remainadditional_user=$request->input('additional_user_no');
+        $customer->additional_user_no = isset($request->additional_user_no) ? $request->additional_user_no : 0;
+        $customer->remainadditional_user=isset($request->additional_user_no) ? $request->additional_user_no : 0;
         $customer->gst=$request->input('gst');
-        $customer->access_type= 'requestforpaid';
+        $customer->access_type= 'paid';
         $customer->save();
         $session= Session::put('customer', $customer->id);
         if($customer){
@@ -112,7 +112,7 @@ class FrontLoginController extends Controller
             $customer->job_title = $request->job_title[$i];
             $customer->phone = $request->phone[$i];
             $customer->email = $request->email[$i];
-            $customer->access_type= 'requestforadditionaluser';
+            $customer->access_type= 'additionaluser';
             $customer->save();
 
             $additionaluser = new AdditionalUser();
@@ -246,9 +246,9 @@ class FrontLoginController extends Controller
         $customer->bussiness_name=$request->input('bussiness_name');
         $customer->business_wider_group=$request->input('business_wider_group');
         $customer->additional_details=$request->input('additional_details');
-        $customer->additional_user_no=$request->input('additional_user_no');
-        $customer->remainadditional_user=$request->input('additional_user_no');
-        $customer->access_type = "requestforpaid";
+        $customer->additional_user_no=isset($request->additional_user_no) ? $request->additional_user_no : 0;
+        $customer->remainadditional_user=isset($request->additional_user_no) ? $request->additional_user_no : 0;
+        $customer->access_type = "paid";
         $customer->save();
 
         // mail-send to admin for accept user paid request.
