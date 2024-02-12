@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Score;
 use App\Models\Region;
+use App\Models\Currency;
 use App\Exports\ExportScore;
 use App\Imports\ImportScore;
 use Excel;
@@ -17,10 +18,11 @@ class ScoreController extends Controller
     public function index()
     {
         $return_data = array();
-        $score = Score::with('regionDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->get();
+        $score = Score::with('regionDetail','currencyDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->get();
         $return_data['score'] = $score;
         $region=Region::get();
-        return view('admin.score.list', array_merge($return_data),compact('region','score'));
+        $currencies=Currency::get();
+        return view('admin.score.list', array_merge($return_data),compact('region','score','currencies'));
     }
 
     public function exportScore(Request $request){
@@ -33,7 +35,7 @@ class ScoreController extends Controller
         ->get();
     
     $data = [];
-    $data[] = ['Level1', 'Level2', 'Level3', 'Level4'];
+    $data[] = ['Level1', 'Level2', 'Level3', 'Level4','2022','2023'];
 
     $prevLevel2 = null;
     $prevLevel1 = null;
@@ -42,19 +44,18 @@ class ScoreController extends Controller
 
     foreach ($newquery as $line) {
         if ($prevLevel3 !== null && $prevLevel3 !== $line->Level3) {
-            $data[] = ['', '', '', 'Total']; // level 3 change
+            $data[] = ['', '', '', 'Total'];
             $total = 0;
         }
        if ($prevLevel2 !== null && $prevLevel2 !== $line->Level2) {
-            // Add the total row for the previous Level2
-            $data[] = ['', '',  'Total ' . $prevLevel1 . ' ' . $prevLevel2,  '']; // Add the total row for Level2 change
+            $data[] = ['', '',  'Total ' . $prevLevel1 . ' ' . $prevLevel2,  ''];
         }
    
-        $data[] = [$line->Level1, $line->Level2, $line->Level3, $line->Level4];   
+        $data[] = [$line->Level1, $line->Level2, $line->Level3, $line->Level4 ,'20','50'];   
         
         $prevLevel3 = $line->Level3;
         $prevLevel2 = $line->Level2;
-          $prevLevel1 = $line->Level1;
+        $prevLevel1 = $line->Level1;
         
         
     }
@@ -62,17 +63,18 @@ class ScoreController extends Controller
         $data[] = ['', '', '', 'Total'];
     }
     if ($prevLevel2 !== null) {
-        $data[] = ['', '', 'Total ' . $prevLevel1 . ' ' . $prevLevel2,  '']; // Add the total row for the last Level2
+        $data[] = ['', '', 'Total ' . $prevLevel1 . ' ' . $prevLevel2,  ''];
     }
     return Excel::download(new ExportScore($data), 'Sample Data.xlsx');
-}
+    }
 
     public function importScore(Request $request)
     {
         $view=$request->input('view');
         $region=$request->input('region');
+        $currency=$request->input('currency');
         $file = $request->file('file');
-        Excel::import(new ImportScore($view, $region), $file);
+        Excel::import(new ImportScore($view, $region,$currency,$file), $file);exit;
         return redirect('admin/score')->with('success', trans('Score Imported successfully.'));
     }
 }

@@ -1,4 +1,7 @@
 @extends('layouts.header')
+@section('title')
+<title>Checkout</title>
+@endsection
 @section('content')
 <div class="faq-heading-section">
         <div class="container">
@@ -15,13 +18,13 @@
     </div> 
 
     <div class="container">
-        <div class="global-gaming-addtoreport">
+     <?php  /*  <div class="global-gaming-addtoreport">
             <span><i class="fa-solid fa-circle-check"></i></span> <p>“{{$membership->name}}” has been added to your basket.</p>
         </div>
 
         <div class="rerurn-customerbox">
             <span><i class="fa-regular fa-calendar"></i></span> <p>Returning customer? </p> <a  href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal" class="clicktologinform">Click here to login</a>
-        </div>
+        </div> */ ?>
 
         <div class="login-click-show">
             <p>If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing section.</p>
@@ -57,30 +60,33 @@
         <div class="row m-0">
             <div class="col-12 col-sm-6 p-0">
                 <h4 class="check-order-headtext">Billing details</h4>
-                <form action="" class="billing-form-detail">
+                <form action="{{route('placeorder')}}" class="billing-form-detail" method="post">
+                    @csrf
+                    <input type="hidden" value="{{$customer->id}}" name="customerid">
+                    <input type="hidden" value="{{$customer->access_type}}" name="access_type">
                     <div class="row m-0">
                         <div class="col-12 col-sm-6 order-check-firstname">
                             <div class="mb-3">
                                 <label for="firstname" class="form-label">First name <span>*</span></label>
-                                <input type="text" class="form-control" id="firstname" >
+                                <input type="text" class="form-control" id="firstname" value="{{$customer->name}}" name="first_name">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 p-0">
                             <div class="mb-3">
                                 <label for="lastname" class="form-label">Last name <span>*</span></label>
-                                <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp" name="last_name">
                             </div>
                         </div>
                     </div>
                     
                     <div class="mb-3">
                         <label for="companyname" class="form-label">Company name (optional)</label>
-                        <input type="text" class="form-control" id="companyname" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="companyname" aria-describedby="emailHelp" name="companyname">
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Country/Region <span>*</span></label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" name="country">
                             <option value="0" selected>Open this select menu</option>
                             @if($region->count())
                                 @foreach($region as $data)
@@ -92,52 +98,47 @@
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Street address <span>*</span></label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <input type="text" class="form-control mt-3" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" class="form-control mb-2" id="exampleInputEmail1" aria-describedby="emailHelp" name="street_address" placeholder="House number and street name">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="street_address1" placeholder="Apartment, suite, unit, etc. (optional)">
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Town / City / Post Office <span>*</span></label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Parish <span>*</span></label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="city">
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Postal Code (optional)</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="postalcode">
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Phone <span>*</span></label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$customer->phone}}" name="phone">
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address  <span>*</span></label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$customer->email}}" name="email">
                     </div>
-                </form>
+               
             </div>
 
             <div class="col-12 col-sm-6">
                 <h4 class="check-order-headtext">Additional information</h4>
-                <form action="" class="additional-form-detail">
+                
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Order notes (optional)</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                        <label for="exampleFormControlTextarea1" class="form-label">Order notes(optional)</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Notes about your order, e.g. special notes for delivery.">
+                            {{$customer->additional_details}}
+                        </textarea>
                       </div>
-                </form>
+                
                 <h4 class="check-order-headtext">Marketing Preference</h4>
-                <form action="" class="marketing-form-detail">
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">I am happy to receive marketing and product information based on my order. (optional)</label>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -149,23 +150,25 @@
             <table class="table table-bordered check-tableorder">
                 <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Subtotal</th>
+                    <th>Plan</th>
+                    <th>Price</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>{{$membership->name}}</td>
-                    <td>£{{$membership->price}}</td>
+                    <td>£{{$membershipamount}}</td>
                     
                 </tr>
                 <tr>
+                    <input type="hidden" name="membershipid" value="{{$membership->id}}">
+                    <input type="hidden" name="membershipprice" value="{{$membershipamount}}">
                     <td class="order-tablecheck-subtotal">Subtotal</td>
-                    <td class="order-tablecheck-subtotal">£{{$membership->price}}</td>
+                    <td class="order-tablecheck-subtotal">£{{$membershipamount}}</td>
                 </tr>
                 <tr>
                     <td class="order-tablecheck-subtotal">Total</td>
-                    <td class="order-tablecheck-subtotal">£{{$membership->price}}</td>
+                    <td class="order-tablecheck-subtotal">£{{$membershipamount}}</td>
                 </tr>
                 
                 </tbody>
@@ -180,7 +183,7 @@
                 <p>Pay with your credit card via Stripe.</p>
                 <div>
                     <span class="use-payment"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Use a new payment method</span>
-                    <form action="" class="creadit-card-form">
+                  
                         <div class="mb-4">
                             <label for="exampleInputEmail1" class="form-label">Card Number <span>*</span></label>
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="1234 1234 1234 1234">
@@ -205,14 +208,19 @@
                                 Save payment information to my account for future purchases.
                             </span>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
+        </div>
             <div class="your-personal-databox">
                 <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="{{route($staticpage->slug)}}">privacy policy.</a></p>
-                <a href="#" class="place-order-btn"> PLACE ORDER </a>
+                
+                <button type="submit" class="place-order-btn">Place Order</button><br>
             </div>
         </div>
-        
     </div>
+</form>
+</div>
+</div>
+</div>
 @endsection

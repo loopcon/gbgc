@@ -62,15 +62,27 @@
                         <label for="bussiness_name">Bussiness Name</label>
                         <input  class="form-control"  type="text" id="bussiness_name" name="bussiness_name" value="{{$customer_detail->bussiness_name}}">
                     </div>
+
                     <div class="contact-label col-12 col-lg-6">
-                        <label for="bussiness_size">Bussiness Size</label>
-                        <select id="bussiness_size" class="form-control select2" name="bussiness_size" required="">
-                            <option value="0">--Select Bussiness Size--</option>
-                            <option value="small" @if((isset($customer_detail->bussiness_size) && $customer_detail->bussiness_size=="small")) selected="selected" @endif>small</option>
-                            <option value="medium" @if((isset($customer_detail->bussiness_size) && $customer_detail->bussiness_size=="medium")) selected="selected" @endif>Medium-sized</option>
-                            <option value="large" @if((isset($customer_detail->bussiness_size) && $customer_detail->bussiness_size=="large")) selected="selected" @endif>Large</option>
-                        </select> 
+                        <label for="bussiness_name">Bussiness Wider Group</label>
+                        <input  class="form-control"  type="text" id="business_wider_group" name="business_wider_group" value="{{$customer_detail->business_wider_group}}">
                     </div>
+                    @if($customer_detail->access_type != 'additionaluser' && $customer_detail->access_type != 'requestforadditional')
+                     <div class="contact-label col-12 col-lg-6">
+                        <label for="bussiness_name">Additional User</label>
+                        <input  class="form-control"  type="text" id="additional_user_no" name="additional_user_no">
+                    </div>
+
+                    <div class="contact-label col-12 col-lg-6">
+                        <label for="bussiness_name">Additional Detail</label>
+                        <input  class="form-control"  type="text" id="additional_details" name="additional_details" value="{{$customer_detail->additional_details}}">
+                    </div>
+                    @endif
+                    <div class="contact-label col-12 col-lg-6">
+                        <label for="bussiness_name">Billing Address</label>
+                        <input  class="form-control"  type="text" id="billing_address" name="billing_address" value="{{$customer_detail->billing_address}}">
+                    </div>
+                    
                     <div class="text-center mt-3">
                         <button class="get-request-btn mb-3" style="width:182px">Update profile</button>
                     </div>

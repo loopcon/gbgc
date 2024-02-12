@@ -15,7 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::wherenot('status',4)->get();
+        $customer = Customer::where([['status','!=',4],['access_type','!=','requestforadditionaluser'],['access_type','!=','additionaluser']])->get();
         $return_data['customer'] = $customer;
         return view('admin.customer.list', array_merge($return_data));
     }
@@ -25,38 +25,17 @@ class CustomerController extends Controller
 
     public function changeStatus($id, $status)
     {
-        $customer = Customer::where('id', $id)->first();
-        if($customer->access_type=="paid")
-        {
-            $customer->status = $status;
-            $customer->payment = 1;
-            $customer->save();
-           
-            // User mail-sent for pro access live
-
-            // $data = [
-            //     'email'   => $customer->email, 
-            // ];
-
-            // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
-            //     $message->to($data['email'], 'Customer of GBGC')->subject
-            //         ('Hello Dear Customer, your pro access is live now.');
-            //     $message->from('loopcon16@gmail.com','GBGC');
-            // });
-
-            // end mail-sent
-
-        }
-        else
-        {
-            $customer_fields['status'] = $status;
-            $customer = Customer::where('id', $id)->update($customer_fields);
-        }
-        
+        $customerfind = Customer::where('id', $id)->first();
+        $customer=Customer::find($id);
+        if($customerfind->access_type == 'requestforfree'){$customer->access_type='free';}
+        elseif($customerfind->access_type == 'requestforpaid'){$customer->access_type='paid';}
+        elseif($customerfind->access_type == 'requestforadditionaluser'){$customer->access_type='additionaluser';}
+        $customer->status = 1;
+        $customer->save();
         return redirect('admin/user')->with('success', trans('User status changed successfully.'));
     }
 
-     public function createIdPassword(string $id)
+    public function createIdPassword(string $id)
     {
         $return_data = array();
         $detail = Customer::find($id);

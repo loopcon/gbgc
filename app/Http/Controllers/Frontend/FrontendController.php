@@ -16,7 +16,9 @@ use App\Models\Membershipplan;
 use App\Models\Region;
 use Mail;
 use Auth;
-
+use App\Models\Orderdetail;
+use App\Models\Order;
+use Session;
 class FrontendController extends Controller
 {
     public function index()
@@ -52,12 +54,44 @@ class FrontendController extends Controller
     
     public function checkout()
     {
+        $sessioncustomer=Session::get('customer');
+        $user = Auth::guard('customers')->id();
+        if($user != null){
+            $membership = Membershipplan::where('access_status','=','freetopro')->first();
+            $membershipamount=$membership->price;
+            $customer=Customer::where('id',$user)->first();
+        }elseif($sessioncustomer != null){
+            $membership = Membershipplan::where('access_status','=','paid')->first();
+            $membershipamount=$membership->price;
+            $customer=Customer::where('id',$sessioncustomer)->first();
+        }else{
+          return redirect('/')->with('error', trans('Something went wrong, please try again later!'));
+        }
+        
         $return_data = array();
         $return_data['region'] = Region::get();
         $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
-        $return_data['membership'] = Membershipplan::where('access_status','=','paid')->first();
-        return view('frontend.checkout', array_merge($return_data));
+        
+        return view('frontend.checkout', array_merge($return_data),compact('customer','membership','membershipamount'));
     }
+
+    public function additionalcheckout()
+    {
+        $sessioncustomer=Session::get('customer');
+        $user = Auth::guard('customers')->id();
+
+        $membership = Membershipplan::where('access_status','=','additionaluser')->first();
+        
+        $customer=Customer::where('id',$user)->first();
+        
+        $membershipamount=$customer->remain_payment_additional_user * $membership->price;
+        $return_data = array();
+        $return_data['region'] = Region::get();
+        $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
+        
+        return view('frontend.checkout', array_merge($return_data),compact('customer','membership','membershipamount'));
+    }
+
 
     public function thankyou()
     {
@@ -140,4 +174,51 @@ class FrontendController extends Controller
         $staticpage = StaticPage::where('slug', $segment)->first();
         return view('frontend.staticpage',compact('staticpage'));
     }
+
+    public function placeorder(Request $request)
+    {
+        Customer::where('id',$request->input('customerid'))->update(['payment'=>1]);
+        $order= new Order();
+        $order->customer_id=$request->input('customerid');
+        $order->membershipplans_id=$request->input('membershipid');
+        $order->amount=$request->input('membershipprice');
+        $order->save();
+
+        $orderdetail= new Orderdetail();
+        $orderdetail->order_id=$order->id;
+        $orderdetail->firstname=$request->input('first_name');
+        $orderdetail->lastname=$request->input('last_name');
+        $orderdetail->companyname=$request->input('companyname');
+        $orderdetail->country=$request->input('country');
+        $orderdetail->streetaddress=$request->input('street_address');
+        $orderdetail->streetaddress1=$request->input('street_address1');
+        $orderdetail->city=$request->input('city');
+        $orderdetail->postalcode=$request->input('postalcode');
+        $orderdetail->phone=$request->input('phone');
+        $orderdetail->email=$request->input('email');
+        $orderdetail->save();
+
+        $membership=Membershipplan::where('id',$request->input('membershipid'))->first();
+
+        if($membership->access_status =='additionaluser')
+        {   
+            $customerupdate=Customer::where('id',$request->input('customerid'))->first();
+            Customer::where('id',$request->input('customerid'))
+                     ->update([
+                               // 'accept_additional_user'=>$customerupdate->remain_payment_additional_user + $customerupdate->payment_additional_user,
+                               'payment_additional_user'=>$customerupdate->payment_additional_user + $customerupdate->remain_payment_additional_user,
+                               'remain_payment_additional_user'=>0
+                             ]);
+        }
+
+        if($membership->access_status =='paid')
+        {
+            return redirect('/')->with('alert-success', 'Payment Do Successfully After Admin Verfication You Can Access a PaidMembership');
+        }else
+        {
+            return redirect()->route('frontdashboard')->with('success', trans('Payment Do Successfully After Admin Verfication You Can Access a PaidMembership'));
+        }
+
+    }
 }
+

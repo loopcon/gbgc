@@ -72,7 +72,7 @@
                                                         <th>{{__('Phone')}}</th>
                                                         <th>{{__('Job Title')}}</th>
                                                         <th>{{__('Bussiness Name')}}</th>
-                                                        <th>{{__('Bussiness Size')}}</th>
+                                                        <th>{{__('Bussiness Wider Group')}}</th>
                                                         <th>{{__('Access Type')}}</th>
                                                         <th>{{__('Status')}}</th>
                                                         <th>{{__('Action')}}</th>
@@ -92,11 +92,12 @@
                                                             <td >  {{$data->phone}} </td>
                                                             <td >  {{$data->job_title}} </td>
                                                             <td >  {{$data->bussiness_name}} </td>
-                                                            <td >  {{$data->bussiness_size}} </td>
+                                                            <td >  {{$data->business_wider_group}} </td>
                                                             <td >  {{$data->access_type}} </td>
                                                             <td>
                                                                 @if($data->status==1 && $data->payment==1)
-                                                                    {{"Pro access is live"}}
+                                                                    {{"Pro access is live"}}<br>
+                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light btn-sm mt-1" style="background:#4099ff" title="Create User Id-Password">{{"Create Id Password"}}</a>
                                                                 @elseif($data->status==1) 
                                                                     {{"Request is Approved"}}<br>
                                                                     <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light btn-sm mt-1" style="background:#4099ff" title="Create User Id-Password">{{"Create Id Password"}}</a>
@@ -133,6 +134,7 @@
         <div id="styleSelector">
         </div>
     </div>
+
 @endsection
 @section('javascript')
 <script>

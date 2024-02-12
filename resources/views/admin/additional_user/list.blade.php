@@ -6,7 +6,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Jurisdiction </h5>
+                        <h5>Additional Users</h5>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                             <a href="{{route('adminindex')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('region')}}">Jurisdiction </a>
+                            <a href="{{route('additional-user')}}">Additional Users</a>
                         </li>
                     </ul>
                 </div>
@@ -60,11 +60,11 @@
                                     </div>
                                 </div>
                                 <div class="card-header">
-                                    <div class="form-row">
+                                  <?php /*  <div class="form-row">
                                         <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('region-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                            <div class="col-md-12 text-right"><a href="{{route('faq-create')}}" class="btn text-light" style="background:#4099ff" ><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                                         </div>
-                                    </div>
+                                    </div> */ ?>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
@@ -72,7 +72,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                        <th>{{__('Name')}}</th>
+                                                        <th>{{__('Parent User')}}</th>
+                                                        <th>{{__('Total')}}</th>
+                                                        <th>Remain</th>
+                                                        <th>{{__('Accept')}}</th>
+                                                        <th>{{__('Payment')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
@@ -80,14 +84,18 @@
                                                 <?php
                                                     $i=1;
                                                 ?>
-                                                @if(count($region)>0)
-                                                    @foreach($region as $data) 
+                                                @if(count($additional_user)>0)
+                                                    @foreach($additional_user as $data) 
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->name}} </td>
-                                                            <td><a href="{{ route('region-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('region-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <td>{{$data->name}} </td>
+                                                            <td>{{$data->additional_user_no}} </td>
+                                                            <td>{{$data->remainadditional_user}}</td>
+                                                            <td>{{$data->accept_additional_user}} </td>
+                                                            <td>{{$data->payment_additional_user}} </td>
+                                                            <td><a href="{{ route('additional-user-create',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Accept Additional user"><i class="fa fa-edit"></i></a>
+                                                            <a href='javascript:void(0);' data-href="{{ route('additional-user-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
@@ -105,6 +113,8 @@
         <div id="styleSelector">
         </div>
     </div>
+
+
 @endsection
 @section('javascript')
 <script>
@@ -113,7 +123,7 @@
             var href = $(this).data('href');
             swal({
                 title: "",
-                text: "{{__('Are you sure? Delete this Region!')}}",
+                text: "{{__('Are you sure? Delete this Additional user!')}}",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-info",

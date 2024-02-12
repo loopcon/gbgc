@@ -6,7 +6,7 @@
             <div class="page-header-title">
                 <i class="feather icon-info bg-c-blue"></i>
                 <div class="d-inline">
-                    <h5>Jurisdiction </h5>
+                    <h5>Create Password for Additional User</h5>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item">
                         <a href="#"><i class="feather icon-info"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{route('region')}}">Jurisdiction </a> </li>
+                    <li class="breadcrumb-item"><a href="{{route('additional-user')}}">Additional User</a> </li>
                 </ul>
             </div>
         </div>
@@ -33,20 +33,26 @@
                             <div class="card-header">
                             </div>
                             <div class="card-block">
-                                <form method="post" action="@if(isset($record)){{ route('region-update', array('id' => $record->id)) }}@else{{route('region-store')}}@endif" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('additionaluser-password-update', array('id' => $additionaluser->id)) }}" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="hidden" id="id" name="id" value="{{ isset($record->id) ? $record->id : '' }}">
+                                    <input type="hidden" id="id" name="id" value="{{ isset($additionaluser->id) ? $additionaluser->id : '' }}">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Name</label>
+                                        <label class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name"  id="name" class="form-control" placeholder="Name" value="{{ isset($record->name) ? $record->name : old('name') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
+                                            <input type="text" name="email"  id="email" class="form-control" value="{{$additionaluser->email}}" readOnly >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="password"  id="password" class="form-control" placeholder="Password" value="{{ isset( $customer->password) ? $customer->password : old('password') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            @if ($errors->has('password')) <div class="text-danger">{{ $errors->first('password') }}</div>@endif
                                         </div>
                                     </div>
                                     
                                     <div class="container row">
-                                        <button class="btn text-light " style="background:#4099ff" type="submit">Submit</button> &nbsp;&nbsp;
-                                        <a href="{{route('region')}}" class="btn btn-danger ">{{__('Cancel')}}</a>
+                                        <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button>&nbsp;&nbsp;
+                                        <a href="{{route('additional-user')}}" class="btn btn-danger ">{{__('Cancel')}}</a>
                                     </div>
 
                                 </form>
@@ -61,7 +67,7 @@
 @endsection
 @section('javascript')
 <script>
-    $(document).ready(function(){      
+    $(document).ready(function(){     
     });
 </script>
 @endsection

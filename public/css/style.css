@@ -166,13 +166,13 @@ section.one:after {content: "";display: block;clear: both;}
 .siguplogin-dailog {max-width: 450px;}
 .navbar-sign-upbtn {width: 100%;padding: 0px 30px;font-size: 17px;}
 .navbar-sign-upbtn:hover {color: #198FD9;}
-#siguploginModal .modal-header {padding: 0px;border-bottom: 0px;}
+/*#siguploginModal .modal-header {padding: 0px;border-bottom: 0px;}*/
 #siguploginModal .modal-footer {padding: 0px;margin: 0px;}
-#siguploginModal .modal-header button {position: absolute;top: -10px;right: -10px;height: 35px;width: 35px;background: #fff;border: 0px;border-radius: 50%;z-index: 1;}
-#siguploginModal .modal-header button svg {font-size: 22px;display: block;margin: auto;}
+/*#siguploginModal .modal-header button {position: absolute;top: -10px;right: -10px;height: 35px;width: 35px;background: #fff;border: 0px;border-radius: 50%;z-index: 1;}*/
+/*#siguploginModal .modal-header button svg {font-size: 22px;display: block;margin: auto;}*/
 #siguploginModal .modal-body {height: 370px;overflow-y: auto;padding: 0px;}
 #siguploginModal .login-register-box a {margin-bottom: 0px;width: 50%;background-color: #eeeeee;display: block;text-align: center;height: 50px;line-height: 45px;text-decoration: none;color: #333333;margin: auto;}
-#siguploginModal .login-form {margin-top: 35px;}
+/*#siguploginModal .login-form {margin-top: 35px;}*/
 a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 .login-form .form-control {height: 45px;line-height: 40px;}
 .login-form .form-control:focus {outline: none;box-shadow: none;}

@@ -48,7 +48,7 @@
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
                         <a href="{{route('adminindex')}}">
-                            <img class="img-fluid" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo" / style="height: 50px;">
+                            <img class="img-fluid" src="{{asset('uploads/generalsetting/'.$data->logo)}}" alt="Theme-Logo"  style="height: 50px;">
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="feather icon-more-horizontal"></i>
@@ -107,22 +107,33 @@
                                         </a>
                                     </li>
 
-                                    <li class="pcoded-hasmenu {{ (request()->is('admin/region*') || request()->is('admin/score*'))? 'pcoded-trigger' : '' }}">
+                                    <li class="pcoded-hasmenu {{ (request()->is('admin/region*') || request()->is('admin/currency*') || request()->is('admin/score*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-upload"></i>
                                             </span>
                                             <span class="pcoded-mtext">GBGC Data Upload</span>
                                         </a>
-                                        <ul class="pcoded-submenu " style="{{ (request()->is('admin/region*') || request()->is('admin/score*'))? 'display:block' : 'display:none' }}">
+                                        <ul class="pcoded-submenu " style="{{ (request()->is('admin/region*') || request()->is('admin/currency*') || request()->is('admin/score*'))? 'display:block' : 'display:none' }}">
                                             <li class="{{ (request()->is('admin/region*'))? 'active' : '' }}">
                                                 <a href="{{route('region')}}" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Region</span>
+                                                    <span class="pcoded-mtext">Jurisdiction</span>
+                                                </a>
+                                            </li>
+                                            <li class="{{ (request()->is('admin/currency*'))? 'active' : '' }}">
+                                                <a href="{{route('admincurrency')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Currency</span>
                                                 </a>
                                             </li>
                                             <li class="{{ (request()->is('admin/score*'))? 'active' : '' }}">
                                                 <a href="{{route('adminscore')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Score</span>
+                                                </a>
+                                            </li>
+
+                                             <li class="{{ (request()->is('admin/level*'))? 'active' : '' }}">
+                                                <a href="{{route('adminlevel')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Level</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -134,6 +145,15 @@
                                                 <i class="feather icon-user"></i>
                                             </span>
                                             <span class="pcoded-mtext">User</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="{{ (request()->is('admin/additional-user*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('additional-user')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-users"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Additional Users</span>
                                         </a>
                                     </li>
     
