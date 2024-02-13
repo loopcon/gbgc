@@ -9,35 +9,49 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Models\LevelMaster;
 use DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class ImportScore implements ToModel
+class ImportScore implements WithMultipleSheets
 {
-    private $view;
+
     private $region;
-    private $currency;
     private $file;
 
-    public function __construct($view, $region, $currency , $file)
+    public function __construct($region , $file)
     {
-        $this->view = $view;
         $this->region = $region;
         $this->file = $file;
-        $this->currency = $currency;
     }
 
-    public function model(array $row)
-    {
-        static $columnHeaders = null;
-        static $rowIndex = 0;
+public function sheets(): array
+{
+    static $columnHeaders = null;
+    static $rowIndex = 0;
 
-        if ($row[0] === 'Level1') {
-            $columnHeaders = $row;
-        } elseif ($columnHeaders !== null) {
+    $sheets = [];
+
+    $spreadsheet = IOFactory::load($this->file->getRealPath());
+    $sheetCount = $spreadsheet->getSheetCount();
+
+    for ($sheetIndex = 0; $sheetIndex < $sheetCount; $sheetIndex++) {
+        $sheet = $spreadsheet->getSheet($sheetIndex);
+        $sheetName = $sheet->getTitle();
+        $parts = explode('-', $sheetName);
+        $view = trim($parts[0]);
+        $currency = trim($parts[1]); 
+
+        $sheetData = $sheet->toArray();
+        foreach ($sheetData as $row) {
+           
+           if ($row[0] === 'Level-1') {
+                $columnHeaders = $row;
+            } //endif
+            elseif ($columnHeaders !== null){
             if($row[0] !== null && count($row) >= 4)
             {
-            $years = array_slice($columnHeaders, 4);
-            $numScores = count($row) - 4;
-            $scores = [];
+                $years = array_slice($columnHeaders, 4);
+                $numScores = count($row) - 4;
+                $scores = [];
 
             for ($i = 0; $i < $numScores; $i++) {
                 $cellAddress = $this->getCellAddress(4 + $i, $rowIndex);
@@ -50,9 +64,9 @@ class ImportScore implements ToModel
                 $level4 = LevelMaster::where('title', $row[3])->where('parent_id',$level3)->where(['level_number'=>4])->pluck('id')->first();
 
                 $data = [
-                    'view' => $this->view,
+                    'view' => $view,
                     'region_id' => $this->region,
-                    'currency_id'=>$this->currency,
+                    'currency_id'=>$currency,
                     'level_1' => $level1,
                     'level_2' => $level2,
                     'level_3' => $level3,
@@ -62,7 +76,7 @@ class ImportScore implements ToModel
                     'comment'=>$comment,
                 ];
                 $existingData = DB::table('scores')
-                    ->where('view', $this->view)
+                    ->where('view', $view)
                     ->where('region_id', $this->region)
                     ->where('level_1', $level1)
                     ->where('level_2', $level2)
@@ -82,14 +96,19 @@ class ImportScore implements ToModel
             if (!empty($scores)) {
                 DB::table('scores')->insert($scores);
             }
-            $rowIndex++; // Increment rowIndex for the next row
-        }
-        return;
+                $rowIndex++; // Increment rowIndex for the next row
+            }
         } else {
-            return;
-            dd("Column headers are not set.");
+            return []; // Return an empty array to indicate an empty sheet
         }
+    } // end sheetData
+
     }
+    return $sheets;
+}
+
+
+
 
 
       private function getExcelComment($cellCoordinate)

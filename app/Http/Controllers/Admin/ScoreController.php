@@ -70,11 +70,9 @@ class ScoreController extends Controller
 
     public function importScore(Request $request)
     {
-        $view=$request->input('view');
         $region=$request->input('region');
-        $currency=$request->input('currency');
         $file = $request->file('file');
-        Excel::import(new ImportScore($view, $region,$currency,$file), $file);exit;
+        Excel::import(new ImportScore($region,$file), $file);
         return redirect('admin/score')->with('success', trans('Score Imported successfully.'));
     }
 }
