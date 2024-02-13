@@ -18,7 +18,7 @@ class ScoreController extends Controller
     public function index()
     {
         $return_data = array();
-        $score = Score::with('regionDetail','currencyDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->get();
+        $score = Score::with('regionDetail','currencyDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->orderby('year')->get();
         $return_data['score'] = $score;
         $region=Region::get();
         $currencies=Currency::get();

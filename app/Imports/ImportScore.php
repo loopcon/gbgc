@@ -55,7 +55,9 @@ public function sheets(): array
 
             for ($i = 0; $i < $numScores; $i++) {
                 $cellAddress = $this->getCellAddress(4 + $i, $rowIndex);
-                $comment = $this->getExcelComment($cellAddress);
+                // $comment = $this->getExcelComment($cellAddress);
+                $comment = $this->getExcelComment(4 + $i, $rowIndex);
+
                 $year = $years[$i];
                 $score = $row[4 + $i];
                 $level1 = LevelMaster::where('title', $row[0])->where(['level_number'=>1])->pluck('id')->first();
@@ -107,17 +109,18 @@ public function sheets(): array
     return $sheets;
 }
 
-
-
-
-
-      private function getExcelComment($cellCoordinate)
+    private function getExcelComment($columnIndex, $rowIndex)
     {
+        $rowIndex++;
+
         $spreadsheet = IOFactory::load($this->file->getRealPath());
         $sheet = $spreadsheet->getActiveSheet();
+        $cellCoordinate = $this->getCellAddress($columnIndex, $rowIndex);
         $comment = $sheet->getComment($cellCoordinate);
         return $comment ? $comment->getText()->getPlainText() : null;
     }
+
+
 
     private function getCellAddress($columnIndex, $rowIndex)
     {

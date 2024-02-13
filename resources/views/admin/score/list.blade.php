@@ -87,6 +87,7 @@
                                                     <th>{{__('Level-4')}}</th>
                                                     <th>{{__('year')}}</th>
                                                     <th>{{__('Score')}}</th>
+                                                    <th>{{__('Comments')}}</th>
                                                     </tr>
                                             </thead>
                                             <tbody>
@@ -112,6 +113,7 @@
                                                            <td>@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
                                                             <td>{{$data->year}}</td>
                                                             <td>{{$data->score}}</td>
+                                                            <td>{{$data->comment}}</td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
@@ -125,7 +127,7 @@
                     <div class="modal fade" id="scoreImportModal" tabindex="-1" role="dialog" aria-labelledby="scoreImportModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('import-scores') }}" method="post" data-parsley-validate enctype="multipart/form-data" id="importScore">
+                                <form action="{{ route('import-scores') }}" method="post" data-parsley-validate enctype="multipart/form-data" id="importForm">
                                     {{ csrf_field() }}
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="sizeOptionModalLabel">Upload Excel File</h5>
@@ -176,7 +178,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="close-modal" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Import</button>
+                                        <button type="button" id="confirmImport" class="btn btn-primary">Import</button>
                                     </div>
                                 </form>
                             </div>
@@ -190,24 +192,19 @@
     </div>
 @endsection
 @section('javascript')
-<!-- <script>
-$(document).ready(function(){
-    $('#import').hide();
-    $('#view').change( function() { 
-         var view = $(this).val();
-        if(view != "" && view != 0){
-            $('#import').show();
-        }
-        else{
-            $('#import').hide();
-        }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('confirmImport').addEventListener('click', function() {
+            // Display a confirmation dialog
+            if (confirm('Are you sure you want to import?')) {
+                // If confirmed, submit the form
+                document.getElementById('importForm').submit();
+            } else {
+                // If not confirmed, do nothing
+                return false;
+            }
+        });
     });
-    
-    $('#scoreImportModal').on('hidden.bs.modal', function () {
-        $(this).find('form').trigger('reset');
-        $('#import').hide();
-    })
+</script>
 
-});
-</script> -->
 @endsection
