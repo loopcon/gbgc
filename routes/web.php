@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrontLoginController;
+use App\Http\Controllers\Frontend\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::get('customer-logout', [FrontLoginController::class, 'logout'])->name('cu
 Route::get('myaccount',[FrontLoginController::class, 'myAccount'])->name('myaccount');
 Route::post('/updatemyaccount', [FrontLoginController::class, 'updateMyAccount'])->name('updatemyaccount');
 Route::get('dashboard',[FrontLoginController::class, 'dashboard'])->name('frontdashboard');
+Route::get('report',[ReportController::class, 'index'])->name('frontreport');
+Route::get('export-report',[ReportController::class,'exportReport'])->name('export-report');
 
 
 //fronted Route End

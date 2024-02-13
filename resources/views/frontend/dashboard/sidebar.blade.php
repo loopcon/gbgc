@@ -2,7 +2,7 @@
     <div class="profile-navigation">
         <ul>
             <li><a href="{{route('frontdashboard')}}">Dashboard</a></li>
-            <li><a href="#">Reports</a></li>
+            <li><a href="{{route('frontreport')}}">Reports</a></li>
             <li><a href="#">Export/Download</a></li>
             <li><a href="{{route('myaccount')}}">My Profile</a></li>
             <li><a href="{{route('customer-logout')}}">Log out</a></li>
