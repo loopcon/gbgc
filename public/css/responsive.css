@@ -86,7 +86,7 @@
     .footer-second-secmenu ul{margin-top: 0px;padding-left: 10px;justify-content: start;}
     .footer-second-secmenu ul li { width: 50%;}
     .footer-logo{ margin-left: 15px;}
-    .footer-second-secmenu ul li a{padding-left: 15px;}
+    .footer-second-secmenu ul li a{padding-left: 0px;}
     .footer-copyrighttext{display: block;text-align: center;}
     .footer-social-icon{display: flex;justify-content: center;margin-top: 15px;}
     .click-here-text{white-space: wrap;width: 100%;}
@@ -167,6 +167,19 @@
     .desktop-view{display: none;}
     .create-domain-box-item-1{margin-top: 25px;}
     .report-heading{ margin-top: 15px;}
+    .standard-prise-textdetail ul{ padding-left: 30px; }
+    .purchase-prise-text h4{ font-size: 30px; } 
+    .creadit-card-form .savepayment-text input{margin-right: 5px;}
+    .faq-accordion-box a.faq-accordion-header{
+        padding: 10px 27px;
+    }
+    .faq-accordion-box a.faq-accordion-header:after{
+        position: absolute;right: 10px;top: 15px;
+
+    }
+    .faq-accordion-box a.faq-accordion-header{
+        position: relative;
+    }
 }
 
 
