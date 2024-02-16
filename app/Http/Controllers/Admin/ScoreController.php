@@ -18,7 +18,7 @@ class ScoreController extends Controller
     public function index()
     {
         $return_data = array();
-        $score = Score::with('regionDetail','currencyDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->get();
+        $score = Score::with('regionDetail','currencyDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->orderby('year')->get();
         $return_data['score'] = $score;
         $region=Region::get();
         $currencies=Currency::get();
@@ -70,11 +70,9 @@ class ScoreController extends Controller
 
     public function importScore(Request $request)
     {
-        $view=$request->input('view');
         $region=$request->input('region');
-        $currency=$request->input('currency');
         $file = $request->file('file');
-        Excel::import(new ImportScore($view, $region,$currency,$file), $file);exit;
+        Excel::import(new ImportScore($region,$file), $file);
         return redirect('admin/score')->with('success', trans('Score Imported successfully.'));
     }
 }

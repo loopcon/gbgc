@@ -64,8 +64,10 @@
                                         <div class="col-md-12 text-right">
                                            <?php /* <div class="col-md-12 text-right"><a href="{{route('datatext-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div> */ ?>
                                             <div class="col-md-12 text-right">
-                                                <a href="javascript:void(0);" class="btn text-light" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i> Import</a>
-                                                <a class="btn text-light" style="background:#263544" href="{{ route('export-scores') }}"> Export Sample Data </a>
+                                                <a href="javascript:void(0);" class="btn text-light" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
+                                                <!-- <a class="btn text-light" style="background:#263544" href="{{ route('export-scores') }}"> Export Sample Data </a> -->
+
+                                                <a class="btn text-light" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
                                             </div>
                                         </div>
                                     </div>
@@ -77,14 +79,15 @@
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
                                                     <th>{{__('View')}}</th>
-                                                    <th>{{__('Jurisdiction')}}</th>
                                                     <th>{{__('Currency')}}</th>
+                                                    <th>{{__('Jurisdiction')}}</th>
                                                     <th>{{__('Level 1')}}</th>
                                                     <th>{{__('level 2')}}</th>
                                                     <th>{{__('Level 3')}}</th>
                                                     <th>{{__('Level-4')}}</th>
                                                     <th>{{__('year')}}</th>
                                                     <th>{{__('Score')}}</th>
+                                                    <th>{{__('Comments')}}</th>
                                                     </tr>
                                             </thead>
                                             <tbody>
@@ -97,10 +100,10 @@
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
                                                             <td>{{$data->view}}</td>
+                                                            <td>{{$data->currency_id}}</td>
                                                             <td>@if($data->regionDetail){{$data->regionDetail->name}}@else - @endif
                                                             </td>
-                                                            <td>@if($data->currencyDetail){{$data->currencyDetail->name}}@else - @endif
-                                                            </td>
+                                                            
                                                             <td> @if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
 
                                                             <td>@if($data->subcategory1Detail){{$data->subcategory1Detail->title}}@else - @endif</td>
@@ -110,6 +113,7 @@
                                                            <td>@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
                                                             <td>{{$data->year}}</td>
                                                             <td>{{$data->score}}</td>
+                                                            <td>{{$data->comment}}</td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
@@ -123,14 +127,15 @@
                     <div class="modal fade" id="scoreImportModal" tabindex="-1" role="dialog" aria-labelledby="scoreImportModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('import-scores') }}" method="post" data-parsley-validate enctype="multipart/form-data" id="importScore">
+                                <form action="{{ route('import-scores') }}" method="post" data-parsley-validate enctype="multipart/form-data" id="importForm">
                                     {{ csrf_field() }}
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="sizeOptionModalLabel">Import Score</h5>
+                                        <h5 class="modal-title" id="sizeOptionModalLabel">Upload Excel File</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="form-group row">
+
+                                        <!-- <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">View<span class="text-danger">*</span></label>
                                             <div class="col-sm-10">
                                                 <select id="view" class="form-control select2" name="view" required="">
@@ -139,7 +144,7 @@
                                                     <option value="Local">Local</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Jurisdiction<span class="text-danger">*</span></label>
@@ -153,7 +158,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
+<!--                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Currency<span class="text-danger">*</span></label>
                                             <div class="col-sm-10">
                                                 <select id="currency" class="form-control select2" name="currency" required="">
@@ -163,7 +168,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-row col-md-12" id="import">
                                             <div class="form-group col-sm-12">
@@ -173,7 +178,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="close-modal" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Import</button>
+                                        <button type="button" id="confirmImport" class="btn btn-primary">Import</button>
                                     </div>
                                 </form>
                             </div>
@@ -188,23 +193,18 @@
 @endsection
 @section('javascript')
 <script>
-$(document).ready(function(){
-    $('#import').hide();
-    $('#view').change( function() { 
-         var view = $(this).val();
-        if(view != "" && view != 0){
-            $('#import').show();
-        }
-        else{
-            $('#import').hide();
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('confirmImport').addEventListener('click', function() {
+            // Display a confirmation dialog
+            if (confirm('Are you sure you want to import?')) {
+                // If confirmed, submit the form
+                document.getElementById('importForm').submit();
+            } else {
+                // If not confirmed, do nothing
+                return false;
+            }
+        });
     });
-    
-    $('#scoreImportModal').on('hidden.bs.modal', function () {
-        $(this).find('form').trigger('reset');
-        $('#import').hide();
-    })
-
-});
 </script>
+
 @endsection
