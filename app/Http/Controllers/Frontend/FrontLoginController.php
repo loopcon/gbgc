@@ -135,49 +135,66 @@ class FrontLoginController extends Controller
     }
     public function checklogin(Request $request)
     {
-            
-        $this->validate($request,[
-        'email1'   => 'required',
-        'password'  => 'required'
-        ],$messages = [
+        
+        $validator = Validator::make($request->all(), [
+        'password' => ['required'],
+        'email1' => ['required', 'email', 'email'],
+        ], $messages = [
             'email1.required' => 'Email is required!',
             'password.required' => 'Password is required!',
+            'email1.email' => 'Enter valid Email format!',
         ]);
 
-        
+        if ($validator->fails()) {
+            return response()->json(['status' => 0, 'errors' => $validator->errors()]);
+        }
+
         $user  = $request->get('email1');
         $pass = $request->get('password');
         $customer = Customer::where([['email', '=', $request->email1]])->first();  
-
-        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""],['email_verify', '=', 1]])->first();
+        $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""]])->first();
 
         if(empty($customer)){
-            return redirect('/')->with('alert-danger', 'Your have not account, please Register First');
-        }
-
-        if(isset($customers)){
-            if (Auth::guard('customers')->attempt(['email' => $request->email1, 'password' => $request->password])) 
+            return response()->json(['status' =>0, 'errormsg' => 'Your have not account, please Register First']);
+        }else{
+            if(isset($customers))
             {
-                $customer_id = Auth::guard('customers')->id();
-                $customer_detail = Customer::where([['id', '=', $customer_id]])->first();
-                Cookie::queue(Cookie::forget('email'));
-                Cookie::queue(Cookie::forget('password'));
-
-                session()->put('customerInfo', $customer_detail);
-                return redirect('dashboard')->with('success', 'You are now logged in.');
+                if (Auth::guard('customers')->attempt(['email' => $request->email1, 'password' => $request->password])){
+                    $customer_id = Auth::guard('customers')->id();
+                    $customer_detail = Customer::where([['id', '=', $customer_id]])->first();
+                    if($customer_detail->email_verify == 1)
+                    {
+                        Cookie::queue(Cookie::forget('email'));
+                        Cookie::queue(Cookie::forget('password'));
+                        session()->put('customerInfo', $customer_detail);
+                        return response()->json(['status' =>1, 'successmsg' => 'You are now logged in.']);  
+                    }else{
+                        session()->forget('customerInfo');
+                        Auth::guard('customers')->logout();
+                        $data=[
+                            $email=$request->email,
+                            $password=$request->password,
+                        ];
+                        session()->put('verifyInfo', $data);
+                        return response()->json(['status' =>2, 'msg' => 'Email Verify' , 'email'=>$request->email1]);
+                    }
+   
+                }else {
+                    return response()->json(['status' => 0, 'errormsg' => 'Username and Password are not valid.']);
+                }
             }
-            else
-            {
-                return redirect('/')->with('alert-danger', 'Username and password are Invalid.');
-            } 
-        }
-        else{
-            return redirect('/')->with('alert-danger', 'Your Account is not Actived by Admin Try Later.');
+            return response()->json(['status' =>0, 'errormsg' => 'Your Account is not Actived by Admin Try Later.']);
         }
          
         
     }  
 
+
+    public function sendotpemail(Request $request)
+    {
+        // $request->all();
+        
+    }
     public function logout()
     {
         session()->forget('customerInfo');

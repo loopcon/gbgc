@@ -32,7 +32,7 @@
                                 <li><a href="#">Reports</a></li>
                                 <li><a href="#">News</a></li>
                                 @if(!Auth::guard('customers')->user())
-                                <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#siguploginModal">Login</a></li>
+                                <li><a href="javascript:void(0)" class="loginmodel">Login</a></li>
                                 @else
                                 <li><a href="{{route('myaccount')}}">My Account</a></li>
                                 @endif
@@ -55,10 +55,30 @@
             </div>    
         </div>    
     </nav>
+    <!-- verfication model -->
+
+       <div class="modal fade" id="verficationmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog siguplogin-dailog modal-dialog-centered ">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5>Sign In</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- end verfication model -->
+
+
     <!-- login popup-->
    <div class="modal fade" id="siguploginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog siguplogin-dailog modal-dialog-centered ">
-          <div class="modal-content">
+        
+        <!-- signin body -->
+          <div class="modal-content" id="signinbody">
             <div class="modal-header">
                 <h5>Sign In</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -67,27 +87,33 @@
               <div class="row m-0">
                     <div class="col-12 p-0">
                         <div class="login-register-form-box">
-                           
                             <div>
-                            
-                                <form action="/customer-checklogin" method="POST" class="login-form">
+
+                                <form  method="POST" class="login-form" id="signupform">
                                     @csrf
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-plus"></i></span>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="email1" name="email1" placeholder="Email" aria-label="email" aria-describedby="basic-addon1"> 
+                                <div class="row mb-3">
+                                    <div class="input-group ">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email1" name="email1" placeholder="Email" aria-label="email" aria-describedby="basic-addon1"> 
                                     </div>
-                                    @if ($errors->has('email1')) <div class="text-danger">{{ $errors->first('email1') }}</div>@endif
+                                    <div id="email-login"></div>
+                                </div>
+
+                                <div class="row mb-3">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
-                                        <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="PASSWORD" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
-                                    @if ($errors->has('password')) <div class="text-danger">{{ $errors->first('password') }}</div>@endif
-                                    <div class="mb-3 form-check">
+                                    <div id="password-login"></div>
+                                </div>
+
+                                <div class="mb-3 form-check">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1"> Remember me</label>
-                                    </div>
-                                    <lable class="text-danger">{{Session::get('alert-danger')}}</lable>
-                                    <a href="{{route('customer-checklogin')}}"><button class="login-form-signin">SIGN IN</button></a>
+                                </div>
+
+                                    <div id="errormsg-login"></div>
+                                    <button type="button" class="login-form-signin" id="save_login_data">SIGN IN</button>
                                 </form>
                             </div>
 
@@ -95,14 +121,54 @@
                     </div>
               </div>
             </div>
-            <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div> -->
+            </div>
           </div>
+        <!-- End Signin Body  -->
         </div>
     </div>
 <!-- Login popup end -->
+
+    <!-- send mail popup-->
+    <div class="modal fade" id="sendemailmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog siguplogin-dailog modal-dialog-centered ">
+        
+        <!-- signin body -->
+          <div class="modal-content" id="signinbody">
+            <div class="modal-header">
+                <h5>Verify Model</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row m-0">
+                    <div class="col-12 p-0">
+                        <div class="login-register-form-box">
+                            <div>
+
+                                <form  method="POST" class="login-form" id="sendotpemail">
+                                    @csrf
+                                <div class="row mb-3">
+                                    <div class="input-group ">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
+                                        <input type="email" class="form-control" id="verifyemail" name="verifyemail" placeholder="Email" readonly> 
+                                    </div>
+                                </div>
+
+                                    <div id="errormsg-login"></div>
+                                    <button type="button" class="login-form-signin" id="send_otp">Send OTP</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        <!-- End Signin Body  -->
+        </div>
+    </div>
+<!-- send mail popup end -->
 
  @yield('content')
     <!-- footer  start  -->
@@ -171,64 +237,67 @@
     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script>
 
-    $(document).on('click','#save_ajax_data',function() //id(button)
+    $(document).on('click','.loginmodel',function()
     {
-        var formdata=$('#submit_form').serialize();
+        $('#signupform').trigger('reset');
+        $('#emailloginerror, #passwordloginerror ,#errormsglogin').hide();
+        $('#siguploginModal').modal('show');
+    });
+
+    $(document).on('click','#save_login_data',function() //id(button)
+    {
+        var formdata=$('#signupform').serialize();
         $.ajax(
         {
-          url:"{{route('registration')}}",
+          url:"{{route('customer-checklogin')}}",
           type: "post",
           data: formdata,
           dataType:'JSON',
           success: function(data)
           {
-            if (data.status == 1) 
+            if(data.status == 1)
             {
-                $('#firstnamestrong, #lastnamestrong, #emailstrong, #acceptstrong').hide();
-                $('#submit_form')[0].reset();
-                $('.login-form').hide();
-                $('.login-text').removeClass('login-active');
-                $('.register-text').addClass('login-active');
-                $('.register-form').show();
-                 $('#registrationsuccessmessage').html('<p>Your Account has been successfully Created.</p>');
+                window.location.href = "{{ route('frontdashboard') }}";
             }
             if (data.status == 0) {
-                $('#firstnamestrong, #lastnamestrong, #emailstrong, #acceptstrong').hide();
-                $('.login-form').hide();
-                $('.login-text').removeClass('login-active');
-                $('.register-text').addClass('login-active');
-                $('.register-form').show();
-                if(data.errorsubscribe)
+                $('#emailloginerror, #passwordloginerror ,#errormsglogin').hide();
+                if(data.errors)
                 {
-                    $('#errorsubscribe').html('<strong style="color:red">You are already Subscribe</strong>');
+                    if(data.errors.email1){$('#email-login').html('<strong id="emailloginerror" style="color:red">'+ data.errors.email1 + '</strong>');}
+                    if(data.errors.password){$('#password-login').html('<strong id="passwordoginerror" style="color:red">'+ data.errors.password + '</strong>');}
                 }
-                else if(data.errors)
+                if(data.errormsg)
                 {
-                    if(data.errors.first_name){$('#firstname').html('<strong id="firstnamestrong" style="color:red">First Name is Required </strong>');}
-                    if(data.errors.last_name){$('#lastname').html('<strong style="color:red" id="lastnamestrong">Last Name is Required </strong>');}
-
-                    if(data.errors.email){$('#emailerror').html('<strong id="emailstrong" style="color:red">' + data.errors.email + '</strong>');}
-
-                    if(data.errors.accept){$('#accept').html('<strong style="color:red" id="acceptstrong">Accept Terms and Condition</strong>');}
-
-                    if (data.errors.confirm_password) {
-                        $('#confirmpassword').html('<strong style="color:red">' + data.errors.confirm_password[0] + '</strong>');
-                    }
-                    if (data.errors.password) {
-                        for (var i = 0; i < data.errors.password.length; i++) {
-                            $('#password').append('<strong style="color:red">' + data.errors.password[i] + '</strong><br>');
-                        }
-                    }
-                }else{
-                    $('#registrationwarningmessage').html('<p>Something went wrong</p>');
+                   $('#errormsg-login').html('<strong id="errormsglogin" style="color:red">'+ data.errormsg + '</strong>');
                 }
+            }
+            if(data.status == 2)
+            {
+                console.log(data);
+                $('#siguploginModal').modal('hide');
+                $('#sendemailmodel').modal('show');
+                $('#verifyemail').val(data.email);
                 
             }
           }
-        })
+        });
     });
 
-    
+    $(document).on('click','#send_otp',function() //id(button)
+    {
+        var formdata=$('#sendotpemail').serialize();
+        console.log(formdata);
+        $.ajax(
+        {
+          url:"{{route('sendotpemail')}}",
+          type: "post",
+          data: formdata,
+          dataType:'JSON',
+          success: function(data)
+          {
+          }
+        });
+    });
 
 
         $(document).ready(function(){

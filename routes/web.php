@@ -48,7 +48,7 @@ Route::get('dashboard',[FrontLoginController::class, 'dashboard'])->name('frontd
 Route::get('report',[ReportController::class, 'index'])->name('frontreport');
 Route::get('export-report',[ReportController::class,'exportReport'])->name('export-report');
 
-
+Route::post('sendotpemail',[FrontLoginController::class,'sendotpemail'])->name('sendotpemail');
 //fronted Route End
 
 
