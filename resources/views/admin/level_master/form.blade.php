@@ -131,7 +131,7 @@
                         if(selected_parent_level == value.id){
                             selected = "selected='selected'";
                         }
-                        console.log(value);
+                        // console.log(value);
                         $("#parent_level").append('<option value="' + value
                             .id + '"' + selected + '>' + value.parent_id + '-' + value.title + '</option>');
                     });

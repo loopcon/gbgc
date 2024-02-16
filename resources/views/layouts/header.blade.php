@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
     @yield('css')
 </head>
 <body>
@@ -231,6 +232,7 @@
     </footer>
     <!-- footer  end  -->
     <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/all.min.js')}}"></script>
