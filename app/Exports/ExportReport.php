@@ -22,7 +22,7 @@ class ExportReport implements FromCollection, WithMapping, WithHeadings
             $row->id,
             $row->view,
             isset($row->regionDetail->name) && $row->regionDetail->name ? $row->regionDetail->name : NULL,
-            isset($row->currencyDetail->name) && $row->currencyDetail->name ? $row->currencyDetail->name : NULL,
+            $row->currency_id,
             isset($row->maincategoryDetail->title) && $row->maincategoryDetail->title ? $row->maincategoryDetail->title : NULL,
             isset($row->subcategory1Detail->title) && $row->subcategory1Detail->title ? $row->subcategory1Detail->title : NULL,
             isset($row->subcategory2Detail->title) && $row->subcategory2Detail->title ? $row->subcategory2Detail->title : NULL,
