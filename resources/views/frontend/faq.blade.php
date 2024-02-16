@@ -29,7 +29,7 @@
                         @if(count($faq)>0)
                             @foreach($faq as $data) 
                                 <div class="faq-accordion-box">
-                                    <a href="#" class="faq-accordion-header faq-active-accordion" data-target="acrd_1">{{$data->question}}</a>
+                                    <a href="#" class="faq-accordion-header active" data-target="acrd_1">{{$data->question}}</a>
                                     <div class="faq-accordion-content acrd_1" id="acrd_1">
                                         <p>{!!$data->answer!!}</p>
                                     </div>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="faq-accordion-box">
-                            <a href="#" class="faq-accordion-header" data-target="acrd_3">Menu 3</a>
+                            <a href="#" class="faq-accordion-header faq-active-accordion" data-target="acrd_3">Menu 3</a>
                             <div class="faq-accordion-content" id="acrd_3">
                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,...</p>
                             </div>
@@ -60,6 +60,7 @@
 @section('script')
 <script>
 $(".acrd_1:first").show();
+$(".active:first").addClass("faq-active-accordion");
 </script>
 @endsection
 

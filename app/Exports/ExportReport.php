@@ -34,6 +34,6 @@ class ExportReport implements FromCollection, WithMapping, WithHeadings
 
     public function headings(): array
     {
-        return ["Sr.No", "View", "Jurisdiction", "Currency", "Level 1", "	level 2", "Level 3", "Level-4", "Year", "Score"];
+        return ["Sr.No", "View", "Jurisdiction", "Currency", "Level 1", "level 2", "Level 3", "Level-4", "Year", "Score"];
     }
 }
