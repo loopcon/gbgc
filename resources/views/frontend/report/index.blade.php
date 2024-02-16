@@ -110,20 +110,6 @@ input:checked + .slider .off
         </div>
             <div class="col-lg-1">
                 <div class="d-inline">
-                    <h6>Currency</h6>
-                    <label class="switch">
-                        <input type="checkbox" id="currency" value="">
-                        <div class="slider round">
-                        <!--ADDED HTML -->
-                        <span class="on" >Standard</span>
-                        <span class="off" >Local</span>
-                        <!--END-->
-                        </div>
-                    </label>   
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="d-inline">
                     <h6>View</h6>
                     <label class="switch">
                         <input type="checkbox" id="view" value="">
@@ -131,6 +117,20 @@ input:checked + .slider .off
                         <!--ADDED HTML -->
                         <span class="on switch-label-on" data-on="standard">Standardised</span>
                         <span class="off switch-label-off" data-off="local">Local</span>
+                        <!--END-->
+                        </div>
+                    </label>   
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="d-inline">
+                    <h6>Currency</h6>
+                    <label class="switch">
+                        <input type="checkbox" id="currency" value="">
+                        <div class="slider round">
+                        <!--ADDED HTML -->
+                        <span class="on curr-usd" data-on="USD">USD</span>
+                        <span class="off curr-local" data-off="LocalCurr">LocalCurr</span>
                         <!--END-->
                         </div>
                     </label>   
@@ -156,14 +156,14 @@ input:checked + .slider .off
                     <div class="row">
                         <div class="col-4">
                             <label> <h6>Year From</h6>
-                            <select id="ddlYearsfrom" class="form-control select2" name="year">
+                            <select id="ddlYearsfrom" class="form-control year" name="year">
                                 <option value="" hidden>{{__('-- select --')}}</option>
                             </select>
                             </lable>
                         </div>
                         <div class="col-4">
                             <label> <h6>Year To</h6>
-                            <select id="ddlYearsto" class="form-control select2">
+                            <select id="ddlYearsto" class="form-control year">
                                 <option value="0" hidden>{{__('-- select --')}}</option>
                             </select>
                             </lable>
@@ -267,7 +267,12 @@ input:checked + .slider .off
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
+        $('.select2').select2({
+            placeholder: "Select Jurisdiction",
+            allowClear: true
+        });
+        $('.year').select2();
+
         $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
             $("#success-alert").slideUp(500);
         });
@@ -311,7 +316,7 @@ input:checked + .slider .off
     };
 
         // loadReportList("","","");
-        loadReportList("","","","","");
+        loadReportList("","","","","","");
 
         // $(document).on("click", "#pagination a", function(e) {
         //     e.preventDefault();
@@ -325,7 +330,8 @@ input:checked + .slider .off
             var yearto = $('#ddlYearsto').val();
             var url = "";
             var view = $('#view').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view);
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
         });
         $('#ddlYearsfrom').on('change', function(){
             var yearfrom = $(this).val();
@@ -333,7 +339,8 @@ input:checked + .slider .off
             var yearto = $('#ddlYearsto').val();
             var url = "";
             var view = $('#view').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view);
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
         });
         $('#ddlYearsto').on('change', function(){
             var yearto = $(this).val();
@@ -341,7 +348,8 @@ input:checked + .slider .off
             var yearfrom = $('#ddlYearsfrom').val();
             var url = "";
             var view = $('#view').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view);
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
         });
 
         $(document).on('click', '.pagination li.page-item a.page-link', function(e){
@@ -351,7 +359,8 @@ input:checked + .slider .off
             var yearto = $('#ddlYearsto').val();
             var url = $(this).attr('href');
             var view = $('#view').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view);
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
 
             
             var customer = $('#customer').val();
@@ -383,27 +392,51 @@ input:checked + .slider .off
             var yearfrom = $('#ddlYearsfrom').val();
             var yearto = $('#ddlYearsto').val();
             var url = "";
-            loadReportList(jurisdiction,yearfrom,yearto,url,view);
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+        });
+
+        $('#currency').on('change', function(e) 
+        {
+            e.preventDefault();
+            var is_checked = $(this).is(':checked');
+            var selected_currency;
+            var $curr_usd = $('.curr-usd');
+            var $curr_local = $('.curr-local');
+            // console.log('is_checked: ' + is_checked); 
+
+            if(is_checked) {
+                selected_currency = $curr_usd.attr('data-on');
+            } else {
+                selected_currency = $curr_local.attr('data-off');
+            }
+            var currency = selected_currency;
+            $("#currency").val(currency);
+            var jurisdiction = $('#select-jurisdiction').val();
+            var yearfrom = $('#ddlYearsfrom').val();
+            var yearto = $('#ddlYearsto').val();
+            var url = "";
+            var view = $('#view').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
         });
 
     });
     
 
-    function loadReportList(jurisdiction,yearfrom,yearto,url,view)
+    function loadReportList(jurisdiction,yearfrom,yearto,url,view,currency)
     {
         if(url==''){
             url = "{{ route('frontreportlist',1)}}";
         }
         $.ajax({
             type: 'POST',
-            data: { _token: "{{ csrf_token() }}", jurisdiction: jurisdiction, yearfrom: yearfrom, yearto: yearto,view: view},
+            data: { _token: "{{ csrf_token() }}", jurisdiction: jurisdiction, yearfrom: yearfrom, yearto: yearto,view: view, currency:currency},
             url: url,
             dataType: 'json',
             success: function (response) {
                 $("#report-list tbody").html(response.data.report_list);
                 $("#pagination").html(response.data.pagination);
                 $("#page").html(response.data.page);
-
             }
         });
     }

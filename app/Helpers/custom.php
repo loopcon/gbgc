@@ -7,7 +7,7 @@ function pagination($total_pages, $current_page, $page_link)
 {
     $show_first_pages = 5;
     $show_last_pages = 5;
-    if($total_pages <= 35) {
+    if($total_pages <= 10) {
         $show_first_ellipsis = false;
         $show_last_ellipsis = false;
         $fStart = 0;
@@ -73,6 +73,7 @@ function pagination($total_pages, $current_page, $page_link)
                 $page_html .= "<li class='page-item'><a class='page-link' href='".route('frontreportlist',$number)."' title='".$number."'>".$number."</a></li>";
             }
         }
+        $page_html .= "<li class='page-item'><span class='page-link'><i class='fa-solid fa-ellipsis'></i></span></li>";
     }
     for($i=$mStart;$i<$mEnd;$i++) {
         $number = $i + 1;
@@ -83,6 +84,7 @@ function pagination($total_pages, $current_page, $page_link)
         }
     }
     if($show_last_ellipsis) {
+        $page_html .= "<li class='page-item'><span class='page-link'><i class='fa-solid fa-ellipsis'></i></span></li>";
         for($i=$lStart;$i<$lEnd;$i++) {
             $number = $i + 1;
             if($number==$current_page) {

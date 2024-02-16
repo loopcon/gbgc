@@ -43,6 +43,10 @@ class ReportController extends Controller
             $query->where([['view', '=', $request->view]]);
             // where('name', 'LIKE', "%$name%")
         }
+        if($request->currency) {
+            $query->where([['currency_id', '=', $request->currency]]);
+            // where('name', 'LIKE', "%$name%")
+        }
         
         $total_data = $query->get();
         $total_records = $total_data->count();
@@ -61,7 +65,7 @@ class ReportController extends Controller
                             <td>'.$data->maincategoryDetail->title.'</td>
                             <td>'.$data->subcategory1Detail->title.'</td>
                             <td>'.$data->subcategory2Detail->title.'</td>
-                            <td>'.$data->level4Detail->title.'</td>
+                            <td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).'</td>
                             <td>'.$data->year.'</td>
                             <td>'.$data->score.'</td>
                         </tr>';
