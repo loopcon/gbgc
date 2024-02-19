@@ -142,7 +142,6 @@ input:checked + .slider .off
                     <h6>Jurisdiction</h6>
                     <label>
                     <select id="select-jurisdiction" class="form-control select2" multiple name="region_id">
-                        <option value="" disabled>--Select--</option>
                         @if($region->count())
                             @foreach($region as $data)
                                 <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
@@ -186,6 +185,9 @@ input:checked + .slider .off
                 <div  class="hiddenJurisdiction"><h6 class="hiddenJurisdictionValue"></h6></div>
             </div>
             <div class="col-lg-4">
+                <div class="col-4"></div>
+                <div  class="col-4 hiddenYear"><h6 class="hiddenYearValue"></h6></div>
+                <div class="col-4"></div>
             </div>
         </div>
         @if($customer=='paid' || $customer=='additionaluser')
@@ -301,6 +303,7 @@ input:checked + .slider .off
         $(".hiddenView").hide();
         $(".hiddenCurrency").hide();
         $(".hiddenJurisdiction").hide();
+        $(".hiddenYear").hide();
 
          window.onload = function () {
         //Reference the DropDownList.
@@ -344,7 +347,7 @@ input:checked + .slider .off
         // });
 
         $('#select-jurisdiction').on('change', function(){
-            $(".hiddenJurisdiction").show();
+            
             var jurisdiction = $(this).val();
             var yearfrom = $('#ddlYearsfrom').val();
             var yearto = $('#ddlYearsto').val();
@@ -353,19 +356,28 @@ input:checked + .slider .off
             var currency = $('#currency').val();
             loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
 
-            var juris = $("#select-jurisdiction option:selected").map(function () {
+            if(jurisdiction != ''){
+                $(".hiddenJurisdiction").show();
+                var juris = $("#select-jurisdiction option:selected").map(function () {
                 return $(this).text();
                 }).get().join(',');
                 $('.hiddenJurisdictionValue').html('Jurisdiction : '+ juris);
+            }
+            else{
+               $(".hiddenJurisdiction").hide();
+            }
+            
         });
         $('#ddlYearsfrom').on('change', function(){
             var yearfrom = $(this).val();
             var jurisdiction = $('#select-jurisdiction').val();
             var yearto = $('#ddlYearsto').val();
+            console.log(yearto);
             var url = "";
             var view = $('#view').val();
             var currency = $('#currency').val();
             loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+            
         });
         $('#ddlYearsto').on('change', function(){
             var yearto = $(this).val();
@@ -375,6 +387,14 @@ input:checked + .slider .off
             var view = $('#view').val();
             var currency = $('#currency').val();
             loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+            if(yearto != 0){
+                $(".hiddenYear").show();
+                $('.hiddenYearValue').html('Year : '+ yearfrom +'-'+ yearto);
+             }
+             else{
+                 $(".hiddenYear").hide();
+             }
         });
 
         $(document).on('click', '.pagination li.page-item a.page-link', function(e){
@@ -448,11 +468,10 @@ input:checked + .slider .off
             var yearfrom = $('#ddlYearsfrom').val();
             var yearto = $('#ddlYearsto').val();
             var url = "";
-
-            $('.hiddenCurrencyValue').html('Currency : '+ currency);
-
             var view = $('#view').val();
             loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+            $('.hiddenCurrencyValue').html('Currency : '+ currency);
         });
 
     });

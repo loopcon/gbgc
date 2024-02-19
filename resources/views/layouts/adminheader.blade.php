@@ -120,16 +120,16 @@
                                                     <span class="pcoded-mtext">Jurisdiction</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ (request()->is('admin/currency*'))? 'active' : '' }}">
+                                            <?php  /* <li class="{{ (request()->is('admin/currency*'))? 'active' : '' }}">
                                                 <a href="{{route('admincurrency')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Currency</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ (request()->is('admin/score*'))? 'active' : '' }}">
+                                         <li class="{{ (request()->is('admin/score*'))? 'active' : '' }}">
                                                 <a href="{{route('adminscore')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Score</span>
                                                 </a>
-                                            </li>
+                                            </li> */ ?>
 
                                              <li class="{{ (request()->is('admin/level*'))? 'active' : '' }}">
                                                 <a href="{{route('adminlevel')}}" class="waves-effect waves-dark">
