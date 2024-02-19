@@ -49,7 +49,10 @@ Route::get('report',[ReportController::class, 'index'])->name('frontreport');
 Route::get('export-report',[ReportController::class,'exportReport'])->name('export-report');
 Route::post('report_list/{page}', [ReportController::class, 'reportList'])->name('frontreportlist');
 
+Route::post('scoreview', [ReportController::class, 'scoreview'])->name('scoreview');
 
+
+Route::post('sendotpemail',[FrontLoginController::class,'sendotpemail'])->name('sendotpemail');
 //fronted Route End
 
 
