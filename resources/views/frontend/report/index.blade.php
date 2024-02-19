@@ -1,15 +1,9 @@
-@extends('layouts.header')
+@extends('layouts.dashboardheader')
 @section('title')
 <title>GBGC - Dashboard</title>
 @endsection
-@section('css')
-    <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+@section('content')
 <style>
-.blur{
-    filter: blur(3px);
-    pointer-events: none;
-}
-
 .switch {
   position: relative;
   display: inline-block;
@@ -90,391 +84,214 @@ input:checked + .slider .off
 .slider.round:before {
   border-radius: 50%;}
   </style>
-@endsection
+
 @section('content')
-<div id='loader'>
-<div class="profile-user-breadcrumbs">
-    <div>
-        <h1 class="profile-heading">
-            {{ "Reports" }}
-        </h1>
-    </div>
-    <div>
-        <div class="row align-items-center mt-5 mb-2" style="text-align: center">
-            <div class="col-lg-2"> 
-                <ul>
-                    <li><a href="{{url('/')}}">Home</a></li>
-                    <li><i class="fa-solid fa-chevron-right"></i></li>
-                    <li class="profile-breadcrumbs-active">{{ "Reports"}}</li>
-                    
-                </ul>
-            </div>
-            <div class="col-lg-2">
-                <div class="d-inline">
-                    <h6>View</h6>
-                    <label class="switch">
-                        <input type="checkbox" id="view" value="">
-                        <div class="slider round">
-                        <!--ADDED HTML -->
-                        <span class="on switch-label-on" data-on="local">Local</span>
-                        <span class="off switch-label-off" data-off="standard">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Standard</span>
-                        <!--END-->
-                        </div>
-                    </label>  
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <div class="d-inline">
+                        <h5>Reports</h5>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-2">
-                <div class="d-inline">
-                    <h6>Currency</h6>
+            <div class="col-lg-4">
+                <div class="page-header-breadcrumb">
+                    <ul class=" breadcrumb breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="../index.html"><i class="feather icon-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{route('adminindex')}}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{route('adminreport')}}">Reports</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+                <div class="col-sm-12 col-xl-2 m-b-30">
+                    <h3 class="sub-title">View</h3>
                     <label class="switch">
-                        <input type="checkbox" id="currency" value="">
+                        <input type="checkbox" id="togBtnview">
                         <div class="slider round">
                         <!--ADDED HTML -->
-                        <span class="on curr-usd" data-on="LocalCurr">LocalCurr</span>
-                        <span class="off curr-local" data-off="USD">USD</span>
+                        <span class="on">Standard</span>
+                        <span class="off">Local</span>
                         <!--END-->
                         </div>
                     </label>   
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="d-inline">
-                    <h6>Jurisdiction</h6>
-                    <label>
-                    <select id="select-jurisdiction" class="form-control select2" multiple name="region_id">
-                        <option value="" disabled>--Select--</option>
-                        @if($region->count())
-                            @foreach($region as $data)
-                                <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
-                            @endforeach
-                        @endif
-                    </select> 
-                    </lable>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="d-inline">
-                    <div class="row">
-                        <div class="col-4">
-                            <label> <h6>Year From</h6>
-                            <select id="ddlYearsfrom" class="form-control year" name="year">
-                                <option value="" hidden>{{__('-- select --')}}</option>
-                            </select>
-                            </lable>
+
+                <div class="col-sm-12 col-xl-2 m-b-30">
+                <h3 class="sub-title">Currency</h3>
+                    <label class="switch">
+                        <input type="checkbox" id="togBtncurrency">
+                        <div class="slider round">
+                        <!--ADDED HTML -->
+                        <span class="on">USD</span>
+                        <span class="off">LocalCurr</span>
+                        <!--END-->
                         </div>
-                        <div class="col-4">
-                            <label> <h6>Year To</h6>
-                            <select id="ddlYearsto" class="form-control year">
-                                <option value="0" hidden>{{__('-- select --')}}</option>
-                            </select>
-                            </lable>
-                        </div>   
+                    </label>   
+                
+                </div>
+
+                  <div class="col-sm-12 col-xl-3 m-b-30">
+                      <h3 class="sub-title">Jurisdiction</h3>
+                      <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
+                          @if($region->count())
+                              @foreach($region as $data)
+                                  <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                              @endforeach
+                          @endif
+                      </select>
+                  </div>
+
+
+                <div class="col-sm-12 col-xl-2 m-b-30">
+                <h3 class="sub-title">Year From</h3>
+                <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
+                    <option value="" hidden>{{__('-- select --')}}</option>
+                </select>
+                </div>
+
+
+                <div class="col-sm-12 col-xl-2 m-b-30">
+                <h3 class="sub-title">Year To</h3>
+                <select class="form-control js-example col-sm-12" id="ddlYearsto">
+                    <option value="0" hidden>{{__('-- select --')}}</option>
+                </select>
+                </div>
+
+
+        </div>
+    </div>
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="row">
+                                    
+                                </div>
+                               
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive" id="targetDivold">
+
+                                     @include('frontend.report.table')
+                                    </div>
+                                    <div class="dt-responsive table-responsive" id="targetDivnew">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row align-items-center mb-2" style="text-align: center">
-            <div class="col-lg-2"> 
-            </div>
-            <div class="col-lg-2"> 
-                <div  class=""><h6 class="hiddenViewValue"></h6></div>
-            </div>
-            <div class="col-lg-2">
-                <div  class="hiddenCurrency"><h6 class="hiddenCurrencyValue"></h6></div>
-            </div>
-            <div class="col-lg-2">
-                <div  class="hiddenJurisdiction"><h6 class="hiddenJurisdictionValue"></h6></div>
-            </div>
-            <div class="col-lg-4">
-            </div>
+        <div id="styleSelector">
         </div>
-        @if($customer=='paid' || $customer=='additionaluser')
-        <div class="text-right">
-            <a class="btn text-light" style="margin-left: 1200px;margin-bottom : 10px; background:#2e9cc5" href="{{route('export-report')}}">Export Report</a>
-        </div>
-        @elseif($customer=='free')
-        <div class="text-right freetxt">
-            <p class="text-danger" style="margin-left: 645px;margin-bottom : 10px;">Your access type is free, First register for Pro version and then you can access to download Reports.</p>
-        </div>
-        @endif
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     </div>
-</div>
-
-<div class="profile-section-main">
-    <div >
-        <div class="row m-0">
-            <div class="col-12" id="message">
-                @if ($message = Session::get('success'))
-                    <div class="alert text-success alert-dismissible fade show" style="background-white;border-color:green;"  id="success-alert">
-                        {{ $message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                @if ($message = Session::get('error'))
-                    <div class="alert alert-danger alert-dismissible fade show"  id="danger-alert">
-                        {{ $message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-            </div>
-        </div>
-        <div class="row justify-content-center m-0">
-            @include('frontend.dashboard.sidebar')
-            <div class="col-12 col-md-8 col-lg-9 blur" id="blur">
-                <div class="dt-responsive table-responsive">
-                    <table  id="report-list" class="table table-striped table-bordered nowrap" id="">
-                            <input type="hidden" id="customer" value="{{$customer}}">
-                        <?php /*  <input type="hidden" id="page" value="{{$page}}">  */ ?>
-                        <input type="hidden" id="page">
-                        <thead>
-                            <tr>
-                                <th>{{__('Sr No.')}}</th>
-                                <th>{{__('View')}}</th>
-                                <th>{{__('Jurisdiction')}}</th>
-                                <th>{{__('Currency')}}</th>
-                                <th>{{__('Level 1')}}</th>
-                                <th>{{__('level 2')}}</th>
-                                <th>{{__('Level 3')}}</th>
-                                <th>{{__('Level-4')}}</th>
-                                <th>{{__('year')}}</th>
-                                <th>{{__('Score')}}</th>
-                                </tr>
-                        </thead>
-                        <tbody>
-                            <?php /* <?php
-                                $i=1;
-                            ?>
-                            @if(count($score)>0)
-                                @foreach($score as $data) 
-                                    <tr>   
-                                        <td>{{$i}}</td>
-                                            <?php $i++;?>
-                                        <td>{{$data->view}}</td>
-                                        <td>@if($data->regionDetail){{$data->regionDetail->name}}@else - @endif
-                                        </td>
-                                        <td>@if($data->currencyDetail){{$data->currencyDetail->name}}@else - @endif
-                                        </td>
-                                        <td> @if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
-
-                                        <td>@if($data->subcategory1Detail){{$data->subcategory1Detail->title}}@else - @endif</td>
-
-                                        <td>@if($data->subcategory2Detail){{$data->subcategory2Detail->title}}@else - @endif</td>
-
-                                        <td>@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
-                                        <td>{{$data->year}}</td>
-                                        <td>{{$data->score}}</td>
-                                    </tr>
-                                @endforeach
-                            @endif */ ?>
-                        </tbody>
-                    </table>
-
-                  <?php /*  {{ $score->links('pagination::bootstrap-5') }}  */ ?>
-                    <div class="float-end" id="pagination"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<meta name="csrf-token" content="{{ csrf_token() }}" />
-</div>
 @endsection
-@section('script')
-<script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
+@section('javascript')
 <script>
-    $(document).ready(function() {
-        $('.select2').select2({
-            placeholder: "Select Jurisdiction",
-            allowClear: true
-        });
-        $('.year').select2();
+$(document).ready(function () {
 
-        $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#success-alert").slideUp(500);
-        });
-        $("#danger-alert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#danger-alert").slideUp(500);
-        });
 
-        $("#blur").removeClass('blur');
-        $(".freetxt").hide();
-        $(".hiddenView").hide();
-        $(".hiddenCurrency").hide();
-        $(".hiddenJurisdiction").hide();
+     for (var i = 2007; i <= 2030; i++) {
+        $('#ddlYearsfrom').append($('<option>', {
+            value: i,
+            text: i
+        }));
+    }
 
-         window.onload = function () {
-        //Reference the DropDownList.
-        var ddlYearsfrom = document.getElementById("ddlYearsfrom");
-        var ddlYearsto = document.getElementById("ddlYearsto");
+    $('#ddlYearsfrom').change(function () {
+        var selectedYear = parseInt($(this).val());
+        $('#ddlYearsto').empty().append($('<option>', {
+            value: '',
+            text: '-- select --',
+            hidden: true
+        }));
 
- 
-        //Determine the Current Year.
-        var currentYear = (new Date()).getFullYear();
- 
-        //Loop and add the Year values to DropDownList.
-        for (var i = 2007; i <= 2030; i++) {
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            ddlYearsfrom.appendChild(option);
+        for (var i = selectedYear + 1; i <= 2030; i++) {
+            $('#ddlYearsto').append($('<option>', {
+                value: i,
+                text: i
+            }));
         }
-
-        ddlYearsfrom.onchange = function() {
-            var from =  $('#ddlYearsfrom').val();
-            $('#ddlYearsto option').remove();
-            $('#ddlYearsto').html('<option value="0" hidden>{{__("-- select --")}}</option>');
-            
-            for (var i = from; i <= 2030; i++) {
-                var option = document.createElement("OPTION");
-                option.innerHTML = i;
-                option.value = i;
-                ddlYearsto.appendChild(option);
-            }
-        }
-
-    };
-
-        // loadReportList("","","");
-        loadReportList("","","","","","");
-
-        // $(document).on("click", "#pagination a", function(e) {
-        //     e.preventDefault();
-        //     var page_link = $(this).attr("href");
-        //     loadReportList(page_link);
-        // });
-
-        $('#select-jurisdiction').on('change', function(){
-            $(".hiddenJurisdiction").show();
-            var jurisdiction = $(this).val();
-            var yearfrom = $('#ddlYearsfrom').val();
-            var yearto = $('#ddlYearsto').val();
-            var url = "";
-            var view = $('#view').val();
-            var currency = $('#currency').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
-
-            var juris = $("#select-jurisdiction option:selected").map(function () {
-                return $(this).text();
-                }).get().join(',');
-                $('.hiddenJurisdictionValue').html('Jurisdiction : '+ juris);
-        });
-        $('#ddlYearsfrom').on('change', function(){
-            var yearfrom = $(this).val();
-            var jurisdiction = $('#select-jurisdiction').val();
-            var yearto = $('#ddlYearsto').val();
-            var url = "";
-            var view = $('#view').val();
-            var currency = $('#currency').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
-        });
-        $('#ddlYearsto').on('change', function(){
-            var yearto = $(this).val();
-            var jurisdiction = $('#select-jurisdiction').val();
-            var yearfrom = $('#ddlYearsfrom').val();
-            var url = "";
-            var view = $('#view').val();
-            var currency = $('#currency').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
-        });
-
-        $(document).on('click', '.pagination li.page-item a.page-link', function(e){
-            e.preventDefault();
-            var jurisdiction = $('#select-jurisdiction').val();
-            var yearfrom = $('#ddlYearsfrom').val();
-            var yearto = $('#ddlYearsto').val();
-            var url = $(this).attr('href');
-            var view = $('#view').val();
-            var currency = $('#currency').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
-
-            
-            var customer = $('#customer').val();
-            var page = $('#page').val();
-            if(customer =='free' && page != 1)
-            {
-                $("#blur").addClass('blur');
-                $(".freetxt").show();
-            }
-        });
-
-        $('#view').on('change', function(e) 
-        {
-            e.preventDefault();
-            $(".hiddenView").show();
-
-            var is_checked = $(this).is(':checked');
-            var selected_data;
-            var $switch_label_on = $('.switch-label-on');
-            var $switch_label_off = $('.switch-label-off');
-            // console.log('is_checked: ' + is_checked); 
-
-            if(is_checked) {
-                selected_data = $switch_label_on.attr('data-on');
-            } else {
-                selected_data = $switch_label_off.attr('data-off');
-            }
-            var view = selected_data;
-
-            $('.hiddenViewValue').html('View : '+ view);
-
-            $("#view").val(view);
-            var jurisdiction = $('#select-jurisdiction').val();
-            var yearfrom = $('#ddlYearsfrom').val();
-            var yearto = $('#ddlYearsto').val();
-            var url = "";
-            var currency = $('#currency').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
-        });
-
-        $('#currency').on('change', function(e) 
-        {
-            e.preventDefault();
-            $(".hiddenCurrency").show();
-
-            var is_checked = $(this).is(':checked');
-            var selected_currency;
-            var $curr_usd = $('.curr-usd');
-            var $curr_local = $('.curr-local');
-            // console.log('is_checked: ' + is_checked); 
-
-            if(is_checked) {
-                selected_currency = $curr_usd.attr('data-on');
-            } else {
-                selected_currency = $curr_local.attr('data-off');
-            }
-            var currency = selected_currency;
-            $("#currency").val(currency);
-            var jurisdiction = $('#select-jurisdiction').val();
-            var yearfrom = $('#ddlYearsfrom').val();
-            var yearto = $('#ddlYearsto').val();
-            var url = "";
-
-            $('.hiddenCurrencyValue').html('Currency : '+ currency);
-
-            var view = $('#view').val();
-            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
-        });
-
     });
-    
+});
+</script>
 
-    function loadReportList(jurisdiction,yearfrom,yearto,url,view,currency)
-    {
-        if(url==''){
-            url = "{{ route('frontreportlist',1)}}";
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    var checkbox = document.getElementById('togBtnview');
+    var currencySelect = document.getElementById('togBtncurrency'); 
+    var jurisdictionSelect = document.getElementById('country'); 
+    var yearFromSelect = document.getElementById('ddlYearsfrom'); 
+    var yearToSelect = document.getElementById('ddlYearsto'); 
+
+    [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
+        if (element) {
+            element.addEventListener('change', function() {
+                handleFormChange();
+            });
         }
+    });
+
+    jurisdictionSelect.addEventListener('change', function() {
+        handleFormChange();
+    });
+
+    function handleFormChange() {
+        var viewValue = checkbox.checked ? 'Standard' : 'Local';
+        var currencyValue = checkbox.checked ? 'USD' : 'LocalCurr';
+        var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
+        var yearFromValue = yearFromSelect.value;
+        var yearToValue = yearToSelect.value;
+        var token = "{{ csrf_token() }}";
+
+        // Send AJAX request with all values
         $.ajax({
-            type: 'POST',
-            data: { _token: "{{ csrf_token() }}", jurisdiction: jurisdiction, yearfrom: yearfrom, yearto: yearto,view: view, currency:currency},
-            url: url,
+            url: "{{ route('scoreview') }}",
+            type: "POST",
             dataType: 'json',
-            success: function (response) {
-                $("#report-list tbody").html(response.data.report_list);
-                $("#pagination").html(response.data.pagination);
-                $("#page").html(response.data.page);
+            data: {
+                _token: token,
+                view: viewValue,
+                currency: currencyValue,
+                jurisdictions: jurisdictionValues,
+                year_from: yearFromValue,
+                year_to: yearToValue
+            },
+            success: function(data) {
+                $("#targetDivold").hide();
+                $('#targetDivnew').html(data.view);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
             }
         });
     }
+});
 
 </script>
+
+
+
 @endsection

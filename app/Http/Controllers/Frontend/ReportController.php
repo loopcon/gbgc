@@ -17,16 +17,56 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $return_data = array();
-        // $score = Score::with('regionDetail','currencyDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->paginate($request->paginator, ['*'], 'page', $request->page);
-        // $page = $score->currentPage();
         $user = Auth::guard('customers')->id();
         $customer_detail= Customer::where([['id', '=', $user]])->first();
         $customer = $customer_detail->access_type;
-        // $return_data['score'] = $score;
         $region=Region::orderBy('name','asc')->get();
         $currencies=Currency::get();
-        return view('frontend.report.index', array_merge($return_data),compact('region','currencies','customer'));
+        $yeardata = Score::where(['view' => 'Standard'])
+             ->where(['currency_id' => 'USD'])
+             ->pluck('year')    
+             ->unique();
+        $scores = Score::where(['view' => 'Standard'])
+                ->where(['currency_id' => 'USD'])
+                ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
+                ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
+                ->get();
+        return view('frontend.report.index',compact('region','currencies','customer','yeardata','scores'));
     }
+
+    public function scoreview(Request $request)
+    {
+        $viewfilter=$request->view;
+        $currencyfilter=$request->currency;
+        $yearfrom=$request->year_from;
+        $yearto=$request->year_to;
+        $return_data = array();
+        $user = Auth::guard('customers')->id();
+        $customer_detail= Customer::where([['id', '=', $user]])->first();
+        $customer = $customer_detail->access_type;
+        $region=Region::orderBy('name','asc')->get();
+        $currencies=Currency::get();
+        $yeardata = Score::where('view', $viewfilter)
+                            ->where('currency_id', $currencyfilter)
+                            ->when($yearfrom, function ($query) use ($yearfrom) {
+                                return $query->where('year', '>=', $yearfrom);
+                            })
+                            ->when($yearto, function ($query) use ($yearto) {
+                                return $query->where('year', '<=', $yearto);
+                            })
+                            ->pluck('year')
+                            ->unique();
+
+        $scores = Score::where('view',$viewfilter)
+                ->where('currency_id',$currencyfilter)
+                ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
+                ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
+                ->get();
+         $view = view('frontend.report.filtertable',compact('region','currencies','customer','yeardata','scores','viewfilter','currencyfilter'))->render();
+
+         return response()->json(['view' => $view]);
+    }
+
 
     public function reportList(Request $request,$page)
     {
