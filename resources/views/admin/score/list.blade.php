@@ -72,6 +72,12 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                    </div>
+                                </div>
+
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
                                         <table id="complex-dt" class="table table-striped table-bordered nowrap">

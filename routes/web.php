@@ -49,6 +49,9 @@ Route::get('report',[ReportController::class, 'index'])->name('frontreport');
 Route::get('export-report',[ReportController::class,'exportReport'])->name('export-report');
 Route::post('report_list/{page}', [ReportController::class, 'reportList'])->name('frontreportlist');
 
+Route::post('scoreview', [ReportController::class, 'scoreview'])->name('scoreview');
+
+
 Route::post('sendotpemail',[FrontLoginController::class,'sendotpemail'])->name('sendotpemail');
 //fronted Route End
 
@@ -162,6 +165,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     //reports
     Route::get('admin/report', [App\Http\Controllers\Admin\ReportController::class,'index'])->name('adminreport');
+    Route::get('admin/export-score',[App\Http\Controllers\Admin\ReportController::class,'exportScore'])->name('export-scores');
+    Route::post('admin/import-score',[App\Http\Controllers\Admin\ReportController::class,'importScore'])->name('import-scores');
+    Route::post('admin/report_list/{page}', [App\Http\Controllers\Admin\ReportController::class, 'reportList'])->name('adminreportlist');
     //end reports
 
      //reports
