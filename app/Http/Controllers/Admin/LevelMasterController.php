@@ -14,7 +14,7 @@ class LevelMasterController extends Controller
     public function index()
     {
         $return_data = array();       
-        $level = LevelMaster::with('masterDetail')->get();
+        $level = LevelMaster::with('masterDetail')->where('level_number',4)->get();
         $return_data['level'] = $level;
         return view('admin.level_master.list', array_merge($return_data));
     }

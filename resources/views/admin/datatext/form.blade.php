@@ -6,7 +6,7 @@
             <div class="page-header-title">
                 <i class="feather icon-info bg-c-blue"></i>
                 <div class="d-inline">
-                    <h5>Data Text</h5>
+                    <h5>Glossary</h5>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item">
                         <a href="#"><i class="feather icon-info"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{route('admindatatext')}}">DataText</a> </li>
+                    <li class="breadcrumb-item"><a href="{{route('admindatatext')}}">Glossary</a> </li>
                 </ul>
             </div>
         </div>
@@ -32,6 +32,11 @@
                         <div class="card">
                             <div class="card-header">
                             </div>
+                            <ul>
+     @foreach ($errors->all() as $error)
+         <li>{{ $error }}</li>
+     @endforeach
+</ul>
                             <div class="card-block">
                                 <form method="post" action="@if(isset($record)){{ route('datatext-update', array('id' => $record->id)) }}@else{{route('datatext-store')}}@endif" enctype="multipart/form-data">
                                     @csrf
@@ -61,27 +66,27 @@
                                         </div>
                                     </div>
                                     <div class="form-group row" id="step_2">
-                                        <label class="col-sm-2 col-form-label">Main Category-1<span class="text-danger">*</span></label>
+                                        <label class="col-sm-2 col-form-label">Level-1<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="main_category" class="form-control select2" name="main_category" required="">
                                                 <option value="0" selected>--Select Main Category--</option>
                                                  @if($level_1->count())
                                                     @foreach($level_1 as $data)
-                                                        <option value="{{$data->id}}" @if(isset($record) && $data->id==$record->region_id) selected="selected" @endif>{{ucfirst($data->title)}}</option>
+                                                        <option value="{{$data->id}}" @if(isset($record) && $data->id==$record->main_category) selected="selected" @endif>{{ucfirst($data->title)}}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row" id="step_3">
-                                        <label class="col-sm-2 col-form-label">Sub Category-1<span class="text-danger">*</span></label>
+                                        <label class="col-sm-2 col-form-label">Level-2<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="sub_category_1" class="form-control select2" name="sub_category_1" required="">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row" id="step_4">
-                                        <label class="col-sm-2 col-form-label">Sub category-2<span class="text-danger">*</span></label>
+                                        <label class="col-sm-2 col-form-label">Leve-3<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="sub_category_2" class="form-control select2" name="sub_category_2"  required="">
                                             </select>

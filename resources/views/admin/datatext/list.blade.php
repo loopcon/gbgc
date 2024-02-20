@@ -1,4 +1,5 @@
 @extends('layouts.adminheader')
+<link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @section('content')
     <div class="page-header card">
         <div class="row align-items-end">
@@ -6,7 +7,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Data Text</h5>
+                        <h5>Glossary</h5>
                     </div>
                 </div>
             </div>
@@ -20,7 +21,7 @@
                             <a href="{{route('adminindex')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('admindatatext')}}">Data Text</a>
+                            <a href="{{route('admindatatext')}}">Glossary</a>
                         </li>
                     </ul>
                 </div>
@@ -61,51 +62,70 @@
                                 </div>
                                 <div class="card-header">
                                     <div class="form-row">
-                                        <div class="col-md-12 text-right">
+                                        <div class="col-md-3 text-center">
+                                            <div class="d-inline">
+                                                <h6><b>Jurisdiction</b> </h6>
+                                                <label>
+                                                <select id="select-jurisdiction" class="form-control select2" name="region_id">
+                                                <option value="0" sselected>--Select Jurisdiction--</option>
+                                                    @if($region->count())
+                                                        @foreach($region as $data)
+                                                            <option value="{{$data->id}}">{{ucfirst($data->name)}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select> 
+                                                </lable>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                        <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
+                                        </div>
+                                        <div class="col-md-1 text-right">
                                             <div class="col-md-12 text-right"><a href="{{route('datatext-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="complex-dt" class="table table-striped table-bordered nowrap">
+                                        <table id="glossary-list" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>{{__('Sr No.')}}</th>
+                                                   <?php /* <th>{{__('Sr No.')}}</th>
                                                     <th>{{__('View')}}</th>
-                                                    <th>{{__('Region')}}</th>
-                                                    <th>{{__('Category')}}</th>
-                                                    <th>{{__('Sub Category-1')}}</th>
-                                                    <th>{{__('Sub Category-2')}}</th>
+                                                    <th>{{__('Region')}}</th> */ ?>
+                                                    <th>{{__('Level-1')}}</th>
+                                                    <th>{{__('Level-2')}}</th>
+                                                    <th>{{__('Level-3')}}</th>
                                                     <th>{{__('Level-4')}}</th>
                                                     <th>{{__('Description')}}</th>
                                                     <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
+                                             <?php /*    <?php
                                                     $i=1;
                                                 ?>
                                                 @if(count($datatext)>0)
                                                     @foreach($datatext as $data) 
                                                         <tr>   
-                                                            <td>{{$i}}</td>
-                                                                <?php $i++;?>
-                                                            <td >  {{$data->view}} </td>
-                                                            <td >  {{$data->regionDetail->name}} </td>
-                                                            <td >  {{$data->maincategoryDetail->title}} </td>
-                                                            <td >  {{$data->subcategory1Detail->title}} </td>
-                                                            <td >  {{$data->subcategory2Detail->title}} </td>
-                                                            <td >  {{$data->level4Detail->title}} </td>
+                                                        //    <td>{{$i}}</td>
+                                                        //         <?php $i++;?>
+                                                        //     <td >  {{$data->view}} </td>
+                                                        //     <td >  {{$data->regionDetail->name}} </td>
+                                                            <td >@if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
+                                                            <td >@if($data->subcategory1Detail){{$data->subcategory1Detail->title}}@else - @endif</td>
+                                                            <td >@if($data->subcategory2Detail){{$data->subcategory2Detail->title}}@else - @endif</td>
+                                                            <td >@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
                                                             <td >  {!!$data->description!!} </td>
                                                             <td><a href="{{ route('datatext-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
                                                             <a href='javascript:void(0);' data-href="{{ route('datatext-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
                                                         </tr>
                                                     @endforeach
-                                                @endif
+                                                @endif */ ?>
                                             </tbody>
                                         </table>
+                                        <div class="pull-right" id="pagination"></div>
                                     </div>
                                 </div>
                             </div>
@@ -119,8 +139,10 @@
     </div>
 @endsection
 @section('javascript')
+<script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
     $(document).ready(function() {
+        
         $(document).on('click', '.delete', function() {
             var href = $(this).data('href');
             swal({
@@ -137,6 +159,45 @@
                 location.href = href;
             });
         });
+        $('#hide-text').hide();
+
+        loadGloassayList("","");
+
+        $('#select-jurisdiction').on('change', function(){
+            
+            var jurisdiction = $(this).val();
+            var url = "";
+            loadGloassayList(jurisdiction,url);
+
+            var juris = $('#select-jurisdiction option:selected').text();
+            $('#hide-text').show();
+            $('#hidetextValue').html(juris);
+        });
+
+        $(document).on('click', '.pagination li.page-item a.page-link', function(e){
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var jurisdiction = $('#select-jurisdiction').val();
+            loadReportList(jurisdiction,url);
+        });
     });
+
+    function loadGloassayList(jurisdiction,url)
+    {
+        if(url==''){
+            url = "{{ route('adminglossarylist',1)}}";
+        }
+        $.ajax({
+            type: 'POST',
+            data: { _token: "{{ csrf_token() }}", jurisdiction: jurisdiction},
+            url: url,
+            dataType: 'json',
+            success: function (response) {
+                $("#glossary-list tbody").html(response.data.glossary_list);
+                $("#pagination").html(response.data.pagination);
+                // $("#page").html(response.data.page);
+            }
+        });
+    }
 </script>
 @endsection
