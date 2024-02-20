@@ -85,7 +85,7 @@ input:checked + .slider .off
 @section('content')
     <div class="page-header card">
         <div class="row align-items-end">
-            <div class="col-lg-8">
+            <div class="col-lg-3">
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
@@ -93,6 +93,12 @@ input:checked + .slider .off
                     </div>
                 </div>
             </div>
+            
+            <div class="col-lg-5">
+                <a href="javascript:void(0);" class="btn text-light" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
+                <a class="btn text-light" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
+            </div>
+            
             <div class="col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
@@ -145,7 +151,7 @@ input:checked + .slider .off
                     <select id="select-jurisdiction" class="form-control select2" multiple name="region_id">
                         @if($region->count())
                             @foreach($region as $data)
-                                <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                                <option value="{{$data->id}}">{{ucfirst($data->name)}}</option>
                             @endforeach
                         @endif
                     </select> 
@@ -221,18 +227,6 @@ input:checked + .slider .off
                                         @endif
                                     </div>
                                 </div>
-                                <div class="card-header">
-                                    <div class="form-row">
-                                        <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right">
-                                                <a href="javascript:void(0);" class="btn text-light" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
-                                                <!-- <a class="btn text-light" style="background:#263544" href="{{ route('export-scores') }}"> Export Sample Data </a> -->
-
-                                                <a class="btn text-light" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="card-block p-b-0">
                                     <div class="table-responsive">
                                         <table id="report-list" class="table table-striped table-bordered nowrap">
@@ -246,9 +240,9 @@ input:checked + .slider .off
                                                     <th>{{__('level 2')}}</th>
                                                     <th>{{__('Level 3')}}</th>
                                                     <th>{{__('Level-4')}}</th>
-                                                    <th>{{__('year')}}</th>
-                                                    <th>{{__('Score')}}</th>
-                                                    <th>{{__('Comments')}}</th>
+                                                    @foreach($yeardata as $year)
+                                                        <th>{{ $year }}</th>
+                                                    @endforeach
                                                     </tr>
                                             </thead>
                                             <tbody> <?php /*

@@ -21,7 +21,9 @@ class ReportController extends Controller
         $return_data['score'] = $score;
         $region=Region::get();
         $currencies=Currency::get();
-        return view('admin.report.list', array_merge($return_data),compact('region','score','currencies'));
+        $yeardata = Score::pluck('year')    
+             ->unique();
+        return view('admin.report.list', array_merge($return_data),compact('region','score','currencies','yeardata'));
     }
     public function exportScore(Request $request){
     $newquery = LevelMaster::select('lm1.title AS Level1', 'lm2.title AS Level2', 'lm3.title AS Level3', 'lm4.title AS Level4')
@@ -93,12 +95,16 @@ class ReportController extends Controller
             $query->where([['currency_id', '=', $request->currency]]);
             // where('name', 'LIKE', "%$name%")
         }
-        
+            
+      
         $total_data = $query->get();
         $total_records = $total_data->count();
         $total_pages = ceil($total_records / $per_page);
         $offset = ($page - 1) * $per_page;
         $score = $query->offset($offset)->limit($per_page)->get(); // get page records
+        $yeardata = Score::pluck('year')    
+            ->unique();
+        
         $html = '';
         if(count($score) > 0) {
                 $i=1;
@@ -111,10 +117,20 @@ class ReportController extends Controller
                             <td>'.$data->maincategoryDetail->title.'</td>
                             <td>'.$data->subcategory1Detail->title.'</td>
                             <td>'.$data->subcategory2Detail->title.'</td>
-                            <td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).'</td>
-                            <td>'.$data->year.'</td>
-                            <td>'.$data->score.'</td>
-                            <td>'.$data->comment.'</td>
+                            <td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).'</td>';
+                            foreach($yeardata as $year){
+                                $yearlyScore = Score::where('year', $year)
+                                                       ->where('view',$data->view) 
+                                                       ->where('currency_id',$data->currency_id) 
+                                                       ->where('level_1',$data->level_1) 
+                                                       ->where('level_2',$data->level_2) 
+                                                       ->where('level_3',$data->level_3) 
+                                                       ->where('level_4',$data->level_4) 
+                                                        ->max('score');
+                                $html .= '<td>'.$yearlyScore.'</td>';
+                                // print_r($year);exit;
+                            } 
+                          $html .= '  
                         </tr>';
             }
             $status = true;
