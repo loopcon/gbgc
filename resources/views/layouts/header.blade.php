@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
      @yield('title')
     <link rel="icon" href="{{asset('gbgc-logo.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -145,17 +146,18 @@
                         <div class="login-register-form-box">
                             <div>
 
-                                <form  method="POST" class="login-form" id="sendotpemail">
+                                <form  method="POST" class="login-form" id="verifytotp">
                                     @csrf
                                 <div class="row mb-3">
                                     <div class="input-group ">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
-                                        <input type="email" class="form-control" id="verifyemail" name="verifyemail" placeholder="Email" readonly> 
+                                        <input type="text" class="form-control" id="otp" required placeholder="Enter Verify Code" name="otp">
+                                        <input type="hidden" class="form-control" id="verifyemail" name="verifyemail" placeholder="Email" readonly> 
                                     </div>
                                 </div>
 
-                                    <div id="errormsg-login"></div>
-                                    <button type="button" class="login-form-signin" id="send_otp">Send OTP</button>
+                                    <div id="errormsg-otp"></div>
+                                    <button type="button" class="login-form-signin" id="verify_otp">Send OTP</button>
                                 </form>
                             </div>
 
@@ -275,8 +277,8 @@
             }
             if(data.status == 2)
             {
-                console.log(data);
                 $('#siguploginModal').modal('hide');
+                $('#verifytotp').trigger('reset');
                 $('#sendemailmodel').modal('show');
                 $('#verifyemail').val(data.email);
                 
@@ -285,18 +287,26 @@
         });
     });
 
-    $(document).on('click','#send_otp',function() //id(button)
+    $(document).on('click','#verify_otp',function() //id(button)
     {
-        var formdata=$('#sendotpemail').serialize();
-        console.log(formdata);
+        var formdata=$('#verifytotp').serialize();
         $.ajax(
         {
-          url:"{{route('sendotpemail')}}",
+          url:"{{route('verifytotp')}}",
           type: "post",
           data: formdata,
           dataType:'JSON',
           success: function(data)
           {
+             if(data.status == 1)
+            {
+                window.location.href = "{{ route('frontdashboard') }}";
+            }
+
+            if(data.status== 0)
+            {
+                $('#errormsg-otp').html('<strong id="errormsglogin" style="color:red">'+ data.otperrormsg + '</strong>');
+            }
           }
         });
     });

@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\NewsLetter;
 use Session;
 use App\Models\AdditionalUser;
+use App\Models\EmailTemplate;
+use Mail;
 
 class FrontLoginController extends Controller
 {
-    
+
     public function registration(Request $request)
-    {
+    {   
+
        $validator = Validator::make($request->all(), [
             'name' => ['required'],
             'email' => ['required', 'unique:customers,email', 'email'],
@@ -39,6 +42,15 @@ class FrontLoginController extends Controller
         $customer->business_wider_group=$request->input('business_wider_group');
         $customer->access_type= 'requestforfree';
         $customer->save();
+
+        // $ndata = EmailTemplate::select('template')->where('label', 'sign_up_for_free_access')->first();
+        // $email=$request->input('email');
+        // $name= $request->input('name');
+        // $templateStr = array('[NAME]','[EMAIL]');
+        // $data = array($name, $email);
+        // $html = isset($ndata->template) ? $ndata->template : NULL;
+        // $mailHtml = str_replace($templateStr, $data, $html);
+        // Mail::to("loopcon1018@gmail.com")->send(new \App\Mail\CommonMail($mailHtml, 'Request An Free Register - ' . 'GBGC'));
 
         if($customer){
             return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
@@ -172,7 +184,7 @@ class FrontLoginController extends Controller
                         session()->forget('customerInfo');
                         Auth::guard('customers')->logout();
                         $data=[
-                            $email=$request->email,
+                            $email=$request->email1,
                             $password=$request->password,
                         ];
                         session()->put('verifyInfo', $data);
@@ -190,10 +202,26 @@ class FrontLoginController extends Controller
     }  
 
 
-    public function sendotpemail(Request $request)
+    public function verifytotp(Request $request)
     {
-        // $request->all();
-        
+        $verifytotp=Customer::where('email',$request->verifyemail)
+                              ->where('otp',$request->otp)
+                              ->first();
+        if(!empty($verifytotp)){
+            Customer::where('email',$request->verifyemail)
+                              ->where('otp',$request->otp)
+                              ->update(['email_verify'=>1,
+                                     'otp'=>'']);
+           $sessiondata=Session::get('verifyInfo');
+           if (Auth::guard('customers')->attempt(['email' => $sessiondata[0], 'password' => $sessiondata[1]])){
+                session()->put('customerInfo', $verifytotp);
+              return response()->json(['status' =>1, 'successmsg' => 'You are now logged in.']);
+           }
+        }
+        else
+        {
+            return response()->json(['status' =>0, 'otperrormsg' => 'Invalid Verification Code. Enter Valid Verfication Code']); 
+        } 
     }
     public function logout()
     {

@@ -52,9 +52,10 @@ class CustomerController extends Controller
             ]
         );
 
+        $otp='123456';
         $customer = Customer::find($id);
         $customer->password = Hash::make($request->password);
-        $customer->email_verify = 1;
+        $customer->otp=$otp;
         $customer->save();
 
         // User mail-sent for id-password

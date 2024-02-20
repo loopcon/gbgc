@@ -52,7 +52,7 @@ Route::post('report_list/{page}', [ReportController::class, 'reportList'])->name
 Route::post('scoreview', [ReportController::class, 'scoreview'])->name('scoreview');
 
 
-Route::post('sendotpemail',[FrontLoginController::class,'sendotpemail'])->name('sendotpemail');
+Route::post('verifytotp',[FrontLoginController::class,'verifytotp'])->name('verifytotp');
 //fronted Route End
 
 

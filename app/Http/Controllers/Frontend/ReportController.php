@@ -26,7 +26,7 @@ class ReportController extends Controller
              ->where(['currency_id' => 'USD'])
              ->pluck('year')    
              ->unique();
-        $scores = Score::where(['view' => 'Standard'])
+        $scores = Score::with('level1','level2','level3','level4')
                 ->where(['currency_id' => 'USD'])
                 ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')

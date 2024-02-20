@@ -1,22 +1,127 @@
-     <table id="complex-dt" class="table table-striped table-bordered nowrap">
-            <thead>
-                <tr>
-                    <th >{{__('Level 1')}}</th>
-                    <th >{{__('level 2')}}</th>
-                    <th >{{__('Level 3')}}</th>
-                    <th >{{__('Level-4')}}</th>
-                    @foreach($yeardata as $year)
-                        <th>{{ $year }}</th>
-                    @endforeach
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($scores as $score)
-                 <tr>
-                    <td>{{ $score->level_1 }}</td>
-                    <td>{{ $score->level_2 }}</td>
-                    <td>{{ $score->level_3 }}</td>
-                    <td>{{ $score->level_4 }}</td>
+<table class="table table-bordered nowrap">
+    <thead>
+        <tr>
+            <th>{{__('Level 1')}}</th>
+            <th>{{__('level 2')}}</th>
+            <th>{{__('Level 3')}}</th>
+            <th>{{__('Level-4')}}</th>
+            @foreach($yeardata as $year)
+                <th>{{ $year }}</th>
+            @endforeach
+        </tr>
+    </thead>
+    <tbody>
+        @php
+            $prevLevel1 = null;
+            $prevLevel2 = null;
+            $prevLevel3 = null;
+            $prevLevel4 = null;
+            $rowCountLevel1 = 0; // Initialize count for rows with the same level 1 value
+            $rowCountLevel2 = 0; // Initialize count for rows with the same level 2 value
+            $rowCountLevel3 = 0; // Initialize count for rows with the same level 3 value
+            $totalRowCount = 0; // Counter for total row count
+        @endphp
+        
+        @foreach($scores as $index => $score)
+            <!-- Check if level 1 value has changed -->
+            @if($prevLevel1 != $score->level_1)
+                @php
+                    $rowCountLevel1 = 1;
+                    // Reset rowCountLevel2, rowCountLevel3, and rowCountLevel4 when level 1 changes
+                    $rowCountLevel2 = 1;
+                    $rowCountLevel3 = 1;
+                    $rowCountLevel4 = 1;
+                @endphp
+            @endif
+
+            <!-- Check if level 2 value has changed -->
+            @if($prevLevel2 != $score->level_2)
+                @php
+                    // Reset rowCountLevel2, rowCountLevel3, and rowCountLevel4 when level 2 changes
+                    $rowCountLevel2 = 1;
+                    $rowCountLevel3 = 1;
+                    $rowCountLevel4 = 1;
+                @endphp
+            @endif
+            
+            <!-- Check if level 3 value has changed -->
+            @if($prevLevel3 != $score->level_3)
+                @if($prevLevel3 !== null)
+                    <!-- Total row for previous section -->
+                    <tr>
+                        <td colspan="3"></td>
+                        <td>Total</td>
+                        <!-- Calculate yearly total scores for the previous section -->
+                        @foreach($yeardata as $year)
+                            @php
+                                $yearlyTotalScore = App\Models\Score::where(['view' => 'Standard'])
+                                                                    ->where(['currency_id' => 'USD'])
+                                                                    ->where('year', $year)
+                                                                    ->where('level_1', $prevLevel1)
+                                                                    ->where('level_2', $prevLevel2)
+                                                                    ->where('level_3', $prevLevel3)
+                                                                    ->sum('score');
+                            @endphp
+                            <td>{{ $yearlyTotalScore }}</td>
+                        @endforeach
+                    </tr>
+                @endif
+                @php
+                    // Reset rowCountLevel3 and rowCountLevel4 when level 3 changes
+                    $rowCountLevel3 = 1;
+                    $rowCountLevel4 = 1;
+                @endphp
+            @endif
+            
+            <!-- Check if level 4 value has changed -->
+            @if($prevLevel4 != $score->level_4)
+                @php
+                    // Reset rowCountLevel4 when level 4 changes
+                    $rowCountLevel4 = 1;
+                @endphp
+            @endif
+            
+            <!-- Update previous levels -->
+            @php
+                $prevLevel1 = $score->level_1;
+                $prevLevel2 = $score->level_2;
+                $prevLevel3 = $score->level_3;
+                $prevLevel4 = $score->level_4;
+                $totalRowCount++;
+            @endphp
+
+            <tr>
+                <!-- Display level 1 value only for the first occurrence -->
+                <td>
+                    @if ($rowCountLevel1 == 1)
+                        {{ $score->level_1 }}
+                    @endif
+                </td>
+        
+                <!-- Display level 2 value only for the first occurrence -->
+                <td>
+                    @if ($rowCountLevel2 == 1)
+                        {{ $score->level_2 }}
+                    @endif
+                </td>
+                
+                <!-- Display level 3 value only for the first occurrence -->
+                <td>
+                    @if ($rowCountLevel3 == 1)
+                        {{ $score->level_3 }}
+                    @endif
+                </td>
+                
+                <!-- Display level 4 value for all rows -->
+                <td>
+                    @if($score->level_4 !== null)
+                        {{ $score->level_4 }}
+                    @else
+                        Not Found
+                    @endif
+                </td>
+
+                <!-- Calculate and display yearly scores -->
                 @foreach($yeardata as $year)
                     @php
                         $yearlyScore = App\Models\Score::where(['view' => 'Standard'])
@@ -30,7 +135,34 @@
                     @endphp
                     <td>{{ $yearlyScore }}</td>
                 @endforeach
-                </tr>
-                @endforeach
-            </tbody>
-    </table>
+            </tr>
+
+            <!-- Increment row count for each level -->
+            @php
+                $rowCountLevel1++;
+                $rowCountLevel2++;
+                $rowCountLevel3++;
+                $rowCountLevel4++;
+            @endphp
+        @endforeach
+
+        <!-- Total row for the last section -->
+        <tr>
+            <td colspan="3"></td>
+            <td>Total</td>
+            <!-- Calculate yearly total scores for the last section -->
+            @foreach($yeardata as $year)
+                @php
+                    $yearlyTotalScore = App\Models\Score::where(['view' => 'Standard'])
+                                                        ->where(['currency_id' => 'USD'])
+                                                        ->where('year', $year)
+                                                        ->where('level_1', $prevLevel1)
+                                                        ->where('level_2', $prevLevel2)
+                                                        ->where('level_3', $prevLevel3)
+                                                        ->sum('score');
+                @endphp
+                <td>{{ $yearlyTotalScore }}</td>
+            @endforeach
+        </tr>
+    </tbody>
+</table>
