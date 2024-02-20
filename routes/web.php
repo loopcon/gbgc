@@ -165,6 +165,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     //reports
     Route::get('admin/report', [App\Http\Controllers\Admin\ReportController::class,'index'])->name('adminreport');
+    Route::get('admin/export-score',[App\Http\Controllers\Admin\ReportController::class,'exportScore'])->name('export-scores');
+    Route::post('admin/import-score',[App\Http\Controllers\Admin\ReportController::class,'importScore'])->name('import-scores');
+    Route::post('admin/report_list/{page}', [App\Http\Controllers\Admin\ReportController::class, 'reportList'])->name('adminreportlist');
     //end reports
 
      //reports

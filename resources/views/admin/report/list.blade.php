@@ -1,4 +1,5 @@
 @extends('layouts.adminheader')
+<link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 <style>
 .switch {
   position: relative;
@@ -84,7 +85,7 @@ input:checked + .slider .off
 @section('content')
     <div class="page-header card">
         <div class="row align-items-end">
-            <div class="col-lg-8">
+            <div class="col-lg-3">
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
@@ -92,6 +93,12 @@ input:checked + .slider .off
                     </div>
                 </div>
             </div>
+            
+            <div class="col-lg-5">
+                <a href="javascript:void(0);" class="btn text-light" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
+                <a class="btn text-light" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
+            </div>
+            
             <div class="col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
@@ -108,69 +115,84 @@ input:checked + .slider .off
                 </div>
             </div>
         </div>
-        <div class="row align-items-end mt-4">
+        <div class="row align-items-center mt-5 mb-2" style="text-align: center">
             <div class="col-lg-2">
                 <div class="d-inline">
-                    <h4>Currency</h4>
+                    <h6>View</h6>
                     <label class="switch">
-                        <input type="checkbox" id="togBtn">
+                        <input type="checkbox" id="view" value="">
                         <div class="slider round">
                         <!--ADDED HTML -->
-                        <span class="on">Standard</span>
-                        <span class="off">Local</span>
+                        <span class="on switch-label-on" data-on="local">Local</span>
+                        <span class="off switch-label-off" data-off="standard">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Standard</span>
+                        <!--END-->
+                        </div>
+                    </label>  
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="d-inline">
+                    <h6>Currency</h6>
+                    <label class="switch">
+                        <input type="checkbox" id="currency" value="">
+                        <div class="slider round">
+                        <!--ADDED HTML -->
+                        <span class="on curr-usd" data-on="LocalCurr">LocalCurr</span>
+                        <span class="off curr-local" data-off="USD">USD</span>
                         <!--END-->
                         </div>
                     </label>   
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <div class="d-inline">
-                    <h4>View</h4>
-                    <label class="switch">
-                        <input type="checkbox" id="togBtn">
-                        <div class="slider round">
-                        <!--ADDED HTML -->
-                        <span class="on">Standardised</span>
-                        <span class="off">Local</span>
-                        <!--END-->
-                        </div>
-                    </label>   
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="d-inline">
-                    <h4>Jurisdiction</h4>
+                    <h6>Jurisdiction</h6>
                     <label>
-                    <select id="redion_id" class="form-control select2" name="redion_id">
-                        <option value="" selected disabled>--Select--</option>
-                        @if($regions->count())
-                            @foreach($regions as $region)
-                                <option value="{{$region->id}}" >{{ucfirst($region->name)}}</option>
+                    <select id="select-jurisdiction" class="form-control select2" multiple name="region_id">
+                        @if($region->count())
+                            @foreach($region as $data)
+                                <option value="{{$data->id}}">{{ucfirst($data->name)}}</option>
                             @endforeach
                         @endif
                     </select> 
                     </lable>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <div class="d-inline">
                     <div class="row">
-                        <div class="col-4">
-                            <label> <h4>Year From</h4>
-                            <select id="ddlYearsfrom" class="form-control select2">
+                        <div class="col-6">
+                            <label> <h6>Year From</h6>
+                            <select id="ddlYearsfrom" class="form-control year" name="year">
                                 <option value="" hidden>{{__('-- select --')}}</option>
                             </select>
                             </lable>
                         </div>
-                        <div class="col-4">
-                            <label> <h4>Year To</h4>
-                            <select id="ddlYearsto" class="form-control select2">
-                                <option value="" hidden>{{__('-- select --')}}</option>
+                        <div class="col-6">
+                            <label> <h6>Year To</h6>
+                            <select id="ddlYearsto" class="form-control year">
+                                <option value="0" hidden>{{__('-- select --')}}</option>
                             </select>
                             </lable>
                         </div>   
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row align-items-center" style="text-align: center">
+            
+            <div class="col-lg-2"> 
+                <div  class=""><h6 class="hiddenViewValue"></h6></div>
+            </div>
+            <div class="col-lg-2">
+                <div  class="hiddenCurrency"><h6 class="hiddenCurrencyValue"></h6></div>
+            </div>
+            <div class="col-lg-4">
+                <div  class="hiddenJurisdiction"><h6 class="hiddenJurisdictionValue"></h6></div>
+            </div>
+            <div class="col-lg-4">
+                <div  class="hiddenYear"><h6 class="hiddenYearValue"></h6></div>
+                
             </div>
         </div>
     </div>
@@ -205,108 +227,116 @@ input:checked + .slider .off
                                         @endif
                                     </div>
                                 </div>
-                                <?php /*<div class="card-header">
-                                    <div class="form-row">
-                                        <div class="col-md-12 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('faq-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
-                                        </div>
-                                    </div>
-                                </div>*/ ?>
                                 <div class="card-block p-b-0">
                                     <div class="table-responsive">
-                                        <table class="table table-hover m-b-0">
+                                        <table id="report-list" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Report</th>
-                                                    <th>Customer</th>
-                                                    <th>Status</th>
-                                                    <th>Rating</th>
-                                                </tr>
+                                                    <th>{{__('Sr No.')}}</th>
+                                                    <th>{{__('View')}}</th>
+                                                    <th>{{__('Currency')}}</th>
+                                                    <th>{{__('Jurisdiction')}}</th>
+                                                    <th>{{__('Level 1')}}</th>
+                                                    <th>{{__('level 2')}}</th>
+                                                    <th>{{__('Level 3')}}</th>
+                                                    <th>{{__('Level-4')}}</th>
+                                                    @foreach($yeardata as $year)
+                                                        <th>{{ $year }}</th>
+                                                    @endforeach
+                                                    </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Sofa</td>
-                                                    <td>#PHD001</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec8d8e8fac8b818d8580c28f8381">[email&#160;protected]</a></td>
-                                                    <td><label class="label label-danger">Out Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Computer</td>
-                                                    <td>#PHD002</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3655525576515b575f5a1855595b">[email&#160;protected]</a></td>
-                                                    <td><label class="label label-success">In Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Mobile</td>
-                                                    <td>#PHD003</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="45353437052228242c296b262a28">[email&#160;protected]</a></td>
-                                                    <td><label class="label label-danger">Out Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Coat</td>
-                                                    <td>#PHD004</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4022233300272d21292c6e232f2d">[email&#160;protected]</a></td>
-                                                    <td><label class="label label-success">In Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Watch</td>
-                                                    <td>#PHD005</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ccafa8af8caba1ada5a0e2afa3a1">[email&#160;protected]</a></td>
-                                                    <td><label class="label label-success">In Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Shoes</td>
-                                                    <td>#PHD006</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5d5d4d7e5c2c8c4ccc98bc6cac8">[email&#160;protected]</a></td>
-                                                    <td><label class="label label-danger">Out Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
+                                            <tbody> <?php /*
+                                                <?php
+                                                    $i=1;
+                                                ?>
+                                                @if(count($score)>0)
+                                                    @foreach($score as $data) 
+                                                        <tr>   
+                                                            <td>{{$i}}</td>
+                                                                <?php $i++;?>
+                                                            <td>{{$data->view}}</td>
+                                                            <td>{{$data->currency_id}}</td>
+                                                            <td>@if($data->regionDetail){{$data->regionDetail->name}}@else - @endif
+                                                            </td>
+                                                            
+                                                            <td> @if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
+
+                                                            <td>@if($data->subcategory1Detail){{$data->subcategory1Detail->title}}@else - @endif</td>
+
+                                                           <td>@if($data->subcategory2Detail){{$data->subcategory2Detail->title}}@else - @endif</td>
+
+                                                           <td>@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
+                                                            <td>{{$data->year}}</td>
+                                                            <td>{{$data->score}}</td>
+                                                            <td>{{$data->comment}}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif */ ?>
                                             </tbody>
                                         </table>
+                                        <div class="pull-right" id="pagination"></div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="scoreImportModal" tabindex="-1" role="dialog" aria-labelledby="scoreImportModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form action="{{ route('import-scores') }}" method="post" data-parsley-validate enctype="multipart/form-data" id="importForm">
+                                    {{ csrf_field() }}
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sizeOptionModalLabel">Upload Excel File</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <!-- <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">View<span class="text-danger">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select id="view" class="form-control select2" name="view" required="">
+                                                    <option value="0">--Select View--</option>
+                                                    <option value="Standard">Standard</option>
+                                                    <option value="Local">Local</option>
+                                                </select>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Jurisdiction<span class="text-danger">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select id="region" class="form-control select2" name="region" required="">
+                                                    <option value="0">--Select Jurisdiction--</option>
+                                                    @foreach($region as $regiondata)
+                                                    <option value="{{$regiondata->id}}">{{$regiondata->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+<!--                                         <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Currency<span class="text-danger">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select id="currency" class="form-control select2" name="currency" required="">
+                                                    <option value="0">--Select Currency--</option>
+                                                    @foreach($currencies as $currency)
+                                                    <option value="{{$currency->id}}">{{$currency->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="form-row col-md-12" id="import">
+                                            <div class="form-group col-sm-12">
+                                                <input type="file" accept=".xlsx" name="file" id="score_import" value="" class="btn btn-secondary btn-block btn-sm" placeholder="Select Excel" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close-modal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" id="confirmImport" class="btn btn-primary">Import</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -318,25 +348,20 @@ input:checked + .slider .off
     </div>
 @endsection
 @section('javascript')
+<script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $(document).on('click', '.delete', function() {
-            var href = $(this).data('href');
-            swal({
-                title: "",
-                text: "{{__('Are you sure? Delete this FAQ!')}}",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-info",
-                confirmButtonText: "{{__('Yes, delete it!')}}",
-                cancelButtonText: "{{__('Cancel')}}",
-                closeOnConfirm: true
-            },
-            function(){
-                location.href = href;
-            });
+$(document).ready(function() {
+       $('.select2').select2({
+            placeholder: "Select Jurisdiction",
+            allowClear: true
         });
-    });
+        $('.year').select2();
+
+        $(".hiddenView").hide();
+        $(".hiddenCurrency").hide();
+        $(".hiddenJurisdiction").hide();
+        $(".hiddenYear").hide();
+    
 
     window.onload = function () {
         //Reference the DropDownList.
@@ -348,14 +373,19 @@ input:checked + .slider .off
         var currentYear = (new Date()).getFullYear();
  
         //Loop and add the Year values to DropDownList.
-        for (var i = 1950; i <= currentYear; i++) {
+        for (var i = 2007; i <= 2030; i++) {
             var option = document.createElement("OPTION");
             option.innerHTML = i;
             option.value = i;
             ddlYearsfrom.appendChild(option);
         }
+
         ddlYearsfrom.onchange = function() {
-            for (var i = 1950; i <= currentYear; i++) {
+            var from =  $('#ddlYearsfrom').val();
+            $('#ddlYearsto option').remove();
+            $('#ddlYearsto').html('<option value="0" hidden>{{__("-- select --")}}</option>');
+            
+            for (var i = from; i <= 2030; i++) {
                 var option = document.createElement("OPTION");
                 option.innerHTML = i;
                 option.value = i;
@@ -363,5 +393,159 @@ input:checked + .slider .off
             }
         }
     };
+
+    loadReportList("","","","","","");
+
+        // $(document).on("click", "#pagination a", function(e) {
+        //     e.preventDefault();
+        //     var page_link = $(this).attr("href");
+        //     loadReportList(page_link);
+        // });
+
+        $('#select-jurisdiction').on('change', function(){
+            
+            var jurisdiction = $(this).val();
+            var yearfrom = $('#ddlYearsfrom').val();
+            var yearto = $('#ddlYearsto').val();
+            var url = "";
+            var view = $('#view').val();
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+            if(jurisdiction != ''){
+                $(".hiddenJurisdiction").show();
+                var juris = $("#select-jurisdiction option:selected").map(function () {
+                return $(this).text();
+                }).get().join(',');
+                $('.hiddenJurisdictionValue').html('Jurisdiction : '+ juris);
+            }
+            else{
+               $(".hiddenJurisdiction").hide();
+            }
+            
+        });
+        $('#ddlYearsfrom').on('change', function(){
+            var yearfrom = $(this).val();
+            var jurisdiction = $('#select-jurisdiction').val();
+            var yearto = $('#ddlYearsto').val();
+            console.log(yearto);
+            var url = "";
+            var view = $('#view').val();
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+            
+        });
+        $('#ddlYearsto').on('change', function(){
+            var yearto = $(this).val();
+            var jurisdiction = $('#select-jurisdiction').val();
+            var yearfrom = $('#ddlYearsfrom').val();
+            var url = "";
+            var view = $('#view').val();
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+            if(yearto != 0){
+                $(".hiddenYear").show();
+                $('.hiddenYearValue').html('Year : '+ yearfrom +'-'+ yearto);
+             }
+             else{
+                 $(".hiddenYear").hide();
+             }
+        });
+
+        $(document).on('click', '.pagination li.page-item a.page-link', function(e){
+            e.preventDefault();
+            var jurisdiction = $('#select-jurisdiction').val();
+            var yearfrom = $('#ddlYearsfrom').val();
+            var yearto = $('#ddlYearsto').val();
+            var url = $(this).attr('href');
+            var view = $('#view').val();
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+            
+            var customer = $('#customer').val();
+            var page = $('#page').val();
+            if(customer =='free' && page != 1)
+            {
+                $("#blur").addClass('blur');
+                $(".freetxt").show();
+            }
+        });
+
+        $('#view').on('change', function(e) 
+        {
+            e.preventDefault();
+            $(".hiddenView").show();
+
+            var is_checked = $(this).is(':checked');
+            var selected_data;
+            var $switch_label_on = $('.switch-label-on');
+            var $switch_label_off = $('.switch-label-off');
+            // console.log('is_checked: ' + is_checked); 
+
+            if(is_checked) {
+                selected_data = $switch_label_on.attr('data-on');
+            } else {
+                selected_data = $switch_label_off.attr('data-off');
+            }
+            var view = selected_data;
+
+            $('.hiddenViewValue').html('View : '+ view);
+
+            $("#view").val(view);
+            var jurisdiction = $('#select-jurisdiction').val();
+            var yearfrom = $('#ddlYearsfrom').val();
+            var yearto = $('#ddlYearsto').val();
+            var url = "";
+            var currency = $('#currency').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+        });
+
+        $('#currency').on('change', function(e) 
+        {
+            e.preventDefault();
+            $(".hiddenCurrency").show();
+
+            var is_checked = $(this).is(':checked');
+            var selected_currency;
+            var $curr_usd = $('.curr-usd');
+            var $curr_local = $('.curr-local');
+            // console.log('is_checked: ' + is_checked); 
+
+            if(is_checked) {
+                selected_currency = $curr_usd.attr('data-on');
+            } else {
+                selected_currency = $curr_local.attr('data-off');
+            }
+            var currency = selected_currency;
+            $("#currency").val(currency);
+            var jurisdiction = $('#select-jurisdiction').val();
+            var yearfrom = $('#ddlYearsfrom').val();
+            var yearto = $('#ddlYearsto').val();
+            var url = "";
+            var view = $('#view').val();
+            loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+            $('.hiddenCurrencyValue').html('Currency : '+ currency);
+        });
+});
+    function loadReportList(jurisdiction,yearfrom,yearto,url,view,currency)
+    {
+        if(url==''){
+            url = "{{ route('adminreportlist',1)}}";
+        }
+        $.ajax({
+            type: 'POST',
+            data: { _token: "{{ csrf_token() }}", jurisdiction: jurisdiction, yearfrom: yearfrom, yearto: yearto,view: view, currency:currency},
+            url: url,
+            dataType: 'json',
+            success: function (response) {
+                $("#report-list tbody").html(response.data.report_list);
+                $("#pagination").html(response.data.pagination);
+                $("#page").html(response.data.page);
+            }
+        });
+    }
 </script>
 @endsection

@@ -144,6 +144,19 @@ input:checked + .slider .off
                     </label>   
                 
                 </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="d-inline">
+                    <h6>Jurisdiction</h6>
+                    <label>
+                    <select id="select-jurisdiction" class="form-control select2" multiple name="region_id">
+                        @if($region->count())
+                            @foreach($region as $data)
+                                <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                            @endforeach
+                        @endif
+                    </select> 
+                    </lable>
 
                   <div class="col-sm-12 col-xl-3 m-b-30">
                       <h3 class="sub-title">Jurisdiction</h3>
@@ -172,8 +185,35 @@ input:checked + .slider .off
                 </select>
                 </div>
 
-
+            </div>
         </div>
+        <div class="row align-items-center mb-2" style="text-align: center">
+            <div class="col-lg-2"> 
+            </div>
+            <div class="col-lg-2"> 
+                <div  class=""><h6 class="hiddenViewValue"></h6></div>
+            </div>
+            <div class="col-lg-2">
+                <div  class="hiddenCurrency"><h6 class="hiddenCurrencyValue"></h6></div>
+            </div>
+            <div class="col-lg-2">
+                <div  class="hiddenJurisdiction"><h6 class="hiddenJurisdictionValue"></h6></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="col-4"></div>
+                <div  class="col-4 hiddenYear"><h6 class="hiddenYearValue"></h6></div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        @if($customer=='paid' || $customer=='additionaluser')
+        <div class="text-right">
+            <a class="btn text-light" style="margin-left: 1200px;margin-bottom : 10px; background:#2e9cc5" href="{{route('export-report')}}">Export Report</a>
+        </div>
+        @elseif($customer=='free')
+        <div class="text-right freetxt">
+            <p class="text-danger" style="margin-left: 645px;margin-bottom : 10px;">Your access type is free, First register for Pro version and then you can access to download Reports.</p>
+        </div>
+        @endif
     </div>
 
     <div class="pcoded-inner-content">
@@ -210,88 +250,246 @@ input:checked + .slider .off
 <script>
 $(document).ready(function () {
 
+    $("#blur").removeClass('blur');
+    $(".freetxt").hide();
+    $(".hiddenView").hide();
+    $(".hiddenCurrency").hide();
+    $(".hiddenJurisdiction").hide();
+    $(".hiddenYear").hide();
 
-     for (var i = 2007; i <= 2030; i++) {
-        $('#ddlYearsfrom').append($('<option>', {
-            value: i,
-            text: i
-        }));
-    }
+    window.onload = function () {
+        //Reference the DropDownList.
+        var ddlYearsfrom = document.getElementById("ddlYearsfrom");
+        var ddlYearsto = document.getElementById("ddlYearsto");
 
-    $('#ddlYearsfrom').change(function () {
-        var selectedYear = parseInt($(this).val());
-        $('#ddlYearsto').empty().append($('<option>', {
-            value: '',
-            text: '-- select --',
-            hidden: true
-        }));
 
-        for (var i = selectedYear + 1; i <= 2030; i++) {
-            $('#ddlYearsto').append($('<option>', {
+        //Determine the Current Year.
+        var currentYear = (new Date()).getFullYear();
+
+        //Loop and add the Year values to DropDownList.
+        for (var i = 2007; i <= 2030; i++) {
+            var option = document.createElement("OPTION");
+            option.innerHTML = i;
+            option.value = i;
+            ddlYearsfrom.appendChild(option);
+        }
+
+        for (var i = 2007; i <= 2030; i++) {
+            $('#ddlYearsfrom').append($('<option>', {
                 value: i,
                 text: i
             }));
         }
-    });
-});
-</script>
 
 
-<script>
+        $('#ddlYearsfrom').change(function () {
+            var selectedYear = parseInt($(this).val());
+            $('#ddlYearsto').empty().append($('<option>', {
+                value: '',
+                text: '-- select --',
+                hidden: true
+            }));
 
-document.addEventListener("DOMContentLoaded", function() {
-    var checkbox = document.getElementById('togBtnview');
-    var currencySelect = document.getElementById('togBtncurrency'); 
-    var jurisdictionSelect = document.getElementById('country'); 
-    var yearFromSelect = document.getElementById('ddlYearsfrom'); 
-    var yearToSelect = document.getElementById('ddlYearsto'); 
-
-    [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
-        if (element) {
-            element.addEventListener('change', function() {
-                handleFormChange();
-            });
-        }
-    });
-
-    jurisdictionSelect.addEventListener('change', function() {
-        handleFormChange();
-    });
-
-    function handleFormChange() {
-        var viewValue = checkbox.checked ? 'Standard' : 'Local';
-        var currencyValue = checkbox.checked ? 'USD' : 'LocalCurr';
-        var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
-        var yearFromValue = yearFromSelect.value;
-        var yearToValue = yearToSelect.value;
-        var token = "{{ csrf_token() }}";
-
-        // Send AJAX request with all values
-        $.ajax({
-            url: "{{ route('scoreview') }}",
-            type: "POST",
-            dataType: 'json',
-            data: {
-                _token: token,
-                view: viewValue,
-                currency: currencyValue,
-                jurisdictions: jurisdictionValues,
-                year_from: yearFromValue,
-                year_to: yearToValue
-            },
-            success: function(data) {
-                $("#targetDivold").hide();
-                $('#targetDivnew').html(data.view);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
+            for (var i = selectedYear + 1; i <= 2030; i++) {
+                $('#ddlYearsto').append($('<option>', {
+                    value: i,
+                    text: i
+                }));
             }
         });
+    };
+};
+
+// loadReportList("","","");
+loadReportList("","","","","","");
+
+// $(document).on("click", "#pagination a", function(e) {
+//     e.preventDefault();
+//     var page_link = $(this).attr("href");
+//     loadReportList(page_link);
+// });
+
+$('#select-jurisdiction').on('change', function(){
+    
+    var jurisdiction = $(this).val();
+    var yearfrom = $('#ddlYearsfrom').val();
+    var yearto = $('#ddlYearsto').val();
+    var url = "";
+    var view = $('#view').val();
+    var currency = $('#currency').val();
+    loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+    if(jurisdiction != ''){
+        $(".hiddenJurisdiction").show();
+        var juris = $("#select-jurisdiction option:selected").map(function () {
+        return $(this).text();
+        }).get().join(',');
+        $('.hiddenJurisdictionValue').html('Jurisdiction : '+ juris);
+    }
+    else{
+        $(".hiddenJurisdiction").hide();
+    }
+    
+});
+$('#ddlYearsfrom').on('change', function(){
+    var yearfrom = $(this).val();
+    var jurisdiction = $('#select-jurisdiction').val();
+    var yearto = $('#ddlYearsto').val();
+    console.log(yearto);
+    var url = "";
+    var view = $('#view').val();
+    var currency = $('#currency').val();
+    loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+    
+});
+$('#ddlYearsto').on('change', function(){
+    var yearto = $(this).val();
+    var jurisdiction = $('#select-jurisdiction').val();
+    var yearfrom = $('#ddlYearsfrom').val();
+    var url = "";
+    var view = $('#view').val();
+    var currency = $('#currency').val();
+    loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+    if(yearto != 0){
+        $(".hiddenYear").show();
+        $('.hiddenYearValue').html('Year : '+ yearfrom +'-'+ yearto);
+        }
+        else{
+            $(".hiddenYear").hide();
+        }
+});
+
+$(document).on('click', '.pagination li.page-item a.page-link', function(e){
+    e.preventDefault();
+    var jurisdiction = $('#select-jurisdiction').val();
+    var yearfrom = $('#ddlYearsfrom').val();
+    var yearto = $('#ddlYearsto').val();
+    var url = $(this).attr('href');
+    var view = $('#view').val();
+    var currency = $('#currency').val();
+    loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+    
+    var customer = $('#customer').val();
+    var page = $('#page').val();
+    if(customer =='free' && page != 1)
+    {
+        $("#blur").addClass('blur');
+        $(".freetxt").show();
     }
 });
 
+$('#view').on('change', function(e) 
+{
+    e.preventDefault();
+    $(".hiddenView").show();
+
+    var is_checked = $(this).is(':checked');
+    var selected_data;
+    var $switch_label_on = $('.switch-label-on');
+    var $switch_label_off = $('.switch-label-off');
+    // console.log('is_checked: ' + is_checked); 
+
+    if(is_checked) {
+        selected_data = $switch_label_on.attr('data-on');
+    } else {
+        selected_data = $switch_label_off.attr('data-off');
+    }
+    var view = selected_data;
+
+    $('.hiddenViewValue').html('View : '+ view);
+
+    $("#view").val(view);
+    var jurisdiction = $('#select-jurisdiction').val();
+    var yearfrom = $('#ddlYearsfrom').val();
+    var yearto = $('#ddlYearsto').val();
+    var url = "";
+    var currency = $('#currency').val();
+    loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+});
+
+$('#currency').on('change', function(e) 
+{
+    e.preventDefault();
+    $(".hiddenCurrency").show();
+
+    var is_checked = $(this).is(':checked');
+    var selected_currency;
+    var $curr_usd = $('.curr-usd');
+    var $curr_local = $('.curr-local');
+    // console.log('is_checked: ' + is_checked); 
+
+    if(is_checked) {
+        selected_currency = $curr_usd.attr('data-on');
+    } else {
+        selected_currency = $curr_local.attr('data-off');
+    }
+    var currency = selected_currency;
+    $("#currency").val(currency);
+    var jurisdiction = $('#select-jurisdiction').val();
+    var yearfrom = $('#ddlYearsfrom').val();
+    var yearto = $('#ddlYearsto').val();
+    var url = "";
+    var view = $('#view').val();
+    loadReportList(jurisdiction,yearfrom,yearto,url,view,currency);
+
+    $('.hiddenCurrencyValue').html('Currency : '+ currency);
+});
+
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     var checkbox = document.getElementById('togBtnview');
+//     var currencySelect = document.getElementById('togBtncurrency'); 
+//     var jurisdictionSelect = document.getElementById('country'); 
+//     var yearFromSelect = document.getElementById('ddlYearsfrom'); 
+//     var yearToSelect = document.getElementById('ddlYearsto'); 
+
+//     [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
+//         if (element) {
+//             element.addEventListener('change', function() {
+//                 handleFormChange();
+//             });
+//         }
+//     });
+
+
+//     jurisdictionSelect.addEventListener('change', function() {
+//         handleFormChange();
+//     });
+
+//     function handleFormChange() {
+//         var viewValue = checkbox.checked ? 'Standard' : 'Local';
+//         var currencyValue = checkbox.checked ? 'USD' : 'LocalCurr';
+//         var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
+//         var yearFromValue = yearFromSelect.value;
+//         var yearToValue = yearToSelect.value;
+//         var token = "{{ csrf_token() }}";
+
+//         // Send AJAX request with all values
+//         $.ajax({
+//             url: "{{ route('scoreview') }}",
+//             type: "POST",
+//             dataType: 'json',
+//             data: {
+//                 _token: token,
+//                 view: viewValue,
+//                 currency: currencyValue,
+//                 jurisdictions: jurisdictionValues,
+//                 year_from: yearFromValue,
+//                 year_to: yearToValue
+//             },
+//             success: function(data) {
+//                 $("#targetDivold").hide();
+//                 $('#targetDivnew').html(data.view);
+//             },
+//             error: function(xhr, status, error) {
+//                 console.error(xhr.responseText);
+//             }
+//         });
+//     }
+// });
+
 </script>
-
-
-
 @endsection

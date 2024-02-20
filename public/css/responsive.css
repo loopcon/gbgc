@@ -57,7 +57,7 @@
     .watch-webinar-box{padding-top: 11rem;padding-bottom: 4rem;padding-left: 0;padding-right: 0;}
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:768px) {
     .bird-svg-main svg{display: none;}
     .badal-imgset-1{display: none;}
     .badal-imgset-2{display: none;}
@@ -66,6 +66,7 @@
     .faq-heading-worktextsection p{ width: 100%; font-size: 15px;}
     .faq-heading-worktextsection button{ width: 150px;}
     .faq-section-main{ padding: 30px 0;}
+    .standard-box-detail{ min-height: 425px;}
 }
 
 @media screen and (min-width:575px) {
