@@ -133,7 +133,7 @@
                         }
                         // console.log(value);
                         $("#parent_level").append('<option value="' + value
-                            .id + '"' + selected + '>' + value.parent_id + '-' + value.title + '</option>');
+                            .id + '"' + selected + '>' + result.main_level.master_detail.title + ' > ' + value.master_detail.title + ' > ' + value.title + '</option>');
                     });
                 }
             });

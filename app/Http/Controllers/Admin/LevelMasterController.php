@@ -32,7 +32,7 @@ class LevelMasterController extends Controller
     public function fetchParentLevel(Request $request)
     {
         $data['parent_level'] = LevelMaster::with('masterDetail')->where("level_number",$request->parent_level)->get();
-        // print_r($data['parent_level']);
+        $data['main_level'] = LevelMaster::with('masterDetail')->where("level_number",$request->parent_level-1)->first();
         return response()->json($data);
     }
 
