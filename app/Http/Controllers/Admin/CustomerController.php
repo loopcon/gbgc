@@ -37,9 +37,11 @@ class CustomerController extends Controller
 
     public function createIdPassword(string $id)
     {
+        
         $return_data = array();
         $detail = Customer::find($id);
         $return_data['detail'] = $detail;
+
         return view('admin.customer.form', array_merge($return_data));
     }
 

@@ -1,4 +1,7 @@
 @extends('layouts.dashboardheader')
+@section('title')
+<title>GBGC - Consultancy & market reports for the global gambling industry.</title>
+@endsection
 @section('content')
     <div class="page-header card">
         <div class="row align-items-end">
@@ -305,7 +308,6 @@
 
 
    $(document).on('click','#save_freetopro',function(){
-   	alert("test");
     var formdata=$('#freetoproform').serialize();
       $.ajax(
         {
