@@ -87,7 +87,7 @@ class FrontLoginController extends Controller
         $customer->additional_user_no = isset($request->additional_user_no) ? $request->additional_user_no : 0;
         $customer->remainadditional_user=isset($request->additional_user_no) ? $request->additional_user_no : 0;
         $customer->gst=$request->input('gst');
-        $customer->access_type= 'paid';
+        $customer->access_type= 'requestforpaiduser';
         $customer->save();
         $session= Session::put('customer', $customer->id);
         if($customer){

@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>GBGC | Admin</title>
+<title>GBGC - Consultancy & market reports for the global gambling industry.</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="description" content="Admindek Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
 <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
 <meta name="author" content="colorlib" />
-
 <link rel="icon" href="../files/assets/images/favicon.ico" type="image/x-icon">
-
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
-
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/sweetalert/sweetalert.css') }}">
 <link class="js-stylesheet" href="{{ asset('plugins/parsley/parsley.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/bootstrap/css/bootstrap.min.css')}}">
-
 <link rel="stylesheet" href="{{asset('admin/files/assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
-
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/icon/feather/css/feather.css')}}">
-
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/icon/themify-icons/themify-icons.css')}}">
-
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/icon/icofont/css/icofont.css')}}">
-
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/icon/font-awesome/css/font-awesome.min.css')}}">
-
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/pages/data-table/css/buttons.dataTables.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
-
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/css/pages.css')}}">
+
+
+<link rel="stylesheet" href="{{asset('admin/files/bower_components/select2/css/select2.min.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/multiselect/css/multi-select.css')}}" />
+
 @yield('css')
 </head>
 <body>
@@ -312,10 +308,18 @@
     <script src="{{asset('admin/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('admin/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/files/assets/pages/data-table/js/data-table-custom.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/assets/pages/advance-elements/select2-custom.js')}}"></script>
     <script src="{{asset('admin/files/assets/js/pcoded.min.js')}}"></script>
     <script src="{{asset('admin/files/assets/js/vertical/vertical-layout.min.js')}}"></script>
     <script src="{{asset('admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('admin/files/assets/js/script.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/select2/js/select2.full.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js')}}">
+    </script>
+    <script type="text/javascript" src="{{asset('admin/files/bower_components/multiselect/js/jquery.multi-select.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/files/assets/js/jquery.quicksearch.js')}}"></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

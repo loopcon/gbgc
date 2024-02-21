@@ -139,4 +139,14 @@
         @endif
     </tbody>
 </table>
-{{ $scores->links() }}
+@if($scores->lastPage() > 1)
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-end">
+            @for ($i = 1; $i <= $scores->lastPage(); $i++)
+                <li class="page-item {{ $i == $scores->currentPage() ? 'active' : '' }}">
+                    <a class="page-link" href="#" onclick="paginate({{ $i }})">{{ $i }}</a>
+                </li>
+            @endfor
+        </ul>
+    </nav>
+@endif
