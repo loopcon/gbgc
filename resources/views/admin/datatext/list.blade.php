@@ -170,8 +170,16 @@
             loadGloassayList(jurisdiction,url);
 
             var juris = $('#select-jurisdiction option:selected').text();
-            $('#hide-text').show();
-            $('#hidetextValue').html(juris);
+            if(juris != "--Select Jurisdiction--")
+            {
+                $('#hide-text').show();
+                $('#hidetextValue').html(juris);
+            }
+            else{
+                $('#hide-text').hide();
+                $('#hidetextValue').hide();
+            }
+            
         });
 
         $(document).on('click', '.pagination li.page-item a.page-link', function(e){
