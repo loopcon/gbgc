@@ -30,6 +30,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/multiselect/css/multi-select.css')}}" />
 
+
 @yield('css')
 </head>
 <body>
@@ -201,6 +202,3 @@
         gtag('config', 'UA-23581568-13');
     </script>
     @yield('javascript')
-
-</body>
-</html>
