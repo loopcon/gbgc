@@ -43,7 +43,7 @@
             <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
-                        <a href="{{route('adminindex')}}">
+                        <a href="{{route('index')}}">
                             <img class="img-fluid" src="{{asset('uploads/generalsetting/'.$data->logo)}}" alt="Theme-Logo"  style="height: 50px;">
                         </a>
                         <a class="mobile-options waves-effect waves-light">
@@ -93,6 +93,15 @@
                                                 <i class="feather icon-info"></i>
                                             </span>
                                             <span class="pcoded-mtext">Reports</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="{{ (request()->is('/glossary*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('frontglossary')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Glossary</span>
                                         </a>
                                     </li>
 
