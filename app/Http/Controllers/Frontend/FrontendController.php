@@ -19,6 +19,8 @@ use Auth;
 use App\Models\Orderdetail;
 use App\Models\Order;
 use Session;
+use App\Models\AdditionalUser;
+
 class FrontendController extends Controller
 {
     public function index()
@@ -219,6 +221,15 @@ class FrontendController extends Controller
             return redirect()->route('frontdashboard')->with('success', trans('Payment Do Successfully After Admin Verfication You Can Access a PaidMembership'));
         }
 
+    }
+
+    public function additionaluserlist(Request $request)
+    {
+        $sessioncustomer=Session::get('customer');
+        $user = Auth::guard('customers')->id();
+        $additionaluser=AdditionalUser::where('parent_id',$user)->get();
+        $customer= Customer::where('id',$user)->first();
+        return view('frontend.additionaluserlist',compact('additionaluser','customer'));
     }
 }
 

@@ -28,6 +28,11 @@ Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lo
 Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
 Route::get('additional-check-out',[FrontendController::class,'additionalcheckout'])->name('additionalcheckout');
 
+Route::get('additionaluserlist',[FrontendController::class,'additionaluserlist'])->name('additionaluserlist');
+
+
+
+
 Route::post('placeorder',[FrontendController::class,'placeorder'])->name('placeorder');
 
 Route::get('/contactus',[FrontendController::class, 'contactus'])->name('frontcontactus');
