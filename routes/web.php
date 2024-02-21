@@ -170,17 +170,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('admin/report_list/{page}', [App\Http\Controllers\Admin\ReportController::class, 'reportList'])->name('adminreportlist');
     //end reports
 
-     //reports
-    Route::get('admin/glossary', [App\Http\Controllers\Admin\GlossaryController::class,'index'])->name('adminglossary');
-    //end reports
 
     //datatext
-    Route::get('admin/datatext', [App\Http\Controllers\Admin\DatatextController::class,'index'])->name('admindatatext');
-    Route::get('admin/datatext-create',[App\Http\Controllers\Admin\DatatextController::class, 'create'])->name('datatext-create');
-    Route::post('admin/datatext-store',[App\Http\Controllers\Admin\DatatextController::class, 'store'])->name('datatext-store');
-    Route::get('admin/datatext-edit/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'edit'])->name('datatext-edit');
-    Route::post('admin/datatext-update/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'update'])->name('datatext-update');
-    Route::get('admin/datatext-delete/{id}', [App\Http\Controllers\Admin\DatatextController::class, 'destroy'])->name('datatext-delete');
+    Route::get('admin/glossary', [App\Http\Controllers\Admin\DatatextController::class,'index'])->name('admindatatext');
+    Route::post('admin/glossary_list/{page}', [App\Http\Controllers\Admin\DatatextController::class, 'glossaryList'])->name('adminglossarylist');
+    Route::get('admin/glossary-create',[App\Http\Controllers\Admin\DatatextController::class, 'create'])->name('datatext-create');
+    Route::post('admin/glossary-store',[App\Http\Controllers\Admin\DatatextController::class, 'store'])->name('datatext-store');
+    Route::get('admin/glossary-edit/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'edit'])->name('datatext-edit');
+    Route::post('admin/glossary-update/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'update'])->name('datatext-update');
+    Route::get('admin/glossary-delete/{id}', [App\Http\Controllers\Admin\DatatextController::class, 'destroy'])->name('datatext-delete');
     Route::post('admin/sub_category_1', [App\Http\Controllers\Admin\DatatextController::class, 'fetchsub_category_1']);
     Route::post('admin/sub_category_2', [App\Http\Controllers\Admin\DatatextController::class, 'fetchsub_category_2']);
     Route::post('admin/level_4', [App\Http\Controllers\Admin\DatatextController::class, 'fetchlevel_4']);

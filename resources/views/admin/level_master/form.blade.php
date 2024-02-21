@@ -48,9 +48,9 @@
                                         <div class="col-sm-10">
                                             <select id="level_number" class="form-control select2" name="level_number" required="">
                                                 <option value="" selected disabled>--Select level_number--</option>
-                                                <option value="1" @if((isset($record->level_number) && $record->level_number==1)) selected="selected" @endif>1</option>
+                                              <?php /*  <option value="1" @if((isset($record->level_number) && $record->level_number==1)) selected="selected" @endif>1</option>
                                                 <option value="2" @if((isset($record->level_number) && $record->level_number==2)) selected="selected" @endif>2</option>
-                                                <option value="3" @if((isset($record->level_number) && $record->level_number==3)) selected="selected" @endif>3</option>
+                                                <option value="3" @if((isset($record->level_number) && $record->level_number==3)) selected="selected" @endif>3</option> */ ?>
                                                 <option value="4" @if((isset($record->level_number) && $record->level_number==4)) selected="selected" @endif>4</option>
                                             </select>
                                             @if ($errors->has('level_number')) <div class="text-danger">{{ $errors->first('level_number') }}</div>@endif

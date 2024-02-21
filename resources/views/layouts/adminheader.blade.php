@@ -107,6 +107,15 @@
                                         </a>
                                     </li>
 
+                                    <li class="{{ (request()->is('admin/glossary*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('admindatatext')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Glossary</span>
+                                        </a>
+                                    </li>
+
                                     <li class="pcoded-hasmenu {{ (request()->is('admin/region*') || request()->is('admin/currency*') || request()->is('admin/score*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
@@ -212,36 +221,6 @@
                                                 </a>
                                             </li>    
                                         </ul>
-                                    </li>
-                                    
-                                 <?php /*  <li class="pcoded-hasmenu {{ (request()->is('admin/datatext*') || request()->is('admin/level*'))? 'pcoded-trigger' : '' }}">
-                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Data Text</span>
-                                        </a>
-                                        <ul class="pcoded-submenu" style="{{ (request()->is('admin/datatext*') || request()->is('admin/level*'))? 'display:block' : 'display:none' }}">
-                                            <li class="{{ (request()->is('admin/level*'))? 'active' : '' }}">
-                                                <a href="{{route('adminlevel')}}" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Level</span>
-                                                </a>
-                                            </li>
-                                            <li class="{{ (request()->is('admin/datatext*'))? 'active' : '' }}">
-                                                <a href="{{route('admindatatext')}}" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Upload DataText</span>
-                                                </a>
-                                            </li>
-                                        </ul>   
-                                    </li> */ ?>
-
-                                    <li class="{{ (request()->is('admin/glossary*'))? 'pcoded-trigger' : '' }}">
-                                        <a href="{{route('adminglossary')}}" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Glossary</span>
-                                        </a>
                                     </li>
 
                                     <li class="{{ (request()->is('admin/emailtemplates*'))? 'pcoded-trigger' : '' }}">
