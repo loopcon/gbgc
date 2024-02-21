@@ -171,18 +171,18 @@ class DatatextController extends Controller
                 $prevLevel3 = null;
             foreach($glossary as $data) {
                 $html .= '<tr>';
-                   if($prevLevel1 !== $data->main_category){
+                   if($prevLevel1 == $data->main_category){
                          $html .='<td rowspan='.$data->where('main_category', $data->main_category)->count().'>'.(isset($data->maincategoryDetail->title) ? $data->maincategoryDetail->title : null).'</td>';
                    }
-                   $prevLevel1 = $data->main_category;
-                   if($prevLevel2 !== $data->sub_category_1){
-                         $html .='<td rowspan='.$data->where('sub_category_1', $data->sub_category_1)->count().'>'.(isset($data->subcategory1Detail->title) ? $data->subcategory1Detail->title : null).'</td>';
+                //    $prevLevel1 = $data->main_category;
+                   if($prevLevel2 == $data->sub_category_1){
+                         $html .='<td rowspan='.$data->wherenot('sub_category_1', $data->sub_category_1)->count().'>'.(isset($data->subcategory1Detail->title) ? $data->subcategory1Detail->title : null).'</td>';
                    }
-                   $prevLevel2 = $data->sub_category_1;
-                   if($prevLevel3 !== $data->sub_category_2){
-                         $html .='<td rowspan='.$data->where('sub_category_2', $data->sub_category_2)->count().'>'.(isset($data->subcategory2Detail->title) ? $data->subcategory2Detail->title : null).'</td>';
+                //    $prevLevel2 = $data->sub_category_1;
+                   if($prevLevel3 == $data->sub_category_2){
+                         $html .='<td rowspan='.$data->wherenot('sub_category_2', $data->sub_category_2)->count().'>'.(isset($data->subcategory2Detail->title) ? $data->subcategory2Detail->title : null).'</td>';
                    }
-                   $prevLevel3 = $data->sub_category_2;
+                //    $prevLevel3 = $data->sub_category_2;
 
                     $html .='<td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).'</td>
                     <td>'.$data->description.'</td> 
