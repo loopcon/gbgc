@@ -44,6 +44,7 @@ class ReportController extends Controller
         $user = Auth::guard('customers')->id();
         $customer_detail= Customer::where([['id', '=', $user]])->first();
         $customer = $customer_detail->access_type;
+
         $region=Region::orderBy('name','asc')->get();
         $currencies=Currency::get();
         $yeardata = Score::where('view', $viewfilter)
@@ -138,5 +139,6 @@ class ReportController extends Controller
     public function exportReport(Request $request){
         return Excel::download(new ExportReport, 'Report.xlsx');
     }
-        
+
+    
 }

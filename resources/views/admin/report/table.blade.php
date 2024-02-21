@@ -9,9 +9,6 @@
             @foreach($yeardata as $year)
                 <th>{{ $year }}</th>
             @endforeach
-            @foreach($yeardata as $year)
-                    <th>{{ $year }}</th>
-                @endforeach
         </tr>
     </thead>
     <tbody>
@@ -145,7 +142,6 @@
     </tbody>
 </table>
 </div>
-
 
 @if($scores->lastPage() > 1)
     <nav aria-label="Page navigation">

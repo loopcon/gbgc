@@ -269,6 +269,15 @@ document.addEventListener("DOMContentLoaded", function() {
         handleFormChange();
     });
 
+function paginate(page) {
+    var viewValue = checkbox.checked ? 'Standard' : 'Local';
+    var currencyValue = checkbox.checked ? 'USD' : 'LocalCurr';
+    var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
+    var yearFromValue = yearFromSelect.value;
+    var yearToValue = yearToSelect.value;
+    var token = "{{ csrf_token() }}";
+   handleFormChange();
+}
     function handleFormChange() {
         var viewValue = checkbox.checked ? 'Standard' : 'Local';
         var currencyValue = checkbox.checked ? 'USD' : 'LocalCurr';

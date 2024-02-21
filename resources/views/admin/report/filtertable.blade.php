@@ -1,4 +1,3 @@
- <div class="table-container">
 <table class="table table-bordered nowrap">
     <thead>
         <tr>
@@ -14,7 +13,7 @@
                 @endforeach
         </tr>
     </thead>
-    <tbody>
+      <tbody>
         @php
             $prevLevel1 = null;
             $prevLevel2 = null;
@@ -144,8 +143,6 @@
         @endif
     </tbody>
 </table>
-</div>
-
 
 @if($scores->lastPage() > 1)
     <nav aria-label="Page navigation">
