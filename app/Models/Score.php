@@ -21,19 +21,19 @@ class Score extends Model
     {
         return $this->belongsTo(Currency::class,'currency_id');
     }
-    public function level1()
+    public function maincategoryDetail()
     {
         return $this->hasOne(LevelMaster::class,'id','level_1');
     }
-    public function level2()
+    public function subcategory1Detail()
     {
         return $this->hasOne(LevelMaster::class,'id','level_2');
     }
-    public function level3()
+    public function subcategory2Detail()
     {
         return $this->hasOne(LevelMaster::class,'id','level_3');
     }
-    public function level4()
+    public function level4Detail()
     {
         return $this->hasOne(LevelMaster::class,'id','level_4');
     }
