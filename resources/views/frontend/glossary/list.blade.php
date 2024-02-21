@@ -1,4 +1,4 @@
-@extends('layouts.adminheader')
+@extends('layouts.dashboardheader')
 <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @section('content')
     <div class="page-header card">
@@ -18,10 +18,10 @@
                             <a href="../index.html"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('adminindex')}}">Home</a>
+                            <a href="{{route('index')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('admindatatext')}}">Glossary</a>
+                            <a href="{{route('frontglossary')}}">Glossary</a>
                         </li>
                     </ul>
                 </div>
@@ -80,9 +80,6 @@
                                         <div class="col-md-8">
                                         <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
                                         </div>
-                                        <div class="col-md-1 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('datatext-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-block">
@@ -98,7 +95,6 @@
                                                     <th>{{__('Level-3')}}</th>
                                                     <th>{{__('Level-4')}}</th>
                                                     <th>{{__('Description')}}</th>
-                                                    <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
                                             <tbody>
@@ -117,9 +113,6 @@
                                                             <td >@if($data->subcategory2Detail){{$data->subcategory2Detail->title}}@else - @endif</td>
                                                             <td >@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
                                                             <td >  {!!$data->description!!} </td>
-                                                            <td><a href="{{ route('datatext-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('datatext-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
-                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                 @endif */ ?>
@@ -143,22 +136,6 @@
 <script>
     $(document).ready(function() {
         
-        $(document).on('click', '.delete', function() {
-            var href = $(this).data('href');
-            swal({
-                title: "",
-                text: "{{__('Are you sure? Delete this Data!')}}",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-info",
-                confirmButtonText: "{{__('Yes, delete it!')}}",
-                cancelButtonText: "{{__('Cancel')}}",
-                closeOnConfirm: true
-            },
-            function(){
-                location.href = href;
-            });
-        });
         $('#hide-text').hide();
 
         loadGloassayList("","");
@@ -193,7 +170,7 @@
     function loadGloassayList(jurisdiction,url)
     {
         if(url==''){
-            url = "{{ route('adminglossarylist',1)}}";
+            url = "{{ route('frontglossarylist',1)}}";
         }
         $.ajax({
             type: 'POST',

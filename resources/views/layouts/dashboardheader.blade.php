@@ -43,7 +43,7 @@
             <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
-                        <a href="{{route('adminindex')}}">
+                        <a href="{{route('index')}}">
                             <img class="img-fluid" src="{{asset('uploads/generalsetting/'.$data->logo)}}" alt="Theme-Logo"  style="height: 50px;">
                         </a>
                         <a class="mobile-options waves-effect waves-light">
@@ -66,10 +66,7 @@
                                             </a>
                                         </li> */ ?>
                                         <li>
-                                            <a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action border-0 "><i class="feather icon-log-out"></i> Logout</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
+                                            <a href="{{route('customer-logout')}}"><i class="feather icon-log-out"></i>Log out</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,6 +93,15 @@
                                         </a>
                                     </li>
 
+                                    <li class="{{ (request()->is('glossary*'))? 'pcoded-trigger' : '' }}">
+                                        <a href="{{route('frontglossary')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Glossary</span>
+                                        </a>
+                                    </li>
+
                                     <li class="">
                                         <a href="{{route('additionaluserlist')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
@@ -114,18 +120,22 @@
                                         </a>
                                     </li>
 
-                                    <li class="">
-                                        <a href="#" class="waves-effect waves-dark">
+                                    <li class="pcoded-hasmenu {{ (request()->is('myaccount*') )? 'pcoded-trigger' : '' }}">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
                                             </span>
                                             <span class="pcoded-mtext">Profile Setting</span>
                                         </a>
+                                        <ul class="pcoded-submenu " style="{{ (request()->is('myaccount*') )? 'display:block' : 'display:none' }}">
+                                            <li class="{{ (request()->is('myaccount*'))? 'active' : '' }}">
+                                                <a href="{{route('myaccount')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">My Account</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
-
-
                                 </ul>
-
                             </div>
                         </div>
                     </nav>

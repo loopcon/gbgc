@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrontLoginController;
 use App\Http\Controllers\Frontend\ReportController;
+use App\Http\Controllers\Frontend\GlossaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,8 @@ Route::get('dashboard',[FrontLoginController::class, 'dashboard'])->name('frontd
 Route::get('report',[ReportController::class, 'index'])->name('frontreport');
 Route::get('export-report',[ReportController::class,'exportReport'])->name('export-report');
 Route::post('report_list/{page}', [ReportController::class, 'reportList'])->name('frontreportlist');
+Route::get('glossary', [GlossaryController::class,'index'])->name('frontglossary');
+Route::post('glossary_list/{page}', [GlossaryController::class, 'glossaryList'])->name('frontglossarylist');
 
 Route::post('scoreview', [ReportController::class, 'scoreview'])->name('scoreview');
 
