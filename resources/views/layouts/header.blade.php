@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
      @yield('title')
+    <meta name="description" content="{{ $data->meta_description }}">
+    <meta name="keywords" content="{{ $data->meta_keyword }}">
+    <meta property="og:title" content="{{ $data->seo_title }}" />
     <link rel="icon" href="{{asset('gbgc-logo.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
@@ -13,7 +16,9 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
     <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link rel="canonical" href="{{ URL::current() }}"/>
     @yield('css')
+    {!! $data->google_tag_manager !!}
 </head>
 <body>
     <nav class="navbar-main-box">

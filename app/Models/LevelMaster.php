@@ -9,10 +9,10 @@ class LevelMaster extends Model
 {
     use HasFactory;
     protected $table ='level_masters'; 
-    protected $fields = ['id','parent_id', 'title', 'level_number'];
+    protected $fields = ['id','parent_id', 'title', 'level_number','information'];
     public function masterDetail()
     {
-        return $this->hasOne(LevelMaster::class,'id','parent_id');
+        return $this->hasOne(LevelMaster::class,'id','parent_id')->with('masterDetail');
     }   
 
 }
