@@ -63,11 +63,17 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Information</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="information"  id="information" class="form-control" placeholder="Information" value="{{ isset($record->information) ? $record->information : old('information') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            @if ($errors->has('information')) <div class="text-danger">{{ $errors->first('information') }}</div>@endif
+                                        </div>
+                                    </div>
                                     <div class="container row">
                                         <button class="btn text-light" style="background:#4099ff" type="submit">Submit</button>&nbsp;&nbsp;
                                         <a href="{{route('adminlevel')}}" class="btn btn-danger ">{{__('Cancel')}}</a>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -133,8 +139,9 @@
                         }
                         // console.log(value);
                         $("#parent_level").append('<option value="' + value
-                            .id + '"' + selected + '>' + result.main_level.master_detail.title + ' > ' + value.master_detail.title + ' > ' + value.title + '</option>');
+                            .id + '"' + selected + '>' + value.master_detail.master_detail.title + ' > ' + value.master_detail.title + ' > ' + value.title + '</option>');
                     });
+                    console.log(result);
                 }
             });
         }

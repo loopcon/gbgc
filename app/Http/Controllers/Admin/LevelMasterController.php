@@ -32,7 +32,6 @@ class LevelMasterController extends Controller
     public function fetchParentLevel(Request $request)
     {
         $data['parent_level'] = LevelMaster::with('masterDetail')->where("level_number",$request->parent_level)->get();
-        $data['main_level'] = LevelMaster::with('masterDetail')->where("level_number",$request->parent_level-1)->first();
         return response()->json($data);
     }
 
@@ -50,7 +49,7 @@ class LevelMasterController extends Controller
             ]
         );
         $level = new LevelMaster();
-        $fields = array('title','level_number');
+        $fields = array('title','level_number','information');
         foreach($fields as $key => $value){
             $level->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
@@ -107,7 +106,7 @@ class LevelMasterController extends Controller
             ]
         );
         $level = LevelMaster::find($id);
-        $fields = array('title','level_number');
+        $fields = array('title','level_number','information');
         foreach($fields as $key => $value){
             $level->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
