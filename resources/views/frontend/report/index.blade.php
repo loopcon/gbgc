@@ -210,6 +210,33 @@ input:checked + .slider .off
         </div>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </div>
+<!-- Information pop-up -->
+<div class="modal fade" id="informationmodel" tabindex="-1" role="dialog" aria-labelledby="scoreImportModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="sizeOptionModalLabel"><b>Information</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row m-0">
+                    <div class="col-12 col-md-12 p-0">
+                        <div class="login-register-form-box">
+                            <div>
+                                <form method="post">
+                                    @csrf
+                                    <p class="infotext"></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Information pop-up end-->
 @endsection
 @section('javascript')
 
@@ -225,7 +252,12 @@ input:checked + .slider .off
 </script>
 <script>
 $(document).ready(function () {
-
+        $(document).on('click','.info',function()
+        {
+            var information = $(this).data('information');
+            $('.infotext').html(information);
+            $('#informationmodel').modal('show');
+        });
 
      for (var i = 2007; i <= 2030; i++) {
         $('#ddlYearsfrom').append($('<option>', {
