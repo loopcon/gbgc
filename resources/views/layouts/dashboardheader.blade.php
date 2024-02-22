@@ -104,7 +104,7 @@
                                             <span class="pcoded-mtext">Glossary</span>
                                         </a>
                                     </li>
-
+                                    @if($customer_detail->access_type != 'additionaluser')    
                                     <li class="">
                                         <a href="{{route('additionaluserlist')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
@@ -113,7 +113,7 @@
                                             <span class="pcoded-mtext">Additional user</span>
                                         </a>
                                     </li>
-
+                                    @endif
                                     <li class="">
                                         <a href="#" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">

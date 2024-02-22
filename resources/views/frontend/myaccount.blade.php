@@ -83,7 +83,7 @@
                                         <label for="bussiness_name">Bussiness Wider Group</label>
                                         <input  class="form-control"  type="text" id="business_wider_group" name="business_wider_group" value="{{$customer_detail->business_wider_group}}">
                                     </div>
-                                    @if($customer_detail->access_type != 'additionaluser' && $customer_detail->access_type != 'requestforadditional')
+                                    @if($customer_detail->access_type == 'paid' && $customer_detail->access_type == 'requestforpaiduser')
                                     <div class="contact-label col-12 col-lg-6">
                                         <label for="bussiness_name">Additional User</label>
                                         <input  class="form-control"  type="text" id="additional_user_no" name="additional_user_no">
