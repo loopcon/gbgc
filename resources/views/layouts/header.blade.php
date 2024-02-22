@@ -18,7 +18,9 @@
     <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
     <link rel="canonical" href="{{ URL::current() }}"/>
     @yield('css')
+    <script>
     {!! $data->google_tag_manager !!}
+    </script>
 </head>
 <body>
     <nav class="navbar-main-box">
