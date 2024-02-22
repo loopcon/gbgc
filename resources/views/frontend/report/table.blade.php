@@ -119,8 +119,8 @@
                 <!-- Display level 4 value for all rows -->
                 <td>
                     @if($score->level_4 !== null)
-                        {{ $score->level4Detail->title }} <i class="fa fa-info-circle text-primary" aria-hidden="true"></i>
-
+                        {{ $score->level4Detail->title }} 
+                    <a href="javascript:void(0);" class="info" data-information="{{$score->level4Detail->information}}" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
                     @else
                         Not Found
                     @endif
