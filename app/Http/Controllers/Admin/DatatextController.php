@@ -188,7 +188,7 @@ class DatatextController extends Controller
                     '<td>'.(isset($data->maincategoryDetail->title) ? $data->maincategoryDetail->title : null).'</td>
                     <td>'.(isset($data->subcategory1Detail->title) ? $data->subcategory1Detail->title : null).'</td>
                     <td>'.(isset($data->subcategory2Detail->title) ? $data->subcategory2Detail->title : null).'</td>
-                    <td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).'</td>
+                    <td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).' <a href="javascript:void(0);" class="info" data-information="'.$data->level4Detail->information.'" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a></td>
                     <td>'.$data->description.'</td> 
                     <td><a href='. route('datatext-edit',$data->id).' rel="tooltip" class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
                     <a href="javascript:void(0);" data-href='.route('datatext-delete',$data->id).' rel="tooltip" class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a></td>
