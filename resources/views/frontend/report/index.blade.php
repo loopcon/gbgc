@@ -126,7 +126,7 @@ input:checked + .slider .off
                 <div class="col-sm-12 col-xl-2 m-b-30">
                     <h3 class="sub-title">View</h3>
                     <label class="switch">
-                        <input type="checkbox" id="togBtnview" checked>
+                        <input type="checkbox" id="togBtnview">
                         <div class="slider round">
                         <!--ADDED HTML -->
                         <span class="on">Standard</span>
@@ -139,7 +139,7 @@ input:checked + .slider .off
                 <div class="col-sm-12 col-xl-2 m-b-30">
                 <h3 class="sub-title">Currency</h3>
                     <label class="switch">
-                        <input type="checkbox" id="togBtncurrency" checked>
+                        <input type="checkbox" id="togBtncurrency">
                         <div class="slider round">
                         <!--ADDED HTML -->
                         <span class="on">USD</span>
@@ -315,36 +315,41 @@ function paginate(page) {
     var token = "{{ csrf_token() }}";
    handleFormChange();
 }
-    function handleFormChange() {
-        var viewValue = checkbox.checked ? 'Standard' : 'Local';
-        var currencyValue = checkbox.checked ? 'USD' : 'LocalCurr';
-        var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
-        var yearFromValue = yearFromSelect.value;
-        var yearToValue = yearToSelect.value;
-        var token = "{{ csrf_token() }}";
+   
+   function handleFormChange() {
+    var viewValue = checkbox.checked ? 'Standard' : 'Local';
+    var currencyCheckbox = document.getElementById('togBtncurrency');
+    var currencyValue = currencyCheckbox.checked ? 'USD' : 'LocalCurr';
+    var jurisdictionSelect = document.getElementById('country');
+    var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
+    var yearFromValue = yearFromSelect.value;
+    var yearToValue = yearToSelect.value;
+    var token = "{{ csrf_token() }}";
 
-        // Send AJAX request with all values
-        $.ajax({
-            url: "{{ route('scoreview') }}",
-            type: "POST",
-            dataType: 'json',
-            data: {
-                _token: token,
-                view: viewValue,
-                currency: currencyValue,
-                jurisdictions: jurisdictionValues,
-                year_from: yearFromValue,
-                year_to: yearToValue
-            },
-            success: function(data) {
-                $("#targetDivold").hide();
-                $('#targetDivnew').html(data.view);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    }
+    // Send AJAX request with all values
+    $.ajax({
+        url: "{{ route('scoreview') }}",
+        type: "POST",
+        dataType: 'json',
+        data: {
+            _token: token,
+            view: viewValue,
+            currency: currencyValue,
+            jurisdictions: jurisdictionValues,
+            year_from: yearFromValue,
+            year_to: yearToValue
+        },
+        success: function(data) {
+            $("#targetDivold").hide();
+            $('#targetDivnew').html(data.view);
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+
 });
 
 </script>

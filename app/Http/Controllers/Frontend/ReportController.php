@@ -29,7 +29,7 @@ class ReportController extends Controller
              ->unique();
         $scores = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')
                 ->where(['currency_id' => 'USD'])
-                ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
+                ->selectRaw('level_1, level_2, level_3, level_4')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
                 ->get();
         if($customer =='paid' || $customer =='additionaluser')
@@ -66,12 +66,12 @@ class ReportController extends Controller
                             })
                             ->pluck('year')
                             ->unique();
-
         $scores = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->where('view',$viewfilter)
                 ->where('currency_id',$currencyfilter)
-                ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
+                ->selectRaw('level_1, level_2, level_3, level_4')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
                 ->get();
+
          $view = view('frontend.report.filtertable',compact('region','currencies','customer','yeardata','scores','viewfilter','currencyfilter'))->render();
 
          return response()->json(['view' => $view]);

@@ -1,3 +1,4 @@
+@if(count($yeardata)>0)
 <table class="table table-bordered nowrap">
     <thead>
         <tr>
@@ -55,8 +56,8 @@
                         <!-- Calculate yearly total scores for the previous section -->
                         @foreach($yeardata as $year)
                             @php
-                                $yearlyTotalScore = App\Models\Score::where(['view' => 'Standard'])
-                                                                    ->where(['currency_id' => 'USD'])
+                                $yearlyTotalScore = App\Models\Score::where(['view' => $viewfilter])
+                                                                    ->where(['currency_id' => $currencyfilter])
                                                                     ->where('year', $year)
                                                                     ->where('level_1', $prevLevel1)
                                                                     ->where('level_2', $prevLevel2)
@@ -94,7 +95,8 @@
                     <!-- Display level 1 value only for the first occurrence -->
                 
                     @if ($rowCountLevel1 == 1)
-                    <td class="bold" style="border-bottom: 0px;">{{ optional($score->maincategoryDetail)->title }}</td>
+                    <td class="bold" style="border-bottom: 0px;">
+                        {{ isset($score->maincategoryDetail) ? $score->maincategoryDetail->title : '-'}}</td>
                     @else
                     <td style="border-top:0px; border-bottom: 0px;"></td>
                     @endif
@@ -103,7 +105,8 @@
                     <!-- Display level 2 value only for the first occurrence -->
                 
                     @if ($rowCountLevel2 == 1)
-                    <td class="bold" style="border-bottom: 0px;">  {{ optional($score->subcategory1Detail)->title }}</td>
+                    <td class="bold" style="border-bottom: 0px;">  
+                        {{ isset($score->subcategory1Detail) ? $score->subcategory1Detail->title : '-'}}</td>
                     @else
                     <td style="border-top:0px; border-bottom: 0px;"></td>
                     @endif
@@ -111,7 +114,9 @@
                 
                     <!-- Display level 3 value only for the first occurrence -->
                     @if ($rowCountLevel3 == 1)
-                    <td class="bold" style="border-bottom: 0px;">{{ optional($score->subcategory2Detail)->title }}</td>
+                    <td class="bold" style="border-bottom: 0px;">
+                        {{ isset($score->subcategory2Detail) ? $score->subcategory2Detail->title : '-'}}
+                    </td>
                     @else
                     <td style="border-top:0px; border-bottom: 0px;"></td>
                     @endif
@@ -119,18 +124,18 @@
                 <!-- Display level 4 value for all rows -->
                 <td>
                     @if($score->level_4 !== null)
-                        {{ $score->level4Detail->title }}
-                        <a href="javascript:void(0);" class="info" data-information="{{$score->level4Detail->information}}" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
+                        {{ $score->level4Detail->title }} 
+                    <a href="javascript:void(0);" class="info" data-information="{{$score->level4Detail->information}}" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
                     @else
-                        Not Found
+                      -
                     @endif
                 </td>
 
                 <!-- Calculate and display yearly scores -->
                 @foreach($yeardata as $year)
                     @php
-                        $yearlyScore = App\Models\Score::where(['view' => 'Standard'])
-                                                        ->where(['currency_id' => 'USD'])
+                        $yearlyScore = App\Models\Score::where(['view' => $viewfilter])
+                                                        ->where(['currency_id' => $currencyfilter])
                                                         ->where('year', $year)
                                                         ->where('level_1', $score->level_1)
                                                         ->where('level_2', $score->level_2)
@@ -160,8 +165,8 @@
             <!-- Calculate yearly total scores for the last section -->
             @foreach($yeardata as $year)
                 @php
-                    $yearlyTotalScore = App\Models\Score::where(['view' => 'Standard'])
-                                                        ->where(['currency_id' => 'USD'])
+                    $yearlyTotalScore = App\Models\Score::where(['view' => $viewfilter])
+                                                        ->where(['currency_id' => $currencyfilter])
                                                         ->where('year', $year)
                                                         ->where('level_1', $prevLevel1)
                                                         ->where('level_2', $prevLevel2)
@@ -173,3 +178,4 @@
         </tr>
     </tbody>
 </table>
+@endif
