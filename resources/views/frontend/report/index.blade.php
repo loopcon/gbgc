@@ -274,7 +274,7 @@ $(document).ready(function () {
             hidden: true
         }));
 
-        for (var i = selectedYear + 1; i <= 2030; i++) {
+        for (var i = selectedYear; i <= 2030; i++) {
             $('#ddlYearsto').append($('<option>', {
                 value: i,
                 text: i
