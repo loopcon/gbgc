@@ -45,7 +45,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="password"  id="password" class="form-control" placeholder="Password" value="{{ isset($detail->password) ? $detail->password : old('password') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            <input type="text" name="password"  id="password" class="form-control" placeholder="Password"  data-parsley-required-message="{{ __("This value is required.")}}" >
                                             @if ($errors->has('password')) <div class="text-danger">{{ $errors->first('password') }}</div>@endif
                                         </div>
                                     </div>

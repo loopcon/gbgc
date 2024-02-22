@@ -20,6 +20,7 @@ class ReportController extends Controller
         $user = Auth::guard('customers')->id();
         $customer_detail= Customer::where([['id', '=', $user]])->first();
         $customer = $customer_detail->access_type;
+
         $region=Region::orderBy('name','asc')->get();
         $currencies=Currency::get();
         $yeardata = Score::where(['view' => 'Standard'])
@@ -31,7 +32,15 @@ class ReportController extends Controller
                 ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
                 ->paginate(10);
-        return view('frontend.report.index',compact('region','currencies','customer','yeardata','scores'));
+        if($customer =='paid' || $customer =='additionaluser')
+        {
+            return view('frontend.report.index',compact('region','currencies','customer','yeardata','scores'));
+        }else
+        {
+            $customer= Customer::where('id',$user)->first();
+            return view('frontend.report.freeusertable',compact('region','customer'));
+        }
+        
     }
 
     public function scoreview(Request $request)

@@ -142,7 +142,7 @@
         <!-- signin body -->
           <div class="modal-content" id="signinbody">
             <div class="modal-header">
-                <h5>Verify Model</h5>
+                <h5>Verify Email</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
