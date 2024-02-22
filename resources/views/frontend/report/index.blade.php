@@ -83,6 +83,11 @@ input:checked + .slider .off
 
 .slider.round:before {
   border-radius: 50%;}
+
+.bold{
+    font-weight: bold;
+}
+
   </style>
 
 @section('content')

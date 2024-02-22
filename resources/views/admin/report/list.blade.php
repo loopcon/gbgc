@@ -264,7 +264,7 @@ input:checked + .slider .off
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="close-modal" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" id="confirmImport" class="btn btn-primary">Import</button>
+                                        <button type="submit" id="confirmImport" class="btn btn-primary">Import</button>
                                     </div>
                                 </form>
                             </div>

@@ -160,7 +160,7 @@ input:checked + .slider .off
                 <div class="col-sm-12 col-xl-2 m-b-30">
                 <h3 class="sub-title">Year From</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
-                    <option value="" hidden>{{__('Year From')}}</option>
+                    <option value="">{{__('Year From')}}</option>
                 </select>
                 </div>
 
@@ -209,11 +209,11 @@ input:checked + .slider .off
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td rowspan="10" class="bold">Domestically Regulated</td>
-                                        <td rowspan="10" class="bold">Remote</td>
+                                        <td rowspan="11" class="bold">Domestically Regulated</td>
+                                        <td rowspan="11" class="bold">Remote</td>
                                         <td rowspan="4" class="bold">Lottery</td>
                                         <td>State</td>
-                                        <td></td>
+                                        <td>2306.95</td>
                                         <td>2688.30</td>
                                         <td>2735.88</td>
                                         <td>2542.64</td>
@@ -225,15 +225,15 @@ input:checked + .slider .off
                                     </tr>
                                      <tr>
                                         <td>Other</td>
+                                        <td>3673.60</td>
+                                        <td>3896.20</td>
+                                        <td>4599.45</td>
+                                        <td>4275.75</td>
+                                        <td>3495.11</td>
+                                        <td>2188.51</td>
                                         <td>1885.75</td>
                                         <td>1636.25</td>
-                                        <td>1560.04</td>
-                                        <td>1994.10</td>
-                                        <td>1356.44</td>
-                                        <td>1256.06</td>
-                                        <td>1338.58</td>
-                                        <td>1028.71</td>
-                                        <td>1341.47</td>
+                                        <td>1560.01</td>
                                     </tr>
                                      <tr>
                                         <td>Charity</td>
@@ -249,7 +249,7 @@ input:checked + .slider .off
                                     </tr>
                                      <tr>
                                         <th class="bold">Total Remote Lottery</th>
-                                        <td class="bold">3673.60</td>
+                                        <td class="bold">5980.55</td>
                                         <td class="bold">6584.50</td>
                                         <td class="bold">7335.52</td>
                                         <td class="bold">6818.38</td>
@@ -260,21 +260,97 @@ input:checked + .slider .off
                                         <td class="bold">4018.04</td>
                                     </tr>
                                      <tr>
-                                        <td rowspan="6">Betting</td>
+                                        <td rowspan="6" class="bold">Betting</td>
                                         
                                     </tr>
                                     <tr>
                                         <td>Horseracing</td>
                                         <td>825.00</td>
+                                        <td>658.94</td>
+                                        <td>569.21</td>
+                                        <td>491.40</td>
+                                        <td>393.23</td>
+                                        <td>281.83</td>
+                                        <td>226.23</td>
+                                        <td>184.52</td>
+                                        <td>166.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Greyhounds</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td></td>
                                     </tr>
-                                    <tr><td>Greyhounds</td></tr>
-                                    <tr><td>Sports & other event</td></tr>
-                                    <tr><td>Virtuals</td></tr>
-                                    <tr><td>Total LB Betting</td></tr>
+                                    <tr>
+                                        <td>Sports & other event</td>
+                                        <td>648.80</td>
+                                        <td>786.26</td>
+                                        <td>781.23</td>
+                                        <td>819.84</td>
+                                        <td>701.24</td>
+                                        <td>532.27</td>
+                                        <td>589.18</td>
+                                        <td>580.55</td>
+                                        <td>517.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Virtuals</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>3.00</td>
+                                        <td>179.60</td>
+                                        <td>171.90</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Total LB Betting</td>
+                                        <td class="bold">1473.60</td>
+                                        <td class="bold">1445.20</td>
+                                        <td class="bold">1350.94</td>
+                                        <td class="bold">1310.88</td>
+                                        <td class="bold">1094.47</td>
+                                        <td class="bold">814.10</td>
+                                        <td class="bold">818.40</td>
+                                        <td class="bold">944.67</td>
+                                        <td class="bold">854.90</td>
+                                    </tr>
                                      
+                                     <tr>
+                                         <td class="bold">Gaming</td>
+                                         <td>Keno and numbers</td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td>740.15</td>
+                                         <td>949.95</td>
+                                         <td>1102.35</td>
+                                         <td>1176.90</td>
+                                     </tr>
                                 </tbody>
                                 </table>
+
+                                <div class="mb-2" style="float: inline-end;">
+                                    <nav aria-label="Page navigation">
+                                      <ul class="pagination">
+                                        <li class="page-item pageremove"><a class="page-link" href="javascript:void(0)">1</a></li>
+                                        <li class="page-item page"><a class="page-link" href="javascript:void(0)">2</a></li>
+                                        <li class="page-item page"><a class="page-link" href="javascript:void(0)">3</a></li>
+                                        <li class="page-item page"><a class="page-link" href="javascript:void(0)">Next</a></li>
+                                      </ul>
+                                </nav>
+                                </div>
+
                                 </div>
                                 </div>
                                 </div>
@@ -398,7 +474,17 @@ input:checked + .slider .off
 @section('javascript')
 
 <script>
+
 $(document).ready(function(){
+
+    $(".page").click(function(){
+       $("#order-table").css("filter", "blur(5px)");
+    });
+    
+    $(".pageremove").click(function(){
+       $("#order-table").css("filter", "blur(0px)");
+    });
+
     // When any switch is clicked
     $(".switch input[type='checkbox']").click(function(e){
         // Prevent default behavior of the checkbox

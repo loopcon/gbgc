@@ -57,6 +57,7 @@ class FrontendController extends Controller
     public function checkout()
     {
         $sessioncustomer=Session::get('customer');
+
         $user = Auth::guard('customers')->id();
         if($user != null){
             $membership = Membershipplan::where('access_status','=','freetopro')->first();
@@ -179,6 +180,8 @@ class FrontendController extends Controller
 
     public function placeorder(Request $request)
     {
+
+
         Customer::where('id',$request->input('customerid'))->update(['payment'=>1]);
         $order= new Order();
         $order->customer_id=$request->input('customerid');
@@ -201,7 +204,6 @@ class FrontendController extends Controller
         $orderdetail->save();
 
         $membership=Membershipplan::where('id',$request->input('membershipid'))->first();
-
         if($membership->access_status =='additionaluser')
         {   
             $customerupdate=Customer::where('id',$request->input('customerid'))->first();
@@ -212,12 +214,19 @@ class FrontendController extends Controller
                                'remain_payment_additional_user'=>0
                              ]);
         }
-
         if($membership->access_status =='paid')
         {
             return redirect('/')->with('alert-success', 'Payment Do Successfully After Admin Verfication You Can Access a PaidMembership');
-        }else
+        }
+
+        if($membership->access_status =='freetopro')
         {
+            Customer::where('id',$request->input('customerid'))->update(['access_type'=>'paid']);
+             return redirect()->route('frontdashboard')->with('success', trans('Payment Do Successfully After Admin Verfication You Can Access a PaidMembership'));
+        }
+        else
+        {
+
             return redirect()->route('frontdashboard')->with('success', trans('Payment Do Successfully After Admin Verfication You Can Access a PaidMembership'));
         }
 

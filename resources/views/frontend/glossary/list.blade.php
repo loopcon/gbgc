@@ -64,7 +64,7 @@
                                     <div class="form-row">
                                         <div class="col-md-3 text-center">
                                             <div class="d-inline">
-                                                <h6><b>Jurisdiction</b> </h6>
+                                                <h6 style="text-align:center;"><b>Jurisdiction</b> </h6>
                                                 <label>
                                                 <select id="select-jurisdiction" class="form-control select2" name="region_id">
                                                 <option value="0" sselected>--Select Jurisdiction--</option>

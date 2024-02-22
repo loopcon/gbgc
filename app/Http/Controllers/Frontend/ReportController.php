@@ -31,7 +31,7 @@ class ReportController extends Controller
                 ->where(['currency_id' => 'USD'])
                 ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
-                ->paginate(10);
+                ->get();
         if($customer =='paid' || $customer =='additionaluser')
         {
             return view('frontend.report.index',compact('region','currencies','customer','yeardata','scores'));
@@ -71,7 +71,7 @@ class ReportController extends Controller
                 ->where('currency_id',$currencyfilter)
                 ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
-                ->paginate(10);
+                ->get();
          $view = view('frontend.report.filtertable',compact('region','currencies','customer','yeardata','scores','viewfilter','currencyfilter'))->render();
 
          return response()->json(['view' => $view]);
