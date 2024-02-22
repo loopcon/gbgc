@@ -1,3 +1,4 @@
+@if(count($yeardata)>0)
 <table class="table table-bordered nowrap">
     <thead>
         <tr>
@@ -94,7 +95,8 @@
                     <!-- Display level 1 value only for the first occurrence -->
                 
                     @if ($rowCountLevel1 == 1)
-                    <td class="bold" style="border-bottom: 0px;">{{ optional($score->maincategoryDetail)->title }}</td>
+                    <td class="bold" style="border-bottom: 0px;">
+                        {{ isset($score->maincategoryDetail) ? $score->maincategoryDetail->title : '-'}}</td>
                     @else
                     <td style="border-top:0px; border-bottom: 0px;"></td>
                     @endif
@@ -103,7 +105,8 @@
                     <!-- Display level 2 value only for the first occurrence -->
                 
                     @if ($rowCountLevel2 == 1)
-                    <td class="bold" style="border-bottom: 0px;">  {{ optional($score->subcategory1Detail)->title }}</td>
+                    <td class="bold" style="border-bottom: 0px;">  
+                        {{ isset($score->subcategory1Detail) ? $score->subcategory1Detail->title : '-'}}</td>
                     @else
                     <td style="border-top:0px; border-bottom: 0px;"></td>
                     @endif
@@ -111,7 +114,9 @@
                 
                     <!-- Display level 3 value only for the first occurrence -->
                     @if ($rowCountLevel3 == 1)
-                    <td class="bold" style="border-bottom: 0px;">{{ optional($score->subcategory2Detail)->title }}</td>
+                    <td class="bold" style="border-bottom: 0px;">
+                        {{ isset($score->subcategory2Detail) ? $score->subcategory2Detail->title : '-'}}
+                    </td>
                     @else
                     <td style="border-top:0px; border-bottom: 0px;"></td>
                     @endif
@@ -122,7 +127,7 @@
                         {{ $score->level4Detail->title }} 
                     <a href="javascript:void(0);" class="info" data-information="{{$score->level4Detail->information}}" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
                     @else
-                        Not Found
+                      -
                     @endif
                 </td>
 
@@ -173,3 +178,6 @@
         </tr>
     </tbody>
 </table>
+@else
+<h4>Data not Found</h4>
+@endif
