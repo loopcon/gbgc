@@ -20,6 +20,9 @@ use App\Models\Orderdetail;
 use App\Models\Order;
 use Session;
 use App\Models\AdditionalUser;
+use App\Exports\ExportScore;
+use Illuminate\Support\Collection ;
+use Excel;
 
 class FrontendController extends Controller
 {
@@ -204,6 +207,8 @@ class FrontendController extends Controller
         $orderdetail->save();
 
         $membership=Membershipplan::where('id',$request->input('membershipid'))->first();
+
+        // dd($membership);
         if($membership->access_status =='additionaluser')
         {   
             $customerupdate=Customer::where('id',$request->input('customerid'))->first();
@@ -216,6 +221,7 @@ class FrontendController extends Controller
         }
         if($membership->access_status =='paid')
         {
+            // Customer::where('id',$request->input('customerid'))->update(['access_type'=>'paid']);
             return redirect('/')->with('alert-success', 'Payment Do Successfully After Admin Verfication You Can Access a PaidMembership');
         }
 
@@ -239,6 +245,21 @@ class FrontendController extends Controller
         $additionaluser=AdditionalUser::where('parent_id',$user)->get();
         $customer= Customer::where('id',$user)->first();
         return view('frontend.additionaluserlist',compact('additionaluser','customer'));
+    }
+
+    public function reportdownload()
+    {
+        $scores = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')       ->where('view',$viewfilter)
+                   ->where('currency_id',$currencyfilter)
+                   ->selectRaw('level_1, level_2, level_3, level_4')
+                   ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
+                   ->get();
+        $data = [
+            ['test1', 'test2'],
+            ['test3', 'test4'],
+        ];
+    
+        return Excel::download(new ExportScore($data), 'Sample Data.xlsx');
     }
 }
 
