@@ -32,6 +32,34 @@
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/multiselect/css/multi-select.css')}}" />
 <link rel="canonical" href="{{ URL::current() }}"/>
 
+<style>
+    .dashboard-logo{
+        width: 130px !important;
+        height: auto !important;
+    }
+    .dashboard-header-height{
+        height: 85px;
+    }
+    .dashboard-header-height  .mobile-menu{
+        top:50% !important;
+    }
+    .dashboard-logo-bg{
+        height: 85px !important;
+    }
+    .dashboard-logo .mobile-options{
+        top: 50% !important;
+    }
+
+    @media (max-width:575px){
+        .dashboard-header-height  .mobile-menu{
+            top:50% !important;
+        }
+        .dashboard-logo .mobile-options{
+            top: 50% !important;
+        }   
+    }
+</style>
+
 @yield('css')
 {!! $data->google_tag_manager !!}
 </head>
@@ -43,11 +71,11 @@
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
-            <nav class="navbar header-navbar pcoded-header">
+            <nav class="navbar header-navbar pcoded-header dashboard-header-height">
                 <div class="navbar-wrapper">
-                            <div class="navbar-logo">
-                        <a href="{{route('adminindex')}}">
-                            <img class="img-fluid" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo"  style="height: 50px;">
+                    <div class="navbar-logo dashboard-logo-bg">
+                        <a href="{{route('index')}}">
+                            <img class="img-fluid dashboard-logo" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo" >
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>

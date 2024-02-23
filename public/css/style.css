@@ -322,4 +322,7 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 .login-icon-text {margin-right: 10px;}
 .contact-label {margin-bottom: 15px;}
 /* front dashboard css end  */
-
+.mo-hit-menuclick .mobile-numberactive-bg{
+    background-color:#00abf4 !important;
+    color: #ffF;
+}
