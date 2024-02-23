@@ -23,6 +23,7 @@ use App\Models\AdditionalUser;
 use App\Exports\ExportScore;
 use Illuminate\Support\Collection ;
 use Excel;
+use App\Models\Score;
 
 class FrontendController extends Controller
 {
@@ -247,19 +248,11 @@ class FrontendController extends Controller
         return view('frontend.additionaluserlist',compact('additionaluser','customer'));
     }
 
-    public function reportdownload()
-    {
-        $scores = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')       ->where('view',$viewfilter)
-                   ->where('currency_id',$currencyfilter)
-                   ->selectRaw('level_1, level_2, level_3, level_4')
-                   ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
-                   ->get();
-        $data = [
-            ['test1', 'test2'],
-            ['test3', 'test4'],
-        ];
-    
-        return Excel::download(new ExportScore($data), 'Sample Data.xlsx');
-    }
+   public function reportdownload()
+   {
+     
+    return Excel::download(new ExportScore, 'Sample Data.xlsx');
+   }
+
 }
 
