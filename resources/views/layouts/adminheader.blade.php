@@ -44,7 +44,7 @@
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
                         <a href="{{route('adminindex')}}">
-                            <img class="img-fluid" src="{{asset('uploads/generalsetting/'.$data->logo)}}" alt="Theme-Logo"  style="height: 50px;">
+                            <img class="img-fluid" src="{{asset('img\gbgc-logo.png')}}" alt="Theme-Logo"  style="height: 50px;">
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>

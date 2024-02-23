@@ -74,7 +74,7 @@
             <nav class="navbar header-navbar pcoded-header dashboard-header-height">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo dashboard-logo-bg">
-                        <a href="{{route('adminindex')}}">
+                        <a href="{{route('index')}}">
                             <img class="img-fluid dashboard-logo" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo" >
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
