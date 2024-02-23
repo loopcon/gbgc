@@ -81,7 +81,7 @@
     .subscript-text-box p{ font-size: 16px;}
     .subscript-text-box h4{font-size: 24px;}
     .standard-box{margin-left: 0px;margin-top: 15px;}
-    .standard-box-detail{padding: 18px;}
+    .standard-box-detail{padding: 18px; min-height: auto; }
     .standard-btnbox button{left: -80px;width: 250px;}
     .footer-second-box{display: block;}
     .footer-second-secmenu ul{margin-top: 0px;padding-left: 10px;justify-content: start;}
