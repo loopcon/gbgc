@@ -179,6 +179,20 @@ input:checked + .slider .off
 
 
         </div>
+        <div class="row textrow">
+            <div class="col-sm-12 col-xl-2 m-b-30 ">
+                <h6 class="viewtext">View : <lable class="viewValue"></lable></h6>
+            </div>
+            <div class="col-sm-12 col-xl-2 m-b-30 ">
+                <h6 class="currencytext">Currency : <lable class="currencyValue"></lable></h6> 
+            </div>
+            <div class="col-sm-12 col-xl-3 m-b-30 ">
+                <h6 class="juricdictiontext">Jurisdiction : <lable class="juricdictionValue"></h6>
+            </div>
+            <div class="col-sm-12 col-xl-4 m-b-30 " style="text-align: center;">
+                <h6 class="yeartotext">Year : <lable class="yeartoValue"></h6>
+            </div>
+        </div>
     </div>
 
     <div class="pcoded-inner-content">
@@ -286,6 +300,11 @@ $(document).ready(function () {
 
 
 <script>
+    $('.textrow').hide();
+    $('.viewtext').hide();
+    $('.currencytext').hide();
+    $('.juricdictiontext').hide();
+    $('.yeartotext').hide();
 
 document.addEventListener("DOMContentLoaded", function() {
     var checkbox = document.getElementById('togBtnview');
@@ -325,6 +344,29 @@ function paginate(page) {
     var yearFromValue = yearFromSelect.value;
     var yearToValue = yearToSelect.value;
     var token = "{{ csrf_token() }}";
+    $('.textrow').show();
+    if(viewValue != "")
+    {
+        $('.viewtext').show();
+        $('.viewValue').html(viewValue);
+    }
+    if(currencyValue != "")
+    {
+        $('.currencytext').show();
+        $('.currencyValue').html(currencyValue);
+    }
+    if(jurisdictionValues != "")
+    {
+        $('.juricdictiontext').show();
+        $('.juricdictionValue').html(jurisdictionSelect);
+    }
+    if(yearFromValue && yearToValue != 0)
+    {
+        $('.yeartotext').show();
+        $('.yeartoValue').html(yearFromValue + '-' +yearToValue);
+    }
+
+    
 
     // Send AJAX request with all values
     $.ajax({

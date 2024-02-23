@@ -56,7 +56,8 @@
         </div>
         <div class="purchase-prise-item">
             <div class="purchase-add-button">
-                <a href="{{route('checkout')}}" class="purchase-now-boxbtn">Purchase Now</a>
+                <!-- <a href="{{route('checkout')}}" class="purchase-now-boxbtn">Purchase Now</a> -->
+                <a href="javascript:void(0)" style="text-decoration:none" data-bs-toggle="modal" data-bs-target="#prosignupmodel"><button class="purchase-now-btn">Purchase Now</button></a>
             </div>
         </div>
     </div>
@@ -79,7 +80,8 @@
     </div>
 
     <div class="purchase-box">
-        <a href="{{route('checkout')}}" style="text-decoration:none"><button class="purchase-now-btn">PURCHASE NOW </button></a>
+        <!-- <a href="{{route('checkout')}}" style="text-decoration:none"><button class="purchase-now-btn">PURCHASE NOW </button></a> -->
+        <a href="javascript:void(0)" style="text-decoration:none" data-bs-toggle="modal" data-bs-target="#prosignupmodel"><button class="purchase-now-btn">Purchase Now</button></a>
     </div>
 </div>
 @endsection
