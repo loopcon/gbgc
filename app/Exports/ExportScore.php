@@ -2,27 +2,33 @@
 
 namespace App\Exports;
 
-use App\Models\Score;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Concerns\ToCollection;
 
-class ExportScore implements FromCollection
+class ExportScore implements FromArray, WithHeadings
 {
     private $data;
 
-    public function __construct($data)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }
 
-    public function collection()
+    public function array(): array
     {
-        $val = collect($this->data)->toArray();
-        if(count($val) > 0){
-            return new Collection($val);
-        }   
+        return $this->data;
+    }
+
+    public function headings(): array
+    {
+        // Define headings for your Excel sheet
+        return [
+            'Level 1',
+            'Level 2',
+            'Level 3',
+            'Level 4',
+        ];
     }
 }
+
+

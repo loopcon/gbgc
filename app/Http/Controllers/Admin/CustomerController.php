@@ -25,6 +25,7 @@ class CustomerController extends Controller
 
     public function changeStatus($id, $status)
     {
+
         $customerfind = Customer::where('id', $id)->first();
         $customer=Customer::find($id);
         if($customerfind->access_type == 'requestforfree'){$customer->access_type='free';}

@@ -45,9 +45,12 @@
         <div class="pcoded-container navbar-wrapper">
             <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
-                    <div class="navbar-logo">
-                        <a href="{{route('index')}}">
-                            <img class="img-fluid" src="{{asset('uploads/generalsetting/'.$data->logo)}}" alt="Theme-Logo"  style="height: 50px;">
+                            <div class="navbar-logo">
+                        <a href="{{route('adminindex')}}">
+                            <img class="img-fluid" src="{{asset('gbgc-logo.png')}}" alt="Theme-Logo"  style="height: 50px;">
+                        </a>
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="feather icon-menu icon-toggle-right"></i>
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="feather icon-more-horizontal"></i>
@@ -59,7 +62,7 @@
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="{{asset('admin/assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
-                                        <span>@if(auth()->user()){{ Auth::user()->name }}@endif</span>
+                                        <span></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">

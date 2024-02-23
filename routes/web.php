@@ -30,7 +30,7 @@ Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout')
 Route::get('additional-check-out',[FrontendController::class,'additionalcheckout'])->name('additionalcheckout');
 
 Route::get('additionaluserlist',[FrontendController::class,'additionaluserlist'])->name('additionaluserlist');
-
+Route::get('reportdownload',[FrontendController::class,'reportdownload'])->name('reportdownload');
 
 
 

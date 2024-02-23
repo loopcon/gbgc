@@ -92,8 +92,8 @@ input:checked + .slider .off
 
 @section('content')
     <div class="page-header card">
-        <div class="row align-items-end">
-            <div class="col-lg-8">
+                <div class="row align-items-end">
+            <div class="col-lg-3">
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
@@ -101,6 +101,11 @@ input:checked + .slider .off
                     </div>
                 </div>
             </div>
+            
+            <div class="col-lg-5">
+                <a class="btn text-light" style="background:#4099ff" href="{{route('reportdownload')}}"> Download Excel </a>
+            </div>
+            
             <div class="col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
@@ -118,7 +123,6 @@ input:checked + .slider .off
             </div>
         </div>
     </div>
-
     <div class="container">
 
         <div class="row">

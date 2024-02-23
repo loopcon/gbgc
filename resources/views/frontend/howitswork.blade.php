@@ -308,7 +308,7 @@
                         <div class="msign-up-text">
                             <a class="msignmain-menu step-1mosignmenu" href="#step1-mcreate-domain"><span class="mobile-number-bg">1 </span> Sign Up <span class="mobile-iconhit"><i class="fa-solid fa-chevron-up"></i></span></a>
                             <div class="mo-hit-menuclick">
-                                <a class="msignmain-menu step-1mosignmenu" href="#step1-mcreate-domain"><span class="mobile-number-bg">1 </span> Sign Up </a>
+                                <a class="msignmain-menu mobile-hiw-active" href="#step1-mcreate-domain"><span class="mobile-number-bg mobile-numberactive-bg">1 </span> Sign Up </a>
                                 <a class="msignmain-menu" href="#step3-minvitepeople"><span class="mobile-number-bg">2</span> Invite People </a>
                                 <a class="msignmain-menu" href="#step4-mbuild-scratch"><span class="mobile-number-bg">3</span> Create Training </a>
                                 <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg">4</span> Publish & Enroll </a>
@@ -376,7 +376,7 @@
                             <a class="msignmain-menu" href="#step3-minvitepeople"><span class="mobile-number-bg">2</span> Invite People <span class="mobile-iconhit"><i class="fa-solid fa-chevron-up"></i></span></a>
                             <div class="mo-hit-menuclick">
                                 <a class="msignmain-menu step-1mosignmenu" href="#step1-mcreate-domain"><span class="mobile-number-bg">1 </span> Sign Up </a>
-                                <a class="msignmain-menu" href="#step3-minvitepeople"><span class="mobile-number-bg">2</span> Invite People </a>
+                                <a class="msignmain-menu" href="#step3-minvitepeople"><span class="mobile-number-bg mobile-numberactive-bg">2</span> Invite People </a>
                                 <a class="msignmain-menu" href="#step4-mbuild-scratch"><span class="mobile-number-bg">3</span> Create Training </a>
                                 <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg">4</span> Publish & Enroll </a>
                                 <a class="msignmain-menu" href="#step8-mdiscover-learn"><span class="mobile-number-bg">5</span> Train </a>
@@ -415,7 +415,7 @@
                             <div class="mo-hit-menuclick">
                                 <a class="msignmain-menu step-1mosignmenu" href="#step1-mcreate-domain"><span class="mobile-number-bg">1 </span> Sign Up </a>
                                 <a class="msignmain-menu" href="#step3-minvitepeople"><span class="mobile-number-bg">2</span> Invite People </a>
-                                <a class="msignmain-menu" href="#step4-mbuild-scratch"><span class="mobile-number-bg">3</span> Create Training </a>
+                                <a class="msignmain-menu" href="#step4-mbuild-scratch"><span class="mobile-number-bg mobile-numberactive-bg">3</span> Create Training </a>
                                 <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg">4</span> Publish & Enroll </a>
                                 <a class="msignmain-menu" href="#step8-mdiscover-learn"><span class="mobile-number-bg">5</span> Train </a>
                                 <a class="msignmain-menu" href="#step9-manalyze-impact"><span class="mobile-number-bg">6</span> Analyze </a>
@@ -498,7 +498,7 @@
                                 <a class="msignmain-menu step-1mosignmenu" href="#step1-mcreate-domain"><span class="mobile-number-bg">1 </span> Sign Up </a>
                                 <a class="msignmain-menu" href="#step3-minvitepeople"><span class="mobile-number-bg">2</span> Invite People </a>
                                 <a class="msignmain-menu" href="#step4-mbuild-scratch"><span class="mobile-number-bg">3</span> Create Training </a>
-                                <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg">4</span> Publish & Enroll </a>
+                                <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg mobile-numberactive-bg">4</span> Publish & Enroll </a>
                                 <a class="msignmain-menu" href="#step8-mdiscover-learn"><span class="mobile-number-bg">5</span> Train </a>
                                 <a class="msignmain-menu" href="#step9-manalyze-impact"><span class="mobile-number-bg">6</span> Analyze </a>
                                 <a class="msignmain-menu" href="#step10-mintegrations"><span class="mobile-number-bg">7</span> Integrations </a>
@@ -535,7 +535,7 @@
                                 <a class="msignmain-menu" href="#step3-minvitepeople"><span class="mobile-number-bg">2</span> Invite People </a>
                                 <a class="msignmain-menu" href="#step4-mbuild-scratch"><span class="mobile-number-bg">3</span> Create Training </a>
                                 <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg">4</span> Publish & Enroll </a>
-                                <a class="msignmain-menu" href="#step8-mdiscover-learn"><span class="mobile-number-bg">5</span> Train </a>
+                                <a class="msignmain-menu" href="#step8-mdiscover-learn"><span class="mobile-number-bg mobile-numberactive-bg">5</span> Train </a>
                                 <a class="msignmain-menu" href="#step9-manalyze-impact"><span class="mobile-number-bg">6</span> Analyze </a>
                                 <a class="msignmain-menu" href="#step10-mintegrations"><span class="mobile-number-bg">7</span> Integrations </a>
                             </div>
@@ -571,7 +571,7 @@
                                 <a class="msignmain-menu" href="#step4-mbuild-scratch"><span class="mobile-number-bg">3</span> Create Training </a>
                                 <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg">4</span> Publish & Enroll </a>
                                 <a class="msignmain-menu" href="#step8-mdiscover-learn"><span class="mobile-number-bg">5</span> Train </a>
-                                <a class="msignmain-menu" href="#step9-manalyze-impact"><span class="mobile-number-bg">6</span> Analyze </a>
+                                <a class="msignmain-menu" href="#step9-manalyze-impact"><span class="mobile-number-bg mobile-numberactive-bg">6</span> Analyze </a>
                                 <a class="msignmain-menu" href="#step10-mintegrations"><span class="mobile-number-bg">7</span> Integrations </a>
                             </div>
                         </div>
@@ -612,7 +612,7 @@
                                 <a class="msignmain-menu" href="#step7-mpublish-training"><span class="mobile-number-bg">4</span> Publish & Enroll </a>
                                 <a class="msignmain-menu" href="#step8-mdiscover-learn"><span class="mobile-number-bg">5</span> Train </a>
                                 <a class="msignmain-menu" href="#step9-manalyze-impact"><span class="mobile-number-bg">6</span> Analyze </a>
-                                <a class="msignmain-menu" href="#step10-mintegrations"><span class="mobile-number-bg">7</span> Integrations </a>
+                                <a class="msignmain-menu" href="#step10-mintegrations"><span class="mobile-number-bg mobile-numberactive-bg">7</span> Integrations </a>
                             </div>
                         </div>
                     </div>
