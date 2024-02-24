@@ -185,7 +185,8 @@ class DatatextController extends Controller
                 //    $prevLevel3 = $data->sub_category_2;
 
                     $html .=
-                    '<td>'.(isset($data->maincategoryDetail->title) ? $data->maincategoryDetail->title : null).'</td>
+                    '<td>'.$data->regionDetail->name.'</td>
+                    <td>'.(isset($data->maincategoryDetail->title) ? $data->maincategoryDetail->title : null).'</td>
                     <td>'.(isset($data->subcategory1Detail->title) ? $data->subcategory1Detail->title : null).'</td>
                     <td>'.(isset($data->subcategory2Detail->title) ? $data->subcategory2Detail->title : null).'</td>
                     <td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).' <a href="javascript:void(0);" class="info" data-information="'.$data->level4Detail->information.'" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a></td>

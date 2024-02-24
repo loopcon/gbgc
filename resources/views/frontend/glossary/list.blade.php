@@ -90,6 +90,7 @@
                                                    <?php /* <th>{{__('Sr No.')}}</th>
                                                     <th>{{__('View')}}</th>
                                                     <th>{{__('Region')}}</th> */ ?>
+                                                    <th>{{__('Jurisdiction')}}</th>
                                                     <th>{{__('Level-1')}}</th>
                                                     <th>{{__('Level-2')}}</th>
                                                     <th>{{__('Level-3')}}</th>

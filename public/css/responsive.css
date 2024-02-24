@@ -36,7 +36,7 @@
     .subscrib-footer{width: 120px;}
 
     .left{width: 100%; float: unset; }
-    .left-child.posFix { z-index: 2; background-color: #fff;}
+    .left-child.posFix { z-index: 2; background-color: #fff; top:98px;}
     .left-child{display: flex; width: 100%;}
     .create-your-domain-text{display: none;}
     .sign-up-text a span{ display: none;}
@@ -157,7 +157,7 @@
     /* membership css end  */
     .footer-email-input .form-control{ height: 45px;}
     .the-only-slidertext button{ height: 45px;}
-    .purchase-now-btn{ height: 45px; font-size: 15px;}
+    .purchase-now-btn{ height: 45px; font-size: 15px; margin-top: 0px;}
     .faq-heading-worktextsection .faq-contactbtn{height: 45px; font-size: 15px;}
     .get-in-touchtext{ font-size: 24px; line-height: 24px;margin-bottom: 30px;}
     .get-in-touchsection{ padding: 20px;}
@@ -169,7 +169,7 @@
     .create-domain-box-item-1{margin-top: 25px;}
     .report-heading{ margin-top: 15px;}
     .standard-prise-textdetail ul{ padding-left: 30px; }
-    .purchase-prise-text h4{ font-size: 30px; } 
+    .purchase-prise-text h4{ font-size: 30px; margin-top: 15px; } 
     .creadit-card-form .savepayment-text input{margin-right: 5px;}
     .faq-accordion-box a.faq-accordion-header{
         padding: 10px 27px;
@@ -180,6 +180,10 @@
     }
     .faq-accordion-box a.faq-accordion-header{
         position: relative;
+    }
+
+    .login-register-form-box{
+        padding: 0px;
     }
 }
 
