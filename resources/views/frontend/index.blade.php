@@ -203,8 +203,8 @@
                             <div>
                                 <form method="post" action="@if(isset($customer)){{ route('registration-update', array('id' => $customer->id)) }}@else{{route('registration')}}@endif" class="register-form1" enctype="multipart/form-data" id="freeaccessform">
                                     @csrf
-                                    <div class="row mb-3">
-                                        <div class="col-12 col-md-6 ">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
                                                 <input type="text" id="name" name="name" class="form-control" placeholder="Name">
@@ -212,7 +212,7 @@
                                             <div id="nameerror"></div>
                                         </div>
 
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group ">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-nib"></i></span>
                                                 <input type="text" id="job_title" name="job_title"  class="form-control" placeholder="Job Title">
@@ -221,22 +221,21 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
-                                        <div class="col-12 col-md-6">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
                                                 <input type="email" id="email" name="email" class="form-control" placeholder="Email"> 
                                             </div>
                                             <div id="emailerror"></div>
                                         </div> 
-                                         <div class="col-12 col-md-6" >
+                                         <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
                                                 <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="phone" name="phone">
                                             </div> 
                                             <div id="phoneerror"></div>  
                                         </div>
-                                         
                                     </div>
 
                                     <div class="row mb-3">
@@ -287,16 +286,16 @@
                             <div>
                                 <form method="post" id="proaccessform">
                                     @csrf
-                                    <div class="row mb-3">
-                                        <div class="col-12 col-md-6 ">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
-                                                <input type="text" id="proname" name="name" class="form-control" placeholder="Name">
+                                                <input type="text" id="proname" name="name" class="form-control" placeholder="Name 1212">
                                             </div>
                                             <div id="nameerror-pro"></div>
                                         </div>
 
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group ">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-nib"></i></span>
                                                 <input type="text" id="projob_title" name="job_title"  class="form-control" placeholder="Job Title">
@@ -304,15 +303,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
-                                        <div class="col-12 col-md-6">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
                                                 <input type="email" id="proemail" name="email" class="form-control" placeholder="Email"> 
                                             </div>
                                             <div id="emailerror-pro"></div>
                                         </div> 
-                                         <div class="col-12 col-md-6" >
+                                         <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
                                                 <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="prophone" name="phone">
@@ -322,15 +321,15 @@
                                          
                                     </div>
 
-                                    <div class="row mb-3">
-                                        <div class="col-12 col-md-6">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-pen"></i></span>
                                                 <input type="text" id="probussiness_name" name="bussiness_name" class="form-control" placeholder="Business Name"> 
                                             </div>
                                         </div>
 
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-g"></i></span>
                                                 <input type="text" id="gstnumber" name="gst" class="form-control" placeholder="VAT/GST Number"> 
