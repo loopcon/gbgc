@@ -36,7 +36,7 @@
     .subscrib-footer{width: 120px;}
 
     .left{width: 100%; float: unset; }
-    .left-child.posFix { z-index: 2; background-color: #fff;}
+    .left-child.posFix { z-index: 2; background-color: #fff; top:98px;}
     .left-child{display: flex; width: 100%;}
     .create-your-domain-text{display: none;}
     .sign-up-text a span{ display: none;}
