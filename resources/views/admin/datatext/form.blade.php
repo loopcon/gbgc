@@ -52,10 +52,10 @@
                                         </div>
                                     </div> */ ?>
                                     <div class="form-group row" id="step_1">
-                                        <label class="col-sm-2 col-form-label">Region<span class="text-danger">*</span></label>
+                                        <label class="col-sm-2 col-form-label">Jurisdiction<span class="text-danger">*</span></label>
                                         <div class="col-sm-10">
                                             <select id="region_id" class="form-control select2" name="region_id" required="">
-                                                <option value="0" selected>-- Select region --</option>
+                                                <option value="0" selected>-- Select jurisdiction --</option>
                                                 @if($region->count())
                                                     @foreach($region as $data)
                                                         <option value="{{$data->id}}" @if(isset($record) && $data->id==$record->region_id) selected="selected" @endif>{{ucfirst($data->name)}}</option>
