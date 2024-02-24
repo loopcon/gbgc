@@ -170,7 +170,7 @@ section.one:after {content: "";display: block;clear: both;}
 #siguploginModal .modal-footer {padding: 0px;margin: 0px;}
 /*#siguploginModal .modal-header button {position: absolute;top: -10px;right: -10px;height: 35px;width: 35px;background: #fff;border: 0px;border-radius: 50%;z-index: 1;}*/
 /*#siguploginModal .modal-header button svg {font-size: 22px;display: block;margin: auto;}*/
-#siguploginModal .modal-body {height: 370px;overflow-y: auto;padding: 0px;}
+/* #siguploginModal .modal-body {height: 370px;overflow-y: auto;padding: 0px;} */
 #siguploginModal .login-register-box a {margin-bottom: 0px;width: 50%;background-color: #eeeeee;display: block;text-align: center;height: 50px;line-height: 45px;text-decoration: none;color: #333333;margin: auto;}
 /*#siguploginModal .login-form {margin-top: 35px;}*/
 a.login-active {background-color: #198FD9 !important;color: #fff !important;}
@@ -268,7 +268,7 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 .thank-youtext .thank-go-backbtn {background-color: #00abf4;border: 0px;max-width: 180px;height: 45px;color: #fff;font-weight: bold;padding: 0px 25px;border-radius: 8px;display: block;margin: auto;text-align: center;line-height: 45px;text-decoration: none;}
 /* lost password css end */
 /* signup*/
-#siguploginModal .modal-body {height: auto;overflow-y: auto;padding: 0px;}
+/* #siguploginModal .modal-body {height: auto;overflow-y: auto;padding: 0px;} */
 .login-img-popup {height: 550px;object-fit: cover;}
 .login-register-box {display: flex;}
 .register-text {background-color: #198FD9;border: 0px;width: 100%;height: 50px;color: #fff;font-weight: bold;}
@@ -322,7 +322,4 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 .login-icon-text {margin-right: 10px;}
 .contact-label {margin-bottom: 15px;}
 /* front dashboard css end  */
-.mo-hit-menuclick .mobile-numberactive-bg{
-    background-color:#00abf4 !important;
-    color: #ffF;
-}
+.mo-hit-menuclick .mobile-numberactive-bg{background-color:#00abf4 !important;color: #ffF;}

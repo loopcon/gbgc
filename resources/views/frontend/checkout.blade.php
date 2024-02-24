@@ -98,7 +98,7 @@
 
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Street address <span>*</span></label>
-                        <input type="text" class="form-control mb-2" id="exampleInputEmail1" aria-describedby="emailHelp" name="street_address" placeholder="House number and street name">
+                        <input type="text" class="form-control mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" name="street_address" placeholder="House number and street name">
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="street_address1" placeholder="Apartment, suite, unit, etc. (optional)">
                     </div>
 
