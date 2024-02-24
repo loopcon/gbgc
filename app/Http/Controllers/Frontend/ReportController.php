@@ -32,9 +32,12 @@ class ReportController extends Controller
                 ->selectRaw('level_1, level_2, level_3, level_4')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
                 ->get();
+         $sdata = Score::where(['view' => 'Standard'])
+             ->where(['currency_id' => 'USD'])   
+             ->get();
         if($customer =='paid' || $customer =='additionaluser')
         {
-            return view('frontend.report.index',compact('region','currencies','customer','yeardata','scores'));
+            return view('frontend.report.index',compact('region','currencies','customer','yeardata','scores','sdata'));
         }else
         {
             $customer= Customer::where('id',$user)->first();
