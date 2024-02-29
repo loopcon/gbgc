@@ -181,3 +181,7 @@
 @else
 <h4>Data not Found</h4>
 @endif
+
+<div class="row" style="float:right">
+{{ $scores->links() }}
+</div>

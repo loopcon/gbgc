@@ -24,7 +24,7 @@ class ReportController extends Controller
         $currencies=Currency::get();
         $scores = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')
                 ->where(['currency_id' => 'USD'])
-                ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
+                ->selectRaw('level_1, level_2, level_3, level_4')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
                 ->paginate(10);
         return view('admin.report.list',compact('region','currencies','yeardata','scores'));
@@ -34,28 +34,36 @@ class ReportController extends Controller
     {
         $viewfilter=$request->view;
         $currencyfilter=$request->currency;
-        $yearfrom=$request->year_from;
-        $yearto=$request->year_to;
+        $yearfrom = $request->has('year_from') ? $request->year_from : null;
+        $yearto = $request->has('year_to') ? $request->year_to : null;
         $return_data = array();
+        $user = Auth::guard('customers')->id();
+        $customer_detail= Customer::where([['id', '=', $user]])->first();
+        $customer = $customer_detail->access_type;
+        $countryArray=$request->input('country');
 
         $region=Region::orderBy('name','asc')->get();
         $currencies=Currency::get();
-        $yeardata = Score::where('view', $viewfilter)
-                            ->where('currency_id', $currencyfilter)
-                            ->when($yearfrom, function ($query) use ($yearfrom) {
-                                return $query->where('year', '>=', $yearfrom);
-                            })
-                            ->when($yearto, function ($query) use ($yearto) {
-                                return $query->where('year', '<=', $yearto);
-                            })
-                            ->pluck('year')
-                            ->unique();
-                            
-        $scores = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')->where('view',$viewfilter)
-                ->where('currency_id',$currencyfilter)
-                ->selectRaw('level_1, level_2, level_3, level_4, MAX(score) as max_score')
-                ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
-                ->paginate(10);
+        $yeardataQuery = Score::where('view', $viewfilter)
+                                ->where('currency_id', $currencyfilter);
+                                if ($yearfrom !== null && $yearto !== null) {
+                                    $yeardataQuery->whereBetween('year', [$yearfrom, $yearto]);
+                                }
+        $yeardata = $yeardataQuery->pluck('year')->unique();
+        $countryArray = $countryArray ?? [];
+        $scoresQuery = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')
+                ->where('view','LIKE',$viewfilter)
+                ->where('currency_id',$currencyfilter);
+
+            if(count($countryArray) > 0){
+                $scoresQuery->where(function($query) use ($countryArray) {
+                    $query->whereIn('region_id', $countryArray);
+                });
+            }
+
+            $scores = $scoresQuery->selectRaw('level_1, level_2, level_3, level_4')
+                      ->groupBy('level_1', 'level_2', 'level_3', 'level_4','region_id')
+                      ->paginate(10);
          $view = view('admin.report.filtertable',compact('region','currencies','yeardata','scores','viewfilter','currencyfilter'))->render();
 
          return response()->json(['view' => $view]);
