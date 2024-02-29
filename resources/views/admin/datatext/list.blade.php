@@ -1,6 +1,6 @@
 @extends('layouts.adminheader')
-<link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @section('content')
+
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
@@ -66,19 +66,19 @@
                                             <div class="d-inline">
                                                 <h6><b>Jurisdiction</b> </h6>
                                                 <label>
-                                                <select id="select-jurisdiction" class="form-control select2" name="region_id">
-                                                <option value="0" sselected>--Select Jurisdiction--</option>
-                                                    @if($region->count())
-                                                        @foreach($region as $data)
-                                                            <option value="{{$data->id}}">{{ucfirst($data->name)}}</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select> 
+                                                    <select id="select-jurisdiction" class="form-control select2" name="region_id">
+                                                        <option value="0" sselected>--Select Jurisdiction--</option>
+                                                        @if($region->count())
+                                                            @foreach($region as $data)
+                                                                <option value="{{$data->id}}">{{ucfirst($data->name)}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select> 
                                                 </lable>
                                             </div>
                                         </div>
                                         <div class="col-md-8">
-                                        <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
+                                            <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
                                         </div>
                                         <div class="col-md-1 text-right">
                                             <div class="col-md-12 text-right"><a href="{{route('datatext-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
@@ -100,7 +100,7 @@
                                                     <th>{{__('Level-4')}}</th>
                                                     <th>{{__('Description')}}</th>
                                                     <th>{{__('Action')}}</th>
-                                                    </tr>
+                                                </tr>
                                             </thead>
                                             <tbody>
                                              <?php /*    <?php

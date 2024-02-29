@@ -81,13 +81,14 @@ input:checked + .slider .off
   border-radius: 34px;
 }
 
-.slider.round:before {
-  border-radius: 50%;}
+.slider.round:before { border-radius: 50%;}
+
+
   </style>
 
-@section('content')
+{{-- @section('content') --}}
     <div class="page-header card">
-                <div class="row align-items-end">
+        <div class="row align-items-end">
             <div class="col-lg-3">
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
@@ -98,8 +99,8 @@ input:checked + .slider .off
             </div>
             
             <div class="col-lg-5">
-                <a href="javascript:void(0);" class="btn text-light" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
-                <a class="btn text-light" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
+                <a href="javascript:void(0);" class="btn text-light upload-excel" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
+                <a class="btn text-light download-data" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
             </div>
             
             <div class="col-lg-4">
@@ -121,65 +122,60 @@ input:checked + .slider .off
     </div>
 
     <div class="container">
-
         <div class="row">
-
-                <div class="col-sm-12 col-xl-2 m-b-30">
-                    <h3 class="sub-title">View</h3>
-                    <label class="switch">
-                        <input type="checkbox" id="togBtnview">
-                        <div class="slider round">
+            <div class="col-6 col-sm-12 col-xl-2 m-b-30">
+                <h3 class="sub-title">View</h3>
+                <label class="switch">
+                    <input type="checkbox" id="togBtnview">
+                    <div class="slider round">
                         <!--ADDED HTML -->
                         <span class="on">Standard</span>
                         <span class="off">Local</span>
                         <!--END-->
-                        </div>
-                        
-                    </label>   
-                </div>
+                    </div>
+                    
+                </label>   
+            </div>
 
-                <div class="col-sm-12 col-xl-2 m-b-30">
-                <h3 class="sub-title">Currency</h3>
-                    <label class="switch">
-                        <input type="checkbox" id="togBtncurrency">
-                        <div class="slider round">
-                        <!--ADDED HTML -->
-                        <span class="on">USD</span>
-                        <span class="off">LocalCurr</span>
-                        <!--END-->
-                        </div>
-                    </label>   
-                
-                </div>
+            <div class="col-6 col-sm-12 col-xl-2 m-b-30">
+            <h3 class="sub-title">Currency</h3>
+                <label class="switch">
+                    <input type="checkbox" id="togBtncurrency">
+                    <div class="slider round">
+                    <!--ADDED HTML -->
+                    <span class="on">USD</span>
+                    <span class="off">LocalCurr</span>
+                    <!--END-->
+                    </div>
+                </label>   
+            </div>
 
-                  <div class="col-sm-12 col-xl-3 m-b-30">
-                      <h3 class="sub-title">Jurisdiction</h3>
-                      <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
-                          @if($region->count())
-                              @foreach($region as $data)
-                                  <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
-                              @endforeach
-                          @endif
-                      </select>
-                  </div>
+            <div class="col-sm-12 col-xl-3 m-b-30">
+                <h3 class="sub-title">Jurisdiction</h3>
+                <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
+                    @if($region->count())
+                        @foreach($region as $data)
+                            <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
 
 
-                <div class="col-sm-12 col-xl-2 m-b-30">
+            <div class="col-sm-12 col-xl-2 m-b-30">
                 <h3 class="sub-title">Year From</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
                     <option value="" hidden>{{__('-- select --')}}</option>
                 </select>
-                </div>
+            </div>
 
 
-                <div class="col-sm-12 col-xl-2 m-b-30">
+            <div class="col-sm-12 col-xl-2 m-b-30">
                 <h3 class="sub-title">Year To</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsto">
                     <option value="0" hidden>{{__('-- select --')}}</option>
                 </select>
-                </div>
-
-
+            </div>
         </div>
         <div class="row textrow">
             <div class="col-sm-12 col-xl-2 m-b-30 ">
@@ -204,14 +200,11 @@ input:checked + .slider .off
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="row">
-                                    
-                                </div>
-                               
+                                
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive" id="targetDivold">
 
-                                     @include('admin.report.table')
+                                        @include('admin.report.table')
                                     </div>
                                     <div class="dt-responsive table-responsive" id="targetDivnew">
                                     </div>
