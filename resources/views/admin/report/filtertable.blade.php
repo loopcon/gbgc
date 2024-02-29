@@ -1,4 +1,4 @@
-@if(count($yeardata)>0)
+@if(count($yeardata)>0 && count($scores)>0)
 <table class="table table-bordered nowrap">
     <thead>
         <tr>
@@ -57,12 +57,12 @@
                         @foreach($yeardata as $year)
                             @php
                                 $yearlyTotalScore = App\Models\Score::where(['view' => $viewfilter])
-                                                                    ->where(['currency_id' => $currencyfilter])
-                                                                    ->where('year', $year)
-                                                                    ->where('level_1', $prevLevel1)
-                                                                    ->where('level_2', $prevLevel2)
-                                                                    ->where('level_3', $prevLevel3)
-                                                                    ->sum('score');
+                                ->where(['currency_id' => $currencyfilter])
+                                ->where('year', $year)
+                                ->where('level_1', $prevLevel1)
+                                ->where('level_2', $prevLevel2)
+                                ->where('level_3', $prevLevel3)
+                                ->sum('score');
                             @endphp
                             <td class="bold">{{ $yearlyTotalScore }}</td>
                         @endforeach

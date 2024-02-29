@@ -24,6 +24,8 @@ use App\Exports\ExportScore;
 use Illuminate\Support\Collection ;
 use Excel;
 use App\Models\Score;
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class FrontendController extends Controller
 {
@@ -184,8 +186,17 @@ class FrontendController extends Controller
 
     public function placeorder(Request $request)
     {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
-
+        $token = $request->stripeToken;
+       
+        $charge = Charge::create([
+            'amount' => $request->membershipprice, // amount in cents
+            'currency' => 'GBP',
+            'description' => 'GBGC - Consultancy',
+            'source' => $token,
+        ]);
+ // dd($token);
         Customer::where('id',$request->input('customerid'))->update(['payment'=>1]);
         $order= new Order();
         $order->customer_id=$request->input('customerid');

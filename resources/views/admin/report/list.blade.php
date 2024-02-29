@@ -236,17 +236,6 @@ input:checked + .slider .off
                                     </div>
                                     <div class="modal-body">
 
-                                        <!-- <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">View<span class="text-danger">*</span></label>
-                                            <div class="col-sm-10">
-                                                <select id="view" class="form-control select2" name="view" required="">
-                                                    <option value="0">--Select View--</option>
-                                                    <option value="Standard">Standard</option>
-                                                    <option value="Local">Local</option>
-                                                </select>
-                                            </div>
-                                        </div> -->
-
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Jurisdiction<span class="text-danger">*</span></label>
                                             <div class="col-sm-10">
@@ -258,18 +247,6 @@ input:checked + .slider .off
                                                 </select>
                                             </div>
                                         </div>
-
-<!--                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Currency<span class="text-danger">*</span></label>
-                                            <div class="col-sm-10">
-                                                <select id="currency" class="form-control select2" name="currency" required="">
-                                                    <option value="0">--Select Currency--</option>
-                                                    @foreach($currencies as $currency)
-                                                    <option value="{{$currency->id}}">{{$currency->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> -->
 
                                         <div class="form-row col-md-12" id="import">
                                             <div class="form-group col-sm-12">
@@ -285,6 +262,9 @@ input:checked + .slider .off
                             </div>
                         </div>
                     </div>
+        <div id="loader" class="overlay">
+    <div class="spinner"></div>
+</div>
         <div id="styleSelector">
         </div>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -317,8 +297,52 @@ input:checked + .slider .off
     </div>
 </div>
 <!-- Information pop-up end-->
+<style type="text/css">
+    .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none; /* Hide loader initially */
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+</style>
 @endsection
 @section('javascript')
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('#importForm').submit(function(){
+        // Show loader
+        $('#loader').show();
+
+        // Disable screen
+        $('body').addClass('modal-open');
+        $('.modal-backdrop').addClass('show');
+
+        return true; // Allow form submission to continue
+    });
+});
+</script>
 <script>
     // Set default values for View and Currency
     document.addEventListener('DOMContentLoaded', function() {

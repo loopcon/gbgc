@@ -80,6 +80,7 @@ public function sheets(): array
                 $existingData = DB::table('scores')
                     ->where('view', $view)
                     ->where('region_id', $this->region)
+                    ->where('currency_id', $currency)
                     ->where('level_1', $level1)
                     ->where('level_2', $level2)
                     ->where('level_3', $level3)
@@ -119,8 +120,6 @@ public function sheets(): array
         $comment = $sheet->getComment($cellCoordinate);
         return $comment ? $comment->getText()->getPlainText() : null;
     }
-
-
 
     private function getCellAddress($columnIndex, $rowIndex)
     {
