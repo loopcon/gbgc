@@ -26,7 +26,7 @@ class ReportController extends Controller
                 ->where(['currency_id' => 'USD'])
                 ->selectRaw('level_1, level_2, level_3, level_4')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
-                ->paginate(10);
+                ->get();
         return view('admin.report.list',compact('region','currencies','yeardata','scores'));
     }
 
@@ -37,9 +37,6 @@ class ReportController extends Controller
         $yearfrom = $request->has('year_from') ? $request->year_from : null;
         $yearto = $request->has('year_to') ? $request->year_to : null;
         $return_data = array();
-        $user = Auth::guard('customers')->id();
-        $customer_detail= Customer::where([['id', '=', $user]])->first();
-        $customer = $customer_detail->access_type;
         $countryArray=$request->input('country');
 
         $region=Region::orderBy('name','asc')->get();
@@ -63,7 +60,7 @@ class ReportController extends Controller
 
             $scores = $scoresQuery->selectRaw('level_1, level_2, level_3, level_4')
                       ->groupBy('level_1', 'level_2', 'level_3', 'level_4','region_id')
-                      ->paginate(10);
+                      ->get();
          $view = view('admin.report.filtertable',compact('region','currencies','yeardata','scores','viewfilter','currencyfilter'))->render();
 
          return response()->json(['view' => $view]);

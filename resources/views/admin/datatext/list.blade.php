@@ -1,6 +1,7 @@
 @extends('layouts.adminheader')
-<link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+
 @section('content')
+<link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">

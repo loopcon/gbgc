@@ -85,7 +85,7 @@ input:checked + .slider .off
   border-radius: 50%;}
   </style>
 
-@section('content')
+
     <div class="page-header card">
                 <div class="row align-items-end">
             <div class="col-lg-3">
@@ -152,7 +152,7 @@ input:checked + .slider .off
                 
                 </div>
 
-                  <div class="col-sm-12 col-xl-3 m-b-30">
+                  <div class="col-sm-12 col-xl-2 m-b-30">
                       <h3 class="sub-title">Jurisdiction</h3>
                       <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
                           @if($region->count())
@@ -179,6 +179,9 @@ input:checked + .slider .off
                 </select>
                 </div>
 
+                 <div class="col-sm-12 col-xl-2 m-b-30 mt-5">
+                    <a href="{{route('adminreport')}}" class="btn btn-primary">Reset</a>
+                </div>
 
         </div>
         <div class="row textrow">
@@ -395,92 +398,101 @@ $(document).ready(function () {
     $('.juricdictiontext').hide();
     $('.yeartotext').hide();
 
-document.addEventListener("DOMContentLoaded", function() {
-    var checkbox = document.getElementById('togBtnview');
-    var currencySelect = document.getElementById('togBtncurrency'); 
-    var jurisdictionSelect = document.getElementById('country'); 
-    var yearFromSelect = document.getElementById('ddlYearsfrom'); 
-    var yearToSelect = document.getElementById('ddlYearsto'); 
+    document.addEventListener("DOMContentLoaded", function() {
+        var checkbox = document.getElementById('togBtnview');
+        var currencySelect = document.getElementById('togBtncurrency'); 
+        var yearFromSelect = document.getElementById('ddlYearsfrom'); 
+        var yearToSelect = document.getElementById('ddlYearsto'); 
+        
+       $(function() {
+        $('#country').change(function(e) {
+            var selectedOptions = $(this).find('option:selected');
+            var selectedCountryText = [];
+            var selectedcountry = $(e.target).val();
 
-    [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
+            selectedOptions.each(function() {
+                selectedCountryText.push($(this).text());
+            });
+
+            handleFormChange(checkbox, selectedcountry, yearFromSelect, yearToSelect, selectedCountryText.join(', '));
+            }); 
+        });
+
+       [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
         if (element) {
-            element.addEventListener('change', function() {
-                handleFormChange();
+            element.addEventListener('change', function(e) {
+                var selectedcountry = $('#country').val(); // Retrieve the selected country value
+                handleFormChange(checkbox, selectedcountry, yearFromSelect, yearToSelect);
             });
         }
     });
 
-    jurisdictionSelect.addEventListener('change', function() {
-        handleFormChange();
-    });
-
-function paginate(page) {
-    var viewValue = checkbox.checked ? 'Standard' : 'Local';
-    var currencyValue = checkbox.checked ? 'USD' : 'LocalCurr';
-    var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
-    var yearFromValue = yearFromSelect.value;
-    var yearToValue = yearToSelect.value;
-    var token = "{{ csrf_token() }}";
-   handleFormChange();
-}
-   
-   function handleFormChange() {
-    var viewValue = checkbox.checked ? 'Standard' : 'Local';
-    var currencyCheckbox = document.getElementById('togBtncurrency');
-    var currencyValue = currencyCheckbox.checked ? 'USD' : 'LocalCurr';
-    var jurisdictionSelect = document.getElementById('country');
-    var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
-    var yearFromValue = yearFromSelect.value;
-    var yearToValue = yearToSelect.value;
-    var token = "{{ csrf_token() }}";
-    $('.textrow').show();
-    if(viewValue != "")
-    {
-        $('.viewtext').show();
-        $('.viewValue').html(viewValue);
-    }
-    if(currencyValue != "")
-    {
-        $('.currencytext').show();
-        $('.currencyValue').html(currencyValue);
-    }
-    if(jurisdictionValues != "")
-    {
-        $('.juricdictiontext').show();
-        $('.juricdictionValue').html(jurisdictionSelect);
-    }
-    if(yearFromValue && yearToValue != 0)
-    {
-        $('.yeartotext').show();
-        $('.yeartoValue').html(yearFromValue + '-' +yearToValue);
-    }
-
-    // Send AJAX request with all values
-    $.ajax({
-        url: "{{ route('adminscoreview') }}",
-        type: "POST",
-        dataType: 'json',
-        data: {
-            _token: token,
-            view: viewValue,
-            currency: currencyValue,
-            jurisdictions: jurisdictionValues,
-            year_from: yearFromValue,
-            year_to: yearToValue
-        },
-        success: function(data) {
-            $("#targetDivold").hide();
-            $('#targetDivnew').html(data.view);
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
+        
+        function paginate(page) {
+            var viewValue = checkbox.checked ? 'Standard' : 'Local';
+            var currencyValue = currencySelect.checked ? 'USD' : 'LocalCurr';
+            var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
+            var yearFromValue = yearFromSelect.value;
+            var yearToValue = yearToSelect.value;
+            var token = "{{ csrf_token() }}";
+            handleFormChange(checkbox, null, yearFromSelect, yearToSelect);
         }
     });
-}
 
+    function handleFormChange(checkbox, selectedcountry, yearFromSelect, yearToSelect, selectedCountryText) {
+        var viewValue = checkbox.checked ? 'Standard' : 'Local';
+        var currencyCheckbox = document.getElementById('togBtncurrency');
+        var currencyValue = currencyCheckbox.checked ? 'USD' : 'LocalCurr';
+        var yearFromValue = yearFromSelect.value;
+        var yearToValue = yearToSelect.value;
+        var country = selectedcountry;
+        var juricdictiontext = selectedCountryText;
 
-});
+        var token = "{{ csrf_token() }}";
+        $('.textrow').show();
+        if(viewValue != "") {
+            $('.viewtext').show();
+            $('.viewValue').html(viewValue);
+        }
+        if(juricdictiontext != "")
+        {
+            $('.juricdictiontext').show();
+            $('.juricdictionValue').html(juricdictiontext)
+        }else {
+            // If no jurisdiction text, hide the corresponding element
+            $('.juricdictiontext').hide();
+        }
+        if(currencyValue != "") {
+            $('.currencytext').show();
+            $('.currencyValue').html(currencyValue);
+        }
+        if(yearFromValue && yearToValue != 0) {
+            $('.yeartotext').show();
+            $('.yeartoValue').html(yearFromValue + '-' +yearToValue);
+        }
 
+        // Send AJAX request with all values
+        $.ajax({
+            url: "{{ route('adminscoreview') }}",
+            type: "POST",
+            dataType: 'json',
+            data: {
+                _token: token,
+                view: viewValue,
+                currency: currencyValue,
+                year_from: yearFromValue,
+                year_to: yearToValue,
+                country: country // Add country to the data object being sent
+            },
+            success: function(data) {
+                $("#targetDivold").hide();
+                $('#targetDivnew').html(data.view);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
 </script>
 
 

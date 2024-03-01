@@ -31,7 +31,7 @@ class ReportController extends Controller
                 ->where(['currency_id' => 'USD'])
                 ->selectRaw('level_1, level_2, level_3, level_4')
                 ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
-                ->paginate(10);
+                ->get();
          $sdata = Score::where(['view' => 'Standard'])
              ->where(['currency_id' => 'USD'])   
              ->get();
@@ -48,7 +48,6 @@ class ReportController extends Controller
 
     public function scoreview(Request $request)
     {
-        // dd($request->all());
         $viewfilter=$request->view;
         $currencyfilter=$request->currency;
         $yearfrom = $request->has('year_from') ? $request->year_from : null;
@@ -80,8 +79,8 @@ class ReportController extends Controller
 
             $scores = $scoresQuery->selectRaw('level_1, level_2, level_3, level_4')
                       ->groupBy('level_1', 'level_2', 'level_3', 'level_4','region_id')
-                      ->paginate(10);
-
+                       ->get();
+                       
          $view = view('frontend.report.filtertable',compact('region','currencies','customer','yeardata','scores','viewfilter','currencyfilter'))->render();
 
          return response()->json(['view' => $view]);
