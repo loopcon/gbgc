@@ -2,6 +2,7 @@
 @section('title')
 <title>GBGC - Dashboard</title>
 @endsection
+
 @section('content')
 <style>
 .switch {
@@ -184,7 +185,7 @@ input:checked + .slider .off
 
 
             </div>
-        </div>
+
         <div class="row textrow">
             <div class="col-sm-12 col-xl-2 m-b-30 ">
                 <h6 class="viewtext">View : <lable class="viewValue"></lable></h6>
