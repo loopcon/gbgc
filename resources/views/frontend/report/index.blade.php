@@ -181,8 +181,8 @@ input:checked + .slider .off
                 </select>
                 </div>
 
-                 <div class="col-sm-12 col-xl-2 m-b-30">
-                    <a href="" class="btn btn-primary">Reset</a>
+                 <div class="col-sm-12 col-xl-2 m-b-30 mt-5">
+                    <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
                 </div>
 
 
@@ -333,13 +333,15 @@ $(document).ready(function () {
             }); 
         });
 
-        [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
-            if (element) {
-                element.addEventListener('change', function() {
-                    handleFormChange(checkbox, null, yearFromSelect, yearToSelect);
-                });
-            }
-        });
+       [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
+        if (element) {
+            element.addEventListener('change', function(e) {
+                var selectedcountry = $('#country').val(); // Retrieve the selected country value
+                handleFormChange(checkbox, selectedcountry, yearFromSelect, yearToSelect);
+            });
+        }
+    });
+
         
         function paginate(page) {
             var viewValue = checkbox.checked ? 'Standard' : 'Local';
@@ -361,7 +363,6 @@ $(document).ready(function () {
         var country = selectedcountry;
         var juricdictiontext = selectedCountryText;
 
-
         var token = "{{ csrf_token() }}";
         $('.textrow').show();
         if(viewValue != "") {
@@ -372,6 +373,9 @@ $(document).ready(function () {
         {
             $('.juricdictiontext').show();
             $('.juricdictionValue').html(juricdictiontext)
+        }else {
+            // If no jurisdiction text, hide the corresponding element
+            $('.juricdictiontext').hide();
         }
         if(currencyValue != "") {
             $('.currencytext').show();

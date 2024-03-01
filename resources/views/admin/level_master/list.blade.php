@@ -72,12 +72,14 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                        <th>{{__('Title')}}</th>
-                                                        <th>{{__('level')}}</th>
-                                                        <th>{{__('Parent Level')}}</th>
-                                                        <th>{{__('Action')}}</th>
+                                                    <th>{{__('Level 1')}}</th>
+                                                    <th>{{__('Level 2')}}</th>
+                                                    <th>{{__('Level 3')}}</th>
+                                                    <th>{{__('Level 4')}}</th>
+                                                    <th>{{__('Action')}}</th>
                                                     </tr>
                                             </thead>
+                                            
                                             <tbody>
                                                 <?php
                                                     $i=1;
@@ -87,9 +89,14 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
+                                                            <td >{{$data->masterDetail->masterDetail->masterDetail->title}} </td>
+
+                                                            <td >{{$data->masterDetail->masterDetail->title}} </td>
+
+                                                            <td >{{$data->masterDetail->title}} </td>
+
                                                             <td >  {{$data->title}} </td>
-                                                            <td >  {{$data->level_number}} </td>
-                                                            <td >  {{!empty($data->masterDetail)? $data->masterDetail->title:""}} </td>
+                                                           
                                                             <td><a href="{{ route('level-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
                                                             <a href='javascript:void(0);' data-href="{{ route('level-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
                                                              </td>
