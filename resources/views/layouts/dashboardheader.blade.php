@@ -37,33 +37,48 @@
         width: 130px !important;
         height: auto !important;
     }
-    .dashboard-header-height{
+    /* .dashboard-header-height{
         height: 85px;
-    }
-    .dashboard-header-height  .mobile-menu{
-        top:50% !important;
-    }
+    } */
+    
     .dashboard-logo-bg{
         height: 85px !important;
     }
-    .dashboard-logo .mobile-options{
-        top: 50% !important;
-    }
+
+.dashboard-table-responsive{display: inline-block;width: 100%;overflow-x: auto; }
+.dashboard-table-responsive::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;}
+.dashboard-table-responsive::-webkit-scrollbar{width: 6px; height: 5px; background-color: #F5F5F5; }
+.dashboard-table-responsive::-webkit-scrollbar-thumb{ background-color: #000000; }
+
 
     @media (max-width:575px){
-        .dashboard-header-height  .mobile-menu{
-            top:50% !important;
+        .dashboard-logo{
+            width: 100px !important;
+            height: auto !important;
         }
-        .dashboard-logo .mobile-options{
-            top: 50% !important;
-        }   
+        .download-btn{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .page-header.card .breadcrumb{
+            float: unset;
+        }
     }
 </style>
 
 @yield('css')
-{!! $data->google_tag_manager !!}
+{{-- {!! $data->google_tag_manager !!} --}}
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-58FKJN5');</script>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58FKJN5"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        
     <div class="loader-bg">
         <div class="loader-bar"></div>
     </div>

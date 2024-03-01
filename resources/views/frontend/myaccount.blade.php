@@ -58,43 +58,43 @@
                                 <form method="post" action="{{route('updatemyaccount')}}" id="my-profile-form" class="row" enctype="multipart/form-data" data-parsley-validate=''>
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$customer_detail->id}}">
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label class="form-label">Name</label>
                                         <input  class="form-control"  type="text" id="name" name="name" value="{{$customer_detail->name}}">
                                     </div>
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="email">Email</label>
                                         <input  class="form-control" type="text" id="email" name="email" value="{{$customer_detail->email}}" readOnly>
                                     </div>
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="phone">Phone number</label>
                                         <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="PHONE NUMBER" id="phone" name="phone" value="{{$customer_detail->phone}}" readOnly>
                                     </div>
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="job_title">Job Title</label>
                                         <input  class="form-control"  type="text" id="job_title" name="job_title" value="{{$customer_detail->job_title}}">
                                     </div>
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="bussiness_name">Bussiness Name</label>
                                         <input  class="form-control"  type="text" id="bussiness_name" name="bussiness_name" value="{{$customer_detail->bussiness_name}}">
                                     </div>
 
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="bussiness_name">Bussiness Wider Group</label>
                                         <input  class="form-control"  type="text" id="business_wider_group" name="business_wider_group" value="{{$customer_detail->business_wider_group}}">
                                     </div>
                                     @if($customer_detail->access_type == 'paid' && $customer_detail->access_type == 'requestforpaiduser')
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="bussiness_name">Additional User</label>
                                         <input  class="form-control"  type="text" id="additional_user_no" name="additional_user_no">
                                     </div>
 
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="bussiness_name">Additional Detail</label>
                                         <input  class="form-control"  type="text" id="additional_details" name="additional_details" value="{{$customer_detail->additional_details}}">
                                     </div>
                                     @endif
-                                    <div class="contact-label col-12 col-lg-6">
+                                    <div class="contact-label col-12 col-lg-6 mb-3">
                                         <label for="bussiness_name">Billing Address</label>
                                         <input  class="form-control"  type="text" id="billing_address" name="billing_address" value="{{$customer_detail->billing_address}}">
                                     </div>

@@ -90,7 +90,7 @@ input:checked + .slider .off
 
   </style>
 
-@section('content')
+
     <div class="page-header card">
                 <div class="row align-items-end">
             <div class="col-lg-3">
@@ -103,7 +103,7 @@ input:checked + .slider .off
             </div>
             
             <div class="col-lg-5">
-                <a class="btn text-light" style="background:#4099ff" href="{{route('reportdownload')}}"> Download Excel </a>
+                <a class="btn text-light download-btn" style="background:#4099ff" href="{{route('reportdownload')}}"> Download Excel </a>
             </div>
             
             <div class="col-lg-4">
@@ -127,7 +127,7 @@ input:checked + .slider .off
 
         <div class="row">
 
-                <div class="col-sm-12 col-xl-2 m-b-30">
+                <div class="col-6 col-sm-12 col-xl-2 m-b-30">
                     <h3 class="sub-title">View</h3>
                     <label class="switch">
                         <input type="checkbox" id="togBtnview">
@@ -140,7 +140,7 @@ input:checked + .slider .off
                     </label>   
                 </div>
 
-                <div class="col-sm-12 col-xl-2 m-b-30">
+                <div class="col-6 col-sm-12 col-xl-2 m-b-30">
                 <h3 class="sub-title">Currency</h3>
                     <label class="switch">
                         <input type="checkbox" id="togBtncurrency">
@@ -215,7 +215,7 @@ input:checked + .slider .off
                                 </div>
                                
                                 <div class="card-block">
-                                    <div class="dt-responsive table-responsive" id="targetDivold">
+                                    <div class="dt-responsive" id="targetDivold">
 
                                      @include('frontend.report.table')
                                     </div>

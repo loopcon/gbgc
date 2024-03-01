@@ -1,5 +1,4 @@
 @extends('layouts.dashboardheader')
-<link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @section('content')
     <div class="page-header card">
         <div class="row align-items-end">
@@ -83,8 +82,8 @@
                                     </div>
                                 </div>
                                 <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                        <table id="glossary-list" class="table table-striped table-bordered nowrap">
+                                    <div class="dt-responsive">
+                                        <table id="glossary-list" class="table table-striped table-bordered nowrap dashboard-table-responsive">
                                             <thead>
                                                 <tr>
                                                    <?php /* <th>{{__('Sr No.')}}</th>
