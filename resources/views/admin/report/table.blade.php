@@ -1,5 +1,5 @@
 @if(count($yeardata)>0)
-<table class="table table-bordered nowrap">
+<table class="table table-bordered nowrap admin-table-responsive">
     <thead>
         <tr>
             <th>{{__('Level 1')}}</th>

@@ -202,7 +202,7 @@ input:checked + .slider .off
                             <div class="card">
                                 
                                 <div class="card-block">
-                                    <div class="dt-responsive table-responsive" id="targetDivold">
+                                    <div class="dt-responsive" id="targetDivold">
 
                                         @include('admin.report.table')
                                     </div>
