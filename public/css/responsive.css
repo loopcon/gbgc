@@ -75,7 +75,7 @@
 
 @media screen and (max-width:575px) {
     .order-check-firstname{padding-right: 0px;}
-    .faq-contactbtn{margin-bottom: 20px; display: block;}
+    .faq-contactbtn{margin-bottom: 0px; display: block;}
     .reports-bg{ padding: 20px 0px;}
     .subscript-text-box{width: 100%;padding-left: 13px;}
     .subscript-text-box p{ font-size: 16px;}
@@ -123,7 +123,7 @@
     .faq-heading-worktextsection h1{font-size: 35px;}
     .faq-heading-worktextsection p{ width: 100%; font-size: 15px;}
     .faq-heading-worktextsection button{ width: 150px;}
-    .faq-section-main{ padding: 30px 0;}
+    .faq-section-main{ padding-top: 0px; padding-bottom: 30px; padding-left: 0; padding-right: 0; }
     /* faq  */
     /* how  it  workd  */
     .how-its-worktextsection{padding: 30px 0;}
