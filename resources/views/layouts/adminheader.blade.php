@@ -24,7 +24,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/assets/css/pages.css')}}">
-
+<link rel="stylesheet" type="text/css" href="{{asset('admin/css/admin-custom.css')}}">
 
 <link rel="stylesheet" href="{{asset('admin/files/bower_components/select2/css/select2.min.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{asset('admin/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css')}}" />

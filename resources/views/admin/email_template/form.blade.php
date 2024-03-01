@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-12 col-sm-3">
                                 <div class="card">
                                     <div class="list-group list-group-flush" role="tablist">
                                         @if($email_templates)
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-9">
+                            <div class="col-12 col-sm-9">
                                 <div class="tab-content">
                                     @if($email_templates)
                                         @foreach($email_templates as $key => $value)

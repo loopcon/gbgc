@@ -125,7 +125,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Logo</label>
                                         <div class="col-sm-10">
-                                            <input type="file" class="form-control" placeholder="Upload Logo"  name="logo">
+                                            <input type="file" class="form-control" placeholder="Upload Logo"  name="logo" style="height:41px;" >
                                             <label class=" text-danger"><small>Logo size : 210 x 100 px and Type : .jpg, .png, .webp</small></label>
                                             @if ($errors->has('logo')) <div class="text-danger">{{ $errors->first('logo') }}</div>@endif
                                         </div>
@@ -142,7 +142,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Fevicon</label>
                                         <div class="col-sm-10">
-                                            <input type="file" class="form-control" placeholder="Upload Fevicon"  name="fevicon">
+                                            <input type="file" class="form-control" placeholder="Upload Fevicon"  name="fevicon" style="height:41px;">
                                             <label class=" text-danger"><small>Fevicon size : 210 x 100 px and Type : .jpg, .png, .webp</small></label>
                                             @if ($errors->has('fevicon')) <div class="text-danger">{{ $errors->first('fevicon') }}</div>@endif
                                         </div>
