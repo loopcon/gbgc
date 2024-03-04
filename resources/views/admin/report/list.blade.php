@@ -82,6 +82,9 @@ input:checked + .slider .off
   border-radius: 34px;
 }
 
+.bold{
+    font-weight: bold;
+}
 .slider.round:before { border-radius: 50%;}
 
 

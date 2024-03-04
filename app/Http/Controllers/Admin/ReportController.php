@@ -24,9 +24,9 @@ class ReportController extends Controller
         $currencies=Currency::get();
         $scores = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')
                 ->where(['currency_id' => 'USD'])
-                ->selectRaw('level_1, level_2, level_3, level_4')
-                ->groupBy('level_1', 'level_2', 'level_3', 'level_4')
-                ->get();
+                ->selectRaw('level_1, level_2, level_3, level_4, region_id,currency_id')
+                ->groupBy('level_1', 'level_2', 'level_3', 'level_4', 'region_id','currency_id')
+                ->paginate(10);
         return view('admin.report.list',compact('region','currencies','yeardata','scores'));
     }
 

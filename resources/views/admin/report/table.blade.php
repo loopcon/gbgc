@@ -181,3 +181,5 @@
 @else
 <h4>Data not Found</h4>
 @endif
+
+{{ $scores->links() }}
