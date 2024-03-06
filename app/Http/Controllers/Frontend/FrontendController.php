@@ -186,8 +186,7 @@ class FrontendController extends Controller
 
     public function placeorder(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
-
+       Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $token = $request->stripeToken;
        
         $charge = Charge::create([

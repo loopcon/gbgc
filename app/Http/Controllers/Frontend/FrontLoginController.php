@@ -63,9 +63,9 @@ class FrontLoginController extends Controller
 
     public function proregistration(Request $request)
     {
-
+        
        $validator = Validator::make($request->all(), [
-            'name' => ['required'],
+            'profname' => ['required'],
             'email' => ['required', 'unique:customers,email', 'email'],
             'phone' => ['required', 'numeric','digits:10'],
         ], [
@@ -77,7 +77,8 @@ class FrontLoginController extends Controller
         }
 
         $customer = new Customer();
-        $customer->name=$request->input('name');
+        $customer->fname=$request->input('profname');
+        $customer->lname=$request->input('prolname');
         $customer->job_title=$request->input('job_title');
         $customer->phone=$request->input('phone');
         $customer->email=$request->input('email');
