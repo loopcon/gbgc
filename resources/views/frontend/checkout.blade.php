@@ -69,20 +69,20 @@
                         <div class="col-12 col-sm-6 order-check-firstname">
                             <div class="mb-3">
                                 <label for="firstname" class="form-label">First name <span>*</span></label>
-                                <input type="text" class="form-control" id="firstname" value="{{$customer->name}}" name="first_name">
+                                <input type="text" class="form-control" id="firstname" value="{{$customer->fname}}" name="first_name">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 p-0">
                             <div class="mb-3">
                                 <label for="lastname" class="form-label">Last name <span>*</span></label>
-                                <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp" name="last_name">
+                                <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp" name="last_name" value="{{$customer->lname}}">
                             </div>
                         </div>
                     </div>
                     
                     <div class="mb-3">
                         <label for="companyname" class="form-label">Company name (optional)</label>
-                        <input type="text" class="form-control" id="companyname" aria-describedby="emailHelp" name="companyname">
+                        <input type="text" class="form-control" id="companyname" aria-describedby="emailHelp" name="companyname" value="{{$customer->bussiness_name}}">
                     </div>
 
                     <div class="mb-3">
@@ -215,7 +215,10 @@
         </div> -->
             <div class="your-personal-databox">
                 <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="{{route($staticpage->slug)}}">privacy policy.</a></p>
-
+                <div class="paymentradio">
+                    <input type="radio" name="paymentmethod" required value="offline"> Offline Payment
+                    <input type="radio" name="paymentmethod" value="online"> Online Payment
+                </div>
                 <button type="submit" class="place-order-btn">Place Order</button><br>
             </div>
         </div>

@@ -284,12 +284,21 @@
                                         <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
-                                                <input type="text" id="proname" name="name" class="form-control" placeholder="Name">
+                                                <input type="text" id="proname" name="profname" class="form-control" placeholder="First Name">
                                             </div>
                                             <div id="nameerror-pro"></div>
                                         </div>
-
                                         <div class="col-12 col-md-6 mb-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="prolname" name="prolname" class="form-control" placeholder="Last Name">
+                                            </div>
+                                            <div id="nameerror-pro"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 mb-3">
                                             <div class="input-group ">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-nib"></i></span>
                                                 <input type="text" id="projob_title" name="job_title"  class="form-control" placeholder="Job Title">
