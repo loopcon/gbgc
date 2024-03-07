@@ -145,7 +145,7 @@ section.one:after {content: "";display: block;clear: both;}
 .create-your-domain-text a.active p {background-color: #00ACE0;border: 1px solid #00ACE0;}
 .right .active {/* margin-top: 100px; */position: relative;top: 100px;}
 .right .active p {font-weight: normal;}
-.gear-img-scroll {position: absolute;}
+.gear-img-scroll {position: relative;}
 /* how it works page css end */
 /* faq css start  */
 .faq-heading-section {padding: 60px 0px;position: relative;overflow: hidden;width: 100%;}
@@ -294,7 +294,6 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 .invalid-feedback {display: block !important;width: 100% !important;}
 /* registration error end*/
 .watching-overview-bg {background-color: #f5f5f5;margin-top: 20px;}
-.section-stick .header-color {position: -webkit-sticky;position: sticky;top: 77px;z-index: 1;}
 .msignmain-menu {text-decoration: none;display: inline-block;width: 100%;background-color: #fff;padding: 10px 0;border-bottom: 1px solid #ddd;color: #333333;font-weight: 600;}
 .msignmain-menu:hover {color: #333333;}
 .msignmain-menu .mobile-number-bg {background-color: #00abf4;height: 30px;width: 30px;display: inline-block;text-align: center;border-radius: 50%;line-height: 30px;color: #fff;margin-right: 10px;}
@@ -323,13 +322,5 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 .contact-label {margin-bottom: 15px;}
 /* front dashboard css end  */
 .mo-hit-menuclick .mobile-numberactive-bg{background-color:#00abf4 !important;color: #ffF;}
-#prosignupmodel .input-group span{
-    width: 45px;
-    display: block;
-    text-align: center;
-}
-#registerModal .input-group span{
-    width: 45px;
-    display: block;
-    text-align: center;
-}
+#prosignupmodel .input-group span{width: 45px;display: block;text-align: center;}
+#registerModal .input-group span{width: 45px;display: block;text-align: center;}

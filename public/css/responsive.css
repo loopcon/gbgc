@@ -57,6 +57,8 @@
     .watch-webinar-box{padding-top: 11rem;padding-bottom: 4rem;padding-left: 0;padding-right: 0;}
 }
 
+
+
 @media screen and (max-width:768px) {
     .bird-svg-main svg{display: none;}
     .badal-imgset-1{display: none;}
@@ -67,15 +69,30 @@
     .faq-heading-worktextsection button{ width: 150px;}
     .faq-section-main{ padding: 30px 0;}
     .standard-box-detail{ min-height: 425px;}
+    .how-its-worktextsection p{ width:80%; }
+    .gbgc-text-empoyees-text p{ width:80%; }
+    .watch-webinar-box p{ width: 80%; }
+    .left-child{ display: flex; overflow-y: auto;  }
+    .how-its-worktextsection{ padding:3rem 0; }
+    .how-its-worktextsection h1{ font-size: 45px;}
 }
-
-@media screen and (min-width:575px) {
+@media (min-width:575px) and (max-width:767px) {
+    .desktop-view{display: none;}
+    /* .mobile-view{display: block;} */
+    .section-stick {position: -webkit-sticky;position: sticky;top: 100px;z-index: 1;}
+    .navbar-imglogo{width: 110px;margin-left: 25px;}
+    .mo-hit-menuclick{ position: absolute; z-index: 1;}
+    .msign-up-text{
+        position: relative;
+    }
+}
+@media screen and (min-width:767px) {
     .mobile-view{display: none;}
 }
 
 @media screen and (max-width:575px) {
     .order-check-firstname{padding-right: 0px;}
-    .faq-contactbtn{margin-bottom: 0px; display: block;}
+    .faq-contactbtn{margin-bottom: 20px; display: block;}
     .reports-bg{ padding: 20px 0px;}
     .subscript-text-box{width: 100%;padding-left: 13px;}
     .subscript-text-box p{ font-size: 16px;}
@@ -171,20 +188,11 @@
     .standard-prise-textdetail ul{ padding-left: 30px; }
     .purchase-prise-text h4{ font-size: 30px; margin-top: 15px; } 
     .creadit-card-form .savepayment-text input{margin-right: 5px;}
-    .faq-accordion-box a.faq-accordion-header{
-        padding: 10px 27px;
-    }
-    .faq-accordion-box a.faq-accordion-header:after{
-        position: absolute;right: 10px;top: 15px;
-
-    }
-    .faq-accordion-box a.faq-accordion-header{
-        position: relative;
-    }
-
-    .login-register-form-box{
-        padding: 0px;
-    }
+    .faq-accordion-box a.faq-accordion-header{padding: 10px 27px;}
+    .faq-accordion-box a.faq-accordion-header:after{position: absolute;right: 10px;top: 15px;}
+    .faq-accordion-box a.faq-accordion-header{position: relative;}
+    .login-register-form-box{padding: 0px;}
+    .section-stick .header-color {position: -webkit-sticky;position: sticky;top: 77px;z-index: 1;}
 }
 
 
