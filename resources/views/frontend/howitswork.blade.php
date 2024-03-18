@@ -304,7 +304,7 @@
 
             <div class="mobile-view">
                 <div class="section-stick">
-                    <div class="sign-upposi header-color">
+                    <div class="sign-upposi header-color middle-screen-focus">
                         <div class="msign-up-text">
                             <a class="msignmain-menu step-1mosignmenu" href="#step1-mcreate-domain"><span class="mobile-number-bg">1 </span> Sign Up <span class="mobile-iconhit"><i class="fa-solid fa-chevron-up"></i></span></a>
                             <div class="mo-hit-menuclick">
