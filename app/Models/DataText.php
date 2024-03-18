@@ -9,7 +9,8 @@ class DataText extends Model
 {
     use HasFactory;
     protected $table ='datatexts'; 
-    protected $fields = ['view','region_id', 'main_category', 'sub_category_1','sub_category_2','level_4','description'];
+    protected $fillable  = ['view','region_id', 'main_category', 'sub_category_1','sub_category_2','level_4','description'];
+    
     public function regionDetail()
     {
         return $this->belongsTo(Region::class,'region_id');

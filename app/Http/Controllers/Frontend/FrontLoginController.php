@@ -22,7 +22,8 @@ class FrontLoginController extends Controller
     {   
 
        $validator = Validator::make($request->all(), [
-            'name' => ['required'],
+            'fname' => ['required'],
+            'lname' => ['required'],
             'email' => ['required', 'unique:customers,email', 'email'],
             'phone' => ['required', 'numeric','digits:10'],
         ], [
@@ -34,7 +35,8 @@ class FrontLoginController extends Controller
         }
 
         $customer = new Customer();
-        $customer->name=$request->input('name');
+        $customer->fname=$request->input('fname');
+        $customer->lname=$request->input('lname');
         $customer->job_title=$request->input('job_title');
         $customer->phone=$request->input('phone');
         $customer->email=$request->input('email');
@@ -285,7 +287,8 @@ class FrontLoginController extends Controller
         //     ]
         // );
         $customer=Customer::find($request->id);
-        $customer->name=$request->input('name');
+        $customer->fname=$request->input('fname');
+        $customer->lname=$request->input('lname');
         $customer->job_title=$request->input('job_title');
         $customer->phone=$request->input('phone');
         $customer->email=$request->input('email');

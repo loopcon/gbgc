@@ -221,6 +221,8 @@ input:checked + .slider .off
                                     </div>
                                     <div class="dt-responsive table-responsive" id="targetDivnew">
                                     </div>
+                                
+
                                 </div>
                             </div>
                         </div>
@@ -261,6 +263,13 @@ input:checked + .slider .off
 <!-- Information pop-up end-->
 @endsection
 @section('javascript')
+<script type="text/javascript">
+    $(document).ready(function() {
+         $('tr:has(td:contains("Total")) td').css('font-weight', 'bold');
+        $('td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
+    });
+</script>
+
 <script>
     // Set default values for View and Currency
     document.addEventListener('DOMContentLoaded', function() {

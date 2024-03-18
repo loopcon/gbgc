@@ -119,21 +119,30 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{$customer->id}}">
                                     <div class="row mb-3">
-                                        <div class="col-12 col-md-4 ">
+                                        <div class="col-12 col-md-6 ">
                                             <div class="input-group">
-                                                <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{$customer->name}}">
+                                                <input type="text" id="fname" name="fname" class="form-control" placeholder="First Name" value="{{$customer->fname}}">
                                             </div>
-                                            <div id="nameerror"></div>
+                                            <div id="fnameerror"></div>
                                         </div>
 
-                                        <div class="col-12 col-md-4">
+                                        <div class="col-12 col-md-6 ">
+                                            <div class="input-group">
+                                                <input type="text" id="lname" name="lname" class="form-control" placeholder="Last Name" value="{{$customer->lname}}">
+                                            </div>
+                                            <div id="lnameerror"></div>
+                                        </div>
+                                    </div>
+
+                                        <div class="row mb-3">
+                                        <div class="col-12 col-md-6">
                                             <div class="input-group">
                                                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{$customer->email}}" readonly> 
                                             </div>
                                             <div id="emailerror"></div>
                                         </div> 
 
-                                        <div class="col-12 col-md-4" >
+                                        <div class="col-12 col-md-6" >
                                             <div class="input-group">
                                                 <input  class="form-control" maxlength="10"  type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Phone Number" id="phone" name="phone" value="{{$customer->phone}}" readonly>
                                             </div> 
@@ -328,10 +337,11 @@
             }
             
             if (data.status == 0) {
-                $('#nameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
+                $('#fnameerrorshow, #lnameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
                 if(data.errors)
                 {
-                    if(data.errors.name){$('#nameerror').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
+                    if(data.errors.fname){$('#fnameerror').html('<strong id="fnameerrorshow" style="color:red">'+ data.errors.fname + '</strong>');}
+                    if(data.errors.lname){$('#lnameerror').html('<strong id="lnameerrorshow" style="color:red">'+ data.errors.lname + '</strong>');}
                     if (data.errors.email) {$('#emailerror').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
                     if(data.errors.phone){$('#phoneerror').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
                 }

@@ -78,11 +78,13 @@
                                                 </lable>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
                                         </div>
-                                        <div class="col-md-1 text-right">
-                                            <div class="col-md-12 text-right"><a href="{{route('datatext-create')}}" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                        <div class="col-md-2 text-right">
+                                            
+
+                                                <a href="javascript:void(0);"  data-toggle="modal" data-target="#scoreImportModal" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Upload Excel')}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -139,6 +141,44 @@
         <div id="styleSelector">
         </div>
     </div>
+      <div class="modal fade" id="scoreImportModal" tabindex="-1" role="dialog" aria-labelledby="scoreImportModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form action="{{ route('importdatatext') }}" method="post" data-parsley-validate enctype="multipart/form-data" id="importForm">
+                                    {{ csrf_field() }}
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sizeOptionModalLabel">Upload Excel File</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Jurisdiction<span class="text-danger">*</span></label>
+                                            <div class="col-sm-10">
+                                                <select id="region" class="form-control select2" name="region" required="">
+                                                    <option value="0">--Select Jurisdiction--</option>
+                                                    @foreach($region as $regiondata)
+                                                    <option value="{{$regiondata->id}}">{{$regiondata->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row col-md-12" id="import">
+                                            <div class="form-group col-sm-12">
+                                                <input type="file" accept=".xlsx" name="file" id="score_import" value="" class="btn btn-secondary btn-block btn-sm" placeholder="Select Excel" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close-modal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="confirmImport" class="btn btn-primary">Import</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
 <!-- Information pop-up -->
 <div class="modal fade" id="informationmodel" tabindex="-1" role="dialog" aria-labelledby="scoreImportModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered modal-lg">

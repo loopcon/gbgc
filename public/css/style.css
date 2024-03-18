@@ -1,6 +1,6 @@
 * {padding: 0;margin: 0;}
 /* navbar  css start  */
-.paymentradio{text-align:right;}
+.paymentradio{text-align:left;}
 .sticky {position: fixed;top: 0;width: 100%;z-index: 3;background-color: #2e9cc5;}
 .navbar-bgimg {position: relative;}
 .navbar-main {display: flex;justify-content: space-between;align-items: center;padding: 20px 15px;}

@@ -104,4 +104,6 @@ class RegionController extends Controller
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
+
+
 }

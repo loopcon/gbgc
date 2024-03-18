@@ -200,9 +200,17 @@
                                         <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
-                                                <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+                                                <input type="text" id="fname" name="fname" class="form-control" placeholder="First Name">
                                             </div>
-                                            <div id="nameerror"></div>
+                                            <div id="fnameerror"></div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 mb-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-user"></i></span>
+                                                <input type="text" id="lname" name="lname" class="form-control" placeholder="Last Name">
+                                            </div>
+                                            <div id="lnameerror"></div>
                                         </div>
 
                                         <div class="col-12 col-md-6 mb-3">
@@ -710,10 +718,11 @@
             }
             
             if (data.status == 0) {
-                $('#nameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
+                $('#fnameerrorshow, #lnameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
                 if(data.errors)
                 {
-                    if(data.errors.name){$('#nameerror').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
+                    if(data.errors.fname){$('#fnameerror').html('<strong id="fnameerrorshow" style="color:red">'+ data.errors.fname + '</strong>');}
+                    if(data.errors.lname){$('#lnameerror').html('<strong id="lnameerrorshow" style="color:red">'+ data.errors.lname + '</strong>');}
                     if (data.errors.email) {$('#emailerror').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
                     if(data.errors.phone){$('#phoneerror').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
                 }

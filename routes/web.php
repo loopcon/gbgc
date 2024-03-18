@@ -5,7 +5,8 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\FrontLoginController;
 use App\Http\Controllers\Frontend\ReportController;
 use App\Http\Controllers\Frontend\GlossaryController;
-
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\Frontend\OrderController;  
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,11 @@ use App\Http\Controllers\Frontend\GlossaryController;
 
 //Fronted Route
 
+Route::post('stripe', [StripeController::class, 'stripe'])->name('stripe');
+Route::get('success', [StripeController::class, 'success'])->name('success');
+Route::get('cancel', [StripeController::class, 'cancel'])->name('cancel');
+Route::get('paymentsuccess',[StripeController::class,'offlinepaymentsuccess'])->name('offlinepaymentsuccess');
+
 Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::post('/store-newsletter',[FrontendController::class, 'storeNewsletter'])->name('store-newsletter');
 Route::get('faq',[FrontendController::class,'faq'])->name('faq');
@@ -27,11 +33,12 @@ Route::get('membership',[FrontendController::class,'membership'])->name('members
 Route::get('thank-you',[FrontendController::class,'thankyou'])->name('thankyou');
 Route::get('lost-password',[FrontendController::class,'lostpassword'])->name('lostpassword');
 Route::get('check-out',[FrontendController::class,'checkout'])->name('checkout');
+Route::get('payment',[FrontendController::class,'payment'])->name('payment');
 Route::get('additional-check-out',[FrontendController::class,'additionalcheckout'])->name('additionalcheckout');
 
 Route::get('additionaluserlist',[FrontendController::class,'additionaluserlist'])->name('additionaluserlist');
 Route::get('reportdownload',[FrontendController::class,'reportdownload'])->name('reportdownload');
-
+Route::get('order',[OrderController::class,'order'])->name('order');
 
 
 Route::post('placeorder',[FrontendController::class,'placeorder'])->name('placeorder');
@@ -68,6 +75,12 @@ Route::post('verifytotp',[FrontLoginController::class,'verifytotp'])->name('veri
 Route::group(['middleware' => ['auth']], function () { 
 
     Route::get('/backend', [App\Http\Controllers\Admin\IndexController::class, 'index'])->name('adminindex');
+
+//order
+Route::get('admin/order',[App\Http\Controllers\Admin\OrderController::class,'order'])->name('adminorder');
+Route::post('updatepaymentstatus',[App\Http\Controllers\Admin\OrderController::class,'updatepaymentstatus'])->name('updatepaymentstatus');
+//end order
+
 
     //membershipplan
     Route::get('admin/membership',[App\Http\Controllers\Admin\MembersipplanController::class, 'index'])->name('adminmembership');
@@ -191,6 +204,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('admin/sub_category_1', [App\Http\Controllers\Admin\DatatextController::class, 'fetchsub_category_1']);
     Route::post('admin/sub_category_2', [App\Http\Controllers\Admin\DatatextController::class, 'fetchsub_category_2']);
     Route::post('admin/level_4', [App\Http\Controllers\Admin\DatatextController::class, 'fetchlevel_4']);
+
+    Route::post('import-datatext', [App\Http\Controllers\Admin\DatatextController::class, 'importdatatext'])->name('importdatatext');
+
     //end datatext
 
     //levelmaster

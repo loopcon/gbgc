@@ -28,8 +28,10 @@ class ExportScore implements FromArray, WithHeadings
         $prevLevel2 = null;
         $prevLevel3 = null;
         $totalScoreLevel4 = [];
+        $totalScoreLevel3 = [];
+        $totalScoreLevel2 = [];
+        $totalScoreLevel1 = [];
 
-        // Fetch distinct combinations of levels
         $combinations = Score::with('maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail')
             ->select('level_1', 'level_2', 'level_3', 'level_4')
             ->distinct()
@@ -37,21 +39,7 @@ class ExportScore implements FromArray, WithHeadings
 
         // Loop through each combination of levels
         foreach ($combinations as $index => $combination) {
-            // If level 1 changes, print it
-            if ($prevLevel1 !== $combination->level_1) {
-                $prevLevel1 = $combination->level_1;
-                $printLevel1 = true;
-            } else {
-                $printLevel1 = false;
-            }
-
-            // If level 2 changes, print it
-            if ($prevLevel2 !== $combination->level_2) {
-                $prevLevel2 = $combination->level_2;
-                $printLevel2 = true;
-            } else {
-                $printLevel2 = false;
-            }
+            
 
             // If level 3 changes, print it
             if ($prevLevel3 !== $combination->level_3) {
@@ -66,8 +54,8 @@ class ExportScore implements FromArray, WithHeadings
                 // Add total score for the previous level 3
                 if (!empty($totalScoreLevel4)) {
                     // Add 'Total' in Level-4 cell
-                    $totalRow = array_fill(0, 4, ''); // Filling array with empty strings
-                    $totalRow[3] = 'Total'; // Setting 'Total' in Level-4 cell
+                    $totalRow = array_fill(0, 4, '');
+                    $totalRow[3] = 'Total 3';
                     foreach ($totalScoreLevel4 as $total) {
                         $totalRow[] = $total;
                     }
@@ -75,6 +63,48 @@ class ExportScore implements FromArray, WithHeadings
                 }
                 // Reset variables for the new level 3
                 $totalScoreLevel4 = array_fill(0, count($yeardata), 0);
+            }
+
+             // If level 2 changes, print it
+            if ($prevLevel2 !== $combination->level_2) {
+
+                // Add total score for the previous level 2
+                if (!empty($totalScoreLevel2)) {
+                    // Add 'Total' in Level-2 cell
+                    $totalRow = array_fill(0, 4, '');
+                    $totalRow[2] = 'Total 2'; // Setting 'Total 2' in Level-2 cell
+                    foreach ($totalScoreLevel2 as $total) {
+                        $totalRow[] = $total;
+                    }
+                    $exportData[] = $totalRow;
+                }
+                
+                // Reset variables for the new level 2
+                $prevLevel2 = $combination->level_2;
+                $printLevel2 = true;
+                $totalScoreLevel3 = array_fill(0, count($yeardata), 0);
+                $totalScoreLevel2 = array_fill(0, count($yeardata), 0);
+            } else {
+                $printLevel2 = false;
+            }
+
+            // If level 1 changes, print it and add total score for previous Level 1
+            if ($prevLevel1 !== $combination->level_1) {
+                if (!is_null($prevLevel1)) {
+                    // Add total score for the previous level 1
+                    $totalRow = array_fill(0, 3, '');
+                    $totalRow[1] = 'Total 1';
+                    foreach ($totalScoreLevel1 as $total) {
+                        $totalRow[] = $total;
+                    }
+                    $exportData[] = $totalRow;
+                }
+                $prevLevel1 = $combination->level_1;
+                $printLevel1 = true;
+                // Reset variables for the new level 1
+                $totalScoreLevel1 = array_fill(0, count($yeardata), 0);
+            } else {
+                $printLevel1 = false;
             }
 
             // Initialize row data with level details
@@ -100,6 +130,9 @@ class ExportScore implements FromArray, WithHeadings
                 $score = isset($scores[$year]) ? $scores[$year] : 0;
                 $rowData[] = $score;
                 $totalScoreLevel4[array_search($year, $yeardata)] += $score;
+                $totalScoreLevel3[array_search($year, $yeardata)] += $score;
+                $totalScoreLevel2[array_search($year, $yeardata)] += $score;
+                $totalScoreLevel1[array_search($year, $yeardata)] += $score; // Increment Level 1 total
             }
 
             // Add row data to the export data
@@ -110,8 +143,29 @@ class ExportScore implements FromArray, WithHeadings
         if (!empty($totalScoreLevel4)) {
             // Add 'Total' in Level-4 cell
             $totalRow = array_fill(0, 4, ''); // Filling array with empty strings
-            $totalRow[3] = 'Total'; // Setting 'Total' in Level-4 cell
+            $totalRow[3] = 'Total3'; // Setting 'Total' in Level-4 cell
             foreach ($totalScoreLevel4 as $total) {
+                $totalRow[] = $total;
+            }
+            $exportData[] = $totalRow;
+        }
+
+         if (!empty($totalScoreLevel3)) {
+            // Add 'Total' in Level-3 cell
+            $totalRow = array_fill(0, 4, ''); // Filling array with empty strings
+            $totalRow[2] = 'Total 2'; // Setting 'Total 3' in Level-3 cell
+            foreach ($totalScoreLevel3 as $total) {
+                $totalRow[] = $total;
+            }
+            $exportData[] = $totalRow;
+        }
+
+        // Add total score for the last Level 1
+        if (!empty($totalScoreLevel1)) {
+            // Add 'Total' in Level-1 cell
+            $totalRow = array_fill(0, 4, ''); // Filling array with empty strings
+            $totalRow[1] = 'Total 1'; // Setting 'Total 1' in Level-1 cell
+            foreach ($totalScoreLevel1 as $total) {
                 $totalRow[] = $total;
             }
             $exportData[] = $totalRow;
@@ -119,6 +173,7 @@ class ExportScore implements FromArray, WithHeadings
 
         return $exportData;
     }
+
 
     public function headings(): array
     {

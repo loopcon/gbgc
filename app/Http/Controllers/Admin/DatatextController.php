@@ -8,7 +8,8 @@ use App\Models\DataText;
 use App\Models\Region;
 use App\Models\LevelMaster;
 use DB;
-
+use App\Imports\Importdatatext;
+use Excel;
 class DatatextController extends Controller
 {
     /**
@@ -218,5 +219,13 @@ class DatatextController extends Controller
         );
         echo json_encode($return_data);
         exit;
+    }
+
+    public function importdatatext(Request $request)
+    {
+        $region=$request->input('region');
+        $file = $request->file('file');
+        Excel::import(new Importdatatext($region,$file), $file);
+        return redirect('admin/glossary')->with('success', trans('Glossary Imported successfully.'));
     }
 }

@@ -24,8 +24,7 @@ use App\Exports\ExportScore;
 use Illuminate\Support\Collection ;
 use Excel;
 use App\Models\Score;
-use Stripe\Stripe;
-use Stripe\Charge;
+use Stripe\StripeClient;
 
 class FrontendController extends Controller
 {
@@ -65,6 +64,7 @@ class FrontendController extends Controller
         $sessioncustomer=Session::get('customer');
 
         $user = Auth::guard('customers')->id();
+        // dd($user);
         if($user != null){
             $membership = Membershipplan::where('access_status','=','freetopro')->first();
             $membershipamount=$membership->price;
@@ -82,6 +82,32 @@ class FrontendController extends Controller
         $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
         
         return view('frontend.checkout', array_merge($return_data),compact('customer','membership','membershipamount'));
+    }
+
+    public function payment()
+    {
+       $sessioncustomer=Session::get('customer');
+
+        $user = Auth::guard('customers')->id();
+
+        // dd($user);
+        if($user != null){
+            $membership = Membershipplan::where('access_status','=','freetopro')->first();
+            $membershipamount=$membership->price;
+            $customer=Customer::where('id',$user)->first();
+        }elseif($sessioncustomer != null){
+            $membership = Membershipplan::where('access_status','=','paid')->first();
+            $membershipamount=$membership->price;
+            $customer=Customer::where('id',$sessioncustomer)->first();
+        }else{
+          return redirect('/')->with('error', trans('Something went wrong, please try again later!'));
+        }
+        
+        $return_data = array();
+        $return_data['region'] = Region::get();
+        $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
+        // dd($membershipamount);
+        return view('frontend.payment', array_merge($return_data),compact('customer','membership','membershipamount')); 
     }
 
     public function additionalcheckout()
@@ -186,69 +212,44 @@ class FrontendController extends Controller
 
     public function placeorder(Request $request)
     {
-       Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $token = $request->stripeToken;
-       
-        $charge = Charge::create([
-            'amount' => $request->membershipprice, // amount in cents
-            'currency' => 'GBP',
-            'description' => 'GBGC - Consultancy',
-            'source' => $token,
+       $stripe = new StripeClient(env('STRIPE_SECRET'));
+
+       // dd($stripe);
+        $response = $stripe->checkout->sessions->create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => 'testproduct',
+                        ],
+                        'unit_amount' => 100*100,
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+            'success_url' => route('success').'?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('cancel'),
         ]);
- // dd($token);
-        Customer::where('id',$request->input('customerid'))->update(['payment'=>1]);
-        $order= new Order();
-        $order->customer_id=$request->input('customerid');
-        $order->membershipplans_id=$request->input('membershipid');
-        $order->amount=$request->input('membershipprice');
-        $order->save();
-
-        $orderdetail= new Orderdetail();
-        $orderdetail->order_id=$order->id;
-        $orderdetail->firstname=$request->input('first_name');
-        $orderdetail->lastname=$request->input('last_name');
-        $orderdetail->companyname=$request->input('companyname');
-        $orderdetail->country=$request->input('country');
-        $orderdetail->streetaddress=$request->input('street_address');
-        $orderdetail->streetaddress1=$request->input('street_address1');
-        $orderdetail->city=$request->input('city');
-        $orderdetail->postalcode=$request->input('postalcode');
-        $orderdetail->phone=$request->input('phone');
-        $orderdetail->email=$request->input('email');
-        $orderdetail->save();
-
-        $membership=Membershipplan::where('id',$request->input('membershipid'))->first();
-
-        // dd($membership);
-        if($membership->access_status =='additionaluser')
-        {   
-            $customerupdate=Customer::where('id',$request->input('customerid'))->first();
-            Customer::where('id',$request->input('customerid'))
-                     ->update([
-                               // 'accept_additional_user'=>$customerupdate->remain_payment_additional_user + $customerupdate->payment_additional_user,
-                               'payment_additional_user'=>$customerupdate->payment_additional_user + $customerupdate->remain_payment_additional_user,
-                               'remain_payment_additional_user'=>0
-                             ]);
-        }
-        if($membership->access_status =='paid')
-        {
-            // Customer::where('id',$request->input('customerid'))->update(['access_type'=>'paid']);
-            return redirect('/')->with('alert-success', 'Payment Do Successfully After Admin Verfication You Can Access a PaidMembership');
-        }
-
-        if($membership->access_status =='freetopro')
-        {
-            Customer::where('id',$request->input('customerid'))->update(['access_type'=>'paid']);
-             return redirect()->route('frontdashboard')->with('success', trans('Payment Do Successfully After Admin Verfication You Can Access a PaidMembership'));
-        }
-        else
-        {
-
-            return redirect()->route('frontdashboard')->with('success', trans('Payment Do Successfully After Admin Verfication You Can Access a PaidMembership'));
-        }
 
     }
 
+     public function success(Request $request)
+    {
+        if(isset($request->session_id)) {
+
+           $stripe = new StripeClient(env('STRIPE_SECRET'));
+            $response = $stripe->checkout->sessions->retrieve($request->session_id);
+
+            dd($response);
+        }
+    }
+
+    public function cancel()
+    {
+        return "Payment is canceled.";
+    }
     public function additionaluserlist(Request $request)
     {
         $sessioncustomer=Session::get('customer');

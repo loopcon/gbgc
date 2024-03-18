@@ -175,7 +175,7 @@
                                     </li>
 
                                     <li class="{{ (request()->is('admin/order*'))? 'pcoded-trigger' : '' }}">
-                                        <a href="#" class="waves-effect waves-dark">
+                                        <a href="{{route('adminorder')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
                                             </span>

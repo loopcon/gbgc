@@ -159,7 +159,7 @@
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="#" class="waves-effect waves-dark">
+                                        <a href="{{route('order')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
                                             </span>

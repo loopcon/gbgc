@@ -335,6 +335,13 @@ input:checked + .slider .off
 @endsection
 @section('javascript')
 <script type="text/javascript">
+    $(document).ready(function() {
+         $('tr:has(td:contains("Total")) td').css('font-weight', 'bold');
+        $('td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
+    });
+</script>
+
+<script type="text/javascript">
     $(document).ready(function(){
     $('#importForm').submit(function(){
         // Show loader

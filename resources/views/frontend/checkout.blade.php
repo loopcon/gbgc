@@ -3,6 +3,7 @@
 <title>Checkout</title>
 @endsection
 @section('content')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="faq-heading-section">
         <div class="container">
             <div class="bird-svg-main">
@@ -60,9 +61,9 @@
         <div class="row m-0">
             <div class="col-12 col-sm-6 p-0">
                 <h4 class="check-order-headtext">Billing details</h4>
-                <form action="{{route('placeorder')}}" class="billing-form-detail" method="post" data-cc-on-file="false"
-                            data-stripe-publishable-key="{{ env('STRIPE_KEY') }}">
-                    @csrf
+
+                    <form role="form"  action="{{ route('stripe') }}" method="post" >
+                        @csrf
                     <input type="hidden" value="{{$customer->id}}" name="customerid">
                     <input type="hidden" value="{{$customer->access_type}}" name="access_type">
                     <div class="row m-0">
@@ -178,47 +179,18 @@
     </div>
 
     <div class="container">
-       <!--  <div class="credit-card-box">
-            <h4 class="credit-card-headtext">Credit Card (Stripe)</h4>
-            <div class="payment-method-checkout">
-                <p>Pay with your credit card via Stripe.</p>
-                <div>
-                    <span class="use-payment"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Use a new payment method</span>
-                  
-                        <div class="mb-4">
-                            <label for="exampleInputEmail1" class="form-label">Card Number <span>*</span></label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="1234 1234 1234 1234">
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-4">
-                                    <label for="exampleInputEmail1" class="form-label">Expiry Date <span>*</span></label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="MM/YY">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-4">
-                                    <label for="exampleInputEmail1" class="form-label">Card Code (CVC) <span>*</span></label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CVC">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-2">
-                            <span class="savepayment-text">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                Save payment information to my account for future purchases.
-                            </span>
-                        </div>
-                    
+    <div class="credit-card-box">
+            
+            <h5 class="credit-card-headtext">Payment Method</h5>
+            <div class="paymentradio mb-4">
+                    <input type="radio" name="paymentmethod" required value="offline"> Offline Payment
+                    <input type="radio" name="paymentmethod" value="online" onclick="redirectToPayment()"> Online Payment
                 </div>
-            </div>
-        </div> -->
+    </div>
+
             <div class="your-personal-databox">
                 <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="{{route($staticpage->slug)}}">privacy policy.</a></p>
-                <div class="paymentradio">
-                    <input type="radio" name="paymentmethod" required value="offline"> Offline Payment
-                    <input type="radio" name="paymentmethod" value="online"> Online Payment
-                </div>
+                
                 <button type="submit" class="place-order-btn">Place Order</button><br>
             </div>
         </div>
@@ -228,60 +200,10 @@
 </div>
 </div>
 @endsection
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-$(function() {
-   
-    var $form         = $(".require-validation");
-   
-    $('form.require-validation').bind('submit', function(e) {
-        var $form         = $(".require-validation"),
-        inputSelector = ['input[type=email]', 'input[type=password]',
-                         'input[type=text]', 'input[type=file]',
-                         'textarea'].join(', '),
-        $inputs       = $form.find('.required').find(inputSelector),
-        $errorMessage = $form.find('div.error'),
-        valid         = true;
-        $errorMessage.addClass('hide');
-  
-        $('.has-error').removeClass('has-error');
-        $inputs.each(function(i, el) {
-          var $input = $(el);
-          if ($input.val() === '') {
-            $input.parent().addClass('has-error');
-            $errorMessage.removeClass('hide');
-            e.preventDefault();
-          }
-        });
-   
-        if (!$form.data('cc-on-file')) {
-          e.preventDefault();
-          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-          Stripe.createToken({
-            number: $('.card-number').val(),
-            cvc: $('.card-cvc').val(),
-            exp_month: $('.card-expiry-month').val(),
-            exp_year: $('.card-expiry-year').val()
-          }, stripeResponseHandler);
-        }
-  
-  });
-  
-  function stripeResponseHandler(status, response) {
-        if (response.error) {
-            $('.error')
-                .removeClass('hide')
-                .find('.alert')
-                .text(response.error.message);
-        } else {
-            /* token contains id, last4, and card type */
-            var token = response['id'];
-               
-            $form.find('input[type=text]').empty();
-            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-            $form.get(0).submit();
-        }
+@section('script')
+<script>
+    function redirectToPayment() {
+       window.location.href = "{{ route('payment') }}"; // Replace 'payment-route' with your actual payment route
     }
-   
-});
 </script>
+@endsection

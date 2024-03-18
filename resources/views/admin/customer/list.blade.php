@@ -14,7 +14,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="feather icon-home"></i></a>
+                            <a href="#"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{route('adminindex')}}">Home</a>
@@ -74,6 +74,7 @@
                                                         <th>{{__('Bussiness Name')}}</th>
                                                         <th>{{__('Bussiness Wider Group')}}</th>
                                                         <th>{{__('Access Type')}}</th>
+                                                        <th>{{__('Payment Status')}}</th>
                                                         <th>{{__('Status')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
@@ -87,13 +88,25 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->name}} </td>
+                                                            <td >  {{$data->fname}}
+                                                                    {{$data->lname}} </td>
                                                             <td >  {{$data->email}} </td>
                                                             <td >  {{$data->phone}} </td>
                                                             <td >  {{$data->job_title}} </td>
                                                             <td >  {{$data->bussiness_name}} </td>
                                                             <td >  {{$data->business_wider_group}} </td>
                                                             <td >  {{$data->access_type}} </td>
+                                                            <td>
+                                                                @if($data->access_type == 'requestforpaid' || $data->access_type == 'paid')
+                                                                @if($data->payment == 1)
+                                                                <span class="badge rounded-pill bg-successs">Payment Done</span>
+                                                                @else
+                                                                <span class="badge rounded-pill bg-secondary">Payment Remain</span>
+                                                                @endif
+                                                                @else
+                                                                -
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 @if($data->status==1 && $data->payment==1)
                                                                     {{"Pro access is live"}}<br>
