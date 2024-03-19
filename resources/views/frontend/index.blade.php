@@ -14,7 +14,8 @@
                 <li>Stop relying on topline reporting to make complex decisions.</li>
                 <li>Subscribe to access revenue data split by every European gambling jurisdiction and market.</li>
             </ul>*/ ?>
-            <button>Read More</button>
+            {{-- <button>Read More</button> --}}
+            <a href="#report-carousel">Read More</a>
         </div>
     </div>
     

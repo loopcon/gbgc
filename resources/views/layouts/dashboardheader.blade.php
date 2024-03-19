@@ -42,7 +42,18 @@
     } */
     
     .dashboard-logo-bg{
-        height: 85px !important;
+        height: 65px !important;
+        padding: 0px 10px !important;
+    }
+    .header-navbar{
+        min-height: 65px !important;
+        height: 65px !important;
+    }
+    .pcoded .pcoded-navbar .nav-list{
+        height: calc(100vh - 65px);
+    }
+    .pcoded[theme-layout=vertical] .pcoded-navbar[pcoded-navbar-position=fixed]{
+        top: 65px;
     }
 
 .dashboard-table-responsive{display: inline-block;width: 100%;overflow-x: auto; }

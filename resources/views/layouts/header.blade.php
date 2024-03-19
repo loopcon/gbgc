@@ -593,6 +593,8 @@
                 dots: true,
                 nav: true,
                 items: 1,
+                autoplay:true,
+                autoplayTimeout:3000,
                 navText: [
                     '<i class="fa-solid fa-arrow-left-long"></i>',
                     '<i class="fa-solid fa-arrow-right-long"></i>'
