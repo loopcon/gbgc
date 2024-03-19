@@ -89,47 +89,14 @@
                                     </div>
                                 </div>
                                 <div class="card-block">
-                                    <div class="dt-responsive">
-                                        <table id="glossary-list" class="table table-striped table-bordered nowrap admin-table-responsive">
-                                            <thead>
-                                                <tr>
-                                                   <?php /* <th>{{__('Sr No.')}}</th>
-                                                    <th>{{__('View')}}</th>
-                                                    <th>{{__('Region')}}</th> */ ?>
-                                                    <th>{{__('Jurisdiction')}}</th>
-                                                    <th>{{__('Level-1')}}</th>
-                                                    <th>{{__('Level-2')}}</th>
-                                                    <th>{{__('Level-3')}}</th>
-                                                    <th>{{__('Level-4')}}</th>
-                                                    <th>{{__('Description')}}</th>
-                                                    <th>{{__('Action')}}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                             <?php /*    <?php
-                                                    $i=1;
-                                                ?>
-                                                @if(count($datatext)>0)
-                                                    @foreach($datatext as $data) 
-                                                        <tr>   
-                                                        //    <td>{{$i}}</td>
-                                                        //         <?php $i++;?>
-                                                        //     <td >  {{$data->view}} </td>
-                                                        //     <td >  {{$data->regionDetail->name}} </td>
-                                                            <td >@if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
-                                                            <td >@if($data->subcategory1Detail){{$data->subcategory1Detail->title}}@else - @endif</td>
-                                                            <td >@if($data->subcategory2Detail){{$data->subcategory2Detail->title}}@else - @endif</td>
-                                                            <td >@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
-                                                            <td >  {!!$data->description!!} </td>
-                                                            <td><a href="{{ route('datatext-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href='javascript:void(0);' data-href="{{ route('datatext-delete',$data->id) }}" rel='tooltip' class="btn btn-danger delete" title="Delete"><i class="fa fa-trash"></i></a>
-                                                             </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif */ ?>
-                                            </tbody>
-                                        </table>
-                                        <div class="pull-right" id="pagination"></div>
+                                    <div class="">
+                                        
+                                        
+
+                                        <div id="targetDivnew" class="dt-responsive admin-table-responsive">
+                                        </div>
+
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -208,6 +175,11 @@
 <!-- Information pop-up end-->
 @endsection
 @section('javascript')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
+    });
+</script>
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
     $(document).ready(function() {
@@ -237,8 +209,6 @@
         });
         $('#hide-text').hide();
 
-        loadGloassayList("","");
-
         $('#select-jurisdiction').on('change', function(){
             
             var jurisdiction = $(this).val();
@@ -257,31 +227,49 @@
             }
             
         });
-
-        $(document).on('click', '.pagination li.page-item a.page-link', function(e){
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var jurisdiction = $('#select-jurisdiction').val();
-            loadGloassayList(jurisdiction,url);
-        });
     });
 
-    function loadGloassayList(jurisdiction,url)
-    {
-        if(url==''){
-            url = "{{ route('adminglossarylist',1)}}";
-        }
+    document.addEventListener("DOMContentLoaded", function() {
+        var jurisdiction = document.getElementById('select-jurisdiction').value;
+        loadGloassayList(jurisdiction, 1); // Load the initial page
+    });
+
+    function loadGloassayList(jurisdiction, page) {
+        var url = "{{ route('adminglossarylist')}}";
         $.ajax({
             type: 'POST',
-            data: { _token: "{{ csrf_token() }}", jurisdiction: jurisdiction},
+            data: { 
+                _token: "{{ csrf_token() }}", 
+                jurisdiction: jurisdiction,
+                page: page // Pass the page number
+            },
             url: url,
             dataType: 'json',
             success: function (response) {
-                $("#glossary-list tbody").html(response.data.glossary_list);
-                $("#pagination").html(response.data.pagination);
-                // $("#page").html(response.data.page);
+                $('#targetDivnew').html(response.view);
+                $('#targetDivnew td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
+
             }
         });
     }
+
+    $(document).ready(function() {
+        $('#paginate a').on('click', handlePaginationClick);
+    });
+
+    function handlePaginationClick(event) {
+        event.preventDefault();
+        var pageUrl = event.target.href;
+        var pageNumber = getPageNumberFromLink(event.target);
+        var jurisdiction = document.getElementById('select-jurisdiction').value;
+        loadGloassayList(jurisdiction, pageNumber);
+    }
+
+    function getPageNumberFromLink(link) {
+        // Extract the page number from the link's text
+        var pageNumber = link.textContent.trim();
+        return pageNumber;
+    }
+
 </script>
 @endsection

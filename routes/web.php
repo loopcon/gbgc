@@ -62,7 +62,7 @@ Route::get('report',[ReportController::class, 'index'])->name('frontreport');
 Route::get('export-report',[ReportController::class,'exportReport'])->name('export-report');
 Route::post('report_list/{page}', [ReportController::class, 'reportList'])->name('frontreportlist');
 Route::get('glossary', [GlossaryController::class,'index'])->name('frontglossary');
-Route::post('glossary_list/{page}', [GlossaryController::class, 'glossaryList'])->name('frontglossarylist');
+Route::post('glossary_list', [GlossaryController::class, 'glossaryList'])->name('frontglossarylist');
 
 Route::post('scoreview', [ReportController::class, 'scoreview'])->name('scoreview');
 
@@ -195,7 +195,7 @@ Route::post('updatepaymentstatus',[App\Http\Controllers\Admin\OrderController::c
 
     //datatext
     Route::get('admin/glossary', [App\Http\Controllers\Admin\DatatextController::class,'index'])->name('admindatatext');
-    Route::post('admin/glossary_list/{page}', [App\Http\Controllers\Admin\DatatextController::class, 'glossaryList'])->name('adminglossarylist');
+    Route::post('admin/glossary_list', [App\Http\Controllers\Admin\DatatextController::class, 'glossaryList'])->name('adminglossarylist');
     Route::get('admin/glossary-create',[App\Http\Controllers\Admin\DatatextController::class, 'create'])->name('datatext-create');
     Route::post('admin/glossary-store',[App\Http\Controllers\Admin\DatatextController::class, 'store'])->name('datatext-store');
     Route::get('admin/glossary-edit/{id}',[App\Http\Controllers\Admin\DatatextController::class, 'edit'])->name('datatext-edit');

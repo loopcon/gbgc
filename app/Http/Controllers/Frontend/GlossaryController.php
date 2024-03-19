@@ -17,62 +17,57 @@ class GlossaryController extends Controller
         $return_data['region'] = Region::orderBy('name','asc')->get();
         return view('frontend.glossary.list', array_merge($return_data));
     }
-    public function glossaryList(Request $request,$page)
+    public function glossaryList(Request $request)
     {
-        $query = DataText::with('regionDetail','maincategoryDetail','subcategory1Detail','subcategory2Detail','level4Detail');
-        $per_page = 10;
-        if($request->jurisdiction) {
-            $query->where([['region_id', '=', $request->jurisdiction]]);
-            // where('name', 'LIKE', "%$name%")
+         if($request->jurisdiction)
+        {
+            $dbdata = DataText::with('regionDetail', 'maincategoryDetail', 'subcategory1Detail', 'subcategory2Detail', 'level4Detail')->where('region_id',$request->jurisdiction)->paginate(10);
+        }else{
+            $dbdata = DataText::with('regionDetail', 'maincategoryDetail', 'subcategory1Detail', 'subcategory2Detail', 'level4Detail')->paginate(10);
         }
-            
-      
-        $total_data = $query->get();
-        $total_records = $total_data->count();
-        $total_pages = ceil($total_records / $per_page);
-        $offset = ($page - 1) * $per_page;
-        $glossary = $query->offset($offset)->limit($per_page)->get(); // get page records
-        // $glossary = $query->get(); // get page records
-        
-        $html = '';
-        if(count($glossary) > 0) {
-                $i=1;
-                // $prevLevel1 = null;
-                // $prevLevel2 = null;
-                // $prevLevel3 = null;
-            foreach($glossary as $data) {
-                $html .= '<tr>';
-                    $html .=
-                    '<td>'.$data->regionDetail->name.'</td>
-                    <td>'.(isset($data->maincategoryDetail->title) ? $data->maincategoryDetail->title : null).'</td>
-                    <td>'.(isset($data->subcategory1Detail->title) ? $data->subcategory1Detail->title : null).'</td>
-                    <td>'.(isset($data->subcategory2Detail->title) ? $data->subcategory2Detail->title : null).'</td>
-                    <td>'.(isset($data->level4Detail->title) ? $data->level4Detail->title : null).' <a href="javascript:void(0);" class="info" data-information="'.$data->level4Detail->information.'" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a></td>
-                    <td>'.$data->description.'</td> 
-                </tr>';
-            }
-            $status = true;
-            $message = "";
-            
-            $pagination_link = "";
-            if($per_page < $total_records) {
-                $pagination_link = pagination($total_pages, $page, url('report'));
-            }
-            $data = array("glossary_list"=>$html,"pagination"=>$pagination_link);
-        } else {
-            $html .= '
-                        <td valign="top" colspan="6" class="dataTables_empty">No data available in table</td>
-                     ';
-            $status = false;
-            $message = "No data available in table";
-            $data = array("glossary_list"=>$html,"pagination"=>"");
+       
+        $formattedData = [];
+        $prevRegionId = null;
+        $prevMainCategory = null;
+        $prevSubCategory1 = null;
+        $prevSubCategory2 = null;
+
+        foreach ($dbdata as $row) {
+            $regionId = $row->regionDetail->name;;
+            $mainCategory = $row->maincategoryDetail->title;
+            $subCategory1 = $row->subcategory1Detail->title;
+            $subCategory2 = $row->subcategory2Detail->title;
+
+            // Check if the current row's values are different from the previous row's values
+            $regionIdChanged = $regionId !== $prevRegionId;
+            $mainCategoryChanged = $mainCategory !== $prevMainCategory;
+            $subCategory1Changed = $subCategory1 !== $prevSubCategory1;
+            $subCategory2Changed = $subCategory2 !== $prevSubCategory2;
+
+            // Update the previous values
+            $prevRegionId = $regionId;
+            $prevMainCategory = $mainCategory;
+            $prevSubCategory1 = $subCategory1;
+            $prevSubCategory2 = $subCategory2;
+
+            // Determine whether to show the values or display an empty string
+            $regionIdDisplay = $regionIdChanged ? $regionId : '';
+            $mainCategoryDisplay = $mainCategoryChanged ? $mainCategory : '';
+            $subCategory1Display = $subCategory1Changed ? $subCategory1 : '';
+            $subCategory2Display = $subCategory2Changed ? $subCategory2 : '';
+
+            $formattedData[] = [
+                'id'=>$row->id,
+                'region_id' => $regionIdDisplay,
+                'main_category' => $mainCategoryDisplay,
+                'sub_category_1' => $subCategory1Display,
+                'sub_category_2' => $subCategory2Display,
+                'level_4' => $row->level4Detail->title,
+                'level4information' => $row->level4Detail->information,
+                'description' => $row->description,
+            ];
         }
-         $return_data = array(
-            "status"=>$status,
-            "message"=>$message,
-            "data"=>$data,
-        );
-        echo json_encode($return_data);
-        exit;
+        $view = view('frontend.glossary.table',compact('formattedData','dbdata'))->render();
+        return response()->json(['view' => $view]);
     }
 }

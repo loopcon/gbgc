@@ -38,8 +38,13 @@
                                 @endif
                                 <li><a href="{{route('howitswork')}}">How It Works</a></li>
                                 <li><a href="{{route('membership')}}">Memberships</a></li>
-                                <li><a href="#">Reports</a></li>
-                                <li><a href="#">News</a></li>
+
+                                @if(!Auth::guard('customers')->user())
+                                <li><a href="javascript:void(0)" class="loginmodel">Reports</a></li>
+                                @else
+                                <li><a href="{{route('frontreport')}}">Reports</a></li>
+                                @endif
+
                                 @if(!Auth::guard('customers')->user())
                                 <li><a href="javascript:void(0)" class="loginmodel">Login</a></li>
                                 @else
@@ -434,8 +439,11 @@
                     <div class="footer-second-secmenu">
                         <ul>
                             <li><a href="{{route('index')}}">Home</a></li>
-                            <li><a href="#">Reports</a></li>
-                            <li><a href="#">News</a></li>
+                                @if(!Auth::guard('customers')->user())
+                                <li><a href="javascript:void(0)" class="loginmodel">Reports</a></li>
+                                @else
+                                <li><a href="{{route('frontreport')}}">Reports</a></li>
+                                @endif
                             <li><a href="{{route('frontcontactus')}}">Contact</a></li>
                             <li><a href="{{route('faq')}}">FAQ's</a></li>
 
@@ -489,7 +497,7 @@
           {
             if(data.status == 1)
             {
-                window.location.href = "{{ route('frontdashboard') }}";
+                window.location.href = "{{ route('frontreport') }}";
             }
             if (data.status == 0) {
                 $('#emailloginerror, #passwordloginerror ,#errormsglogin').hide();
@@ -528,7 +536,7 @@
           {
              if(data.status == 1)
             {
-                window.location.href = "{{ route('frontdashboard') }}";
+                window.location.href = "{{ route('frontreport') }}";
             }
 
             if(data.status== 0)

@@ -83,42 +83,11 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive">
-                                        <table id="glossary-list" class="table table-striped table-bordered nowrap dashboard-table-responsive">
-                                            <thead>
-                                                <tr>
-                                                   <?php /* <th>{{__('Sr No.')}}</th>
-                                                    <th>{{__('View')}}</th>
-                                                    <th>{{__('Region')}}</th> */ ?>
-                                                    <th>{{__('Jurisdiction')}}</th>
-                                                    <th>{{__('Level-1')}}</th>
-                                                    <th>{{__('Level-2')}}</th>
-                                                    <th>{{__('Level-3')}}</th>
-                                                    <th>{{__('Level-4')}}</th>
-                                                    <th>{{__('Description')}}</th>
-                                                    </tr>
-                                            </thead>
-                                            <tbody>
-                                             <?php /*    <?php
-                                                    $i=1;
-                                                ?>
-                                                @if(count($datatext)>0)
-                                                    @foreach($datatext as $data) 
-                                                        <tr>   
-                                                        //    <td>{{$i}}</td>
-                                                        //         <?php $i++;?>
-                                                        //     <td >  {{$data->view}} </td>
-                                                        //     <td >  {{$data->regionDetail->name}} </td>
-                                                            <td >@if($data->maincategoryDetail){{$data->maincategoryDetail->title}}@else - @endif</td>
-                                                            <td >@if($data->subcategory1Detail){{$data->subcategory1Detail->title}}@else - @endif</td>
-                                                            <td >@if($data->subcategory2Detail){{$data->subcategory2Detail->title}}@else - @endif</td>
-                                                            <td >@if($data->level4Detail){{$data->level4Detail->title}}@else - @endif</td>
-                                                            <td >  {!!$data->description!!} </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif */ ?>
-                                            </tbody>
-                                        </table>
-                                        <div class="pull-right" id="pagination"></div>
+                                         <div id="targetDivnew" class="dt-responsive table-responsive">
+                                        </div>
+
+                                    
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -192,31 +161,47 @@
             }
             
         });
-
-        $(document).on('click', '.pagination li.page-item a.page-link', function(e){
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var jurisdiction = $('#select-jurisdiction').val();
-            loadGloassayList(jurisdiction,url);
-        });
+         });
+    document.addEventListener("DOMContentLoaded", function() {
+        var jurisdiction = document.getElementById('select-jurisdiction').value;
+        loadGloassayList(jurisdiction, 1); // Load the initial page
     });
 
-    function loadGloassayList(jurisdiction,url)
-    {
-        if(url==''){
-            url = "{{ route('frontglossarylist',1)}}";
-        }
+    function loadGloassayList(jurisdiction, page) {
+        var url = "{{ route('frontglossarylist')}}";
         $.ajax({
             type: 'POST',
-            data: { _token: "{{ csrf_token() }}", jurisdiction: jurisdiction},
+            data: { 
+                _token: "{{ csrf_token() }}", 
+                jurisdiction: jurisdiction,
+                page: page // Pass the page number
+            },
             url: url,
             dataType: 'json',
             success: function (response) {
-                $("#glossary-list tbody").html(response.data.glossary_list);
-                $("#pagination").html(response.data.pagination);
-                // $("#page").html(response.data.page);
+                $('#targetDivnew').html(response.view);
+                $('#targetDivnew td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
+
             }
         });
+    }
+
+    $(document).ready(function() {
+        $('#paginate a').on('click', handlePaginationClick);
+    });
+
+    function handlePaginationClick(event) {
+        event.preventDefault();
+        var pageUrl = event.target.href;
+        var pageNumber = getPageNumberFromLink(event.target);
+        var jurisdiction = document.getElementById('select-jurisdiction').value;
+        loadGloassayList(jurisdiction, pageNumber);
+    }
+
+    function getPageNumberFromLink(link) {
+        // Extract the page number from the link's text
+        var pageNumber = link.textContent.trim();
+        return pageNumber;
     }
 </script>
 @endsection
