@@ -233,7 +233,9 @@
 
                                     <li class="pcoded-hasmenu {{ (request()->is('admin/generalsetting*'))? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-settings"></i>
+                                            </span>
                                             <span class="pcoded-mtext">Settings</span>
                                         </a>
                                         <ul class="pcoded-submenu" style="{{ (request()->is('admin/generalsetting*'))? 'display:block' : 'display:none' }}">

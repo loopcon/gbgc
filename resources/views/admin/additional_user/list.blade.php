@@ -89,7 +89,7 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td>{{$data->name}} </td>
+                                                            <td>{{$data->fname}} {{$data->lname}} </td>
                                                             <td>{{$data->additional_user_no}} </td>
                                                             <td>{{$data->remainadditional_user}}</td>
                                                             <td>{{$data->accept_additional_user}} </td>

@@ -14,7 +14,7 @@ use Session;
 use App\Models\AdditionalUser;
 use App\Models\EmailTemplate;
 use Mail;
-
+use App\Models\TempCustomer;
 class FrontLoginController extends Controller
 {
 
@@ -24,22 +24,20 @@ class FrontLoginController extends Controller
        $validator = Validator::make($request->all(), [
             'fname' => ['required'],
             'lname' => ['required'],
-            'email' => ['required', 'unique:customers,email', 'email'],
+            'freeemail' => ['required', 'unique:customers,email', 'email'],
             'phone' => ['required', 'numeric','digits:10'],
         ], [
             'required' => trans('The :attribute field is required.'),
         ]);
-
         if ($validator->fails()) {
             return response()->json(['status' => 0, 'errors' => $validator->errors()]);
         }
-
         $customer = new Customer();
         $customer->fname=$request->input('fname');
         $customer->lname=$request->input('lname');
         $customer->job_title=$request->input('job_title');
         $customer->phone=$request->input('phone');
-        $customer->email=$request->input('email');
+        $customer->email=$request->input('freeemail');
         $customer->bussiness_name=$request->input('bussiness_name');
         $customer->business_wider_group=$request->input('business_wider_group');
         $customer->access_type= 'requestforfree';
@@ -65,7 +63,6 @@ class FrontLoginController extends Controller
 
     public function proregistration(Request $request)
     {
-        
        $validator = Validator::make($request->all(), [
             'profname' => ['required'],
             'email' => ['required', 'unique:customers,email', 'email'],
@@ -78,27 +75,29 @@ class FrontLoginController extends Controller
             return response()->json(['status' => 0, 'errors' => $validator->errors()]);
         }
 
-        $customer = new Customer();
-        $customer->fname=$request->input('profname');
-        $customer->lname=$request->input('prolname');
-        $customer->job_title=$request->input('job_title');
-        $customer->phone=$request->input('phone');
-        $customer->email=$request->input('email');
-        $customer->bussiness_name=$request->input('bussiness_name');
-        $customer->business_wider_group=$request->input('business_wider_group');
-        $customer->additional_details=$request->input('additional_details');
-        $customer->additional_user_no = isset($request->additional_user_no) ? $request->additional_user_no : 0;
-        $customer->remainadditional_user=isset($request->additional_user_no) ? $request->additional_user_no : 0;
-        $customer->gst=$request->input('gst');
-        $customer->access_type= 'requestforpaid';
-        $customer->save();
-        $session= Session::put('customer', $customer->id);
-        if($customer){
-            return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
+        $tempcustomer = new TempCustomer();
+        $tempcustomer->fname=$request->input('profname');
+        $tempcustomer->lname=$request->input('prolname');
+        $tempcustomer->job_title=$request->input('job_title');
+        $tempcustomer->phone=$request->input('phone');
+        $tempcustomer->email=$request->input('email');
+        $tempcustomer->bussiness_name=$request->input('bussiness_name');
+        $tempcustomer->business_wider_group=$request->input('business_wider_group');
+        $tempcustomer->additional_details=$request->input('additional_details');
+        $tempcustomer->additional_user_no = isset($request->additional_user_no) ? $request->additional_user_no : 0;
+        $tempcustomer->remainadditional_user=isset($request->additional_user_no) ? $request->additional_user_no : 0;
+        $tempcustomer->gst=$request->input('gst');
+        $tempcustomer->access_type= 'requestforpaid';
+        $tempcustomer->save();
+        session()->put('customer', $tempcustomer->id);
+
+        if($tempcustomer){
+        //     dd($tempcustomer);
+            return response()->json(['prostatus' =>1, 'msg' => 'You Account Request Sent Successfully.']);
         }
         else
         {
-            return response()->json(['status' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
+            return response()->json(['prostatus' =>0, 'errormsg' => 'Something went Wrong Please Try again.']);
         }
     }
 
@@ -120,10 +119,11 @@ class FrontLoginController extends Controller
         }
 
 
-        $numEntries = count($request->name);
+        $numEntries = count($request->fname);
         for ($i = 0; $i < $numEntries; $i++) {
             $customer = new Customer();
-            $customer->name = $request->name[$i];
+            $customer->fname = $request->fname[$i];
+            $customer->lname = $request->lname[$i];
             $customer->job_title = $request->job_title[$i];
             $customer->phone = $request->phone[$i];
             $customer->email = $request->email[$i];
@@ -133,7 +133,8 @@ class FrontLoginController extends Controller
             $additionaluser = new AdditionalUser();
             $additionaluser->parent_id =$request->id;
             $additionaluser->customer_id =$customer->id;
-            $additionaluser->name =$request->name[$i];
+            $additionaluser->fname =$request->fname[$i];
+            $additionaluser->lname =$request->lname[$i];
             $additionaluser->job_title =$request->job_title[$i];
             $additionaluser->phone =$request->phone[$i];
             $additionaluser->email =$request->email[$i];

@@ -88,8 +88,6 @@ input:checked + .slider .off
 }
 
   </style>
-
-@section('content')
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
@@ -187,9 +185,9 @@ input:checked + .slider .off
                                     
                                 </div>
                                
-                                <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                <table id="order-table" class="table table-striped table-bordered nowrap">
+                            <div class="card-block">
+                                <div class="dt-responsive table-responsive">
+                                <table id="order-table" class="table table-bordered nowrap dashboard-table-responsive">
                                 <thead>
                                 <tr>
                                 <th>Level 1</th>
@@ -340,15 +338,24 @@ input:checked + .slider .off
                                 </tbody>
                                 </table>
 
-                                <div class="mb-2" style="float: inline-end;">
-                                    <nav aria-label="Page navigation">
+                                <div class="mb-2 mt-3" style="float: inline-end;">
+                                
+                                <nav aria-label="...">
+                                  <ul class="pagination">
+                                    <li class="page-item pageremove"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item page"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item page"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item page"><a class="page-link" href="#">Next</a></li>
+                                  </ul>
+                                </nav>
+                              <!--   <nav aria-label="Page navigation">
                                       <ul class="pagination">
                                         <li class="page-item pageremove"><a class="page-link" href="javascript:void(0)">1</a></li>
                                         <li class="page-item page"><a class="page-link" href="javascript:void(0)">2</a></li>
                                         <li class="page-item page"><a class="page-link" href="javascript:void(0)">3</a></li>
                                         <li class="page-item page"><a class="page-link" href="javascript:void(0)">Next</a></li>
                                       </ul>
-                                </nav>
+                                </nav> -->
                                 </div>
 
                                 </div>
@@ -474,7 +481,29 @@ input:checked + .slider .off
 @section('javascript')
 
 <script>
+  // Get all page items
+  const pageItems = document.querySelectorAll('.page-item.page');
 
+  // Add click event listener to each page item
+  pageItems.forEach(item => {
+    item.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      // Remove 'active' class from all page items
+      pageItems.forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Add 'active' class to the clicked page item
+      this.classList.add('active');
+    });
+  });
+</script>
+
+
+
+
+<script>
 $(document).ready(function(){
 
     $(".page").click(function(){

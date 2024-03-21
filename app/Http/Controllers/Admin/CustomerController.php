@@ -25,13 +25,17 @@ class CustomerController extends Controller
 
     public function changeStatus($id, $status)
     {
-
+        dd($status);exit();
+        $otp='123456';
         $customerfind = Customer::where('id', $id)->first();
+        $password = $customerfind->email;
         $customer=Customer::find($id);
         if($customerfind->access_type == 'requestforfree'){$customer->access_type='free';}
         elseif($customerfind->access_type == 'requestforpaid'){$customer->access_type='paid';}
         elseif($customerfind->access_type == 'requestforadditionaluser'){$customer->access_type='additionaluser';}
         $customer->status = 1;
+        $customer->password = Hash::make($password);
+        $customer->otp=$otp;
         $customer->save();
         return redirect('admin/user')->with('success', trans('User status changed successfully.'));
     }

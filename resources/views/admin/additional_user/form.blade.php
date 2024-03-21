@@ -39,7 +39,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">User Name</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name"  id="name" class="form-control" value="{{$additonaluser->name}}" readOnly >
+                                            <input type="text" name="name"  id="name" class="form-control" value="{{$additonaluser->fname}}  {{$additonaluser->lname}}" readOnly >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -126,7 +126,7 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
-                                                            <td >  {{$data->name}} </td>
+                                                            <td >  {{$data->fname}}  {{$data->lname}}</td>
                                                             <td >  {{$data->job_title}} </td>
                                                             <td >  {{$data->phone}} </td>
                                                             <td >  {{$data->email}} </td>

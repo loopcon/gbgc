@@ -99,9 +99,11 @@
                                                             <td>
                                                                 @if($data->access_type == 'requestforpaid' || $data->access_type == 'paid')
                                                                 @if($data->payment == 1)
-                                                                <span class="badge rounded-pill bg-successs">Payment Done</span>
+                                                                    <span class="badge bg-success">Payment Done</span>
+                                                                @elseif($data->payment == 0)
+                                                                    <span class="badge bg-secondary" style="color:white">Payment Remaine</span>
                                                                 @else
-                                                                <span class="badge rounded-pill bg-secondary">Payment Remain</span>
+                                                                    <span class="badge bg-danger">Payment Failed</span>
                                                                 @endif
                                                                 @else
                                                                 -
@@ -109,11 +111,9 @@
                                                             </td>
                                                             <td>
                                                                 @if($data->status==1 && $data->payment==1)
-                                                                    {{"Pro access is live"}}<br>
-                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light btn-sm mt-1" style="background:#4099ff" title="Create User Id-Password">{{"Create Id Password"}}</a>
+                                                                    {{"Pro access is live"}}
                                                                 @elseif($data->status==1) 
-                                                                    {{"Request is Approved"}}<br>
-                                                                    <a href="{{ route('user-password-create',$data->id) }}" rel='tooltip' class="btn text-light btn-sm mt-1" style="background:#4099ff" title="Create User Id-Password">{{"Create Id Password"}}</a>
+                                                                    {{"Request is Approved"}}
                                                                 @elseif($data->status==3)
                                                                    {{"Request is Canceled"}}    
                                                                 @else

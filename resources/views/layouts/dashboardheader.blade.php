@@ -147,7 +147,7 @@
                                     <li class="">
                                         <a href="{{route('frontreport')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
+                                               <i class="fa fa-file-text-o"></i>
                                             </span>
                                             <span class="pcoded-mtext">Reports</span>
                                         </a>
@@ -156,7 +156,7 @@
                                     <li class="{{ (request()->is('glossary*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('frontglossary')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
+                                                <i class="fa fa-file-text"></i>
                                             </span>
                                             <span class="pcoded-mtext">Glossary</span>
                                         </a>
@@ -164,7 +164,7 @@
                                     <li class="">
                                         <a href="{{route('additionaluserlist')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
+                                               <i class="fa fa-users"></i>
                                             </span>
                                             <span class="pcoded-mtext">Additional user</span>
                                         </a>
@@ -172,7 +172,7 @@
                                     <li class="">
                                         <a href="{{route('order')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
+                                                <i class="fa fa-shopping-bag"></i>
                                             </span>
                                             <span class="pcoded-mtext">Orders</span>
                                         </a>
@@ -181,7 +181,7 @@
                                     <li class="pcoded-hasmenu {{ (request()->is('myaccount*') )? 'pcoded-trigger' : '' }}">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
+                                                <i class="feather icon-settings"></i>
                                             </span>
                                             <span class="pcoded-mtext">Profile Setting</span>
                                         </a>

@@ -175,20 +175,20 @@ class ReportController extends Controller
             $exportData[] = $totalRow;
         }
 
-        // $perPage = 10; // Or whatever number of items you want per page
-        // $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        // $pagedData = array_slice($exportData, ($currentPage - 1) * $perPage, $perPage);
-        // $exportData = new LengthAwarePaginator($pagedData, count($exportData), $perPage, $currentPage);
-
-        // print_r($exportData);exit();
         $region=Region::orderBy('name','asc')->get();
         $currencies=Currency::get();
         $user = Auth::guard('customers')->id();
-        $customer_detail= Customer::where([['id', '=', $user]])->first();
-        $customer = $customer_detail->access_type;
+        $customer= Customer::where([['id', '=', $user]])->first();
+        // $customer = $customer_detail->access_type;
 
-        // print_r($exportData);exit();
-        return view('frontend.report.index',compact('region','currencies','customer','exportData','yeardata'));
+        if($customer->access_type == 'free')
+        {
+            return view('frontend.report.freeusertable',compact('region','currencies','customer','exportData','yeardata'));
+        }else
+        {
+            return view('frontend.report.index',compact('region','currencies','customer','exportData','yeardata'));
+        }
+        
     }
 
     public function scoreview(Request $request)

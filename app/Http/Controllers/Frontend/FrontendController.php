@@ -25,6 +25,7 @@ use Illuminate\Support\Collection ;
 use Excel;
 use App\Models\Score;
 use Stripe\StripeClient;
+use App\Models\TempCustomer;
 
 class FrontendController extends Controller
 {
@@ -61,18 +62,18 @@ class FrontendController extends Controller
     
     public function checkout()
     {
-        $sessioncustomer=Session::get('customer');
 
+        $sessioncustomer=Session::get('customer');
         $user = Auth::guard('customers')->id();
         // dd($user);
         if($user != null){
             $membership = Membershipplan::where('access_status','=','freetopro')->first();
             $membershipamount=$membership->price;
-            $customer=Customer::where('id',$user)->first();
+            $customer=TempCustomer::where('id',$user)->first();
         }elseif($sessioncustomer != null){
             $membership = Membershipplan::where('access_status','=','paid')->first();
             $membershipamount=$membership->price;
-            $customer=Customer::where('id',$sessioncustomer)->first();
+            $customer=TempCustomer::where('id',$sessioncustomer)->first();
         }else{
           return redirect('/')->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -94,11 +95,11 @@ class FrontendController extends Controller
         if($user != null){
             $membership = Membershipplan::where('access_status','=','freetopro')->first();
             $membershipamount=$membership->price;
-            $customer=Customer::where('id',$user)->first();
+            $customer=TempCustomer::where('id',$user)->first();
         }elseif($sessioncustomer != null){
             $membership = Membershipplan::where('access_status','=','paid')->first();
             $membershipamount=$membership->price;
-            $customer=Customer::where('id',$sessioncustomer)->first();
+            $customer=TempCustomer::where('id',$sessioncustomer)->first();
         }else{
           return redirect('/')->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -107,7 +108,7 @@ class FrontendController extends Controller
         $return_data['region'] = Region::get();
         $return_data['staticpage'] = StaticPage::where('slug', 'privacy_policy')->first();
         // dd($membershipamount);
-        return view('frontend.payment', array_merge($return_data),compact('customer','membership','membershipamount')); 
+        return view('frontend.payment', array_merge($return_data),compact('customer','membership','membershipamount','membership')); 
     }
 
     public function additionalcheckout()

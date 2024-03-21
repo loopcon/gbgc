@@ -63,10 +63,7 @@ Route::get('export-report',[ReportController::class,'exportReport'])->name('expo
 Route::post('report_list/{page}', [ReportController::class, 'reportList'])->name('frontreportlist');
 Route::get('glossary', [GlossaryController::class,'index'])->name('frontglossary');
 Route::post('glossary_list', [GlossaryController::class, 'glossaryList'])->name('frontglossarylist');
-
 Route::post('scoreview', [ReportController::class, 'scoreview'])->name('scoreview');
-
-
 Route::post('verifytotp',[FrontLoginController::class,'verifytotp'])->name('verifytotp');
 //fronted Route End
 

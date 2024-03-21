@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -218,7 +217,7 @@
                                             <div id="lnameerror"></div>
                                         </div>
 
-                                        <div class="col-12 col-md-6 mb-3">
+                                        <div class="col-12 col-md-12 mb-3">
                                             <div class="input-group ">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pen-nib"></i></span>
                                                 <input type="text" id="job_title" name="job_title"  class="form-control" placeholder="Job Title">
@@ -231,7 +230,7 @@
                                         <div class="col-12 col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
-                                                <input type="email" id="email" name="email" class="form-control" placeholder="Email"> 
+                                                <input type="email" id="email" name="freeemail" class="form-control" placeholder="Email"> 
                                             </div>
                                             <div id="emailerror"></div>
                                         </div> 
@@ -733,7 +732,7 @@
                 {
                     if(data.errors.fname){$('#fnameerror').html('<strong id="fnameerrorshow" style="color:red">'+ data.errors.fname + '</strong>');}
                     if(data.errors.lname){$('#lnameerror').html('<strong id="lnameerrorshow" style="color:red">'+ data.errors.lname + '</strong>');}
-                    if (data.errors.email) {$('#emailerror').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
+                    if (data.errors.freeemail) {$('#emailerror').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
                     if(data.errors.phone){$('#phoneerror').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
                 }
                 if(data.errormsg)
@@ -754,7 +753,7 @@ $(document).on('click','.prosignup',function()
   });    
 
 
-  $(document).on('click','#save_proaccess',function(){
+$(document).on('click','#save_proaccess',function(){
     var formdata=$('#proaccessform').serialize();
 
       $.ajax(
@@ -765,24 +764,24 @@ $(document).on('click','.prosignup',function()
           dataType:'JSON',
           success: function(data)
           {
-           if (data.status == 1) 
-            {
-                window.location.href = "{{ route('checkout') }}";
-            }
+               if (data.prostatus == 1) 
+                {
+                    window.location.href = "{{ route('checkout') }}";
+                }
             
-            if (data.status == 0) {
-                $('#nameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
-                if(data.errors)
-                {
-                    if(data.errors.name){$('#nameerror-pro').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
-                    if (data.errors.email) {$('#emailerror-pro').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
-                    if(data.errors.phone){$('#phoneerror-pro').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
+                if (data.prostatus == 0) {
+                    $('#nameerrorshow, #jobtitleerrorshow, #emailerrorshow, #phoneerrorshow').hide();
+                    if(data.errors)
+                    {
+                        if(data.errors.name){$('#nameerror-pro').html('<strong id="nameerrorshow" style="color:red">'+ data.errors.name + '</strong>');}
+                        if (data.errors.email) {$('#emailerror-pro').html('<strong id="emailerrorshow" style="color:red">' + data.errors.email + '</strong>');}
+                        if(data.errors.phone){$('#phoneerror-pro').html('<strong id="phoneerrorshow" style="color:red">'+ data.errors.phone +'</strong>');}
+                    }
+                    if(data.errormsg)
+                    {
+                        $('#errormsg').html('<strong id="errormsg" style="color:red">Something went Wrong Please Try again.</strong>');
+                    }
                 }
-                if(data.errormsg)
-                {
-                    $('#errormsg').html('<strong id="errormsg" style="color:red">Something went Wrong Please Try again.</strong>');
-                }
-            }
 
           }
         });

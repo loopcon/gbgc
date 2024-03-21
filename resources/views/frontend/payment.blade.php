@@ -48,8 +48,8 @@
                 <div class="loginbtn-group">
                     <button type="submit" class="loginbtn-check">LOGIN</button>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                        <input type="checkbox" class="form-check-input" id="">
+                        <label class="form-check-label" for="">Remember me</label>
                     </div>  
                 </div>   
                 <a href="http://127.0.0.1:5501/lost-password.html" class="lost-your-password-text" target="_blank">Lost your password?</a>
@@ -72,6 +72,8 @@
                     <input type="hidden" value="{{$customer->id}}" name="customerid">
                     <input type="hidden" value="{{$customer->access_type}}" name="access_type">
                     <input type="hidden" name="membershipamount" value="{{$membershipamount}}">
+                    <input type="hidden" name="membershipid" value="{{$membership->id}}">
+                    <input type="hidden" name="paymentmethod" value="online">
         
                
             </div>
@@ -90,6 +92,11 @@
             <div class="payment-method-checkout" id="checkoutbox">
                 <p>Pay with your credit card via Stripe.</p>
                 <div>
+                    <div class="mb-4">
+                            <label for="exampleInputEmail1" class="form-label">Payble Amount</label>
+                            <input  class="form-control" value="{{$membershipamount}}" type='text' placeholder="Payble Amount" readonly>
+                        </div>
+
                         <div class="mb-4">
                             <label for="exampleInputEmail1" class="form-label">Name on Card<span>*</span></label>
                             <input  class="form-control" size='4' type='text' placeholder="Name on Card">
@@ -146,7 +153,7 @@
             <div class="your-personal-databox">
                 <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="{{route($staticpage->slug)}}">privacy policy.</a></p>
                 
-                <button type="submit" class="place-order-btn">Place Order</button><br>
+                <button type="submit" class="place-order-btn">PAY</button><br>
             </div>
         </div>
     </div>

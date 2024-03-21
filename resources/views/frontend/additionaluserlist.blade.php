@@ -240,12 +240,21 @@
                                 <div class="row mb-3">
                                     <div class="col-12 col-md-6 ">
                                         <div class="input-group">
-                                            <input type="text" id="name{{$i}}" name="name[]" class="form-control" placeholder="Name">
+                                            <input type="text" id="fname{{$i}}" name="fname[]" class="form-control" placeholder="First Name">
                                         </div>
-                                        <div id="nameerror{{$i}}"></div>
+                                        <div id="fnameerror{{$i}}"></div>
                                     </div>
 
-                                    <div class="col-12 col-md-6">
+                                     <div class="col-12 col-md-6 ">
+                                        <div class="input-group">
+                                            <input type="text" id="lname{{$i}}" name="lname[]" class="form-control" placeholder="Last Name">
+                                        </div>
+                                        <div id="lnameerror{{$i}}"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-12">
                                         <div class="input-group ">
                                             <input type="text" id="job_title{{$i}}" name="job_title[]" class="form-control" placeholder="Job Title">
                                         </div>
@@ -387,9 +396,14 @@
                         $('#phoneerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
                     }
 
-                    if (key.includes('name')) {
-                        var index = key.replace('name', '').replace('.', '');
-                        $('#nameerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
+                    if (key.includes('fname')) {
+                        var index = key.replace('fname', '').replace('.', '');
+                        $('#fnameerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
+                    }
+
+                    if (key.includes('lname')) {
+                        var index = key.replace('lname', '').replace('.', '');
+                        $('#lnameerror' + index).html('<strong style="color:red">' + value[0] + '</strong>');
                     }
 
                     if (key.includes('job_title')) {

@@ -21,11 +21,8 @@ class ReportController extends Controller
             ->pluck('year')
             ->unique()
             ->toArray();
-
-        // Define an empty array to store the exported data
         $exportData = [];
 
-        // Initialize variables to track level changes
         $prevLevel1 = null;
         $prevLevel2 = null;
         $prevLevel3 = null;
@@ -170,13 +167,6 @@ class ReportController extends Controller
             }
             $exportData[] = $totalRow;
         }
-
-        // $perPage = 10; // Or whatever number of items you want per page
-        // $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        // $pagedData = array_slice($exportData, ($currentPage - 1) * $perPage, $perPage);
-        // $exportData = new LengthAwarePaginator($pagedData, count($exportData), $perPage, $currentPage);
-
-        // print_r($exportData);exit();
         $region=Region::orderBy('name','asc')->get();
         $currencies=Currency::get();
         return view('admin.report.list',compact('region','currencies','yeardata','exportData'));
