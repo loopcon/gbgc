@@ -80,7 +80,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-25">Impressions</h6>
+                                            <h6 class="mb-2">Impressions</h6>
                                             <h3 class="f-w-700 text-c-blue">1,563</h3>
                                             <p class="m-b-0">May 23 - June 01 (2017)</p>
                                         </div>
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-xl-4">
-                            <div class="card latest-update-card">
+                            <div class="card latest-update-card admin-what-new-car">
                                 <div class="card-header">
                                     <h5>What’s New</h5>
                                     <div class="card-header-right">
@@ -222,7 +222,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-xl-4">
-                            <div class="card latest-update-card">
+                            <div class="card latest-update-card admin-what-new-car">
                                 <div class="card-header">
                                     <h5>Latest Activity</h5>
                                     <div class="card-header-right">
