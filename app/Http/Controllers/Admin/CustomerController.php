@@ -25,7 +25,6 @@ class CustomerController extends Controller
 
     public function changeStatus($id, $status)
     {
-        dd($status);exit();
         $otp='123456';
         $customerfind = Customer::where('id', $id)->first();
         $password = $customerfind->email;

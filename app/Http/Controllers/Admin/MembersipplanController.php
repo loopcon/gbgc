@@ -32,6 +32,7 @@ class MembersipplanController extends Controller
         $membershipplan->short_description=$request->input('short_description');
         $membershipplan->long_description=$request->input('long_description');
         $membershipplan->price=$request->input('price');
+        $membershipplan->text=$request->input('text');
         $membershipplan->save();
         if($membershipplan) {
             return redirect('admin/membership')->with('success', trans('Membership Added Successfully!'));
@@ -54,6 +55,7 @@ class MembersipplanController extends Controller
         $membershipplan->short_description=$request->input('short_description');
         $membershipplan->long_description=$request->input('long_description');
         $membershipplan->price=$request->input('price');
+        $membershipplan->text=$request->input('text');
         $membershipplan->save();
         if($membershipplan) {
             return redirect('admin/membership')->with('success', trans('Membership Updated Successfully!'));

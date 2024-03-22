@@ -72,7 +72,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>
-                                                        <th>{{__('Title')}}</th>
+                                                    <th>{{__('Title 1')}}</th>
+                                                        <th>{{__('Title 2')}}</th>
                                                         <th>{{__('Image')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
@@ -86,6 +87,7 @@
                                                         <tr>   
                                                             <td>{{$i}}</td>
                                                                 <?php $i++;?>
+                                                            <td >  {{$data->title1}} </td>
                                                             <td >  {{$data->title}} </td>
                                                             <td >  <img src="{{asset('uploads/homepagereport/'.$data->image)}}" alt="Homepage Report image" width="100"></td>
                                                             <td><a href="{{ route('homepagereport-edit',$data->id) }}" rel='tooltip' class="btn text-light" style="background:#4099ff" title="Edit"><i class="fa fa-edit"></i></a>

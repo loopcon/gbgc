@@ -34,6 +34,7 @@ class HomepageReportController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+                'title1' => ['required'],
                 'title' => ['required'],
                 'description' => ['required'],
                 'image' => ['required','mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080'],
@@ -47,7 +48,7 @@ class HomepageReportController extends Controller
 
         $imageFiles = $request->file('image');  
 
-        $fields = array('title', 'description');
+        $fields = array('title1', 'title', 'description');
         foreach($fields as $key => $value){
             $homepagereports->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
@@ -94,6 +95,7 @@ class HomepageReportController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
+                'title1' => ['required'],
                 'title' => ['required'],
                 'description' => ['required'],
                 'image' => ['mimes:png,jpg,webp','dimensions:max_width=1920,max_height=1080']
@@ -111,7 +113,7 @@ class HomepageReportController extends Controller
 
         $imageFiles = $request->file('image');  
 
-        $fields = array('title', 'description');
+        $fields = array('title1', 'title', 'description');
         foreach($fields as $key => $value){
             $homepagereports->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }

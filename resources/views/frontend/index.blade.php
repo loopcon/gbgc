@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="repote-box">
-                                <p class="report-heading">REPORTS</p>
+                                <p class="report-heading">{{$report->title1}}</p>
                                 <h4 class="current-report-heading">{{$report->title}}</h4>
                                 <p class="report-text">{!!$report->description!!}</p>
                             </div>
@@ -132,8 +132,7 @@
                     <div class="col-12 col-sm-6">
                         <div class="standard-box-detail">
                             <p class="free-access-heading">{{$free_membership->name}}</p>
-                            <p>ACCESS NOW FOR</p>
-                            <div class="free-text-ullisttext">
+                            <div class="standard-prise-textdetail">
                                 <p>{!!$free_membership->short_description!!}</p>
                             </div>   
                         </div>
@@ -148,7 +147,7 @@
                                 <button>{{$paid_membership->name}}</button>
                             </div> --}}
                             <div class="standard-box-detail">
-                                <p class="prise-text-year"><span class="standard-price">£{{$paid_membership->price}}</span> - 12 months access</p>
+                                <p class="prise-text-year"><span class="standard-price">£{{$paid_membership->price}} </span> {{$paid_membership->text}}</p>
                                 <div class="standard-prise-textdetail">
                                     <p>{!!$paid_membership->short_description!!}</p>
                                 </div>

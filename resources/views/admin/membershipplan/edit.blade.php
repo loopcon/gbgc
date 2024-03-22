@@ -64,6 +64,14 @@
                                     </div>
 
                                     <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Text</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="text"  id="text" class="form-control" placeholder="Text" value="{{$membershipplan->text}}" data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            @if ($errors->has('text')) <div class="text-danger">{{ $errors->first('text') }}</div>@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Short Description</label>
                                         <div class="col-sm-10">
                                             <textarea class="form-control ckeditor" id="short_description" name="short_description" placeholder="Long Description"  data-parsley-required-message="{{ __("This value is required.")}}" ">{{$membershipplan->short_description}}</textarea>
