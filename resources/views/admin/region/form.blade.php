@@ -44,6 +44,16 @@
                                         </div>
                                     </div>
                                     
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Text</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="text">
+                                                {{ isset($record->text) ? $record->text : old('text') }}
+                                            </textarea>
+                                            
+                                        </div>
+                                    </div>
+
                                     <div class="container row">
                                         <button class="btn text-light " style="background:#4099ff" type="submit">Submit</button> &nbsp;&nbsp;
                                         <a href="{{route('region')}}" class="btn btn-danger ">{{__('Cancel')}}</a>

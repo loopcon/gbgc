@@ -67,7 +67,8 @@ class GlossaryController extends Controller
                 'description' => $row->description,
             ];
         }
+        $region =Region::where('id',$request->jurisdiction)->first();
         $view = view('frontend.glossary.table',compact('formattedData','dbdata'))->render();
-        return response()->json(['view' => $view]);
+        return response()->json(['view' => $view, 'region'=>$region]);
     }
 }

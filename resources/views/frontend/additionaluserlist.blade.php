@@ -47,7 +47,11 @@
                                            
 
                                              <!-- freetopro -->
-                                              @if($customer->access_type!="paid"  && $customer->access_type!="additionaluser"  && $customer->access_type!="requestforadditional" && $customer->payment!=1)
+                                              @if($customer->access_type!="paid"  && 
+                                                    $customer->access_type!="additionaluser"  && 
+                                                    $customer->access_type!="requestforadditional" && 
+                                                    $customer->access_type!="requestforpaid" && 
+                                                    $customer->payment!=1)
 								                 <a href="javascript:void(0)"  class="btn text-light freetoproacess"  style="background:#4099ff">  Free to Pro</a>
 								                @endif
 								                <!-- endfreetopro -->

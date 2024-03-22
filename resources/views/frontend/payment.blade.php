@@ -69,6 +69,7 @@
                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                             id="payment-form">
                         @csrf
+                    <input type="hidden" name="usertype" value="{{$usertype}}">
                     <input type="hidden" value="{{$customer->id}}" name="customerid">
                     <input type="hidden" value="{{$customer->access_type}}" name="access_type">
                     <input type="hidden" name="membershipamount" value="{{$membershipamount}}">

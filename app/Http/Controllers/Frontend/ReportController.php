@@ -180,8 +180,8 @@ class ReportController extends Controller
         $user = Auth::guard('customers')->id();
         $customer= Customer::where([['id', '=', $user]])->first();
         // $customer = $customer_detail->access_type;
-
-        if($customer->access_type == 'free')
+        // dd($customer->access_type);
+        if($customer->access_type == 'free' || $customer->access_type == 'requestforpaid')
         {
             return view('frontend.report.freeusertable',compact('region','currencies','customer','exportData','yeardata'));
         }else

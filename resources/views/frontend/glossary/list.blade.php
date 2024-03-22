@@ -75,7 +75,7 @@
                                                 </select> 
                                                 </lable>
                                             </div>
-                                            <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
+                                            <lable id="hide-text"></lable> <lable id="hidetextValue"></lable>
                                         </div>
                                     </div>
                                 </div>
@@ -151,14 +151,14 @@
             if(juris != "--Select Jurisdiction--")
             {
                 $('#hide-text').show();
-                $('#hidetextValue').html(juris);
+                $('#hidetextValue').html();
             }
             else{
                 $('#hide-text').hide();
                 $('#hidetextValue').hide();
             }
             
-        });
+            });
          });
     document.addEventListener("DOMContentLoaded", function() {
         var jurisdiction = document.getElementById('select-jurisdiction').value;
@@ -177,6 +177,8 @@
             url: url,
             dataType: 'json',
             success: function (response) {
+                $('#hide-text').html(response.region.text);
+                $('#hidetextValue').html(response.region.name);
                 $('#targetDivnew').html(response.view);
                 $('#targetDivnew td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
 

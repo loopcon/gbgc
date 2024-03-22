@@ -41,7 +41,7 @@ class RegionController extends Controller
             ]
         );
         $region = new Region();
-        $fields = array('name');
+        $fields = array('name','text');
         foreach($fields as $key => $value){
             $region->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }
@@ -80,7 +80,7 @@ class RegionController extends Controller
             ]
         );
         $region = Region::find($id);
-        $fields = array('name');
+        $fields = array('name','text');
         foreach($fields as $key => $value){
             $region->$value = isset($request->$value) && $request->$value != '' ? $request->$value : NULL; 
         }

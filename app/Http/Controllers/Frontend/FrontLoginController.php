@@ -84,6 +84,7 @@ class FrontLoginController extends Controller
         $tempcustomer->bussiness_name=$request->input('bussiness_name');
         $tempcustomer->business_wider_group=$request->input('business_wider_group');
         $tempcustomer->additional_details=$request->input('additional_details');
+        $tempcustomer->billing_address=$request->input('billing_address');
         $tempcustomer->additional_user_no = isset($request->additional_user_no) ? $request->additional_user_no : 0;
         $tempcustomer->remainadditional_user=isset($request->additional_user_no) ? $request->additional_user_no : 0;
         $tempcustomer->gst=$request->input('gst');
@@ -276,17 +277,6 @@ class FrontLoginController extends Controller
     }
     public function registrationUpdate(Request $request)
     {
-        // $this->validate($request, [
-        //         'name' => ['required'],
-        //         'job_title' => ['required'],
-        //         'bussiness_name' => ['required'],
-        //         'bussiness_size' => ['required'],
-        //         'additional_user_no' => ['required'],
-        //         'billing_address' => ['required'],
-        //     ],[
-        //         'required'  => trans('The :attribute field is required.')
-        //     ]
-        // );
         $customer=Customer::find($request->id);
         $customer->fname=$request->input('fname');
         $customer->lname=$request->input('lname');
@@ -298,26 +288,8 @@ class FrontLoginController extends Controller
         $customer->additional_details=$request->input('additional_details');
         $customer->additional_user_no=isset($request->additional_user_no) ? $request->additional_user_no : 0;
         $customer->remainadditional_user=isset($request->additional_user_no) ? $request->additional_user_no : 0;
-        $customer->access_type = "requestforpaid";
         $customer->save();
-
-        // mail-send to admin for accept user paid request.
-        // $data = [
-        //     'email'   => $request->input('email'), 
-        // ];
-
-        // Mail::send(['text'=>'mail'], $data,function($message)  use ($data){
-        //     $message->to(gbgc@gmail.com, 'Admin of GBGC')->subject
-        //         ('Hello Admin, user sent paid request please, check it.');
-        //     $message->from($data['email'],'Customer of GBGC');
-        // });
-
-        // for old register
-
-        // if ($customer) {
-        //     return response()->json(['status' => 1]);
-        // }
-
+        
         if($customer) {
             return response()->json(['status' =>1, 'msg' => 'We will send you an invoice within 2 business days. This wil Provide the information to pay.']);
         } else {
