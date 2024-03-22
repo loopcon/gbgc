@@ -1,16 +1,16 @@
 @extends('layouts.adminheader')
 @section('content')
     <div class="page-header card">
-        <div class="row align-items-end">
-            <div class="col-lg-8">
-                <div class="page-header-title">
+        <div class="row align-items-end align-items-sm-center align-items-md-center">
+            <div class="col-12 col-md-6 col-lg-8">
+                <div class="page-header-title breadcum-box">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Level</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
@@ -34,7 +34,7 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card">
+                            <div class="card admin-level-card">
                                 <div class="row">
                                     <div class="col-12">
                                         @if ($message = Session::get('success'))

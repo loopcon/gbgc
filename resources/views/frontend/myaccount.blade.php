@@ -2,15 +2,15 @@
 @section('content')
 <div class="page-header card">
     <div class="row align-items-end">
-        <div class="col-lg-8">
-            <div class="page-header-title">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-8">
+            <div class="page-header-title user-breadcum-box">
                 <i class="feather icon-settings bg-c-blue"></i>
                 <div class="d-inline">
                     <h5>Profile</h5>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4">
             <div class="page-header-breadcrumb">
                 <ul class=" breadcrumb breadcrumb-title">
                     <li class="breadcrumb-item">

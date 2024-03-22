@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <img src="{{asset('img/gt-in-touch.png')}}" class="img-fluid" alt="">
+                    <img src="{{asset('img/contact-us.png')}}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>

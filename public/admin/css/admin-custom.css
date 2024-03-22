@@ -1,5 +1,6 @@
 .header-navbar{min-height:65px; height: 65px; }
 .header-navbar .navbar-wrapper .navbar-logo{height: 65px; padding: 0px 10px !important; }
+.header-navbar .navbar-wrapper .navbar-logo[logo-theme=theme6]{ display: flex; align-items: center; }
 .pcoded[theme-layout=vertical] .pcoded-navbar[pcoded-navbar-position=fixed]{top:64px;}
 .admin-table-responsive{display: inline-block;width: 100%;overflow-x: auto; max-width: none;}
 .admin-table-responsive::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;}
@@ -11,9 +12,46 @@
 .report-table-responsive::-webkit-scrollbar{width: 6px; height: 5px; background-color: #F5F5F5; }
 .report-table-responsive::-webkit-scrollbar-thumb{ background-color: #000000; }
 
+.page-header.card{margin: 10px 35px 10px;}
+.main-body .page-wrapper{ padding: 0px 1.5rem;}
+.breadcum-rowbox{display: flex; align-items: center !important;}
+.breadcum-box{display: flex; align-items: center; }
+.sub-title{padding-bottom: 6px;margin-bottom: 10px; }
+.adm-jurisdiction-input .selection{ height: 40px !important; display: block;}
+.year-from-box .form-control{height: 40px !important; display: block;}
+.adm-reset-btn-label{opacity: 0;}
+.admin-glossary-card .card-header{ padding-top: 15px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
+.admin-glossary-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
+.admin-glossary-card-box{ display: flex; align-items: center;}
+.admin-glossary-card-box h6{ margin-bottom: 0px; }
+.adm-region-card .card-header{ padding-top: 15px;padding-bottom: 0px;padding-left: 20px;padding-right: 20px;}
+.adm-region-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
+.admin-level-card .card-header{ padding-top: 15px;padding-bottom: 0px;padding-left: 20px;padding-right: 20px;}
+.admin-level-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
+.adm-membership-box{align-items: center !important; }
+.adm-faq-card .card-header{ padding-top: 15px;padding-bottom: 0px;padding-left: 20px;padding-right: 20px;}
+.adm-faq-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
+.adm-home-page-report-card .card-header{ padding-top: 15px;padding-bottom: 0px;padding-left: 20px;padding-right: 20px;}
+.adm-home-page-report-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
+
+@media(max-width:768px){
+    .breadcum-box{display: flex !important; }
+    .breadcum-box i{ margin-right: 10px !important; }
+    .main-body .page-wrapper{ padding: 0px 5px !important;}
+    .page-header.card .breadcrumb{ padding: 0px; float: right; }
+    .admin-glossary-bruardcum-box{ display: flex; align-items: center !important; }
+    .page-header.card .align-items-end .page-header-title i{margin-bottom: 0px !important;}
+}
+
 @media(max-width:575px){
     .upload-excel{margin-top: 15px;margin-bottom: 15px;}
-    .page-header.card{margin: 30px 15px 0px !important;}
-    .page-header.card .breadcrumb{float: unset;padding: 0.75rem 7px;}
+    .page-header.card{margin: 10px 15px 0px !important;}
+    .page-header.card .breadcrumb{float: unset;padding: 0rem 7px;}
     #select-jurisdiction option{width: 250px !important;}
+    .main-body .page-wrapper{ padding: 0px 5px !important;}
+    .adm-reset-btn-label{ display: none; }
+    .breadcum-box i{ margin-bottom: 0px !important;}
+    .page-header.card .align-items-end .page-header-title i{
+        margin-bottom: 0px !important;
+    }
 }

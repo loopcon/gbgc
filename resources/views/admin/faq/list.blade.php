@@ -3,7 +3,7 @@
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
-                <div class="page-header-title">
+                <div class="page-header-title breadcum-box">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>FAQ</h5>
@@ -34,7 +34,7 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card">
+                            <div class="card adm-faq-card">
                                 <div class="row">
                                     <div class="col-12">
                                         @if ($message = Session::get('success'))

@@ -3,7 +3,7 @@
 <div class="page-header card">
     <div class="row align-items-end">
         <div class="col-lg-8">
-            <div class="page-header-title">
+            <div class="page-header-title breadcum-box">
                 <i class="feather icon-info bg-c-blue"></i>
                 <div class="d-inline">
                     <h5>Homepage Banner</h5>

@@ -92,9 +92,9 @@ input:checked + .slider .off
 
 
     <div class="page-header card">
-                <div class="row align-items-end">
-            <div class="col-lg-3">
-                <div class="page-header-title">
+                <div class="row align-items-end user-report-breadcum-main">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="page-header-title user-breadcum-box">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Reports</h5>
@@ -102,11 +102,11 @@ input:checked + .slider .off
                 </div>
             </div>
             
-            <div class="col-lg-5">
+            <div class="col-sm-5 col-md-5 col-lg-5">
                 <a class="btn text-light download-btn" style="background:#4099ff" href="{{route('reportdownload')}}"> Download Excel </a>
             </div>
             
-            <div class="col-lg-4">
+            <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
@@ -126,65 +126,61 @@ input:checked + .slider .off
     <div class="container">
 
         <div class="row">
+            <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+                <h3 class="sub-title">View</h3>
+                <label class="switch">
+                    <input type="checkbox" id="togBtnview">
+                    <div class="slider round">
+                    <!--ADDED HTML -->
+                    <span class="on">Standard</span>
+                    <span class="off">Local</span>
+                    <!--END-->
+                    </div>
+                </label>   
+            </div>
 
-                <div class="col-6 col-sm-12 col-xl-2 m-b-30">
-                    <h3 class="sub-title">View</h3>
-                    <label class="switch">
-                        <input type="checkbox" id="togBtnview">
-                        <div class="slider round">
-                        <!--ADDED HTML -->
-                        <span class="on">Standard</span>
-                        <span class="off">Local</span>
-                        <!--END-->
-                        </div>
-                    </label>   
-                </div>
-
-                <div class="col-6 col-sm-12 col-xl-2 m-b-30">
+            <div class="col-6 col-sm-6 col-md-4  col-xl-2">
                 <h3 class="sub-title">Currency</h3>
-                    <label class="switch">
-                        <input type="checkbox" id="togBtncurrency">
-                        <div class="slider round">
-                        <!--ADDED HTML -->
-                        <span class="on">USD</span>
-                        <span class="off">LocalCurr</span>
-                        <!--END-->
-                        </div>
-                    </label>   
-                
-                </div>
+                <label class="switch">
+                    <input type="checkbox" id="togBtncurrency">
+                    <div class="slider round">
+                    <!--ADDED HTML -->
+                    <span class="on">USD</span>
+                    <span class="off">LocalCurr</span>
+                    <!--END-->
+                    </div>
+                </label>   
+            </div>
 
-                  <div class="col-sm-12 col-xl-2 m-b-30">
-                      <h3 class="sub-title">Jurisdiction</h3>
-                      <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
-                          @if($region->count())
-                              @foreach($region as $data)
-                                  <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
-                              @endforeach
-                          @endif
-                      </select>
-                  </div>
+            <div class="col-12 col-sm-6 col-md-4  col-xl-2 user-year-from-box">
+                <h3 class="sub-title">Jurisdiction</h3>
+                <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
+                    @if($region->count())
+                        @foreach($region as $data)
+                            <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
 
-
-                <div class="col-sm-12 col-xl-2 m-b-30">
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 user-year-from-box">
                 <h3 class="sub-title">Year From</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
                     <option value="" hidden>{{__('-- select --')}}</option>
                 </select>
-                </div>
+            </div>
 
-
-                <div class="col-sm-12 col-xl-2 m-b-30">
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2 user-year-from-box">
                 <h3 class="sub-title">Year To</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsto">
                     <option value="0" hidden>{{__('-- select --')}}</option>
                 </select>
-                </div>
+            </div>
 
-                 <div class="col-sm-12 col-xl-2 m-b-30 mt-5">
-                    <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
-                </div>
-
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                <h3 class="user-reset-btn">Year To</h3>
+                <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
+            </div>
 
         </div>
         <div class="row textrow">

@@ -3,16 +3,16 @@
 <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
     <div class="page-header card">
-        <div class="row align-items-end">
-            <div class="col-lg-8">
-                <div class="page-header-title">
+        <div class="row  admin-glossary-bruardcum-box">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-8">
+                <div class="page-header-title breadcum-box">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Glossary</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
@@ -36,7 +36,7 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card">
+                            <div class="card admin-glossary-card">
                                 <div class="row">
                                     <div class="col-12">
                                         @if ($message = Session::get('success'))
@@ -63,8 +63,8 @@
                                 </div>
                                 <div class="card-header">
                                     <div class="form-row">
-                                        <div class="col-md-3 text-center">
-                                            <div class="d-inline">
+                                        <div class="col-md-8 col-lg-10 text-left">
+                                            <div class="d-flex admin-glossary-card-box">
                                                 <h6><b>Jurisdiction</b> </h6>
                                                 <label>
                                                     <select id="select-jurisdiction" class="form-control select2" name="region_id">
@@ -78,14 +78,10 @@
                                                 </lable>
                                             </div>
                                         </div>
-                                        <div class="col-md-7">
-                                            <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
+                                        <div class="col-md-4 col-lg-2 text-sm-right">
+                                            <a href="javascript:void(0);"  data-toggle="modal" data-target="#scoreImportModal" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Upload Excel')}}</a>
                                         </div>
-                                        <div class="col-md-2 text-right">
-                                            
-
-                                                <a href="javascript:void(0);"  data-toggle="modal" data-target="#scoreImportModal" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Upload Excel')}}</a>
-                                        </div>
+                                        <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
                                     </div>
                                 </div>
                                 <div class="card-block">

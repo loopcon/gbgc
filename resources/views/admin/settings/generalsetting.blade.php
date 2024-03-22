@@ -3,7 +3,7 @@
 <div class="page-header card">
     <div class="row align-items-end">
         <div class="col-lg-8">
-            <div class="page-header-title">
+            <div class="page-header-title breadcum-box">
                 <i class="feather icon-settings bg-c-blue"></i>
                 <div class="d-inline">
                     <h5>General Setting</h5>
@@ -54,8 +54,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="card-header">
-                            </div>
+                            {{-- <div class="card-header">
+                            </div> --}}
                             <div class="card-block">
                                 <form method="post" action="{{route('generalsetting-update')}}" enctype="multipart/form-data">
                                     @csrf

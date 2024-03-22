@@ -3,7 +3,7 @@
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
-                <div class="page-header-title">
+                <div class="page-header-title breadcum-box">
                     <i class="feather icon-user bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Orders</h5>
@@ -59,8 +59,8 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="card-header">
-                                </div>
+                                {{-- <div class="card-header">
+                                </div> --}}
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
                                         <table id="complex-dt" class="table table-striped table-bordered">

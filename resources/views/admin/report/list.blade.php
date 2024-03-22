@@ -91,9 +91,9 @@ input:checked + .slider .off
   </style>
 
     <div class="page-header card">
-        <div class="row align-items-end">
-            <div class="col-lg-3">
-                <div class="page-header-title">
+        <div class="row align-items-end breadcum-rowbox">
+            <div class="col-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="page-header-title breadcum-box">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Reports</h5>
@@ -101,12 +101,12 @@ input:checked + .slider .off
                 </div>
             </div>
             
-            <div class="col-lg-5">
+            <div class="col-12 col-sm-9 col-md-6 col-lg-5">
                 <a href="javascript:void(0);" class="btn text-light upload-excel" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
                 <a class="btn text-light download-data" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
             </div>
             
-            <div class="col-lg-4">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
@@ -126,7 +126,7 @@ input:checked + .slider .off
 
     <div class="container">
         <div class="row">
-            <div class="col-6 col-sm-12 col-xl-2 m-b-30">
+            <div class="col-6 col-sm-4 col-md-4 col-xl-2">
                 <h3 class="sub-title">View</h3>
                 <label class="switch">
                     <input type="checkbox" id="togBtnview">
@@ -140,8 +140,8 @@ input:checked + .slider .off
                 </label>   
             </div>
 
-            <div class="col-6 col-sm-12 col-xl-2 m-b-30">
-            <h3 class="sub-title">Currency</h3>
+            <div class="col-6 col-6 col-sm-4 col-md-4 col-xl-2">
+                <h3 class="sub-title">Currency</h3>
                 <label class="switch">
                     <input type="checkbox" id="togBtncurrency">
                     <div class="slider round">
@@ -153,41 +153,37 @@ input:checked + .slider .off
                 </label>   
             </div>
 
+            <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input">
+                <h3 class="sub-title">Jurisdiction</h3>
+                <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
+                    @if($region->count())
+                        @foreach($region as $data)
+                            <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
 
-                  <div class="col-sm-12 col-xl-2 m-b-30">
-                      <h3 class="sub-title">Jurisdiction</h3>
-                      <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
-                          @if($region->count())
-                              @foreach($region as $data)
-                                  <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
-                              @endforeach
-                          @endif
-                      </select>
-                  </div>
-
-
-            <div class="col-sm-12 col-xl-2 m-b-30">
+            <div class="col-12 col-sm-4 col-md-4 col-xl-2 year-from-box">
                 <h3 class="sub-title">Year From</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
                     <option value="" hidden>{{__('-- select --')}}</option>
                 </select>
             </div>
 
-
-            <div class="col-sm-12 col-xl-2 m-b-30">
+            <div class="col-12 col-sm-4 col-md-4 col-xl-2 year-from-box">
                 <h3 class="sub-title">Year To</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsto">
                     <option value="0" hidden>{{__('-- select --')}}</option>
                 </select>
-
-                </div>
-
-                 <div class="col-sm-12 col-xl-2 m-b-30 mt-5">
-                    <a href="{{route('adminreport')}}" class="btn btn-primary">Reset</a>
-                </div>
-
-
             </div>
+
+            <div class="col-12 col-sm-4 col-md-4 col-xl-2 ">
+                <h3 class="adm-reset-btn-label">reset btn</h3>
+                <a href="{{route('adminreport')}}" class="btn btn-primary">Reset</a>
+            </div>
+
+        </div>
 
         <div class="row textrow">
             <div class="col-sm-12 col-xl-2 m-b-30 ">
