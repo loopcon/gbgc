@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 col-xl-8">
+                    <div class="col-12 col-md-6 col-xl-8">
                         <div class="card sale-card">
                             <div class="card-header">
                                 <h5>Deals Analytics</h5>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-xl-4">
+                    <div class="col-12 col-md-6 col-xl-4">
                         <div class="card comp-card">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -122,7 +122,7 @@
 
                         
 
-                        <div class="col-md-12 col-xl-4">
+                        <div class="col-12 col-md-12 col-xl-4">
                             <div class="card card-blue text-white">
                                 <div class="card-block p-b-0">
                                     <div class="row m-b-50">
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-12">
+                        <div class="col-12 col-md-6 col-xl-4">
                             <div class="card latest-update-card">
                                 <div class="card-header">
                                     <h5>What’s New</h5>
@@ -221,7 +221,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-12">
+                        <div class="col-12 col-md-6 col-xl-4">
                             <div class="card latest-update-card">
                                 <div class="card-header">
                                     <h5>Latest Activity</h5>
