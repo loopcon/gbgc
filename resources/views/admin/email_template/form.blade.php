@@ -8,8 +8,8 @@
 @endsection
 @section('content')
 <div class="page-header card">
-    <div class="row align-items-end">
-        <div class="col-lg-8">
+    <div class="row align-items-end align-items-md-end">
+        <div class="col-12 col-md-6 col-lg-8">
             <div class="page-header-title breadcum-box">
                 <i class="feather icon-info bg-c-blue"></i>
                 <div class="d-inline">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4">
             <div class="page-header-breadcrumb">
                 <ul class=" breadcrumb breadcrumb-title">
                     <li class="breadcrumb-item">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                                 <div class="card">
                                     <div class="list-group list-group-flush" role="tablist">
                                         @if($email_templates)
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-9">
+                            <div class="col-12 col-sm-8 col-md-8 col-lg-9">
                                 <div class="tab-content">
                                     @if($email_templates)
                                         @foreach($email_templates as $key => $value)
