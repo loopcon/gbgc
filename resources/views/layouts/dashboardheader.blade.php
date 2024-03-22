@@ -58,6 +58,7 @@
     @media (max-width:768px){
         .page-header.card .align-items-end .page-header-title{display: flex;}
         .user-breadcum-box i{ margin-right: 10px !important;}
+        .page-header.card{ margin: 10px 35px 0px;}
     }
         
     @media (max-width:575px){

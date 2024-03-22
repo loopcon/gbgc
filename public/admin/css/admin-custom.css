@@ -33,6 +33,7 @@
 .adm-faq-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
 .adm-home-page-report-card .card-header{ padding-top: 15px;padding-bottom: 0px;padding-left: 20px;padding-right: 20px;}
 .adm-home-page-report-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
+.admin-what-new-car .card-block{ padding: 20px; padding-top: 0px; }
 
 @media(max-width:768px){
     .breadcum-box{display: flex !important; }
@@ -46,12 +47,11 @@
 @media(max-width:575px){
     .upload-excel{margin-top: 15px;margin-bottom: 15px;}
     .page-header.card{margin: 10px 15px 0px !important;}
-    .page-header.card .breadcrumb{float: unset;padding: 0rem 7px;}
+    .page-header.card .breadcrumb{float: unset;padding: 0rem 7px; padding-top: 10px;}
     #select-jurisdiction option{width: 250px !important;}
     .main-body .page-wrapper{ padding: 0px 5px !important;}
     .adm-reset-btn-label{ display: none; }
     .breadcum-box i{ margin-bottom: 0px !important;}
-    .page-header.card .align-items-end .page-header-title i{
-        margin-bottom: 0px !important;
-    }
+    .page-header.card .align-items-end .page-header-title i{margin-bottom: 0px !important;}
+    .admin-glossary-card-box{ display: block !important; }
 }

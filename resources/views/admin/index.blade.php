@@ -34,28 +34,28 @@
                                 <div class="row">
                                     <div class="col-xl-3 col-md-6">
                                         <h6>Number of Customer</h6>
-                                        <h5 class="m-b-30 f-w-700">532<span class="text-c-green m-l-10">+1.69%</span></h5>
+                                        <h5 class="mb-2 f-w-700">532<span class="text-c-green m-l-10">+1.69%</span></h5>
                                         <div class="progress">
                                             <div class="progress-bar bg-c-red" style="width:25%"></div>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-md-6">
                                         <h6>Number of User</h6>
-                                        <h5 class="m-b-30 f-w-700">4,569<span class="text-c-red m-l-10">-0.5%</span></h5>
+                                        <h5 class="mb-2 f-w-700">4,569<span class="text-c-red m-l-10">-0.5%</span></h5>
                                         <div class="progress">
                                             <div class="progress-bar bg-c-blue" style="width:65%"></div>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-md-6">
                                         <h6>Successfull Task</h6>
-                                        <h5 class="m-b-30 f-w-700">89%<span class="text-c-green m-l-10">+0.99%</span></h5>
+                                        <h5 class="mb-2 f-w-700">89%<span class="text-c-green m-l-10">+0.99%</span></h5>
                                         <div class="progress">
                                             <div class="progress-bar bg-c-green" style="width:85%"></div>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-md-6">
                                         <h6>Ongoing Project</h6>
-                                        <h5 class="m-b-30 f-w-700">365<span class="text-c-green m-l-10">+0.35%</span></h5>
+                                        <h5 class="mb-2 f-w-700">365<span class="text-c-green m-l-10">+0.35%</span></h5>
                                         <div class="progress">
                                             <div class="progress-bar bg-c-yellow" style="width:45%"></div>
                                         </div>
@@ -80,7 +80,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-25">Impressions</h6>
+                                            <h6 class="mb-2">Impressions</h6>
                                             <h3 class="f-w-700 text-c-blue">1,563</h3>
                                             <p class="m-b-0">May 23 - June 01 (2017)</p>
                                         </div>
@@ -94,7 +94,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-25">Goal</h6>
+                                            <h6 class="mb-2">Goal</h6>
                                             <h3 class="f-w-700 text-c-green">30,564</h3>
                                             <p class="m-b-0">May 23 - June 01 (2017)</p>
                                         </div>
@@ -108,7 +108,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-25">Impact</h6>
+                                            <h6 class="mb-2">Impact</h6>
                                             <h3 class="f-w-700 text-c-yellow">42.6%</h3>
                                             <p class="m-b-0">May 23 - June 01 (2017)</p>
                                         </div>
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-xl-4">
-                            <div class="card latest-update-card">
+                            <div class="card latest-update-card admin-what-new-car">
                                 <div class="card-header">
                                     <h5>What’s New</h5>
                                     <div class="card-header-right">
@@ -222,7 +222,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-xl-4">
-                            <div class="card latest-update-card">
+                            <div class="card latest-update-card admin-what-new-car">
                                 <div class="card-header">
                                     <h5>Latest Activity</h5>
                                     <div class="card-header-right">
