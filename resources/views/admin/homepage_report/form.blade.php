@@ -35,12 +35,21 @@
                                     @csrf
                                     <input type="hidden" id="id" name="id" value="{{ isset($record->id) ? $record->id : '' }}">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Title</label>
+                                        <label class="col-sm-2 col-form-label">Title 1</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="title"  id="title" class="form-control" placeholder="Title" value="{{ isset($record->title) ? $record->title : old('title') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            <input type="text" name="title1"  id="title1" class="form-control" placeholder="Title 1" value="{{ isset($record->title1) ? $record->title1 : old('title1') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            @if ($errors->has('title1')) <div class="text-danger">{{ $errors->first('title1') }}</div>@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Title 2</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="title"  id="title" class="form-control" placeholder="Title 2" value="{{ isset($record->title) ? $record->title : old('title') }}" data-parsley-required-message="{{ __("This value is required.")}}" >
                                             @if ($errors->has('title')) <div class="text-danger">{{ $errors->first('title') }}</div>@endif
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Description</label>
                                         <div class="col-sm-10">
