@@ -174,12 +174,13 @@ class ReportController extends Controller
 
      public function scoreview(Request $request)
     {
-        $region=Region::orderBy('name','asc')->get();
-        $currencies=Currency::get();
-        $viewfilter=$request->view;     
-        $currencyfilter=$request->currency;
+        $viewfilter=$request->view;
+        $currencyfilter= $request->currency;
         $yearfrom = $request->has('year_from') ? $request->year_from : null;
         $yearto = $request->has('year_to') ? $request->year_to : null;
+
+        $region=Region::orderBy('name','asc')->get();
+        $currencies=Currency::get();
 
         $yeardata = Score::where('view','LIKE',$viewfilter)
             ->where('currency_id',$currencyfilter)
@@ -189,9 +190,6 @@ class ReportController extends Controller
             ->pluck('year')
             ->unique()
             ->toArray();
-
-
-        // Define an empty array to store the exported data
         $exportData = [];
 
         // Initialize variables to track level changes
@@ -280,9 +278,9 @@ class ReportController extends Controller
 
             // Initialize row data with level details
             $rowData = [
-                ($printLevel1) ? $combination->maincategoryDetail->title : '', // Print level 1 only once
-                ($printLevel2) ? $combination->subcategory1Detail->title : '', // Print level 2 only once
-                ($printLevel3) ? $combination->subcategory2Detail->title : '', // Print level 3 only once
+                ($printLevel1 && $combination->maincategoryDetail) ? $combination->maincategoryDetail->title : '',
+                ($printLevel2 && $combination->subcategory1Detail) ? $combination->subcategory1Detail->title : '',
+                ($printLevel3 && $combination->subcategory2Detail) ? $combination->subcategory2Detail->title : '',
                 $combination->level4Detail ? $combination->level4Detail->title : '',
             ];
 
