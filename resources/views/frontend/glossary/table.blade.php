@@ -1,5 +1,5 @@
         
-        <table class="table table-bordered nowrap dashboard-table-responsive">
+        <table class="table table-bordered nowrap">
             <!-- <table id="multi-colum-dt" class="table table-striped table-bordered nowrap dataTable " role="grid" aria-describedby="multi-colum-dt_info"> -->
                                             <thead>
                                                 <tr>

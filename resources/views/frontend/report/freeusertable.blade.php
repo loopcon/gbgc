@@ -89,16 +89,16 @@ input:checked + .slider .off
 
   </style>
     <div class="page-header card">
-        <div class="row align-items-end">
-            <div class="col-lg-8">
-                <div class="page-header-title">
+        <div class="row align-items-end user-report-breadcum-main">
+            <div class="col-12 col-md-6 col-lg-8">
+                <div class="page-header-title user-breadcum-box">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Reports</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
@@ -117,10 +117,8 @@ input:checked + .slider .off
     </div>
 
     <div class="container">
-
         <div class="row">
-
-                <div class="col-sm-12 col-xl-2 m-b-30">
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2">
                     <h3 class="sub-title">View</h3>
                     <label class="switch">
                         <input type="checkbox" id="togBtnview" checked>
@@ -133,8 +131,8 @@ input:checked + .slider .off
                     </label>   
                 </div>
 
-                <div class="col-sm-12 col-xl-2 m-b-30">
-                <h3 class="sub-title">Currency</h3>
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2">
+                    <h3 class="sub-title">Currency</h3>
                     <label class="switch">
                         <input type="checkbox" id="togBtncurrency" checked>
                         <div class="slider round">
@@ -144,37 +142,33 @@ input:checked + .slider .off
                         <!--END-->
                         </div>
                     </label>   
-                
                 </div>
 
-                  <div class="col-sm-12 col-xl-3 m-b-30">
-                      <h3 class="sub-title">Jurisdiction</h3>
-                      <select class="js-example-basic col-sm-12 form-control"  id="country" placholder="Jurisdiction">
-                       <option value="" hidden>{{__('Year From')}}</option>
-                      </select>
-                  </div>
-
-
-                <div class="col-sm-12 col-xl-2 m-b-30">
-                <h3 class="sub-title">Year From</h3>
-                <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
-                    <option value="">{{__('Year From')}}</option>
-                </select>
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2">
+                    <h3 class="sub-title">Jurisdiction</h3>
+                    <select class="js-example-basic col-sm-12 form-control"  id="country" placholder="Jurisdiction">
+                    <option value="" hidden>{{__('Year From')}}</option>
+                    </select>
                 </div>
 
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2">
+                    <h3 class="sub-title">Year From</h3>
+                    <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
+                        <option value="">{{__('Year From')}}</option>
+                    </select>
+                </div>
 
-                <div class="col-sm-12 col-xl-2 m-b-30">
-                <h3 class="sub-title">Year To</h3>
-                <select class="form-control js-example col-sm-12" id="ddlYearsto">
-                    <option value="0" hidden>{{__('Year To')}}</option>
-                </select>
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2">
+                    <h3 class="sub-title">Year To</h3>
+                    <select class="form-control js-example col-sm-12" id="ddlYearsto">
+                        <option value="0" hidden>{{__('Year To')}}</option>
+                    </select>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-xl-2">
-                <h3 class="user-reset-btn">Year To</h3>
-                <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
+                    <h3 class="user-reset-btn">Year To</h3>
+                    <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
                 </div>
-
         </div>
     </div>
 
