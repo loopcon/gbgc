@@ -50,7 +50,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 contact-usbox">
                     <img src="{{asset('img/contact-us.png')}}" class="img-fluid" alt="">
                 </div>
             </div>

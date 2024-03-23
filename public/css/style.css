@@ -325,3 +325,4 @@ a.login-active {background-color: #198FD9 !important;color: #fff !important;}
 .mo-hit-menuclick .mobile-numberactive-bg{background-color:#00abf4 !important;color: #ffF;}
 #prosignupmodel .input-group span{width: 45px;display: block;text-align: center;}
 #registerModal .input-group span{width: 45px;display: block;text-align: center;}
+.contact-usbox{display: flex;align-items: center;justify-content: center;}

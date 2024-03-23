@@ -72,6 +72,8 @@
         .page-header.card .breadcrumb{ padding: 0px;}
         .user-year-from-box{ margin-bottom: 15px; }
         .main-body .page-wrapper{ padding: 0px 5px;}
+        .user-reset-btn{font-size: 2px;}
+        .sub-title{ margin-top: 8px; }
     }
 </style>
 

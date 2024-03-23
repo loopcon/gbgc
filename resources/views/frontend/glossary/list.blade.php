@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive">
-                                         <div id="targetDivnew" class="dt-responsive table-responsive">
+                                         <div id="targetDivnew" class="dt-responsive dashboard-table-responsive">
                                         </div>
 
                                     
