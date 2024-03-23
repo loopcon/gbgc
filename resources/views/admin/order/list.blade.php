@@ -63,7 +63,7 @@
                                 </div> --}}
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="complex-dt" class="table table-striped table-bordered">
+                                        <table id="complex-dt" class="table table-striped table-bordered report-table-responsive">
                                             <thead>
                                                 <tr>
                                                     <th>{{__('Sr No.')}}</th>

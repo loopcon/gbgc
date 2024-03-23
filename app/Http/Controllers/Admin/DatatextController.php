@@ -196,8 +196,9 @@ class DatatextController extends Controller
                 'description' => $row->description,
             ];
         }
+        $region=Region::where('id',$request->jurisdiction)->first();
         $view = view('admin.datatext.table',compact('formattedData','dbdata'))->render();
-        return response()->json(['view' => $view]);
+        return response()->json(['view' => $view, 'region'=>$region]);
     }
 
     public function importdatatext(Request $request)

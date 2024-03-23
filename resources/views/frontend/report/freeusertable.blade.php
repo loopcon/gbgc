@@ -170,6 +170,10 @@ input:checked + .slider .off
                 </select>
                 </div>
 
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                <h3 class="user-reset-btn">Year To</h3>
+                <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
+                </div>
 
         </div>
     </div>

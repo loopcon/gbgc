@@ -81,7 +81,7 @@
                                         <div class="col-md-4 col-lg-2 text-sm-right">
                                             <a href="javascript:void(0);"  data-toggle="modal" data-target="#scoreImportModal" class="btn text-light" style="background:#4099ff"><i class="align-middle" data-feather="plus"></i>{{__('Upload Excel')}}</a>
                                         </div>
-                                        <lable id="hide-text">The Gambling industry is characterised by monopolies. Vast majority of the industry is operated by comapnies :</lable> <lable id="hidetextValue"></lable>
+                                        <lable id="hide-text"></lable> <lable id="hidetextValue"></lable>
                                     </div>
                                 </div>
                                 <div class="card-block">
@@ -215,7 +215,7 @@
             if(juris != "--Select Jurisdiction--")
             {
                 $('#hide-text').show();
-                $('#hidetextValue').html(juris);
+                $('#hidetextValue').html();
             }
             else{
                 $('#hide-text').hide();
@@ -242,6 +242,8 @@
             url: url,
             dataType: 'json',
             success: function (response) {
+                console.log(response);
+                $('#hide-text').html(response.region);
                 $('#targetDivnew').html(response.view);
                 $('#targetDivnew td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
 
