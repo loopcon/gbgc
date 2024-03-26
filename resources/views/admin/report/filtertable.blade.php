@@ -29,7 +29,9 @@
     </tbody>
 </table>
 @else
-<label style="font-weight:bold; text-align: center;">Data Not Found</label>
+<div style="text-align:center;">
+<img src="{{asset('nodata.png')}}">
+</div>
 @endif
 @section('javascript')
 <script type="text/javascript">

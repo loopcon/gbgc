@@ -103,7 +103,7 @@ input:checked + .slider .off
             
             <div class="col-12 col-sm-9 col-md-6 col-lg-5">
                 <a href="javascript:void(0);" class="btn text-light upload-excel" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Upload Excel</a>
-                <a class="btn text-light download-data" style="background:#263544" href="{{asset('sampleexcel/sample.xlsx')}}" download=""> Download Sample Data </a>
+               <a class="btn text-light download-btn" style="background:#263544" href="{{route('reportdownload')}}"> Download Excel </a>
             </div>
             
             <div class="col-12 col-sm-12 col-md-3 col-lg-4">
@@ -225,7 +225,7 @@ input:checked + .slider .off
                         <div class="col-sm-12">
                             <div class="card">
                                 
-                                <div class="card-block report-scorly">
+                                <div class="card-block">
 
                                 <div style="display: flex; justify-content: center;">
                                     <div id="spinner" class="spinner-border text-primary" role="status" style="display: none;">
@@ -233,7 +233,7 @@ input:checked + .slider .off
                                     </div>
                                 </div>
 
-                                    <div class="dt-responsive table-responsive " id="targetDivnew">
+                                    <div class="dt-responsive table-responsive" id="targetDivnew">
 
                                     </div>
 

@@ -1,5 +1,5 @@
 @if(count($yeardata) > 0)
-<table class="table table-bordered nowrap dashboard-table-responsive">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>{{__('Level 1')}}</th>
@@ -16,9 +16,15 @@
             <tr>
                 @foreach($row as $key => $value)
                 @if($key === 0 || $key === 1 || $key === 2)
-                    <td style="border-bottom:0px;">{{ $value }}</td>
+                    <td style="border-bottom:0px;text-wrap: balance;">{{ $value }}</td>
+                @elseif($key === 3)
+                <td style="border-bottom:0px;text-wrap: balance;">{{ $value }} 
+                    @if($value !== 'Total')
+                    <a href="javascript:void(0);" class="info" data-information="'.$value.'" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
+                    @endif
+                </td>
                 @else
-                    <td>{{ $value }}</td>
+                    <td> {{ $value }}</td>
                 @endif
                     
                 @endforeach
@@ -26,6 +32,10 @@
         @endforeach
     </tbody>
 </table>
+@else
+<div style="text-align:center;">
+<img src="{{asset('nodata.png')}}">
+</div>
 @endif
 @section('javascript')
 <script type="text/javascript">
@@ -35,4 +45,5 @@
     });
 
 </script>
+
 @endsection
