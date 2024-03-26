@@ -129,7 +129,7 @@ input:checked + .slider .off
             <div class="col-6 col-sm-4 col-md-4 col-xl-2">
                 <h3 class="sub-title">View</h3>
                 <label class="switch">
-                    <input type="checkbox" id="togBtnview">
+                    <input type="checkbox" id="togBtnview"  onchange="updateCurrency()">
                     <div class="slider round">
                         <!--ADDED HTML -->
                         <span class="on">Standard</span>
@@ -143,7 +143,7 @@ input:checked + .slider .off
             <div class="col-6 col-6 col-sm-4 col-md-4 col-xl-2">
                 <h3 class="sub-title">Currency</h3>
                 <label class="switch">
-                    <input type="checkbox" id="togBtncurrency">
+                    <input type="checkbox" id="togBtncurrency" onchange="updateView()">
                     <div class="slider round">
                     <!--ADDED HTML -->
                     <span class="on">USD</span>
@@ -156,6 +156,7 @@ input:checked + .slider .off
             <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input">
                 <h3 class="sub-title">Jurisdiction</h3>
                 <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
+                    <option value="all">all</option>
                     @if($region->count())
                         @foreach($region as $data)
                             <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
@@ -167,14 +168,14 @@ input:checked + .slider .off
             <div class="col-12 col-sm-4 col-md-4 col-xl-2 year-from-box">
                 <h3 class="sub-title">Year From</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
-                    <option value="" hidden>{{__('-- select --')}}</option>
+                    <option value="all" hidden>{{__('-- all --')}}</option>
                 </select>
             </div>
 
             <div class="col-12 col-sm-4 col-md-4 col-xl-2 year-from-box">
                 <h3 class="sub-title">Year To</h3>
                 <select class="form-control js-example col-sm-12" id="ddlYearsto">
-                    <option value="0" hidden>{{__('-- select --')}}</option>
+                    <option value="all" hidden>{{__('-- all --')}}</option>
                 </select>
             </div>
 
@@ -209,15 +210,17 @@ input:checked + .slider .off
                         <div class="col-sm-12">
                             <div class="card">
                                 
-                                <div class="card-block">
-                                    <div class="dt-responsive" id="targetDivold">
+                                <div class="card-block report-scorly">
 
-                                        @include('admin.report.table')
+                                <div style="display: flex; justify-content: center;">
+                                    <div id="spinner" class="spinner-border text-primary" role="status" style="display: none;">
+                                        <span class="sr-only">Loading...</span>
                                     </div>
-                                    <div class="dt-responsive table-responsive" id="targetDivnew">
-                                    </div>
+                                </div>
 
-                                    
+                                    <div class="dt-responsive table-responsive " id="targetDivnew">
+
+                                    </div>
 
                                 </div>
                             </div>
@@ -330,14 +333,188 @@ input:checked + .slider .off
 </style>
 @endsection
 @section('javascript')
-<script type="text/javascript">
-    $(document).ready(function() {
+
+<script>
+     
+     document.addEventListener('DOMContentLoaded', function() {
+    var togBtnview = document.getElementById('togBtnview');
+    var togBtncurrency = document.getElementById('togBtncurrency');
+    var countrySelect = document.getElementById('country');
+
+    // Add event listeners to checkboxes
+    togBtnview.addEventListener('change', handleViewChange);
+    togBtncurrency.addEventListener('change', handleCurrencyChange);
+
+    // Add event listener to the Jurisdiction dropdown
+    countrySelect.addEventListener('change', handleJurisdictionChange);
+
+    // Initial call to update Jurisdiction selection based on default View and Currency
+    handleViewChange();
+    handleCurrencyChange();
+
+    function handleViewChange() {
+        if (togBtnview.checked && togBtncurrency.checked) {
+            // Allow multiple selection
+            countrySelect.multiple = true;
+            countrySelect.removeAttribute('title');
+        } else {
+            // Disallow multiple selection and display message
+            countrySelect.multiple = false;
+            countrySelect.title = "Multiple Selection is only available for Standard-USD reports";
+        }
+    }
+
+    function handleCurrencyChange() {
+        if (togBtnview.checked && togBtncurrency.checked) {
+            // Allow multiple selection
+            countrySelect.multiple = true;
+            countrySelect.removeAttribute('title');
+        } else {
+            // Disallow multiple selection and display message
+            countrySelect.multiple = false;
+            countrySelect.title = "Multiple Selection is only available for Standard-USD reports";
+        }
+    }
+
+    function handleJurisdictionChange() {
+        if (countrySelect.multiple && (!togBtnview.checked || !togBtncurrency.checked)) {
+            alert("Multiple Selection is only available for Standard-USD reports");
+        }
+    }
+});
+
+   document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('togBtnview').checked = true;
+    document.getElementById('togBtncurrency').checked = true;
+
+    // Function to handle changes in elements
+    function handleChange() {
+        var viewValue = document.getElementById('togBtnview').checked;
+        var currencyValue = document.getElementById('togBtncurrency').checked;
+        var yearFromSelect = document.getElementById('ddlYearsfrom').value;
+        var yearToSelect = document.getElementById('ddlYearsto').value;
+        var countrySelect = document.getElementById('country');
+        var selectedCountries = Array.from(countrySelect.selectedOptions).map(option => option.value);
+        
+        $('#spinner').show(); // Show spinner before AJAX request
+        reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries);
+    }
+
+    // Attach event listeners to elements
+    document.getElementById('togBtnview').addEventListener('change', handleChange);
+    document.getElementById('togBtncurrency').addEventListener('change', handleChange);
+    document.getElementById('ddlYearsfrom').addEventListener('change', handleChange);
+    document.getElementById('ddlYearsto').addEventListener('change', handleChange);
+    document.getElementById('country').addEventListener('change', handleChange);
+
+    // Initial call
+    handleChange();
+});
+
+function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries) {
+    var viewText = viewValue ? 'Standard' : 'Local';
+    var currencyText = currencyValue ? 'USD' : 'LocalCurr';
+    var yearFrom = yearFromSelect;
+    var yearTo = yearToSelect;
+    var jurisdictions = selectedCountries;
+    var token = "{{ csrf_token() }}";
+    $.ajax({
+        url: "{{ route('adminscoreview') }}",
+        type: "POST",
+        dataType: 'json',
+        data: {
+            _token: token,
+            view: viewText,
+            currency: currencyText,
+            year_from: yearFrom,
+            year_to: yearTo,
+            country: jurisdictions
+        },
+        success: function(data) {
+            $('#spinner').hide(); // Hide spinner after successful response
+            $("#targetDivold").hide();
+            $('#targetDivnew').html(data.view);
+            $('#targetDivnew td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
+            $('#targetDivnew tr:has(td:contains("Total")) td').css('font-weight', 'bold');
+        },
+        error: function(xhr, status, error) {
+            $('#spinner').hide(); // Hide spinner if there's an error
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+
+
+    $('.textrow').hide();
+    $('.viewtext').hide();
+    $('.currencytext').hide();
+    $('.juricdictiontext').hide();
+    $('.yeartotext').hide();
+
+    function updateText() {
+        var viewToggle = document.getElementById("togBtnview");
+        var currencyToggle = document.getElementById("togBtncurrency");
+        var viewValueLabel = document.querySelector(".viewValue");
+        var currencyValueLabel = document.querySelector(".currencyValue");
+
+        // Set initial values for view and currency
+        if (viewToggle.checked) {
+            viewValueLabel.textContent = "Local";
+        } else {
+            viewValueLabel.textContent = "Standard";
+        }
+
+        if (currencyToggle.checked) {
+            currencyValueLabel.textContent = "USD";
+        } else {
+            currencyValueLabel.textContent = "LocalCurr";
+        }
+    }
+
+    //update currency 
+    function updateCurrency() {
+        var viewToggle = document.getElementById("togBtnview");
+        var currencyToggle = document.getElementById("togBtncurrency");
+        var currencyText = document.querySelector(".slider.round .off");
+
+        if (viewToggle.checked) {
+            // View is set to Local
+            currencyToggle.checked = true;
+            currencyText.textContent = "USD";
+        } else {
+            // View is set to Standard
+            currencyToggle.checked = false;
+            currencyText.textContent = "LocalCurr";
+        }
+        updateText();
+    }
+
+    function updateView() {
+        var viewToggle = document.getElementById("togBtnview");
+        var currencyToggle = document.getElementById("togBtncurrency");
+        var currencyText = document.querySelector(".slider.round .off");
+
+        if (currencyToggle.checked) {
+            // Currency is set to USD
+            viewToggle.checked = true; // Change view to Standard
+            currencyText.textContent = "USD"; // Change currency text
+        } else {
+            // Currency is set to LocalCurr
+            viewToggle.checked = false; // Change view to Local
+            currencyText.textContent = "LocalCurr"; // Change currency text
+        }
+        updateText();
+    }
+    //Curencty and voiew change 
+
+    //td remove border
+     $(document).ready(function() {
          $('tr:has(td:contains("Total")) td').css('font-weight', 'bold');
         $('td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
-    });
-</script>
-
-<script type="text/javascript">
+     });
+    
+    //import submission loader
     $(document).ready(function(){
     $('#importForm').submit(function(){
         // Show loader
@@ -349,20 +526,17 @@ input:checked + .slider .off
 
         return true; // Allow form submission to continue
     });
-});
-</script>
-<script>
+    });
+
+
     // Set default values for View and Currency
     document.addEventListener('DOMContentLoaded', function() {
-        // Set View as Standard
         document.getElementById('togBtnview').checked = true;
-
-        // Set Currency as USD
         document.getElementById('togBtncurrency').checked = true;
     });
-</script>
-<script>
-$(document).ready(function () {
+
+    //year o and yesr from select
+    $(document).ready(function () {
         $(document).on('click','.info',function()
         {
             var information = $(this).data('information');
@@ -381,7 +555,7 @@ $(document).ready(function () {
         var selectedYear = parseInt($(this).val());
         $('#ddlYearsto').empty().append($('<option>', {
             value: '',
-            text: '-- select --',
+            text: '-- all --',
             hidden: true
         }));
 
@@ -392,113 +566,8 @@ $(document).ready(function () {
             }));
         }
     });
-});
-</script>
-
-
-<script>
-    $('.textrow').hide();
-    $('.viewtext').hide();
-    $('.currencytext').hide();
-    $('.juricdictiontext').hide();
-    $('.yeartotext').hide();
-
-    document.addEventListener("DOMContentLoaded", function() {
-        var checkbox = document.getElementById('togBtnview');
-        var currencySelect = document.getElementById('togBtncurrency'); 
-        var yearFromSelect = document.getElementById('ddlYearsfrom'); 
-        var yearToSelect = document.getElementById('ddlYearsto'); 
-        
-       $(function() {
-        $('#country').change(function(e) {
-            var selectedOptions = $(this).find('option:selected');
-            var selectedCountryText = [];
-            var selectedcountry = $(e.target).val();
-
-            selectedOptions.each(function() {
-                selectedCountryText.push($(this).text());
-            });
-
-            handleFormChange(checkbox, selectedcountry, yearFromSelect, yearToSelect, selectedCountryText.join(', '));
-            }); 
-        });
-
-       [checkbox, currencySelect, yearFromSelect, yearToSelect].forEach(function(element) {
-        if (element) {
-            element.addEventListener('change', function(e) {
-                var selectedcountry = $('#country').val(); // Retrieve the selected country value
-                handleFormChange(checkbox, selectedcountry, yearFromSelect, yearToSelect);
-            });
-        }
     });
 
-        
-        function paginate(page) {
-            var viewValue = checkbox.checked ? 'Standard' : 'Local';
-            var currencyValue = currencySelect.checked ? 'USD' : 'LocalCurr';
-            var jurisdictionValues = Array.from(jurisdictionSelect.selectedOptions).map(option => option.value);
-            var yearFromValue = yearFromSelect.value;
-            var yearToValue = yearToSelect.value;
-            var token = "{{ csrf_token() }}";
-            handleFormChange(checkbox, null, yearFromSelect, yearToSelect);
-        }
-    });
-
-    function handleFormChange(checkbox, selectedcountry, yearFromSelect, yearToSelect, selectedCountryText) {
-        var viewValue = checkbox.checked ? 'Standard' : 'Local';
-        var currencyCheckbox = document.getElementById('togBtncurrency');
-        var currencyValue = currencyCheckbox.checked ? 'USD' : 'LocalCurr';
-        var yearFromValue = yearFromSelect.value;
-        var yearToValue = yearToSelect.value;
-        var country = selectedcountry;
-        var juricdictiontext = selectedCountryText;
-
-        var token = "{{ csrf_token() }}";
-        $('.textrow').show();
-        if(viewValue != "") {
-            $('.viewtext').show();
-            $('.viewValue').html(viewValue);
-        }
-        if(juricdictiontext != "")
-        {
-            $('.juricdictiontext').show();
-            $('.juricdictionValue').html(juricdictiontext)
-        }else {
-            // If no jurisdiction text, hide the corresponding element
-            $('.juricdictiontext').hide();
-        }
-        if(currencyValue != "") {
-            $('.currencytext').show();
-            $('.currencyValue').html(currencyValue);
-        }
-        if(yearFromValue && yearToValue != 0) {
-            $('.yeartotext').show();
-            $('.yeartoValue').html(yearFromValue + '-' +yearToValue);
-        }
-
-        // Send AJAX request with all values
-        $.ajax({
-            url: "{{ route('adminscoreview') }}",
-            type: "POST",
-            dataType: 'json',
-            data: {
-                _token: token,
-                view: viewValue,
-                currency: currencyValue,
-                year_from: yearFromValue,
-                year_to: yearToValue,
-                country: country // Add country to the data object being sent
-            },
-            success: function(data) {
-                $("#targetDivold").hide();
-                $('#targetDivnew').html(data.view);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    }
 </script>
-
 
 @endsection

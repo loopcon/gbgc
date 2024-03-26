@@ -1,5 +1,5 @@
         
-        <table id="ss-list" class="table  table-bordered nowrap">
+        <table id="ss-list" class="table  table-bordered">
             <!-- <table id="multi-colum-dt" class="table table-striped table-bordered nowrap dataTable " role="grid" aria-describedby="multi-colum-dt_info"> -->
                                             <thead>
                                                 <tr>
@@ -25,7 +25,7 @@
                                                     <td>{{ $row['sub_category_2'] }}</td>
                                                     <td>{{ $row['level_4'] }}
 
-                                                     <a href="javascript:void(0);" class="info" data-information="<?php echo $row['level4information']; ?>" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
+                                                   
                                                         </td>
 
                                                     <td>{!! $row['description'] !!}</td>
