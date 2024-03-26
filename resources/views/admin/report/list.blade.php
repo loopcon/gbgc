@@ -192,8 +192,8 @@ input:checked + .slider .off
             </div>
 
             <div class="col-12 col-sm-4 col-md-4 col-xl-2 ">
-                <h3 class="adm-reset-btn-label">reset btn</h3>
-                <a href="{{route('adminreport')}}" class="btn btn-primary">Reset</a>
+                <h3 class="sub-title adm-reset-btn-label">reset btn</h3>
+                <a href="{{route('adminreport')}}" class="btn btn-primary admin-reset-btn">Reset</a>
             </div>
 
         </div>

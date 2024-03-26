@@ -6,12 +6,30 @@
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-12 col-sm-6 col-md-6 col-lg-8">
-                <div class="page-header-title user-breadcum-box">
-                    <i class="feather icon-inbox bg-c-blue"></i>
-                    <div class="d-inline">
-                        <h5>Additional User</h5>
+                <div class="user-custom-breadcum">
+                    <div class="page-header-title user-breadcum-box">
+                        <i class="feather icon-inbox bg-c-blue"></i>
+                        <div class="d-inline">
+                            <h5>Additional User</h5>
+                        </div>
                     </div>
-                </div>
+                    <div class="">
+                        <!-- freetopro -->
+                        @if($customer->access_type!="paid"  && 
+                            $customer->access_type!="additionaluser"  && 
+                            $customer->access_type!="requestforadditional" && 
+                            $customer->access_type!="requestforpaid" && 
+                            $customer->payment!=1)
+                            <a href="javascript:void(0)"  class="btn text-light freetoproacess"  style="background:#4099ff">  Free to Pro</a>
+                        @endif
+                        <!-- endfreetopro -->
+
+                        <!-- paid -->
+                        @if($customer->remain_payment_additional_user > 0)
+                        <a href="javascript:void(0)"  class=" btn text-light additionaluser"  style="background:#4099ff">Add Additional User</a>
+                        @endif
+                    </div>
+                </div>    
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                 <div class="page-header-breadcrumb">
@@ -39,13 +57,10 @@
                         <div class="col-sm-12">
                             <div class="card">
                              
-                                <div class="card-header">
+                                {{-- <div class="card-header">
                                     <div class="form-row">
                                         <div class="col-md-12 text-right">
                                             <div class="col-md-12 text-right">
-
-                                           
-
                                              <!-- freetopro -->
                                               @if($customer->access_type!="paid"  && 
                                                     $customer->access_type!="additionaluser"  && 
@@ -63,7 +78,7 @@
 								            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
                                         <table id="complex-dt" class="table table-striped table-bordered nowrap">

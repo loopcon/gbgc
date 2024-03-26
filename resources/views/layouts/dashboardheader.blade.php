@@ -54,6 +54,10 @@
     .main-body .page-wrapper{ padding: 0px 1.5rem; }
     .user-glossary-card .card-header{ padding-top: 20px; padding-bottom: 0px; padding-left: 20px; padding-right: 0px; }
     .user-jurisdiction-head{display: flex;align-items: center;}
+    .page-header.card .breadcrumb{ padding: 0.50rem 1rem}
+    .pcoded-inner-content{ padding: 0px 10px; }
+    .user-custom-breadcum{ display: flex; align-items: center;}
+    .user-custom-breadcum a{ margin-left: 15px;}
 
     @media (max-width:768px){
         .page-header.card .align-items-end .page-header-title{display: flex;}
@@ -64,12 +68,11 @@
     @media (max-width:575px){
         .dashboard-logo{width: 100px !important;height: auto !important;}
         .download-btn{margin-top: 15px;margin-bottom: 15px;}
-        .page-header.card .breadcrumb{float: unset;}
+        .page-header.card .breadcrumb{float: unset; padding: 0px;}
         .user-jurisdiction-head{display: block;}
         .header-navbar .navbar-wrapper .navbar-logo[logo-theme=theme6] {background: #263544;align-items: center;display: flex;}
         .user-breadcum-box{ display: flex; justify-content: center }
         .user-breadcum-box i {margin-right: 10px !important; }
-        .page-header.card .breadcrumb{ padding: 0px;}
         .user-year-from-box{ margin-bottom: 15px; }
         .main-body .page-wrapper{ padding: 0px 5px;}
         .user-reset-btn{font-size: 2px;}
