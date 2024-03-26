@@ -14,12 +14,13 @@ class StripeController extends Controller
     {
        // dd($request->all());
        $checkpayment =Order::where('customer_id',$request->customerid)->where(['active_status'=>1])->first();
-
+       // dd($checkpayment);
         if($checkpayment == null)
         {
 
-            if($request->paymentmethod == "offline")
-            {    
+            if($request->paymentmethod === "offline")
+            {   
+                   // dd("test");
                 if($request->usertype =='freetopro')
                 {
                     $customer = Customer::find($request->customerid);
@@ -33,7 +34,7 @@ class StripeController extends Controller
                     $order->currency='USD';
                     $order->payment_method=$request->paymentmethod;
                     $order->save();
-                    return redirect()->route('offlinepaymentsuccess');
+                    return redirect()->route('paymentsuccessnew');
                 }else{
 
                     $tempcustomer = TempCustomer::where('id',$request->customerid)->first();
@@ -63,7 +64,7 @@ class StripeController extends Controller
                     $tempcustomer = TempCustomer::where('id',$request->customerid)->delete();
                     session()->forget('customer'); //forgotp old session
                     $session= Session::put('customer', $customer->id); //genrate new session
-                    return redirect()->route('offlinepaymentsuccess');
+                    return redirect()->route('paymentsuccessnew');
                 }
                 
             }
@@ -188,4 +189,10 @@ class StripeController extends Controller
     {
         return view('frontend.thankyou');
     }
+
+    public function paymentsuccessnew()
+    {
+        return view('frontend.paymentsuccess');
+    }
+
 }

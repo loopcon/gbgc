@@ -24,6 +24,7 @@ Route::post('stripe', [StripeController::class, 'stripe'])->name('stripe');
 Route::get('success', [StripeController::class, 'success'])->name('success');
 Route::get('cancel', [StripeController::class, 'cancel'])->name('cancel');
 Route::get('paymentsuccess',[StripeController::class,'offlinepaymentsuccess'])->name('offlinepaymentsuccess');
+Route::get('Payment_Sucess',[StripeController::class,'paymentsuccessnew'])->name('paymentsuccessnew');
 
 Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::post('/store-newsletter',[FrontendController::class, 'storeNewsletter'])->name('store-newsletter');

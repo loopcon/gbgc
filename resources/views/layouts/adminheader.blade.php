@@ -100,7 +100,7 @@
                                     <li class="{{ (request()->is('admin/report*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('adminreport')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
+                                              <i class="fa fa-file-text-o"></i>
                                             </span>
                                             <span class="pcoded-mtext">Reports</span>
                                         </a>
@@ -109,7 +109,7 @@
                                     <li class="{{ (request()->is('admin/glossary*'))? 'pcoded-trigger' : '' }}">
                                         <a href="{{route('admindatatext')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-info"></i>
+                                               <i class="fa fa-file-text"></i>
                                             </span>
                                             <span class="pcoded-mtext">Glossary</span>
                                         </a>

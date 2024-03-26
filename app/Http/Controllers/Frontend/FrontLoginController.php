@@ -172,7 +172,7 @@ class FrontLoginController extends Controller
         $customers = Customer::where([['email', '=', $request->email1],['password', '!=', ""]])->first();
 
         if(empty($customer)){
-            return response()->json(['status' =>0, 'errormsg' => 'Your have not account, please Register First']);
+            return response()->json(['status' =>0, 'errormsg' => 'Account not found. Please register first.']);
         }else{
             if(isset($customers))
             {
