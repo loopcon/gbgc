@@ -1,5 +1,5 @@
 @if(count($yeardata) > 0)
-<table class="table table-bordered nowrap dashboard-table-responsive ">
+<table class="table table-bordered dashboard-table-responsive ">
     <thead>
         <tr>
             <th>{{__('Level 1')}}</th>
@@ -16,7 +16,9 @@
             <tr>
                 @foreach($row as $key => $value)
                 @if($key === 0 || $key === 1 || $key === 2)
-                    <td style="border-bottom:0px;">{{ $value }}</td>
+                    <td style="border-bottom:0px;text-wrap: balance;"  >{{ $value }}</td>
+                @elseif($key === 3)
+                <td style="border-bottom:0px;text-wrap: balance;"  >{{ $value }}</td>
                 @else
                     <td>{{ $value }}</td>
                 @endif
@@ -26,6 +28,8 @@
         @endforeach
     </tbody>
 </table>
+@else
+<label style="font-weight:bold; text-align: center;">Data Not Found</label>
 @endif
 @section('javascript')
 <script type="text/javascript">
@@ -35,4 +39,5 @@
     });
 
 </script>
+
 @endsection
