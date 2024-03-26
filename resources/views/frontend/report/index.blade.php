@@ -162,7 +162,7 @@ input:checked + .slider .off
                     </select>
                 </div>
 
-                <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input" id="singlecountry">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-3 adm-jurisdiction-input" id="singlecountry">
                     <h3 class="sub-title">Jurisdiction</h3>
                     <select class="form-control col-sm-12" id="country">
                         <option value="all" selected disabled>All</option>
@@ -188,7 +188,7 @@ input:checked + .slider .off
                 </select>
             </div>
 
-            <div class="col-12 col-sm-4 col-md-4 col-xl-2 user-reset-box">
+            <div class="col-12 col-sm-4 col-md-4 col-xl-1 user-reset-box">
                 <h3 class="sub-title user-reset-btn">reset btn</h3>
                 <a href="{{route('frontreport')}}" class="btn btn-primary user-reset-freebtn">Reset</a>
             </div>
@@ -196,16 +196,16 @@ input:checked + .slider .off
         </div>
 
         <div class="row textrow">
-            <div class="col-sm-12 col-xl-2 m-b-30 ">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2">
                 <h6 class="viewtext">View : <lable class="viewValue"></lable></h6>
             </div>
-            <div class="col-sm-12 col-xl-2 m-b-30 ">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2">
                 <h6 class="currencytext">Currency : <lable class="currencyValue"></lable></h6> 
             </div>
-            <div class="col-sm-12 col-xl-2 m-b-30 ">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-3">
                 <h6 class="juricdictiontext">Jurisdiction : <lable class="juricdictionValue"></h6>
             </div>
-            <div class="col-sm-12 col-xl-2 m-b-30 " style="text-align: center;">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2 " style="text-align: center;">
                 <h6 class="yeartotext">Year : <lable class="yeartoValue"></h6>
             </div>
         </div>

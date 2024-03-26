@@ -94,6 +94,7 @@
         .sub-title{ margin-top: 8px; }
         .user-reset-freebtn{ padding: 0px 15px;}
         .free-user-box{ margin-bottom: 10px; }
+        .year-from-box"{margin-bottom: 10px;}
     }
 </style>
 
