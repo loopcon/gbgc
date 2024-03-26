@@ -140,7 +140,7 @@ input:checked + .slider .off
                 </label>   
             </div>
 
-            <div class="col-6 col-6 col-sm-4 col-md-4 col-xl-2">
+            <div class="col-6 col-6 col-sm-4 col-md-4 col-xl-2 admin-currency-box">
                 <h3 class="sub-title">Currency</h3>
                 <label class="switch">
                     <input type="checkbox" id="togBtncurrency" onchange="updateView()">
@@ -153,7 +153,7 @@ input:checked + .slider .off
                 </label>   
             </div>
 
-                <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-3 adm-jurisdiction-input">
                     <h3 class="sub-title">Jurisdiction</h3>
                     <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
                         <option value="all" selected disabled>All</option>
@@ -180,7 +180,7 @@ input:checked + .slider .off
                 </select>
             </div>
 
-            <div class="col-12 col-sm-4 col-md-4 col-xl-2 ">
+            <div class="col-12 col-sm-4 col-md-4 col-xl-1 adm-reset-btn">
                 <h3 class="sub-title adm-reset-btn-label">reset btn</h3>
                 <a href="{{route('adminreport')}}" class="btn btn-primary admin-reset-btn">Reset</a>
             </div>

@@ -139,7 +139,7 @@ input:checked + .slider .off
                 </label>   
             </div>
 
-            <div class="col-6 col-sm-6 col-md-4  col-xl-2">
+            <div class="col-6 col-sm-6 col-md-4  col-xl-2 user-currency-box">
                 <h3 class="sub-title">Currency</h3>
                 <label class="switch">
                     <input type="checkbox" id="togBtncurrency">
@@ -152,7 +152,7 @@ input:checked + .slider .off
                 </label>   
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4  col-xl-2 user-year-from-box">
+            <div class="col-12 col-sm-6 col-md-4  col-xl-3 user-year-from-box">
                 <h3 class="sub-title">Jurisdiction</h3>
                 <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
                     @if($region->count())
@@ -177,9 +177,9 @@ input:checked + .slider .off
                 </select>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-xl-2">
-                <h3 class="user-reset-btn">Year To</h3>
-                <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-1  user-reset-box">
+                <h3 class="sub-title user-reset-btn">Year To</h3>
+                <a href="{{route('frontreport')}}" class="btn btn-primary user-reset-freebtn">Reset</a>
             </div>
 
         </div>

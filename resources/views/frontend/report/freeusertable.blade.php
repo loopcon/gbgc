@@ -118,7 +118,7 @@ input:checked + .slider .off
 
     <div class="container">
         <div class="row">
-                <div class="col-6 col-sm-4 col-md-4 col-xl-2">
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 free-user-box">
                     <h3 class="sub-title">View</h3>
                     <label class="switch">
                         <input type="checkbox" id="togBtnview" checked>
@@ -131,7 +131,7 @@ input:checked + .slider .off
                     </label>   
                 </div>
 
-                <div class="col-6 col-sm-4 col-md-4 col-xl-2">
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 free-user-box">
                     <h3 class="sub-title">Currency</h3>
                     <label class="switch">
                         <input type="checkbox" id="togBtncurrency" checked>
@@ -144,28 +144,28 @@ input:checked + .slider .off
                     </label>   
                 </div>
 
-                <div class="col-12 col-sm-4 col-md-4 col-xl-2">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2 free-user-box">
                     <h3 class="sub-title">Jurisdiction</h3>
                     <select class="js-example-basic col-sm-12 form-control"  id="country" placholder="Jurisdiction">
                     <option value="" hidden>{{__('Year From')}}</option>
                     </select>
                 </div>
 
-                <div class="col-12 col-sm-4 col-md-4 col-xl-2">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2 free-user-box">
                     <h3 class="sub-title">Year From</h3>
                     <select class="form-control js-example col-sm-12" id="ddlYearsfrom" name="year">
                         <option value="">{{__('Year From')}}</option>
                     </select>
                 </div>
 
-                <div class="col-12 col-sm-4 col-md-4 col-xl-2">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2 free-user-box">
                     <h3 class="sub-title">Year To</h3>
                     <select class="form-control js-example col-sm-12" id="ddlYearsto">
                         <option value="0" hidden>{{__('Year To')}}</option>
                     </select>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2 free-user-box">
                     <h3 class="user-reset-btn">Year To</h3>
                     <a href="{{route('frontreport')}}" class="btn btn-primary">Reset</a>
                 </div>

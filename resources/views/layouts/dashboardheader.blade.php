@@ -47,10 +47,10 @@
     .user-breadcum-box{ display: flex; align-items: center  }
     .user-report-breadcum-main { align-items: center !important; }
     .page-header.card { margin: 10px 35px 10px;}
-    .user-reset-btn{ opacity: 0; }
+    .user-reset-btn{ opacity: 0;}
     .sub-title{ padding-bottom: 6px; margin-bottom: 10px;}
-    .user-year-from-box .form-control{ height: 40px; display: block; }
-    .user-year-from-box .selection{ height: 40px; display: block; }
+    .user-year-from-box .form-control{ height: 34px; display: block; }
+    .user-year-from-box .selection{ height: 34px; display: block; }
     .main-body .page-wrapper{ padding: 0px 1.5rem; }
     .user-glossary-card .card-header{ padding-top: 20px; padding-bottom: 0px; padding-left: 20px; padding-right: 0px; }
     .user-jurisdiction-head{display: flex;align-items: center;}
@@ -58,11 +58,26 @@
     .pcoded-inner-content{ padding: 0px 10px; }
     .user-custom-breadcum{ display: flex; align-items: center;}
     .user-custom-breadcum a{ margin-left: 15px;}
+    .user-reset-freebtn{ height: 34px; line-height: 34px;padding: 0px 15px; }
+    .user-year-from-box .select2-selection--multiple{ height: 34px !important;}
+    .user-year-from-box .select2-selection__choice{margin-top: 1px !important; }
+    .user-year-from-box .select2-selection__rendered{ display: flex !important; }
+    .user-paid-box{ display: flex; justify-content: center;}
+    .user-report-item1{width: 14%;}
+    .user-report-item2{width: 25%;}
+    .user-year-from-box{padding-left: 0px ; }
+    .user-reset-box{ padding-left: 0px;padding-right: 0px; }
+    .user-currency-box{ padding-left: 0px; }
+    
 
     @media (max-width:768px){
         .page-header.card .align-items-end .page-header-title{display: flex;}
         .user-breadcum-box i{ margin-right: 10px !important;}
         .page-header.card{ margin: 10px 35px 0px;}
+        .user-currency-box{ padding-left: 15px !important;  margin-bottom: 10px;}
+        .user-year-from-box{ padding-left: 15px !important; margin-bottom: 10px; }
+        .user-reset-box{ padding-left: 15px !important; padding-right: 15px !important; margin-bottom: 10px; }
+        .free-user-box{ margin-bottom: 10px; }
     }
         
     @media (max-width:575px){
@@ -75,8 +90,10 @@
         .user-breadcum-box i {margin-right: 10px !important; }
         .user-year-from-box{ margin-bottom: 15px; }
         .main-body .page-wrapper{ padding: 0px 5px;}
-        .user-reset-btn{font-size: 2px;}
+        .user-reset-btn{font-size: 2px; display: none; }
         .sub-title{ margin-top: 8px; }
+        .user-reset-freebtn{ padding: 0px 15px;}
+        .free-user-box{ margin-bottom: 10px; }
     }
 </style>
 
