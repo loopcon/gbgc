@@ -468,11 +468,16 @@ input:checked + .slider .off
         if (viewToggle.checked) {
             $('#multiplecountry').show();
             $('#singlecountry').hide();
+             $('.countrynote').hide();
         }else
         {
             $('#multiplecountry').hide();
             $('#singlecountry').show();
             $('.countrynote').show();
+
+            setTimeout(function() {
+                $('.countrynote').hide();
+            }, 20000);
         }
 
     }
