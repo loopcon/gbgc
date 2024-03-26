@@ -150,7 +150,7 @@ input:checked + .slider .off
                     </div>
                 </label>   
             </div>
-                <div class="col-12 col-sm-4 col-md-4 col-xl-3 adm-jurisdiction-input" id="multiplecountry">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-3 user-year-from-box" id="multiplecountry">
                     <h3 class="sub-title">Jurisdiction</h3>
                     <select class="js-example-basic-multiple col-sm-12" id="country"  multiple="multiple">
                         <option value="all" selected disabled>All</option>
@@ -162,7 +162,7 @@ input:checked + .slider .off
                     </select>
                 </div>
 
-                <div class="col-12 col-sm-4 col-md-4 col-xl-3 adm-jurisdiction-input" id="singlecountry">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-3 adm-jurisdiction-input " id="singlecountry">
                     <h3 class="sub-title">Jurisdiction</h3>
                     <select class="form-control col-sm-12" id="country">
                         <option value="all" selected disabled>All</option>

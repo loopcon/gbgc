@@ -68,6 +68,7 @@
     .user-year-from-box{padding-left: 0px ; }
     .user-reset-box{ padding-left: 0px;padding-right: 0px; }
     .user-currency-box{ padding-left: 0px; }
+    .select2-selection--multiple { height: 34px !important; }
     
 
     @media (max-width:768px){
@@ -88,13 +89,12 @@
         .header-navbar .navbar-wrapper .navbar-logo[logo-theme=theme6] {background: #263544;align-items: center;display: flex;}
         .user-breadcum-box{ display: flex; justify-content: center }
         .user-breadcum-box i {margin-right: 10px !important; }
-        .user-year-from-box{ margin-bottom: 15px; }
+        .user-year-from-box{ margin-bottom: 10px; }
         .main-body .page-wrapper{ padding: 0px 5px;}
         .user-reset-btn{font-size: 2px; display: none; }
         .sub-title{ margin-top: 8px; }
-        .user-reset-freebtn{ padding: 0px 15px;}
+        .user-reset-freebtn{ padding: 0px 15px; margin-bottom:10px; margin-top: 10px; }
         .free-user-box{ margin-bottom: 10px; }
-        .year-from-box"{margin-bottom: 10px;}
     }
 </style>
 
