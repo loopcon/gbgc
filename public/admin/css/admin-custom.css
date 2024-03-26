@@ -22,8 +22,10 @@
 .breadcum-rowbox{display: flex; align-items: center !important;}
 .breadcum-box{display: flex; align-items: center; }
 .sub-title{padding-bottom: 6px;margin-bottom: 10px; margin-top: 0px; }
-.adm-jurisdiction-input .selection{ height: 40px !important; display: block;}
-.year-from-box .form-control{height: 40px !important; display: block;}
+.adm-jurisdiction-input .selection{ height: 34px !important; display: block;}
+.adm-jurisdiction-input .selection .select2-selection__rendered{height: 34px !important; display: block; line-height: 34px !important; padding: 0px 30px 0px 20px !important; background-color: unset !important; }
+.adm-jurisdiction-input .select2-selection--single { border: 0px !important; height: 34px !important; }
+.year-from-box .form-control{height: 34px !important; display: block;}
 .adm-reset-btn-label{opacity: 0;}
 .admin-glossary-card .card-header{ padding-top: 15px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
 .admin-glossary-card .card-block{ padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;}
@@ -43,6 +45,7 @@
 .page-header.card .breadcrumb{padding: 0.50rem 1rem;}
 .admin-custom-breadcum{ display: flex; align-items: center; }
 .admin-custom-breadcum a{ margin-left: 15px; }
+.admin-reset-btn{ height: 34px; }
 
 @media(max-width:768px){
     .breadcum-box{display: flex !important; }
