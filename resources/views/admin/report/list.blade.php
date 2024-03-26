@@ -153,17 +153,18 @@ input:checked + .slider .off
                 </label>   
             </div>
 
-            <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input">
-                <h3 class="sub-title">Jurisdiction</h3>
-                <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
-                    <option value="all">all</option>
-                    @if($region->count())
-                        @foreach($region as $data)
-                            <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input">
+                    <h3 class="sub-title">Jurisdiction</h3>
+                    <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
+                        <option value="all" selected disabled>All</option>
+                        @if($region->count())
+                            @foreach($region as $data)
+                                <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+
 
             <div class="col-12 col-sm-4 col-md-4 col-xl-2 year-from-box">
                 <h3 class="sub-title">Year From</h3>
@@ -335,53 +336,7 @@ input:checked + .slider .off
 @section('javascript')
 
 <script>
-     
-     document.addEventListener('DOMContentLoaded', function() {
-    var togBtnview = document.getElementById('togBtnview');
-    var togBtncurrency = document.getElementById('togBtncurrency');
-    var countrySelect = document.getElementById('country');
 
-    // Add event listeners to checkboxes
-    togBtnview.addEventListener('change', handleViewChange);
-    togBtncurrency.addEventListener('change', handleCurrencyChange);
-
-    // Add event listener to the Jurisdiction dropdown
-    countrySelect.addEventListener('change', handleJurisdictionChange);
-
-    // Initial call to update Jurisdiction selection based on default View and Currency
-    handleViewChange();
-    handleCurrencyChange();
-
-    function handleViewChange() {
-        if (togBtnview.checked && togBtncurrency.checked) {
-            // Allow multiple selection
-            countrySelect.multiple = true;
-            countrySelect.removeAttribute('title');
-        } else {
-            // Disallow multiple selection and display message
-            countrySelect.multiple = false;
-            countrySelect.title = "Multiple Selection is only available for Standard-USD reports";
-        }
-    }
-
-    function handleCurrencyChange() {
-        if (togBtnview.checked && togBtncurrency.checked) {
-            // Allow multiple selection
-            countrySelect.multiple = true;
-            countrySelect.removeAttribute('title');
-        } else {
-            // Disallow multiple selection and display message
-            countrySelect.multiple = false;
-            countrySelect.title = "Multiple Selection is only available for Standard-USD reports";
-        }
-    }
-
-    function handleJurisdictionChange() {
-        if (countrySelect.multiple && (!togBtnview.checked || !togBtncurrency.checked)) {
-            alert("Multiple Selection is only available for Standard-USD reports");
-        }
-    }
-});
 
    document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('togBtnview').checked = true;
@@ -394,7 +349,7 @@ input:checked + .slider .off
         var yearFromSelect = document.getElementById('ddlYearsfrom').value;
         var yearToSelect = document.getElementById('ddlYearsto').value;
         var countrySelect = document.getElementById('country');
-        var selectedCountries = Array.from(countrySelect.selectedOptions).map(option => option.value);
+        var selectedCountries = Array.from(countrySelect.selectedOptions).map(option => option.value).join(',');
         
         $('#spinner').show(); // Show spinner before AJAX request
         reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries);
@@ -405,11 +360,15 @@ input:checked + .slider .off
     document.getElementById('togBtncurrency').addEventListener('change', handleChange);
     document.getElementById('ddlYearsfrom').addEventListener('change', handleChange);
     document.getElementById('ddlYearsto').addEventListener('change', handleChange);
-    document.getElementById('country').addEventListener('change', handleChange);
+    $('#country').change(function(){
+    $('#country option[value="all"]').prop('selected', false);
+        handleChange(); 
+    });
 
     // Initial call
     handleChange();
 });
+
 
 function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries) {
     var viewText = viewValue ? 'Standard' : 'Local';
