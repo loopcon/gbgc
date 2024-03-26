@@ -153,9 +153,9 @@ input:checked + .slider .off
                 </label>   
             </div>
 
-                <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input">
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input" id="multiplecountry">
                     <h3 class="sub-title">Jurisdiction</h3>
-                    <select class="js-example-basic-multiple col-sm-12" multiple="multiple" id="country">
+                    <select class="js-example-basic-multiple col-sm-12" id="country"  multiple="multiple">
                         <option value="all" selected disabled>All</option>
                         @if($region->count())
                             @foreach($region as $data)
@@ -165,6 +165,17 @@ input:checked + .slider .off
                     </select>
                 </div>
 
+                <div class="col-12 col-sm-4 col-md-4 col-xl-2 adm-jurisdiction-input" id="singlecountry">
+                    <h3 class="sub-title">Jurisdiction</h3>
+                    <select class="form-control col-sm-12" id="country">
+                        <option value="all" selected disabled>All</option>
+                        @if($region->count())
+                            @foreach($region as $data)
+                                <option value="{{$data->id}}" >{{ucfirst($data->name)}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
 
             <div class="col-12 col-sm-4 col-md-4 col-xl-2 year-from-box">
                 <h3 class="sub-title">Year From</h3>
@@ -194,12 +205,15 @@ input:checked + .slider .off
             <div class="col-sm-12 col-xl-2 m-b-30 ">
                 <h6 class="currencytext">Currency : <lable class="currencyValue"></lable></h6> 
             </div>
-            <div class="col-sm-12 col-xl-3 m-b-30 ">
+            <div class="col-sm-12 col-xl-2 m-b-30 ">
                 <h6 class="juricdictiontext">Jurisdiction : <lable class="juricdictionValue"></h6>
             </div>
-            <div class="col-sm-12 col-xl-4 m-b-30 " style="text-align: center;">
+            <div class="col-sm-12 col-xl-2 m-b-30 " style="text-align: center;">
                 <h6 class="yeartotext">Year : <lable class="yeartoValue"></h6>
             </div>
+        </div>
+        <div class="countrynote">
+            <label style="color:red">Note : Multiple Selection is only available for Standard-USD reports</label>
         </div>
     </div>
 
@@ -337,8 +351,7 @@ input:checked + .slider .off
 
 <script>
 
-
-   document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('togBtnview').checked = true;
     document.getElementById('togBtncurrency').checked = true;
 
@@ -350,33 +363,42 @@ input:checked + .slider .off
         var yearToSelect = document.getElementById('ddlYearsto').value;
         var countrySelect = document.getElementById('country');
         var selectedCountries = Array.from(countrySelect.selectedOptions).map(option => option.value).join(',');
-        
-        $('#spinner').show(); // Show spinner before AJAX request
-        reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries);
+        var countrytext = Array.from(countrySelect.selectedOptions).map(option => option.text).join(',');
+
+        $('#spinner').show();
+        reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries,countrytext);
     }
 
-    // Attach event listeners to elements
-    document.getElementById('togBtnview').addEventListener('change', handleChange);
-    document.getElementById('togBtncurrency').addEventListener('change', handleChange);
-    document.getElementById('ddlYearsfrom').addEventListener('change', handleChange);
-    document.getElementById('ddlYearsto').addEventListener('change', handleChange);
-    $('#country').change(function(){
-    $('#country option[value="all"]').prop('selected', false);
-        handleChange(); 
+        // Attach event listeners to elements
+        document.getElementById('togBtnview').addEventListener('change', handleChange);
+        document.getElementById('togBtncurrency').addEventListener('change', handleChange);
+        document.getElementById('ddlYearsfrom').addEventListener('change', handleChange);
+        document.getElementById('ddlYearsto').addEventListener('change', handleChange);
+        $('#country').change(function(){
+            if($(this).val().length > 0) {
+                $('#country option[value="all"]').prop('selected', false);
+            } else {
+                $('#country option[value="all"]').prop('selected', true);
+            }
+
+            handleChange(); 
+        });
+
+        // Initial call
+        handleChange();
     });
 
-    // Initial call
-    handleChange();
-});
 
-
-function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries) {
+    function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, selectedCountries, countrytext){
     var viewText = viewValue ? 'Standard' : 'Local';
     var currencyText = currencyValue ? 'USD' : 'LocalCurr';
     var yearFrom = yearFromSelect;
     var yearTo = yearToSelect;
     var jurisdictions = selectedCountries;
+    var countrytext = countrytext;
     var token = "{{ csrf_token() }}";
+
+
     $.ajax({
         url: "{{ route('adminscoreview') }}",
         type: "POST",
@@ -390,14 +412,26 @@ function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, sele
             country: jurisdictions
         },
         success: function(data) {
-            $('#spinner').hide(); // Hide spinner after successful response
+
+            $('.textrow').show();
+            $('.viewtext').show();
+            $('.currencytext').show();
+            $('.juricdictiontext').show();
+            $('.yeartotext').show();
+
+            $('.viewValue').html(viewText);
+            $('.currencyValue').html(currencyText);
+            $('.juricdictionValue').html(countrytext);
+            $('.yeartoValue').html(yearFrom + '-' +yearTo);
+
+            $('#spinner').hide();
             $("#targetDivold").hide();
             $('#targetDivnew').html(data.view);
             $('#targetDivnew td:empty').css({'border-top': '0px', 'border-bottom': '0px'});
             $('#targetDivnew tr:has(td:contains("Total")) td').css('font-weight', 'bold');
         },
         error: function(xhr, status, error) {
-            $('#spinner').hide(); // Hide spinner if there's an error
+            $('#spinner').hide();
             console.error(xhr.responseText);
         }
     });
@@ -410,7 +444,8 @@ function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, sele
     $('.currencytext').hide();
     $('.juricdictiontext').hide();
     $('.yeartotext').hide();
-
+    $('#singlecountry').hide();
+    $('.countrynote').hide();
     function updateText() {
         var viewToggle = document.getElementById("togBtnview");
         var currencyToggle = document.getElementById("togBtncurrency");
@@ -427,12 +462,24 @@ function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, sele
         if (currencyToggle.checked) {
             currencyValueLabel.textContent = "USD";
         } else {
-            currencyValueLabel.textContent = "LocalCurr";
+            currencyValueLabel.textContent = "LocalCurr";   
         }
+
+        if (viewToggle.checked) {
+            $('#multiplecountry').show();
+            $('#singlecountry').hide();
+        }else
+        {
+            $('#multiplecountry').hide();
+            $('#singlecountry').show();
+            $('.countrynote').show();
+        }
+
     }
 
     //update currency 
     function updateCurrency() {
+
         var viewToggle = document.getElementById("togBtnview");
         var currencyToggle = document.getElementById("togBtncurrency");
         var currencyText = document.querySelector(".slider.round .off");
@@ -455,9 +502,8 @@ function reportlist(viewValue, currencyValue, yearFromSelect, yearToSelect, sele
         var currencyText = document.querySelector(".slider.round .off");
 
         if (currencyToggle.checked) {
-            // Currency is set to USD
-            viewToggle.checked = true; // Change view to Standard
-            currencyText.textContent = "USD"; // Change currency text
+            viewToggle.checked = true;
+            currencyText.textContent = "USD";
         } else {
             // Currency is set to LocalCurr
             viewToggle.checked = false; // Change view to Local
