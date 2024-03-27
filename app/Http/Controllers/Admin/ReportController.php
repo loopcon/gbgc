@@ -125,10 +125,10 @@ class ReportController extends Controller
 
                 // Initialize row data with level details
                 $rowData = [
-                    ($printLevel1 && $combination->maincategoryDetail) ? $combination->maincategoryDetail->title : '', // Print level 1 only once
-                    ($printLevel2 && $combination->subcategory1Detail) ? $combination->subcategory1Detail->title : '', // Print level 2 only once
-                    ($printLevel3 && $combination->subcategory2Detail) ? $combination->subcategory2Detail->title : '', // Print level 3 only once
-                    $combination->level4Detail ? $combination->level4Detail->title : '',
+                ($printLevel1 && $combination->maincategoryDetail) ? $combination->maincategoryDetail->title : '', // Print level 1 only once
+                ($printLevel2 && $combination->subcategory1Detail) ? $combination->subcategory1Detail->title : '', // Print level 2 only once
+                ($printLevel3 && $combination->subcategory2Detail) ? $combination->subcategory2Detail->title : '', // Print level 3 only once
+                $combination->level4Detail ? ($combination->level4Detail->title . ' - ' . $combination->level4Detail->information) : '', // Concatenate title and information
                 ];
 
                 // Fetch scores for the current combination of levels
