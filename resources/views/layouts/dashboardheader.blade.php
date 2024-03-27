@@ -95,6 +95,9 @@
         .sub-title{ margin-top: 8px; }
         .user-reset-freebtn{ padding: 0px 15px; margin-bottom:10px; margin-top: 10px; }
         .free-user-box{ margin-bottom: 10px; }
+        .page-header.card .align-items-end .page-header-breadcrumb{ margin-top: 0px !important; }
+        .page-header.card .breadcrumb{ padding-bottom: 10px;}
+        .user-breadcum-box{ justify-content: start;}
     }
 </style>
 
