@@ -18,9 +18,15 @@
                 @if($key === 0 || $key === 1 || $key === 2)
                     <td style="border-bottom:0px;text-wrap: balance;">{{ $value }}</td>
                 @elseif($key === 3)
-                <td style="border-bottom:0px;text-wrap: balance;">{{ $value }} 
+                  @php
+                    // Separate the title and information from $value
+                    $explodedValue = explode(' - ', $value);
+                    $title = $explodedValue[0] ?? ''; // Get the first element or an empty string if not found
+                    $information = $explodedValue[1] ?? ''; // Get the second element or an empty string if not found
+                @endphp
+                <td style="border-bottom:0px;text-wrap: balance;">{{ $title }}
                     @if($value !== 'Total')
-                    <a href="javascript:void(0);" class="info" data-information="'.$value.'" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
+                    <a href="javascript:void(0);" class="info" data-information="{{ $information }}" data-toggle="modal" data-target="#informationmodel"><i class="fa fa-info-circle text-primary" aria-hidden="true"></i></a>
                     @endif
                 </td>
                 @else
