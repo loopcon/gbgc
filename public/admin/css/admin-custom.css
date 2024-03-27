@@ -69,7 +69,7 @@
 @media(max-width:575px){
     .upload-excel{margin-top: 15px;margin-bottom: 15px;}
     .page-header.card{margin: 10px 15px 0px !important;}
-    .page-header.card .breadcrumb{float: unset;padding: 0rem 7px; padding-top: 10px;}
+    .page-header.card .breadcrumb{float: unset;padding: 0rem 7px; padding-top: 10px; padding-bottom: 8px;}
     #select-jurisdiction option{width: 250px !important;}
     .main-body .page-wrapper{ padding: 0px 5px !important;}
     .adm-reset-btn-label{ display: none; }
@@ -81,4 +81,6 @@
     .adm-jurisdiction-input { padding-left: 15px !important; margin-bottom: 10px; }
     .year-from-box { padding-left: 15px !important; margin-bottom: 10px; }
     .adm-reset-btn{ padding-left: 15px !important; padding-right: 15px !important; margin-bottom: 10px !important;}
+    .admin-custom-breadcum a{ padding: 5px 15px; }
+    .page-header.card .align-items-end .page-header-breadcrumb { margin-top: 0px !important;}
 }

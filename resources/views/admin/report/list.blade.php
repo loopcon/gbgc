@@ -199,16 +199,16 @@ input:checked + .slider .off
         </div>
 
         <div class="row textrow">
-            <div class="col-sm-12 col-xl-2 m-b-30 ">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2">
                 <h6 class="viewtext">View : <lable class="viewValue"></lable></h6>
             </div>
-            <div class="col-sm-12 col-xl-2 m-b-30 ">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2">
                 <h6 class="currencytext">Currency : <lable class="currencyValue"></lable></h6> 
             </div>
-            <div class="col-sm-12 col-xl-2 m-b-30 ">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2">
                 <h6 class="juricdictiontext">Jurisdiction : <lable class="juricdictionValue"></h6>
             </div>
-            <div class="col-sm-12 col-xl-2 m-b-30 " style="text-align: center;">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2" style="text-align: center;">
                 <h6 class="yeartotext">Year : <lable class="yeartoValue"></h6>
             </div>
         </div>
