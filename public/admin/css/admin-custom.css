@@ -52,6 +52,8 @@
 .adm-reset-btn{ padding-left: 0px; padding-right: 0px;}
 .adm-jurisdiction-input{ padding-left: 0px;}
 .year-from-box{ padding-left: 0px;}
+#informationmodel .modal-dialog {max-width: 600px;}
+
 
 @media(max-width:768px){
     .breadcum-box{display: flex !important; }

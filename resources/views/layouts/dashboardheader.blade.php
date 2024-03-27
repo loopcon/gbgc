@@ -69,7 +69,7 @@
     .user-reset-box{ padding-left: 0px;padding-right: 0px; }
     .user-currency-box{ padding-left: 0px; }
     .select2-selection--multiple { height: 34px !important; }
-    
+    #informationmodel .modal-dialog {max-width: 600px;}
 
     @media (max-width:768px){
         .page-header.card .align-items-end .page-header-title{display: flex;}
