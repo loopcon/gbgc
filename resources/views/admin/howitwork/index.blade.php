@@ -3,7 +3,7 @@
 <div class="page-header card">
     <div class="row align-items-end">
         <div class="col-lg-8">
-            <div class="page-header-title">
+            <div class="page-header-title breadcum-box">
                 <i class="feather icon-info bg-c-blue"></i>
                 <div class="d-inline">
                     <h5>How It's Work</h5>
@@ -30,8 +30,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
-                            <div class="card-header">
-                            </div>
+                            {{-- <div class="card-header">
+                            </div> --}}
                             <div class="card-block">
                                 <form method="post" action="{{route('updatehowitswork')}}" enctype="multipart/form-data">
                                     @csrf
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <div class="form-group row admin-image-upload">
                                         <label class="col-sm-2 col-form-label">Image Upload</label>
                                         <div class="col-sm-10">
                                             <input type="file" name="image"  class="form-control" placeholder="Image Upload">
@@ -81,12 +81,12 @@
 
                                 </form>
                                 <hr>
-                                  <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">
+                                  <div class="form-group row mb-2">
+                                    <label class="col-sm-2 col-form-label pt-0">
                                         <a href="javascript:void(0);" class="btn text-light upload-excel" style="background:#4099ff" data-toggle="modal" data-target="#scoreImportModal"><i class="fas fa-file-import align-middle"></i>Add Steps</a>
                                     </label>
                                   </div>
-                                    <div class="form-group row container">
+                                    <div class="form-group row container admin-table-responsive">
                                         <table class="table table-bordered col-sm-12">
                                           <thead>
                                             <tr>

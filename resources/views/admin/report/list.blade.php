@@ -233,7 +233,7 @@ input:checked + .slider .off
                                     </div>
                                 </div>
 
-                                    <div class="dt-responsive table-responsive" id="targetDivnew">
+                                    <div class="dt-responsive table-responsive admin-table-responsive" id="targetDivnew">
 
                                     </div>
 

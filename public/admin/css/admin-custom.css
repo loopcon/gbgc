@@ -47,13 +47,15 @@
 .admin-custom-breadcum a{ margin-left: 15px; }
 .admin-reset-btn{ height: 34px; }
 .adm-jurisdiction-input .select2-selection--multiple{ height: 34px !important;}
-.adm-jurisdiction-input .select2-selection__choice{ height: 26px !important; margin-top: 4px !important; line-height: 23px; }
+.adm-jurisdiction-input .select2-selection__choice{ margin-top: 1px !important; line-height: 23px; }
+.adm-jurisdiction-input .select2-container--default .select2-selection--multiple{height: 34px !important;}
+.adm-jurisdiction-input .select2-container--default .select2-selection--multiple .select2-selection__rendered li{ display: flex !important; }
 .admin-currency-box{ padding-left: 0px !important;}
 .adm-reset-btn{ padding-left: 0px; padding-right: 0px;}
 .adm-jurisdiction-input{ padding-left: 0px;}
 .year-from-box{ padding-left: 0px;}
 #informationmodel .modal-dialog {max-width: 600px;}
-
+.admin-image-upload .form-control{ padding: 4px 10px; height: 38px;}
 
 @media(max-width:768px){
     .breadcum-box{display: flex !important; }
