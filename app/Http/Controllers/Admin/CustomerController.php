@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use App\Models\EmailTemplate;
+use Mail;
 
 class CustomerController extends Controller
 {
@@ -36,6 +37,41 @@ class CustomerController extends Controller
         $customer->password = Hash::make($password);
         $customer->otp=$otp;
         $customer->save();
+
+        $email=$customer->email;
+        $name=$customer->fname . ' ' .$customer->lname;
+        $temppassword =$customer->email;
+
+        //welcome mail
+        $ndata = EmailTemplate::select('template')->where('label', 'welcome_to_the_gbgc_data_portal')->first();
+        $templateStr = array('[Name]','[UserName]','[Password]');
+        $data = array($name,$email,$temppassword);
+        $html = isset($ndata->template) ? $ndata->template : NULL;
+        $mailHtml = str_replace($templateStr, $data, $html);
+        $adminemail ='loopcon1018@gmail.com';
+        $subject = $ndata->value;
+        Mail::to([$email, $adminemail])->send(new \App\Mail\CommonMail($mailHtml,$subject));
+
+        //2F info mail
+        $ndata1 = EmailTemplate::select('template')->where('label', 'setting_up_email_authentication')->first();
+        $templateStr1 = array('[Name]');
+        $data1 = array($name);
+        $html1 = isset($ndata1->template) ? $ndata1->template : NULL;
+        $mailHtml = str_replace($templateStr1, $data1, $html1);
+        $adminemail ='loopcon1018@gmail.com';
+        $subject =$ndata1->value;
+        Mail::to([$email, $adminemail])->send(new \App\Mail\CommonMail($mailHtml,$subject));
+
+        //otp Verification
+        $ndata2 = EmailTemplate::select('template')->where('label', 'otp_verification')->first();
+        $templateStr2 = array('[OTPCode]');
+        $data2 = array($name);
+        $html2 = isset($ndata2->template) ? $ndata2->template : NULL;
+        $mailHtml = str_replace($templateStr2, $data2, $html1);
+        $adminemail ='loopcon1018@gmail.com';
+        $subject =$ndata2->value;
+        Mail::to([$email, $adminemail])->send(new \App\Mail\CommonMail($mailHtml,$subject));
+        
         return redirect('admin/user')->with('success', trans('User status changed successfully.'));
     }
 
