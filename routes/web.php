@@ -74,6 +74,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/backend', [App\Http\Controllers\Admin\IndexController::class, 'index'])->name('adminindex');
 
+//How It's WOrk
+Route::get('admin/howitswork',[App\Http\Controllers\Admin\HowitworkController::class,'index'])->name('adminhowitswork');
+Route::post('admin/addhowitswork',[App\Http\Controllers\Admin\HowitworkController::class,'addhowitwork'])->name('addhowitwork');
+Route::post('admin/edithowitsworkstep',[App\Http\Controllers\Admin\HowitworkController::class,'edithowitsworkstep'])->name('edithowitsworkstep');
+Route::post('admin/updatehowitswork',[App\Http\Controllers\Admin\HowitworkController::class,'updatehowitswork'])->name('updatehowitswork');
+/// end how it's work
+
+
 //order
 Route::get('admin/order',[App\Http\Controllers\Admin\OrderController::class,'order'])->name('adminorder');
 Route::post('updatepaymentstatus',[App\Http\Controllers\Admin\OrderController::class,'updatepaymentstatus'])->name('updatepaymentstatus');

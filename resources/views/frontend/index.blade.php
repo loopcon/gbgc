@@ -83,33 +83,27 @@
             <div class="how-it-works-box">
                 <div class="hiw-offers-box">
                     <!-- <img src="img/how-it-works-img2.png" alt=""> -->
-                    <p class="hiw-offers-box-text">WE OFFER 
-                        <span>INCOMPARABLE</span>
-                        METRICS FROM
-                        <span>GAMBLING</span>
-                        INDUSTRY</p>
+                    <p class="hiw-offers-box-text">{{$howitwork->imagetext}}</p>
                 </div>
                 <div class="row m-0 align-items-center"> 
                     <div class="col-12 col-sm-6">
-                        <h5 class="how-it-workheading">How it Works</h5>
-                        <h4 class="sign-up-step-heading">SIGN UP IN 4 EASY STEPS</h4>
+                        <h5 class="how-it-workheading">{{$howitwork->title1}}</h5>
+                        <h4 class="sign-up-step-heading">{{$howitwork->title2}}</h4>\
+
+                        <?php $i=01; ?>
+                        @foreach($howitworkstep as $step)
                         <div class="click-here-text">
-                            <span>01.</span><p > Click here to provide your billing information</p>
+                            <span>{{$i}}</span>
+                            <?php $i++; ?>
+                            <p >{{$step->title}}</p>
                         </div>
-                        <div class="click-here-text">
-                            <span>02.</span><p>We’ll send you an invoice </p>
-                        </div>
-                        <div class="click-here-text">
-                            <span>03.</span> <p> Pay for your membership</p>    
-                        </div>
-                        <div class="click-here-text">
-                            <span>04.</span> <p> We’ll send you an access code</p>
-                        </div>
-                        <p class="well-send-textdetail">Once your invoice is paid, you’ll receive your access code within one business day.</p>
+                        @endforeach
+
+                        <p class="well-send-textdetail">{{$howitwork->title3}}</p>
                         <a href="{{route('howitswork')}}" class="faq-contactbtn"><button class="btn btn-info text-light"> Read More </button></a>
                     </div>
                     <div class="col-12 col-sm-6">
-                        <img src="{{asset('img/how-it-works-img1.png')}}" class="img-fluid" alt="">
+                        <img src="{{asset('uploads/howitswork/'.$howitwork->image)}}" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>    

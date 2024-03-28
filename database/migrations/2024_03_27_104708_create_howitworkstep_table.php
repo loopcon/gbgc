@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('additional_users', function (Blueprint $table) {
+        Schema::create('howitworkstep', function (Blueprint $table) {
             $table->id();
-            $table->integer('parent_id')->nullable();
-            $table->integer('additional_user_no')->nullable();
-            $table->integer('accept_additional_user')->nullable();
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('additional_users');
+        Schema::dropIfExists('howitworkstep');
     }
 };

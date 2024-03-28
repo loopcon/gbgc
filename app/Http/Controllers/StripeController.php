@@ -7,20 +7,18 @@ use App\Models\Order;
 use App\Models\TempCustomer;
 use App\Models\Customer;
 use Session;
+use Mail;
+use App\Models\EmailTemplate;
 
 class StripeController extends Controller
 {
     public function stripe(Request $request)
     {
-       // dd($request->all());
        $checkpayment =Order::where('customer_id',$request->customerid)->where(['active_status'=>1])->first();
-       // dd($checkpayment);
         if($checkpayment == null)
         {
-
             if($request->paymentmethod === "offline")
             {   
-                   // dd("test");
                 if($request->usertype =='freetopro')
                 {
                     $customer = Customer::find($request->customerid);
@@ -34,6 +32,8 @@ class StripeController extends Controller
                     $order->currency='USD';
                     $order->payment_method=$request->paymentmethod;
                     $order->save();
+
+                    
                     return redirect()->route('paymentsuccessnew');
                 }else{
 

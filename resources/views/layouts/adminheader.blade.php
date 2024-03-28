@@ -188,7 +188,7 @@
                                             <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
                                             <span class="pcoded-mtext">CMS</span>
                                         </a>
-                                        <ul class="pcoded-submenu" style="{{ (request()->is('admin/staticpage*') || request()->is('admin/faq*') || request()->is('admin/newsletter*') || request()->is('admin/contactus*') || request()->is('admin/homepagebanner*') || request()->is('admin/homepagereport*'))? 'display:block' : 'display:none' }}">
+                                        <ul class="pcoded-submenu" style="{{ (request()->is('admin/staticpage*') || request()->is('admin/faq*') || request()->is('admin/newsletter*') || request()->is('admin/contactus*') || request()->is('admin/homepagebanner*') || request()->is('admin/howitswork*')  || request()->is('admin/homepagereport*'))? 'display:block' : 'display:none' }}">
                                             <li class="{{ (request()->is('admin/staticpage*'))? 'active' : '' }}">
                                                 <a href="{{route('staticpage')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Static Page</span>
@@ -199,6 +199,12 @@
                                                     <span class="pcoded-mtext">FAQ</span>
                                                 </a>
                                             </li>
+                                             <li class="{{ (request()->is('admin/howitswork*'))? 'active' : '' }}">
+                                                <a href="{{route('adminhowitswork')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">How it's Work</span>
+                                                </a>
+                                            </li>
+
                                             <li class="{{ (request()->is('admin/newsletter*'))? 'active' : '' }}">
                                                 <a href="{{route('newsletter')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Customer NewsLetter</span>

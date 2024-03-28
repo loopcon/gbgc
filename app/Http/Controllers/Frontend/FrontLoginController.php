@@ -20,7 +20,6 @@ class FrontLoginController extends Controller
 
     public function registration(Request $request)
     {   
-
        $validator = Validator::make($request->all(), [
             'fname' => ['required'],
             'lname' => ['required'],
@@ -43,15 +42,17 @@ class FrontLoginController extends Controller
         $customer->access_type= 'requestforfree';
         $customer->save();
 
-        // $ndata = EmailTemplate::select('template')->where('label', 'sign_up_for_free_access')->first();
-        // $email=$request->input('email');
-        // $name= $request->input('name');
-        // $templateStr = array('[NAME]','[EMAIL]');
-        // $data = array($name, $email);
-        // $html = isset($ndata->template) ? $ndata->template : NULL;
-        // $mailHtml = str_replace($templateStr, $data, $html);
-        // Mail::to("loopcon1018@gmail.com")->send(new \App\Mail\CommonMail($mailHtml, 'Request An Free Register - ' . 'GBGC'));
-
+        $ndata = EmailTemplate::select('template')->where('label', 'sign_up_for_free_access')->first();
+        $email=$request->input('email');
+        $name= $request->input('fname') . ' ' .$request->input('lname');
+        $templateStr = array('[Name]');
+        $data = array($name);
+        $html = isset($ndata->template) ? $ndata->template : NULL;
+        $mailHtml = str_replace($templateStr, $data, $html);
+        $email1 = 'loopcon8@gmail.com';
+        $email ='loopcon1018@gmail.com';
+        $subject = 'Request A Free Registration - GBGC';
+        Mail::to([$email, $email1])->send(new \App\Mail\CommonMail($mailHtml, $subject));
         if($customer){
             return response()->json(['status' =>1, 'msg' => 'You Account Request Sent Successfully.']);
         }

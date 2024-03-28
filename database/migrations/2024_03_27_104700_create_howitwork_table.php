@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('currencies', function (Blueprint $table) {
+        Schema::create('howitwork', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->tinyInteger('status')->nullable();
+            $table->string('title1')->nullable();
+            $table->string('title2')->nullable();
+            $table->string('title3')->nullable();
+            $table->string('imagetext')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('currencies');
+        Schema::dropIfExists('howitwork');
     }
 };

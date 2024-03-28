@@ -26,6 +26,8 @@ use Excel;
 use App\Models\Score;
 use Stripe\StripeClient;
 use App\Models\TempCustomer;
+use App\Models\howitworkstep;
+use App\Models\howitwork;
 
 class FrontendController extends Controller
 {
@@ -34,6 +36,8 @@ class FrontendController extends Controller
         $return_data = array();       
         $return_data['staticpage'] = StaticPage::get();
         $return_data['homepagebanner'] = HomepageBanner::first();
+        $return_data['howitworkstep'] = howitworkstep::get();
+        $return_data['howitwork'] = howitwork::first();
         $return_data['homepagereport'] = HomepageReport::get();
         $return_data['free_membership'] = Membershipplan::where('access_status','=','free')->first();
         $return_data['paid_membership'] = Membershipplan::where('access_status','=','paid')->first();
